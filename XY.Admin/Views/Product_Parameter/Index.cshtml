@@ -1,0 +1,124 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@Scripts.Render("~/js/jqueryPage")
+<script src="/Content/js/vendor/chosen/chosen.jquery.min.js"></script>
+<script type="text/x-jquery-tmpl" id="dataModel">
+    <tr class="gradeA odd" id="${ID}">
+        <td class="">${ID}</td>
+        <td class="">${Name}</td>
+        <td class="text-center ">${ChangeDateFormat(CreateTime)}</td>
+        <td class="text-left ">
+            <a href="javascript:_Edit('${ID}')" class="btn btn-blue btn-xs"> 修改 </a>
+            <a href="javascript:del('${ID}',this,'Product_Parameter')" class="btn btn-orange btn-xs"> 删除 </a>
+        </td>
+    </tr>
+</script>
+
+
+<script type="text/javascript">
+    $(function () {
+        _getPage();
+    })
+    function _getPage() {
+        $("#Att_ID").val("");
+        $("#Att_Name").val("");
+        $("tbody").bindPage({
+            url: "/Product_Parameter/GetPage",
+            where: "DR|equal|0#CompanyID|equal|" + '@XY.UserDateTicket.Company.ID'
+        });
+    }
+    function _Edit(id) {
+        $.getJSON("/Product_Parameter/Single", { id: id, v: Math.random() }, function (result) {
+            if (result.status == 1) {
+                $("#Att_ID").val(result.id);
+                $("#Att_Name").val(result.name);
+            } else {
+                alert("错误");
+            }
+        })
+    }
+
+    function _Save() {
+        if ($.trim($("#Att_Name").val()).length <= 0) {
+            alert("参数错误");
+            return;
+        }
+        $("#savabtn").text("信息提交中....");
+        $.ajax({
+            async: false,
+            url: "/Product_Parameter/Save",
+            data: { id: $("#Att_ID").val(), val: $("#Att_Name").val(), v: Math.random() },
+            success: function (result) {
+                $("#savabtn").text("提交");
+                if (result == 1) {
+                    alert("操作成功");
+                    _getPage();
+                } else {
+                    alert("操作失败");
+                }
+            },
+            error: function (ex) {
+                alert("参数错误," + ex);
+                return;
+            }
+        })
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 产品参数设置中心
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="javascript:void(0);"> 产品参数设置中心</a></li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile color transparent-black">
+        <div class="tile-body">
+            <div class="table-responsive">
+                <div id="datetable" class="dataTables_wrapper">
+                    <table class="table table-datatable table-custom dataTable" id="dataTable">
+                        <thead>
+                            <tr role="row">
+                                <th class="sort-alpha">ID</th>
+                                <th class="sort-alpha">参数名称</th>
+                                <th class="sort-alpha sorting">创建时间</th>
+                                <th class="">管理</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 text-right sm-center">
+                            <div class="dataTables_paginate paging_bootstrap paging_custombootstrap">
+                                <ul class="pagination"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">参数名称</label>
+                    <div class="col-sm-9">
+                        <input name="Att_Name" value="" id="Att_Name" type="text" class="form-control" />
+                        <input name="Att_ID" value="" id="Att_ID" type="hidden" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group form-footer">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <a href="javascript:_Save()" id="savabtn" class="btn btn-primary">提交</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

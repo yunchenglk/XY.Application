@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "Picture";
+}
+<link rel="stylesheet" href="/content/js/vendor/superbox/css/style.css">
+<script src="/content/js/vendor/superbox/superbox.js"></script>
+<script src="~/Scripts/jquery.img.js"></script>
+@Scripts.Render("~/js/jqueryPage")
+<script type="text/x-jquery-tmpl" id="dataModel">
+    <div class="superbox-list img-view">
+        <img src="${FilePathStr}" data-img="${FilePathStr}" class="superbox-img" alt>
+        <div class="overlay">
+            <div class="media-info">
+                <span>${ChangeDateFormat(CreateTime)} </span>
+                <span style="color:red">{{if IsOnline}}[已经同步到微信]{{/if}}</span>
+            </div>
+        </div>
+    </div>
+</script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#superbox").bindPage({
+            url: "/WeChat/GetPicPage",
+            pagesize: 9,
+            where: "RelationID|equal|" + $("#RelationID").val() + "#CompanyID|equal|" + $("#CompanyID").val()
+        });
+    })
+    function pageAfter(result, obj) {
+        $("#dataModel").tmpl(result.content).appendTo(obj);
+        $('#superbox').SuperBox();
+    }
+    function UploadCallBack(result) {
+        $.ajax({
+            url: "/Files/AddFiles",
+            type: "POST",
+            data: { RelationID: $("#RelationID").val(), files: encodeURIComponent((result.filepath + result.newname)), isDel: false, v: Math.random() },
+            success: function (data) {
+                if (data == "ok") {
+                    alert("上传成功");
+                    window.location.reload();
+                } else {
+                    alert("上传失败");
+                }
+            }, error: function () {
+                alert("异常！");
+            }
+        })
+    }
+    function clearOldDate(obj) {
+        $(".superbox-list").remove();
+    }
+    function asyncpic() {
+        $.ajax({
+            type: "get",
+            async: false,
+            url: "/wechat/asyncpic",
+            data: { v: Math.random() },
+            datatype: 'json',
+            success: function (data) {
+                alert("ok");
+            }
+        });
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-camera"></i> 微信公众平台-图片库管理
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="javascript:void(0);">图片库管理</a></li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <input type="hidden" id="RelationID" value="@ViewBag.RelationID" />
+    <input type="hidden" id="CompanyID" value="@ViewBag.CompanyID" />
+    <section class="tile transparent" id="superbox-gallery">
+
+        <!-- tile header -->
+        <div class="tile-header transparent">
+            <form class="form-horizontal" method="post">
+                <div class="input-group" id="IMG">
+                    <span class="input-group-btn">
+                        <span class="btn btn-primary btn-file">
+                            <i class="fa fa-upload"></i>
+                            <input type="file" name="file" filepath="/UPLOAD/WXIMG/" filetype="image" for="IMG">
+                        </span>
+                    </span>
+                    <input type="text" class="form-control" value="" name="IMG">
+                </div>
+            </form>
+        </div>
+        <div class="tile-widget color transparent-black rounded-top-corners">
+            <ul class="tile-navbar bg-transparent-black-3">
+                <li>
+                    <a href="#" class="gallery-tool disabled">&#12288;</a>
+                </li>
+                <li class="filters">
+                    <a href="javascript:void(0)" onclick="if (confirm('确定将图片同步到微信？')) asyncpic();">同步到微信</a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- /tile header -->
+        <!-- tile body -->
+        <div class="tile-body color transparent-black superbox" id="superbox">
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4 text-right sm-center">
+                <div class="dataTables_paginate paging_bootstrap paging_custombootstrap">
+                    <ul class="pagination"></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

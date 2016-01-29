@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "微信公众平台基本参数设置";
+}
+@Scripts.Render("~/js/jqueryValidate")
+<script type="text/javascript">
+    function loadWechart() {
+        $.getJSON("/WeChat/GetAccessToken", { v: Math.random() }, function (data) {
+            alert(data);
+        })
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 微信公众平台
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="javascript:void(0);">微信公众平台基本参数设置</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="main">
+    <section class="tile color transparent-black">
+        <div class="tile-body">
+            <form class="form-horizontal" method="post" action="/WeChat/Index" id="validate">
+                <input type="hidden" value="@Model.ID" name="ID" />
+                <input type="hidden" value="@Model.CreateTime" name="CreateTime" />
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">微信公众号原始ID *</label>
+                    <div class="col-sm-9">
+                        <input name="OrgID" value="@Model.OrgID" type="text" class="form-control {required:true,messages:{required:'微信公众号原始ID不能为空'}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">Token *</label>
+                    <div class="col-sm-9">
+                        <input name="Token" value="@Model.Token" type="text" class="form-control {required:true,messages:{required:'Token不能为空'}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">AppID *</label>
+                    <div class="col-sm-9">
+                        <input name="AppID" value="@Model.AppID" type="text" class="form-control {required:true,messages:{required:'AppID不能为空'}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">EncodingAESKey *</label>
+                    <div class="col-sm-9">
+                        <input name="EncodingAESKey" value="@Model.EncodingAESKey" type="text" class="form-control {required:true,messages:{required:'EncodingAESKey不能为空'}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">AppSecret *</label>
+                    <div class="col-sm-9">
+                        <input name="AppSecret" value="@Model.AppSecret" type="text" class="form-control {required:true,messages:{required:'AppSecret不能为空'}}" />
+                    </div>
+                </div>
+                <div class="form-group form-footer">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="reset" class="btn btn-default">清空</button>
+                        <button type="button" class="btn btn-submit" onclick="loadWechart()">连接微信</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+

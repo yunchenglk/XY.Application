@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "留言详情";
+}
+<script src="~/Scripts/jquery.form.js"></script>
+<script type="text/javascript">
+    function _Reply(id) {
+        $('#_Content').parent().remove();
+        $("#" + id).after('<div class="form-group transparent-editor"><div class="form-control" id="_Content"></div><button type="submit" class="btn btn-primary" style="margin-top:10px;" onclick="_sub()">提交</button><button type="submit" class="btn" style="margin-top:10px;" onclick="_sub_over()">取消</button></div>');
+        $('#_Content').summernote({
+            toolbar: [
+              ['style', ['style']], // no style button
+              ['style', ['bold', 'italic', 'underline', 'clear']],
+              ['fontsize', ['fontsize']],
+              ['color', ['color']],
+              ['para', ['ul', 'ol', 'paragraph']],
+              ['height', ['height']],
+              ['insert', ['picture', 'link']], // no insert buttons
+              ['table', ['table']], // no table button
+              ['help', ['help']] //no help button
+            ],
+            height: 137   //set editable area's height
+        });
+        $("#PID").val(id);
+    }
+    function _sub() {
+        var content = encodeURIComponent($(".note-editable > p").html());
+        $("#Content").val(content);
+        $("#form").ajaxSubmit(function () {
+            window.location.reload();
+        })
+    }
+    function _sub_over() {
+        $('#_Content').parent().remove();
+    }
+    $(function () {
+        $.getJSON("/Messages/GetAllessages_Reply", { id: "@Model.ID", v: Math.random() }, function (data) {
+            var html = "";
+            $.each(data, function (i, n) {
+                $("#filled").append(GetHtml(n));
+            })
+
+        })
+    })
+    function GetHtml(obj) {
+        var html = "";
+        html += ' <blockquote>'
+        html += '<p>' + obj.Content + '</p>'
+        html += '<small>' + ChangeDateFormat(obj.CreateTime) + '</small>'
+        html += ' <a href="javascript:_del(\'' + obj.ID + '\')" class="btn btn-red btn-xs"> 删除 </a>'
+        html += ' <a href="javascript:_Reply(\'' + obj.ID + '\')" class="btn btn-blue btn-xs" id="' + obj.ID + '"> 回复 </a>'
+        html += '<hr />'
+        $.each(obj.ChildItem, function (i, n) {
+            html += GetHtml(n);
+        })
+        html += "</blockquote>"
+        return html;
+    }
+    function ChangeDateFormat(cellval) {
+        var date = new Date(parseInt(cellval.replace("/Date(", "").replace(")/", ""), 10));
+        var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+        var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+        return date.getFullYear() + "/" + month + "/" + currentDate + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    }
+    function _del(id) {
+        if (confirm("确定删除吗？删除后此信息下的所有信息都会丢失"))
+            $.getJSON("/Messages/Delete", { id: id, v: Math.random() }, function (result) {
+                if (result.status == 1) {
+                    alert("操作成功");
+                    window.location.reload();
+                } else {
+                    alert("操作失败");
+                }
+            })
+    }
+</script>
+
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 留言主题 回复列表
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li class="active">回复列表</li>
+        </ol>
+    </div>
+</div>
+
+<div class="main">
+    <section class="tile transparent">
+        <form action="/Messages/MessagesDetail" method="post" id="form">
+            <input type="hidden" value="@Model.ID" id="MessageID" name="MessageID" />
+            <input type="hidden" value="@XY.UserDateTicket.UID" id="UserID" name="UserID" />
+            <input type="hidden" value="" id="PID" name="ParentID" />
+            <textarea id="Content" name="Content" style="display:none;"></textarea>
+        </form>
+        <h5 class="filled"></h5>
+        <blockquote class="filled" id="filled">
+            <p><i class="fa fa-quote-left pull-left"></i>@Model.Content</p>
+            <small>@Model.CreateTimeStr</small>
+            <a href="javascript:_Reply('@Guid.Empty')" class="btn btn-blue btn-xs" id="@Guid.Empty"> 回复 </a>
+        </blockquote>
+
+    </section>
+</div>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<statements>
+#foreach( $Table in $Tables )
+  <statement id="$Table.TemplateName"  primarykey="$Table.PK">
+    SELECT $Table.ColumnNames  FROM $Table.TableName   WHERE $Table.PK=@$Table.PK
+  </statement>
+#end
+</statements>

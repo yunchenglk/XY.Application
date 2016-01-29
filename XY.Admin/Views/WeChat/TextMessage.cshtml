@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "TextMessage";
+}
+@Scripts.Render("~/js/jqueryPage")
+<link href="~/Content/wechart.css" rel="stylesheet" />
+<script type="text/x-jquery-tmpl" id="dataModel">
+    <div class="appmsg_col tj_item">
+        <div class="inner" id="js_col1">
+            <div class="js_appmsgitem">
+                <div class="appmsg " data-id="401564243" data-fileid="401563993" data-completed="1">
+                    <div class="appmsg_content">
+                        <h4 class="appmsg_title js_title">
+                            <a href="">${Groups[0].Title}</a>
+                        </h4>
+                        <div class="appmsg_info">
+                            <em class="appmsg_date">${ChangeDateFormat(CreateTime)}</em>
+                        </div>
+                        <div class="appmsg_thumb_wrp" style="background-image: url('${Groups[0].ImgUrlStr}'); ">
+                        </div>
+                        <p class="appmsg_desc">${Groups[0].Author}</p>
+                    </div>
+                    <div class="appmsg_opr">
+                        <ul>
+                            <li class="appmsg_opr_item grid_item size1of2" style=" list-style:none;">
+                                <a class="js_tooltip" href="/WeChat/TextMessage_Create/${ID}">&nbsp;<i class="icon18_common edit_gray">编辑</i></a>
+                            </li>
+                            <li class="appmsg_opr_item grid_item size1of2 no_extra">
+                                <a class="js_del no_extra js_tooltip" href="javascript:_Del('${ID}');" data-tooltip="删除"><i class="icon18_common del_gray">删除</i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#itemstable").bindPage({
+            url: "/WeChat/GetMessagePage",
+            pagesize: 9,
+            where: "CompanyID|equal|" + $("#CompanyID").val()
+        });
+    })
+    function clearOldDate(obj) {
+        $(".tj_item").remove();
+    }
+
+
+    function _Del(id) {
+        if (confirm("确定要删除吗？")) {
+            $.getJSON("/WeChat/DelMessage", { id: id, v: Math.random() }, function (data) {
+                alert(data);
+                window.location.reload();
+            })
+        }
+    }
+    function asyncMessage() {
+        $.ajax({
+            type: "Get",
+            async: false,
+            url: "/WeChat/AsyncMessage",
+            data: { v: Math.random() },
+            dataType: 'json',
+            success: function (data) {
+                if (data.code == 1) {
+                    alert("成功！");
+                } else {
+                    alert("失败！[" + data.errcode + "]原因：" + data.errmsg);
+                }
+            }
+        });
+    }
+</script>
+
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 微信公众平台-图文消息管理
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="javascript:void(0);">图文消息管理</a></li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile transparent">
+        <input type="hidden" value="@XY.UserDateTicket.Company.ID" id="CompanyID" />
+        <div class="tile-widget color transparent-black rounded-top-corners">
+            <ul class="tile-navbar bg-transparent-black-3">
+                <li>
+                    <a href="#" class="gallery-tool disabled">&#12288;</a>
+                </li>
+                <li class="filters">
+                    <a href="javascript:void(0)" onclick="if (confirm('确定同步到微信？')) asyncMessage();">同步到微信</a>
+                    <a href="/WeChat/TextMessage_Create">添加图文消息</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tile-body color transparent-black rounded-corners">
+            <div class="appmsg_list" id="itemstable" style="">
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4 text-right sm-center">
+                    <div class="dataTables_paginate paging_bootstrap paging_custombootstrap">
+                        <ul class="pagination"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+

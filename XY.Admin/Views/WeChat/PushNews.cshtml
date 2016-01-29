@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "PushNews";
+}
+<link rel="stylesheet" href="/Content/js/vendor/tabdrop/css/tabdrop.css">
+<script src="/Content/js/vendor/chosen/chosen.jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".nav-tabs > li").live("click", function (n) {
+            $(".nav-tabs > li").removeClass("active");
+            $(this).addClass("active");
+            var id = $(this).attr("id");
+            $(".tile-body > div").hide();
+            $("#_" + id).show();
+        })
+        //
+        $.getJSON("/WeChat/GetOnlieMessage", { v: Math.random() }, function (result) {
+            $.each(result, function (i, n) {
+                $("#Message").append("<option value='" + n.media_id + "'>" + n.Title + "</option>");
+            })
+            $("#Message").chosen();
+        })
+    })
+    function SendText() {
+        $.ajax({
+            url: "/WeChat/SendText",
+            type: "GET",
+            data: { txt: $("#txt_count").val(), v: Math.random() },
+            success: function (result) {
+                alert(result);
+            },
+            error: function () {
+                alert("错误!");
+            }
+        })
+    }
+    function SendNewGroup() {
+        $.ajax({
+            url: "/WeChat/SendNewGroup",
+            type: "GET",
+            data: { media_id: $("#Message").val(), v: Math.random() },
+            success: function (result) {
+                alert(result);
+            },
+            error: function () {
+                alert("错误!");
+            }
+        })
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 微信公众平台--消息推送
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="javascript:void(0);">消息推送</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="main">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="tile left-nav transparent">
+                <div class="tile-left-side nopadding color transparent-black rounded-left-corners">
+                    <ul class="nav nav-tabs tabs-left">
+                        <li class="active" id="text"><a href="#">文本</a></li>
+                        <li id="image"><a href="#">图片</a></li>
+                        <li id="text_img_news"><a href="#">图文</a></li>
+                    </ul>
+                </div>
+                <div class="tile-body rounded-right-corners">
+                    <div id="_text">
+                        <textarea class="form-control" rows="6" id="txt_count"></textarea>
+                        <hr />
+                        <button type="submit" class="btn btn-primary" onclick="SendText()">发送</button>
+                    </div>
+                    <div id="_image" style="display:none">
+                        已经同步的图文信息
+                    </div>
+                    <div id="_text_img_news" style="display:none">
+                        图文素材库：
+                        <select name="Message" class="chosen-select chosen-transparent form-control" id="Message"></select>
+                        <hr />
+                        <button type="submit" class="btn btn-primary" onclick="SendNewGroup()">发送</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

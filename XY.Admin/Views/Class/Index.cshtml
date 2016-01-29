@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "功能配置列表";
+}
+@Scripts.Render("~/js/jqueryPage")
+<script src="/Content/js/vendor/chosen/chosen.jquery.min.js"></script>
+<script type="text/x-jquery-tmpl" id="dataModel">
+    <tr class="gradeA odd" id="${ID}">
+        <td class="">${ID}</td>
+        <td class="">${TypeName}</td>
+        <td class="">${CompanyName}</td>
+        <td class="">${Title}</td>
+        <td class="">${Publisher}</td>
+        <td class="text-center ">${ChangeDateFormat(CreateTime)}</td>
+        <td class="text-left ">
+            <a href="/Class/Create/${ID}" class="btn btn-blue btn-xs"> 修改 </a>
+            <a href="javascript:del('${ID}',this,'Class')" class="btn btn-red btn-xs"> 删除 </a>
+            {{if Ishaschild}}<a href="javascript:getChild('${ID}','${CompanyID}')" class="btn btn-orange btn-xs" id="cklm_${ID}"> 查看栏目 </a>{{/if}}
+        </td>
+    </tr>
+</script>
+<script type="text/javascript">
+    $(function () {
+        //初始化公司
+        $.getJSON("/Company/Get_All_NameID", { v: Math.random() }, function (data) {
+            $.each(data, function (i, o) {
+                $("#CompanyID").append(" <option value=" + o["id"] + ">" + o["name"] + "</option>")
+            })
+            $("tbody").bindPage({
+                where: "ParentID|equal|00000000-0000-0000-0000-000000000000#CompanyID|equal|" + $("#CompanyID").val(),
+                sortorder: "asc",
+                sortname: "Sort"
+            });
+            $(".chosen-select").chosen();
+
+        });
+        $("#CompanyID").change(function () {
+            $("#dataTable tbody").bindPage({
+                where: "ParentID|equal|00000000-0000-0000-0000-000000000000#CompanyID|equal|" + $(this).val(),
+                sortorder: "asc",
+                sortname: "Sort"
+            });
+        })
+    });
+    function getChild(id, cid) {
+        $.getJSON("/Class/GetChild", { id: id, cid: cid, v: Math.random() }, function (data) {
+            $.each(data, function (x, y) {
+                y.Title = "╞&#12288;" + y.Title
+            })
+            $("#" + id).after($("#dataModel").tmpl(data));
+            $("#cklm_" + id).remove();
+            $(".gradeA").on("mousemove", function () {
+                $(this).addClass("row_selected");
+            }).on("mouseout", function () {
+                $(this).removeClass("row_selected");
+            })
+        });
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 功能列表
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="/Class/Index">功能管理</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="main">
+    <section class="tile transparent">
+
+        <!-- tile body -->
+        <div class="tile-body color transparent-black rounded-corners">
+            @if (XY.UserDateTicket.IsSuper)
+            {
+                <div class="col-sm-3" style=" z-index:100;">
+                    <select name="CompanyID" class="chosen-select chosen-transparent form-control" id="CompanyID"></select>
+                </div>
+            }
+            else {
+                <input type="hidden" value="@XY.UserDateTicket.Company.ID" id="CompanyID" />
+            }
+            <div class="table-responsive">
+                <div id="datetable" class="dataTables_wrapper">
+                    <table class="table table-datatable table-custom dataTable" id="dataTable" url="/Class/GetPage">
+                        <thead>
+                            <tr role="row">
+                                <th class="sort-alpha">功能ID</th>
+                                <th class="sort-alpha">类别</th>
+                                <th class="sort-alpha">所属公司</th>
+                                <th class="sort-alpha">标题</th>
+                                <th class="sort-alpha">发布者</th>
+                                <th class="sort-alpha sorting">创建时间</th>
+                                <th class="">管理</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 text-right sm-center">
+                            <div class="dataTables_paginate paging_bootstrap paging_custombootstrap">
+                                <ul class="pagination"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,200 @@
+﻿
+@{
+    ViewBag.Title = "编辑视频";
+}
+@Scripts.Render("~/js/jqueryValidate");
+<script type="text/javascript" charset="gbk" src="/content/UEdit/ueditor.config.js"></script>
+<script type="text/javascript" charset="gbk" src="/content/UEdit/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="gbk" src="/content/UEdit/lang/zh-cn/zh-cn.js"></script>
+<script src="~/Scripts/jquery.img.js"></script>
+<script type="text/javascript">
+    $().ready(function () {
+        var ue = UE.getEditor('editor');
+        if ($("#ID").val() != '@Guid.Empty') {
+            $("#IsRecommend" + '@Model.IsRecommend').click();
+            $("#IsAudit" + '@Model.IsAudit').click();
+            $("#IsTop" + '@Model.IsTop').click();
+        }
+    })
+    function beforeSubmit() {
+        if (UE.getEditor('editor').hasContents()) {
+            $("#Description").val(encodeURIComponent(UE.getEditor('editor').getContent()));
+            UE.getEditor('editor').destroy();
+        }
+        return true;
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 视频管理
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li class="active">编辑视频</li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile color transparent-black">
+        <div class="tile-body">
+            <form class="form-horizontal" method="post" action="/Video/Create" id="validate">
+                <input type="hidden" value="@Model.ID" name="ID" id="ID" />
+                <input type="hidden" value="@Model.CreateTime" name="CreateTime" />
+                <input type="hidden" value="" id="Description" name="Description" />
+                <input type="hidden" value="@ViewBag.ClassID" name="ClassID" />
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">标题 *</label>
+                    <div class="col-sm-9">
+                        <input name="Title" id="Title" value="@Model.Title" type="text" placeholder="新闻标题" class="form-control {required:true,messages:{required:'标题不能为空'}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">副标题 </label>
+                    <div class="col-sm-9">
+                        <input name="STitle" id="STitle" value="@Model.STitle" type="text" class="form-control" placeholder="新闻副标题" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">发布者 </label>
+                    <div class="col-sm-9">
+                        <input name="Author" id="Author" value="@Model.Author" type="text" class="form-control" placeholder="发布者" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">来源 </label>
+                    <div class="col-sm-9">
+                        <input name="Souce" type="text" value="@Model.Souce" class="form-control" placeholder="信息来源" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">关键字 </label>
+                    <div class="col-sm-9">
+                        <input name="Tags" value="@Model.Tags" type="text" class="form-control" placeholder="关键字 '|'符号隔开" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">导读 </label>
+                    <div class="col-sm-9">
+                        <input name="NaviContent" value="@Model.NaviContent" type="text" class="form-control" placeholder="导读" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">Meta关键字 </label>
+                    <div class="col-sm-9">
+                        <input name="Metakeywords" value="@Model.Metakeywords" type="text" class="form-control" placeholder="Meta关键字 '|'符号隔开" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">Meta描述 </label>
+                    <div class="col-sm-9">
+                        <input name="Metadesc" value="@Model.Metadesc" type="text" class="form-control" placeholder="Meta描述 '|'符号隔开" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">SEO标题 </label>
+                    <div class="col-sm-9">
+                        <input name="SEOTitle" value="@Model.SEOTitle" type="text" class="form-control" placeholder="SEO标题" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">SEO关键字 </label>
+                    <div class="col-sm-9">
+                        <input name="SEOTags" value="@Model.SEOTags" type="text" class="form-control" placeholder="SEO关键字 '|'符号隔开" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">点击数 </label>
+                    <div class="col-sm-9">
+                        <input name="Count" value="@Model.Count" type="number" class="form-control" placeholder="点击数" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">类型 </label>
+                    <div class="col-sm-9">
+                        <div class="radio radio-transparent">
+                            <input type="radio" name="Type" id="Type2" value="2" checked>
+                            <label for="Type2">视频</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">是否审核 </label>
+                    <div class="col-sm-9">
+                        <div class="radio radio-transparent">
+                            <input type="radio" name="IsAudit" id="IsAudit0" value="0" />
+                            <label for="IsAudit0">否</label>
+                            <input type="radio" name="IsAudit" id="IsAudit1" value="1" checked />
+                            <label for="IsAudit1">是</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">是否置顶 </label>
+                    <div class="col-sm-9">
+                        <div class="radio radio-transparent">
+                            <input type="radio" name="IsTop" id="IsTop0" value="0" checked>
+                            <label for="IsTop0">否</label>
+                            <input type="radio" name="IsTop" id="IsTop1" value="1">
+                            <label for="IsTop1">是</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">是否推荐 </label>
+                    <div class="col-sm-9">
+                        <div class="radio radio-transparent">
+                            <input type="radio" name="IsRecommend" id="IsRecommend0" value="0" checked>
+                            <label for="IsRecommend0">否</label>
+                            <input type="radio" name="IsRecommend" id="IsRecommend1" value="1">
+                            <label for="IsRecommend1">是</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">预览图片</label>
+                    <div class="col-sm-9">
+                        <div class="input-group" id="SlidePic">
+                            <span class="input-group-btn">
+                                <span class="btn btn-primary btn-file">
+                                    <i class="fa fa-upload"></i>
+                                    <input type="file" name="file" filepath="/UPLOAD/NEWS/" filetype="image" for="SlidePic">
+                                </span>
+                            </span>
+                            <input type="text" class="form-control" value="@Model.SlidePic" name="SlidePic">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">上传视频</label>
+                    <div class="col-sm-9">
+                        <div class="input-group" id="video_file">
+                            <span class="input-group-btn">
+                                <span class="btn btn-primary btn-file">
+                                    <i class="fa fa-upload"></i>
+                                    <input type="file" name="file" filepath="/UPLOAD/Video/" filetype="video" for="video_file">
+                                </span>
+                            </span>
+                            <input type="text" class="form-control" value="@ViewBag.filepath " name="video_file">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="input05" class="col-sm-3 control-label">详情描述</label>
+                    <div class="col-sm-9">
+                        <textarea id="editor" type="text/plain" style="width:100%;">@Model.Description</textarea>
+                    </div>
+                </div>
+                <div class="form-group form-footer">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="reset" class="btn btn-default">清空</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+

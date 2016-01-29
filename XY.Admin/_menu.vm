@@ -1,0 +1,79 @@
+﻿
+#foreach( $menu in ${MENU} )
+	
+	#if($menu.Type==0)
+	<li>
+	  <a href="/General/About/$menu.ID">
+		<i class="fa fa-tint"></i>$menu.Name
+	  </a>
+	</li>
+	#end
+	
+	#if($menu.Type==1)
+	<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			  <i class="fa fa-list"></i>$menu.Name <b class="fa fa-plus dropdown-plus"></b>
+			</a>
+			<ul class="dropdown-menu">
+			#if($menu.IsChild)
+			  #foreach ( $child in $menu.Childs )
+					#if($child.Type == 0)
+					<li>
+						#if($child.IsURL)
+							<a href="$child.URL"> 
+						#else
+							<a href="/General/About/$child.ID"> 
+						#end
+						  <i class="fa fa-caret-right"></i>$child.Name 
+						</a>
+					 </li>	
+					#end
+					#if($child.Type == 1)
+					<li>
+						<a href="/General/NewList/$child.ID"> 
+						     <i class="fa fa-caret-right"></i>$child.Name 列表
+					    </a>
+					</li>
+					<li>
+						<a href="/General/NewEdit/$child.ID"> 
+						     <i class="fa fa-caret-right"></i>添加$child.Name
+					    </a>
+					</li>
+					#end
+			  #end
+			#else
+				<li>
+					<a href="/General/NewList/$menu.ID"> 
+						    <i class="fa fa-caret-right"></i>$menu.Name 列表
+					</a>
+				</li>
+				<li>
+					<a href="/General/NewEdit/$menu.ID"> 
+						    <i class="fa fa-caret-right"></i>添加$menu.Name
+					</a>
+				</li>
+			#end
+			</ul>
+	</li>
+	#end
+
+	#if($menu.Type == 2)
+	<li class="dropdown">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-list"></i> $menu.Name <b class="fa fa-plus dropdown-plus"></b>
+		</a>
+		<ul class="dropdown-menu">
+			<li>
+				<a href="/Product/Index/$menu.ID">
+					<i class="fa fa-caret-right"></i> $menu.Name列表
+				</a>
+			</li>
+			<li>
+				<a href="/Product/Create/$menu.ID">
+					<i class="fa fa-caret-right"></i> 添加$menu.Name
+				</a>
+			</li>
+		</ul>
+	</li>
+	#end
+#end

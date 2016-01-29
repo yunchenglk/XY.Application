@@ -1,0 +1,34 @@
+﻿using System.Data;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Linq;
+using System.Linq.Expressions;
+using System.ComponentModel;
+using System;
+using YunChengLK.Framework.Data;
+namespace $EntityInfo.Namespace
+{
+	
+	
+#foreach($Table in $EntityInfo.Tables)
+
+    [Table("$Table.TableName")]
+	[Serializable] 
+    public partial class $Table.TableName :IEntity
+    {
+        #foreach($Column in $Table.Columns)
+
+		private  $Column.ColumnType _$Column.ColumnNameX;
+
+        [Column("$Column.ColumnName", DbType.$Column.ColumnType,$Column.IsPrimaryKey,$Column.IsDbGenerated)]
+        public $Column.ColumnType  $Column.ColumnName 
+		{ 
+		   get{#if($Column.ColumnType.equals('String'))  return _$Column.ColumnNameX == null ?string.Empty:_$Column.ColumnNameX; #else return _$Column.ColumnNameX; #end } 
+		   set{_$Column.ColumnNameX = value;}
+		 }
+        #end
+    }
+
+#end
+
+}

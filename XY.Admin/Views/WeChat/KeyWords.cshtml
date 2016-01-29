@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "KeyWords";
+}
+@Scripts.Render("~/js/jqueryPage")
+<script type="text/x-jquery-tmpl" id="dataModel">
+    <tr class="gradeA odd" id="${ID}">
+        <td class="">${ID}</td>
+        <td class="">${KeyWords}</td>
+        <td class="">${TypeStr}</td>
+        <td class="">${Description}</td>
+        <td class="text-center ">${ChangeDateFormat(CreateTime)}</td>
+        <td class="text-left ">
+            <a href="/Wechat/KeyWords_Create/${ID}" class="btn btn-blue btn-xs"> 修改 </a>
+            <a href="javascript:del('${ID}')" class="btn btn-red btn-xs"> 删除 </a>
+        </td>
+    </tr>
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("tbody").bindPage({
+            where: "DR|equal|0#CompanyID|equal|" + $("#CompanyID").val()
+        });
+    });
+    function del(id) {
+        if (confirm("确定删除吗？"))
+            $.getJSON("/WeChat/Delete_KeyWord/", { id: id, v: Math.random() }, function (result) {
+                if (result.status == 1) {
+                    alert("操作成功");
+                    $("#" + id).remove();
+                } else {
+                    alert("操作失败");
+                }
+            })
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 微信公众平台-关键字自动回复
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="javascript:void(0);">关键字自动回复列表</a></li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile transparent">
+        <div class="tile-widget color transparent-black rounded-top-corners">
+            <ul class="tile-navbar bg-transparent-black-3">
+                <li>
+                    <a href="#" class="gallery-tool disabled">&#12288;</a>
+                </li>
+                <li class="filters">
+                    @*<a href="javascript:void(0)" onclick="if (confirm('确定将菜单同步到微信？')) asyncMenu();">同步到微信</a>*@
+                    <a href="/WeChat/KeyWords_Create">添加关键字自动回复</a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- tile body -->
+        <div class="tile-body color transparent-black rounded-corners">
+            <input type="hidden" value="@XY.UserDateTicket.Company.ID" id="CompanyID" />
+            <div class="table-responsive">
+                <div id="datetable" class="dataTables_wrapper">
+                    <table class="table table-datatable table-custom dataTable" id="dataTable" url="/Wechat/GetKeyWordsPage">
+                        <thead>
+                            <tr role="row">
+                                <th class="sort-alpha">功能ID</th>
+                                <th class="sort-alpha">KEY</th>
+                                <th class="sort-alpha">类型</th>
+                                <th class="sort-alpha">描述</th>
+                                <th class="sort-alpha sorting">创建时间</th>
+                                <th class="">管理</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 text-right sm-center">
+                            <div class="dataTables_paginate paging_bootstrap paging_custombootstrap">
+                                <ul class="pagination"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

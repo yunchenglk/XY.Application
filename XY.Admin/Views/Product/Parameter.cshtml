@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.Title = "Parameter";
+}
+<script src="~/Scripts/jquery-tmpl.js"></script>
+<script src="/Content/js/vendor/chosen/chosen.jquery.min.js"></script>
+<script type="text/x-jquery-tmpl" id="itemModes">
+    <tr class="gradeA odd">
+        <td class="">
+            <select name="Attr_key" class="chosen-select chosen-transparent form-control"></select>
+        </td>
+        <td class="">
+            <input name="zhi" value="${Att_val}" type="text" class="form-control" />
+        </td>
+        <td class="input-group" style=" width:100%">
+            <span class="input-group-addon" style="width:auto;">$</span>
+            <input type="text" name="Price" value="${Price}" class="form-control">
+        </td>
+        <td class="">
+            <input name="Stock" value="${Stock}" type="text" class="form-control" />
+        </td>
+        <td class="text-left">
+            <a onclick="_del(this)" class="btn btn-blue"> 删除 </a>
+        </td>
+    </tr>
+</script>
+<script type="text/javascript">
+    var keys = new Array();
+    $.ajax({
+        async: false,
+        url: "/GetJson/GetProduct_Att_Keys",
+        data: { v: Math.random() },
+        success: function (result) {
+            $.each(result, function (i, n) {
+                var obj = new Object();
+                obj.id = n.ID;
+                obj.name = n.Name;
+                keys.push(obj);
+            })
+        },
+        error: function () {
+            alert("错误");
+        }
+    })
+    $(function () {
+        $.getJSON("/Product/GetParameters", { id: "@ViewBag.ID", v: Math.random() }, function (result) {
+            $.each(result, function (i, n) {
+                _add(n);
+                _binSel(n.Att_key)
+            })
+        })
+    })
+    function _add(obj) {
+        if (typeof (obj) == "undefined") {
+            $("#itemModes").tmpl({}).appendTo($("#items"));
+            _binSel();
+        }
+        else {
+            $("#itemModes").tmpl(obj).appendTo($("#items"));
+            //$(".gradeA").on("mousemove", function () {
+            //    $(this).addClass("row_selected");
+            //}).on("mouseout", function () {
+            //    $(this).removeClass("row_selected");
+            //})
+        }
+
+    }
+    function _binSel(id) {
+        var obj = $("#items tr:last").find("select");
+        $.each(keys, function (i, n) {
+            obj.append("<option value='" + n.id + "' >" + n.name + "</option>");
+        })
+        if (typeof (obj) != "undefined") {
+            $(obj).val(id);
+        }
+        obj.chosen();
+    }
+    function _save() {
+        if ($("input[class=form-control][value=]").length > 0) {
+            alert("请输入值");
+            $("input[class=form-control][value=]:first").focus();
+            return;
+        }
+        var trs = $("#items").find("tr");
+        var vals = new Array();
+        $.each(trs, function (i, n) {
+            var entity = new Object();
+            entity.ProductID = "@ViewBag.ID";
+            entity.Att_key = $(n).find("select:first").val();
+            entity.Att_val = $(n).find("input:eq(1)").val();
+            entity.Price = $(n).find("input:eq(2)").val();
+            entity.Stock = $(n).find("input:eq(3)").val();
+            vals.push(entity);
+        })
+
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "/Product/UpdateParameters",
+            data: { items: vals, v: Math.random() },
+            success: function (result) {
+                alert(result.msg)
+            },
+            error: function () {
+                alert("错误");
+            }
+        })
+    }
+    function _del(obj) {
+        $(obj).parents("tr").remove();
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 参数设置
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li class="active">参数设置</li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile color transparent-black">
+        <div class="tile-body">
+            <div class="table-responsive">
+                <div id="datetable" class="dataTables_wrapper">
+                    <table class="table table-datatable table-custom dataTable" id="dataTable" url="/Product/GetPage">
+                        <thead>
+                            <tr role="row">
+                                <th class="sort-alpha">参数</th>
+                                <th class="sort-alpha">值</th>
+                                <th class="sort-alpha">价钱</th>
+                                <th class="sort-alpha">库存</th>
+                                <th class="">管理</th>
+                            </tr>
+                        </thead>
+                        <tbody id="items"></tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div>
+                <a href="javascript:_add();" class="btn btn-primary margin-bottom-20">添加</a>
+                <a href="javascript:_save();" class="btn btn-success margin-bottom-20">保存</a>
+                <a href="javascript:history.go(-1);" class="btn btn-default margin-bottom-20">返回</a>
+            </div>
+        </div>
+    </section>
+</div>

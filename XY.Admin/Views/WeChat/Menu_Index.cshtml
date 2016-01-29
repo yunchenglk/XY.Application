@@ -1,0 +1,129 @@
+﻿@{
+    ViewBag.Title = "微信公众平台-自定义菜单管理";
+}
+@Scripts.Render("~/js/jqueryPage")
+<script src="/Content/js/vendor/chosen/chosen.jquery.min.js"></script>
+<script type="text/x-jquery-tmpl" id="dataModel">
+    <tr class="gradeA odd" id="${ID}">
+        <td class="">${ID}</td>
+        <td class="">${Name}</td>
+        <td class="">${TypeStr}</td>
+        <td class="">${MenuKey}</td>
+        <td class="">${URL}</td>
+        <td class="text-center ">${ChangeDateFormat(CreateTime)}</td>
+        <td class="text-left ">
+            <a href="/Wechat/Menu_Create/${ID}" class="btn btn-blue btn-xs"> 修改 </a>
+            <a href="javascript:del('${ID}')" class="btn btn-red btn-xs"> 删除 </a>
+            {{if Ishaschild}}<a href="javascript:getChild('${ID}')" class="btn btn-orange btn-xs" id="cklm_${ID}"> 查看栏目 </a>{{/if}}
+        </td>
+    </tr>
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("tbody").bindPage({
+            where: "DR|equal|0#ParentID|equal|00000000-0000-0000-0000-000000000000#CompanyID|equal|" + $("#CompanyID").val()
+        });
+    });
+    function del(id) {
+        if (confirm("确定删除吗？")) {
+            $.getJSON("/Wechat/Menu_Delete/", { id: id, v: Math.random() }, function (result) {
+                if (result.status == 1) {
+                    alert("操作成功");
+                    $("#" + id).remove();
+                } else {
+                    alert("操作失败");
+                }
+            })
+        }
+    }
+
+    function getChild(id) {
+        $.getJSON("/WeChat/GetChileMenu", { id: id, v: Math.random() }, function (data) {
+            $.each(data, function (x, y) {
+                y.Name = "╞&#12288;" + y.Name
+            })
+            $("#" + id).after($("#dataModel").tmpl(data));
+            $("#cklm_" + id).remove();
+            $(".gradeA").on("mousemove", function () {
+                $(this).addClass("row_selected");
+            }).on("mouseout", function () {
+                $(this).removeClass("row_selected");
+            })
+        });
+    }
+    function asyncMenu() {
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/WeChat/AsyncMenu",
+            data: { v: Math.random() },
+            dataType: 'json',
+            success: function (data) {
+                if (data.code == 1) {
+                    alert("成功！");
+                } else {
+                    alert("失败！原因：" + data.msg);
+                }
+            }
+        });
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 微信公众平台-自定义菜单管理
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="javascript:void(0);">自定义菜单管理</a></li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile transparent">
+        <div class="tile-widget color transparent-black rounded-top-corners">
+            <ul class="tile-navbar bg-transparent-black-3">
+                <li>
+                    <a href="#" class="gallery-tool disabled">&#12288;</a>
+                </li>
+                <li class="filters">
+                    <a href="javascript:void(0)" onclick="if (confirm('确定将菜单同步到微信？')) asyncMenu();">同步到微信</a>
+                    <a href="/WeChat/Menu_Create">添加菜单</a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- tile body -->
+        <div class="tile-body color transparent-black rounded-corners">
+            <input type="hidden" value="@XY.UserDateTicket.Company.ID" id="CompanyID" />
+            <div class="table-responsive">
+                <div id="datetable" class="dataTables_wrapper">
+                    <table class="table table-datatable table-custom dataTable" id="dataTable" url="/Wechat/GetMenuPage">
+                        <thead>
+                            <tr role="row">
+                                <th class="sort-alpha">功能ID</th>
+                                <th class="sort-alpha">菜单名称</th>
+                                <th class="sort-alpha">菜单类型</th>
+                                <th class="sort-alpha">菜单kEY</th>
+                                <th class="sort-alpha">菜单URL</th>
+                                <th class="sort-alpha sorting">创建时间</th>
+                                <th class="">管理</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 text-right sm-center">
+                            <div class="dataTables_paginate paging_bootstrap paging_custombootstrap">
+                                <ul class="pagination"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

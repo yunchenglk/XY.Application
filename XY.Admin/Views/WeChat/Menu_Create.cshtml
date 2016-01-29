@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "微信公众平台-自定义菜单管理-编辑菜单";
+}
+@Scripts.Render("~/js/jqueryValidate")
+<script src="/Content/js/vendor/chosen/chosen.jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $.getJSON("/WeChat/GetTopMenu", { v: Math.random() }, function (data) {
+            $("#ParentID").append("<option value='00000000-0000-0000-0000-000000000000'>一级栏目</option>");
+            $.each(data, function (i, o) {
+                $("#ParentID").append(" <option value=" + o["id"] + ">" + o["name"] + "</option>")
+            })
+            $("#ParentID").val('@Model.ParentID');
+            $("#ParentID").chosen();
+        });
+
+        $.getJSON("/WeChat/GetKeyWords", { v: Math.random() }, function (data) {
+            $.each(data, function (i, o) {
+                $("#KeyWordID").append(" <option value=" + o.ID + ">" + o.Description + "</option>")
+            })
+            $("#KeyWordID").val('@Model.KeyWordID');
+            $("#KeyWordID").chosen();
+        });
+
+
+
+
+
+        $(".radio").live("change", function () {
+            var type = $('.radio input[name="Type"]:checked ').val();
+            _show(type);
+        })
+    })
+    function _show(type) {
+        switch (type) {
+            case "0"://图文消息
+                $("#url_div").hide();
+                $("#key_div").show();
+                break;
+            case "1"://文字
+                $("#url_div").show();
+                $("#key_div").hide();
+                break;
+            case "2":
+                $("#url_div").hide();
+                $("#key_div").hide();
+                break;
+        }
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 微信公众平台-自定义菜单管理-编辑菜单
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="/WeChat/Menu_Index">自定义菜单管理</a></li>
+            <li><a href="javascript:void(0);">编辑菜单</a></li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile color transparent-black">
+        <div class="tile-widget color transparent-black rounded-top-corners">
+            <ul class="tile-navbar bg-transparent-black-3">
+                <li>
+                    <a href="#" class="gallery-tool disabled">&#12288;</a>
+                </li>
+                <li class="filters">
+                    <a href="javascript:history.go(-1);">返回</a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="tile-body">
+            <form class="form-horizontal" method="post" action="/WeChat/Menu_Create" id="validate">
+                <input type="hidden" value="@Model.ID" name="ID" />
+                <input type="hidden" value="@Model.CreateTime" name="CreateTime" />
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">所属公司 *</label>
+                    <div class="col-sm-9">
+                        <select name="ParentID" class="chosen-select chosen-transparent form-control" id="ParentID"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">菜单名称 *</label>
+                    <div class="col-sm-9">
+                        <input name="Name" value="@Model.Name" type="text" class="form-control {required:true,messages:{required:'菜单名称不能为空'}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">菜单类别</label>
+                    <div class="col-sm-9">
+                        <div class="radio radio-transparent">
+                            <input type="radio" name="Type" id="Type0" value="0" checked>
+                            <label for="Type0">click</label>
+                            <input type="radio" name="Type" id="Type1" value="1">
+                            <label for="Type1">view</label>
+                            <input type="radio" name="Type" id="Type2" value="2">
+                            <label for="Type2">undo</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" id="url_div" style="display:none;">
+                    <label for="fullname" class="col-sm-3 control-label">URL</label>
+                    <div class="col-sm-9">
+                        <input name="URL" value="@Model.URL" type="text" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group" id="key_div" style="display:none;">
+                    <label for="input05" class="col-sm-3 control-label">菜单KEY</label>
+                    <div class="col-sm-9">
+                        <select name="KeyWordID" class="chosen-select chosen-transparent form-control" id="KeyWordID"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input05" class="col-sm-3 control-label">排序</label>
+                    <div class="col-sm-9">
+                        <input name="Short" value="@Model.Short" type="number" class="form-control {required:true,messages:{required:'排序不能为空'}}" />
+                    </div>
+                </div>
+                <div class="form-group form-footer">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="reset" class="btn btn-default">清空</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>

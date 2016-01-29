@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "添加权限";
+}
+@Scripts.Render("~/js/jqueryValidate")
+<script src="/Content/js/vendor/chosen/chosen.jquery.min.js"></script>
+<script type="text/javascript">
+    $().ready(function () {
+        $.getJSON("/Authority/GetAllTop", { v: Math.random() }, function (data) {
+            $("#PID").append("<option value='00000000-0000-0000-0000-000000000000']>一级权限</option>");
+            $.each(data, function (i, o) {
+                $("#PID").append(" <option value=" + o["id"] + ">" + o["name"] + "</option>")
+            })
+            $("#PID").val('@Model.PID');
+            $(".chosen-select").chosen();
+        });
+    })
+
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 编辑权限
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="/Authority/Index">权限管理</a></li>
+            <li class="active">编辑权限</li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile color transparent-black">
+        <div class="tile-body">
+            <form class="form-horizontal" method="post" action="/Authority/Create" id="validate">
+                <input type="hidden" value="@Model.ID" name="ID" />
+                <input type="hidden" value="@Model.CreateTime" name="CreateTime" />
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">权限名称 *</label>
+                    <div class="col-sm-9">
+                        <input name="NAME" value="@Model.Name" type="text" class="form-control {required:true,messages:{required:'名称不能为空'}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">所属权限 </label>
+                    <div class="col-sm-9">
+                        <select name="PID" class="chosen-select chosen-transparent form-control" id="PID"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input05" class="col-sm-3 control-label">权限HTML</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" name="Description" id="input05" rows="3">@Model.Description</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input05" class="col-sm-3 control-label">排序</label>
+                    <div class="col-sm-9">
+                        <input name="Sort" value="@Model.Sort" type="number" class="form-control {required:true,number:true}" />
+                    </div>
+                </div>
+                <div class="form-group form-footer">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="reset" class="btn btn-default">清空</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,468 @@
+﻿.page_media_list .appmsg_list {
+    margin-bottom: 0;
+}
+
+.appmsg_list {
+    text-align: justify;
+    text-justify: distribute-all-lines;
+    font-size: 0;
+    margin: 0 30px;
+    letter-spacing: -4px;
+}
+
+    .appmsg_list .tj_item {
+        font-size: 14px;
+        text-align: left;
+        text-justify: auto;
+    }
+
+.appmsg_col {
+    display: inline-block;
+    vertical-align: top;
+    width: 32%;
+    text-align: left;
+    font-size: 14px;
+    letter-spacing: normal;
+    margin-right: 13px;
+}
+
+.appmsg {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid #e7e7eb;
+    background-color: #fff;
+    color: #666;
+}
+
+.appmsg_content {
+    padding: 0 14px;
+    position: relative;
+}
+
+.appmsg_title {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    padding-top: 10px;
+    line-height: 28px;
+    max-height: 56px;
+    overflow: hidden;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+    .appmsg_title a {
+        display: block;
+        color: #222;
+    }
+
+.appmsg_info {
+    font-size: 13px;
+    line-height: 20px;
+    padding-bottom: 10px;
+}
+
+.appmsg_date {
+    font-weight: 400;
+    font-style: normal;
+}
+
+.appmsg_thumb_wrp {
+    height: 160px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.appmsg_desc {
+    padding: 5px 0 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.appmsg_opr {
+    background-color: #f4f4f4;
+    border-top: 1px solid #e7e7eb;
+}
+
+    .appmsg_opr ul {
+        overflow: hidden;
+    }
+
+.appmsg_opr_item {
+    float: left;
+    line-height: 44px;
+    height: 44px;
+}
+
+.size1of2 {
+    width: 45%;
+}
+
+.grid_item {
+    float: left;
+}
+
+.appmsg_opr_item a {
+    display: block;
+    border-right: 1px solid #e7e7eb;
+    text-align: center;
+    text-decoration: none;
+}
+
+a {
+    color: #459ae9;
+    text-decoration: none;
+}
+
+.icon18_common.edit_gray {
+    background: url("https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/base/base_z2af218.png") 0 -5527px no-repeat;
+}
+
+.grid_item.no_extra {
+    float: none;
+    width: auto;
+    overflow: hidden;
+}
+
+.appmsg_opr_item a.no_extra {
+    border-right-width: 0;
+}
+
+.icon18_common.del_gray {
+    background: url("https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/base/base_z2af218.png") 0 -4827px no-repeat;
+}
+
+.icon18_common {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 100px;
+    overflow: hidden;
+}
+
+.appmsg_preview_container .appmsg {
+    overflow: visible;
+    margin-bottom: 0;
+}
+
+.appmsg {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid #e7e7eb;
+    background-color: #fff;
+    color: #666;
+}
+
+.editing.multi .appmsg_content {
+    border-bottom-width: 1px;
+}
+
+.editing .appmsg_content {
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    border-bottom-width: 0;
+}
+
+.appmsg_preview_container .appmsg_content {
+    min-height: 134px;
+    margin-top: -1px;
+}
+
+.appmsg_content {
+    padding: 0 14px;
+    position: relative;
+}
+
+.js_appmsg_item:hover {
+    border: 2px solid #ccc;
+}
+
+.js_appmsg_item {
+    border: 2px solid #fff;
+}
+
+.appmsg_item_wrp.current {
+    border: 2px solid #43b548;
+    position: relative;
+    z-index: 1;
+}
+
+.appmsg_item_wrp {
+    cursor: pointer;
+}
+
+.appmsg_preview_container .first_appmsg_item {
+    padding: 0;
+    border-top: 1px solid #e7e7eb;
+}
+
+.first_appmsg_item {
+    padding: 10px;
+}
+
+.first_appmsg_item {
+    position: relative;
+    padding: 14px;
+}
+
+    .first_appmsg_item .cover_appmsg_item {
+        margin: 0;
+    }
+
+.cover_appmsg_item {
+    position: relative;
+    margin: 0 14px 14px;
+}
+
+.first_appmsg_item .appmsg_title {
+    color: #fff;
+    padding: 0 8px;
+}
+
+.cover_appmsg_item .appmsg_title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.6) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#99000000',endcolorstr = '#99000000');
+}
+
+.multi .appmsg_title {
+    font-size: 14px;
+    padding-top: 0;
+}
+
+.appmsg_preview_container .appmsg_title {
+    max-height: 28px;
+}
+
+.appmsg_title {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    padding-top: 10px;
+    line-height: 28px;
+    max-height: 56px;
+    overflow: hidden;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.cover_appmsg_item .appmsg_title a {
+    padding: 0 8px;
+    color: #fff;
+}
+
+.appmsg_title a {
+    display: block;
+    color: #222;
+}
+
+a {
+    color: #459ae9;
+    text-decoration: none;
+}
+
+input, textarea, button, a {
+    outline: 0;
+}
+
+.appmsg_preview_container .appmsg_thumb_wrp {
+    height: 120px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.editing .appmsg_thumb.default {
+    display: block;
+}
+
+.appmsg_preview_container .appmsg_thumb.default {
+    line-height: 120px;
+}
+
+.appmsg_thumb.default {
+    display: none;
+    color: #c0c0c0;
+    text-align: center;
+    line-height: 160px;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #ececec;
+    font-size: 14px;
+}
+
+.appmsg_thumb {
+    width: 100%;
+}
+
+.icon_appmsg_thumb {
+    background: url("https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/widget/media_z2ac3d8.png") 0 -100px no-repeat;
+    width: 44px;
+    height: 34px;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 300px;
+    overflow: hidden;
+}
+
+.appmsg_preview_container .appmsg_item, .appmsg_preview_container .first_appmsg_item {
+    padding: 10px;
+}
+
+.appmsg_item {
+    position: relative;
+    padding: 20px 14px;
+    border-top: 1px solid #e7e7eb;
+}
+
+    .appmsg_item .appmsg_thumb_wrp {
+        float: right;
+        width: 78px;
+        height: 78px;
+        margin-left: 14px;
+    }
+
+.appmsg_preview_container .appmsg_thumb_wrp {
+    height: 120px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.appmsg_thumb_wrp {
+    height: 160px;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.appmsg_preview_container .appmsg_item .appmsg_thumb.default {
+    line-height: 70px;
+}
+
+.editing .appmsg_thumb.default {
+    display: block;
+}
+
+.appmsg_item .appmsg_thumb.default {
+    line-height: 78px;
+    font-size: 0;
+}
+
+.appmsg_preview_container .appmsg_item .appmsg_thumb {
+    width: 70px;
+    height: 70px;
+    margin-left: 10px;
+}
+
+.icon_appmsg_thumb_small {
+    background: url("https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/widget/media_z2ac3d8.png") 0 -144px no-repeat;
+    width: 32px;
+    height: 24px;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 300px;
+    overflow: hidden;
+}
+
+.appmsg_preview_container .appmsg_item .appmsg_title {
+    margin-top: 8px;
+}
+
+.multi .appmsg_title {
+    font-size: 14px;
+    padding-top: 0;
+}
+
+.appmsg_item .appmsg_title {
+    line-height: 24px;
+    max-height: 48px;
+    overflow: hidden;
+    margin-top: 14px;
+}
+
+.appmsg_preview_container .appmsg_add {
+    margin: 0;
+    border-top-width: 0;
+    line-height: 90px;
+}
+
+.appmsg_add {
+    margin: 20px 14px;
+}
+
+.create_access_primary {
+    display: block;
+    border: 2px dotted #d9dadc;
+    line-height: 60px;
+    font-size: 0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.icon35_common.add_gray {
+    background: url("https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/base/base_z2af218.png") 0 -2915px no-repeat;
+}
+
+.create_access_primary i {
+    cursor: pointer;
+    line-height: 300px;
+    overflow: hidden;
+}
+
+.icon35_common {
+    width: 35px;
+    height: 35px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.appmsg_edit_mask {
+    top: auto;
+    bottom: 0;
+    height: 40px;
+    line-height: 40px;
+    background: rgba(0,0,0,0.5) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#80000000',endcolorstr = '#80000000');
+}
+
+.appmsg_item .appmsg_edit_mask {
+    line-height: 118px;
+}
+
+.icon20_common.del_media_white {
+    background: url("https://res.wx.qq.com/mpres/zh_CN/htmledition/comm_htmledition/style/base/base_z2af218.png") 0 -5890px no-repeat;
+}
+
+.appmsg_edit_mask a {
+    margin-left: 8px;
+    margin-right: 8px;
+    height: 40px;
+}
+
+.icon20_common {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    display: block;
+    line-height: 100px;
+    overflow: hidden;
+}
+
+.appmsg_container_hd {
+    padding: 10px 20px 0;
+}
+
+.appmsg_container_title {
+    font-weight: 400;
+}

@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "添加用户";
+}
+@Scripts.Render("~/js/jqueryValidate");
+@if (XY.UserDateTicket.IsSuper)
+{
+    <script type="text/javascript">
+        $().ready(function () {
+            $.getJSON("/Company/Get_All_NameID", { v: Math.random() }, function (data) {
+                $.each(data, function (i, o) {
+                    $("#CompanyID").append(" <option value=" + o["id"] + ">" + o["name"] + "</option>")
+                })
+                $("#CompanyID").val('@Model.CompanyID');
+                $(".chosen-select").chosen();
+            });
+        });
+    </script>
+}
+<script type="text/javascript">
+    $().ready(function () {
+
+        if ($.trim($("#ID").val()) != "00000000-0000-0000-0000-000000000000") {
+            $("#LoginName").attr("readonly", true);
+        }
+    })
+
+</script>
+<script src="/Content/js/vendor/chosen/chosen.jquery.min.js"></script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 编辑用户信息
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="/User/Index">用户信息管理</a></li>
+            <li class="active">编辑用户信息</li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile color transparent-black">
+        <div class="tile-body">
+            <form class="form-horizontal" method="post" action="/User/Create" id="validate">
+                <input type="hidden" value="@Model.ID" name="ID" id="ID" />
+                <input type="hidden" value="@Model.CreateTime" name="CreateTime" />
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">所属公司 *</label>
+                    <div class="col-sm-9">
+                        @if (XY.UserDateTicket.IsSuper)
+                        {
+                            <select name="CompanyID" class="chosen-select chosen-transparent form-control" id="CompanyID"></select>
+                        }
+                        else {
+                            <input type="hidden" class="chosen-select chosen-transparent form-control" name="CompanyID" value="@XY.UserDateTicket.Company.ID" />
+                            <input type="text" class="chosen-select chosen-transparent form-control" value="@XY.UserDateTicket.Company.Name" />
+
+                        }
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">登陆账号 *</label>
+                    <div class="col-sm-9">
+                        <input name="LoginName" id="LoginName" value="@Model.LoginName" type="text" class="form-control {required:true,remote:{url:'/User/CheckLoginNameExists?v='+Math.random(),data:{id:function(){return $('#ID').val()},LoginName:function(){return $('#LoginName').val()}}},messages:{required:'名称不能为空',remote:'登陆账号重复，请重新输入'}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">登陆密码 *</label>
+                    <div class="col-sm-9">
+                        <input name="LoginPwd" id="LoginPwd" value="" type="password" class="form-control {required:true,minlength:6,messages:{required:'请填写密码',minlength:'密码长度不低于6位数'}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">确认密码 *</label>
+                    <div class="col-sm-9">
+                        <input name="LoginPwd2" type="password" class="form-control {required:true,minlength:6,equalTo:'#LoginPwd'}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">真实姓名 *</label>
+                    <div class="col-sm-9">
+                        <input name="Name" value="@Model.Name" type="text" class="form-control {required:true,messages:{required:'请输入真实姓名'}}" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">性别</label>
+                    <div class="col-sm-9">
+                        <div class="radio radio-transparent">
+                            <input type="radio" name="Sex" id="sex0" value="0" checked>
+                            <label for="sex0">男</label>
+                            <input type="radio" name="Sex" id="sex1" value="1">
+                            <label for="sex1">女</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">联系电话</label>
+                    <div class="col-sm-9">
+                        <input name="Telphone" value="@Model.Telphone" type="text" class="form-control {number:true,messages:{number:'请正确输入电话'}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">邮箱</label>
+                    <div class="col-sm-9">
+                        <input name="Email" value="@Model.Email" type="email" class="form-control {email:true}" />
+                    </div>
+                </div>
+
+                <div class="form-group form-footer">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="reset" class="btn btn-default">清空</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div> 

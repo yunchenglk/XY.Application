@@ -1,0 +1,238 @@
+﻿@{
+    ViewBag.Title = "TextMessage_Create";
+}
+<link href="~/Content/wechart.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-tmpl.js"></script>
+<script type="text/javascript" charset="gbk" src="/content/UEdit/ueditor.config.js"></script>
+<script type="text/javascript" charset="gbk" src="/content/UEdit/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="gbk" src="/content/UEdit/lang/zh-cn/zh-cn.js"></script>
+<script type="text/x-jquery-tmpl" id="itemModel">
+    <input type="hidden" name="Imgid" />
+    <input type="hidden" name="Auth" />
+    <input type="hidden" name="Url" />
+    <input type="hidden" name="Content" />
+    <div class="appmsg_item" title="第二篇图文">
+        <div class="appmsg_thumb_wrp js_appmsg_thumb onImg" style="background-image:url('');">
+            <div class="appmsg_thumb default">
+                <i class="icon_appmsg_thumb_small">缩略图</i>
+            </div>
+        </div>
+        <h4 class="appmsg_title js_appmsg_title onTitle">标题</h4>
+        <div class="appmsg_edit_mask">
+            <a class="icon20_common del_media_white js_del" href="javascript:void(0);" onclick="_delitem(this)" title="删除">删除</a>
+        </div>
+    </div>
+</script>
+<script type="text/javascript">
+    var ue;
+    var myImage;
+    var IsAger = true;
+    $(function () {
+        ue = UE.getEditor('editor', {
+            toolbars: [[
+                'fullscreen', 'source', '|', 'undo', 'redo', '|',
+                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript',
+                 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+                'simpleupload', 'insertimage', 'insertvideo', 'music', 'map'
+
+            ]]
+        })
+        $(".js_appmsg_item").live("click", function () {
+            $(".current").removeClass("current");
+            $(this).addClass("current");
+            LoadData();
+
+        })
+        UE.getEditor('editor').addListener("blur", function () {
+            onContent();
+        })
+
+        if ($.trim($("#message_id").val()).length > 10) {
+            $.getJSON("/WeChat/GetMessage", { id: $("#message_id").val(), v: Math.random() }, function (result) {
+                for (var i = 0; i < result.Groups.length; i++) {
+                    $(".js_appmsg_item:eq(" + i + ")").find(".onTitle").text(result.Groups[i].Title);
+                    $(".js_appmsg_item:eq(" + i + ")").find("input[name=Imgid]").val(result.Groups[i].FilesID);
+                    $(".js_appmsg_item:eq(" + i + ")").find("input[name=Auth]").val(result.Groups[i].Author);
+                    $(".js_appmsg_item:eq(" + i + ")").find("input[name=Url]").val(result.Groups[i].URL);
+                    $(".js_appmsg_item:eq(" + i + ")").find("input[name=Content]").val(result.Groups[i].Content);
+                    $(".js_appmsg_item:eq(" + i + ")").find(".onImg").css("background-image", "url(" + result.Groups[i].ImgUrlStr + ")")
+                    $(".js_appmsg_item:eq(" + i + ")").find(".appmsg_thumb").addClass("hidden");
+                    _additem();
+                }
+            })
+        }
+
+
+    })
+    function _additem() {
+        $("#appmsg_content > div:last").after('<div class="js_appmsg_item appmsg_item_wrp"></div>')
+        $("#itemModel").tmpl({}).appendTo($("#appmsg_content > div:last"));
+    }
+    function _delitem(obj) {
+        $(obj).parents(".js_appmsg_item").remove();
+    }
+    function ueditImg() {
+        IsAger = false;
+        myImage = ue.getDialog("insertimage");
+        myImage.open();
+    }
+    function Uedit_imgAfter_Event(list) {
+        $(".current input[name=Imgid]").val(list[0].id);
+        $(".current .onImg").css("background-image", "url(" + list[0].src + ")");
+        $(".current .appmsg_thumb").addClass("hidden");
+        IsAger = true;
+    }
+    function Uedit_imgAfter() {
+        return IsAger;
+    }
+    //
+    function onTitle() {
+        $(".current .onTitle").text($("#Title").val());
+    }
+    function onAuth() {
+        $(".current input[name=Auth]").val($("#Auth").val());
+    }
+    function onUrl() {
+        $(".current input[name=Url]").val($("#Url").val());
+    }
+    function onContent() {
+        $(".current input[name=Content]").val(UE.getEditor('editor').getContent());
+    }
+
+    function LoadData() {
+        $("#Title").val($(".current .onTitle").text());
+        $("#Auth").val($(".current input[name=Auth]").val());
+        $("#Url").val($(".current input[name=Url]").val());
+        UE.getEditor('editor').setContent($(".current input[name=Content]").val());
+    }
+
+
+
+    function _save() {
+        var datas = [];
+        $.each($(".js_appmsg_item"), function (i, n) {
+            if ($(n).find("input[name=Imgid]").val().length > 0) {
+                datas.push({
+                    Title: $(n).find(".onTitle").text(),
+                    FilesID: $(n).find("input[name=Imgid]").val(),
+                    Author: $(n).find("input[name=Auth]").val(),
+                    Content: encodeURIComponent($(n).find("input[name=Content]").val()),
+                    URL: $(n).find("input[name=Url]").val(),
+                    Short: i
+                });
+            }
+        });
+
+        $.ajax({
+            url: "/WeChat/TextMessage_Create",
+            type: "POST",
+            data: { title: $("#TitleStr").val(), id: $("#message_id").val(), list: datas, v: Math.random() },
+            success: function (result) {
+                alert(result);
+            },
+            error: function () {
+                alert("错误");
+            }
+        })
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 微信公众平台
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="javascript:void(0);">添加图文信息</a></li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <input type="hidden" value="@Model.ID" i id="message_id" />
+    <section class="tile transparent">
+        <div class="tile-widget color transparent-black rounded-top-corners">
+            <ul class="tile-navbar bg-transparent-black-3">
+                <li>
+                    <a href="#" class="gallery-tool disabled">&#12288;</a>
+                    描述： <input type="text" id="TitleStr" name="TitleStr" value="@Model.Title" />
+                </li>
+                <li class="filters">
+                    <a href="javascript:_save()">保存</a><a href="javascript:history.go(-1);">返回</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tile-body color transparent-black rounded-corners">
+            <div class="col-sm-4">
+                <div class="appmsg multi editing">
+                    <div class="appmsg_container_hd">
+                        <h4 class="appmsg_container_title">图文列表</h4>
+                    </div>
+                    <div id="appmsg_content" class="appmsg_content">
+                        <div class="js_appmsg_item appmsg_item_wrp current">
+                            <input type="hidden" name="Auth" />
+                            <input type="hidden" name="Url" />
+                            <input type="hidden" name="Content" />
+                            <input type="hidden" name="Imgid" />
+                            <div class="first_appmsg_item" title="第一篇图文">
+                                <div class="cover_appmsg_item">
+                                    <h4 class="appmsg_title"><a class="js_appmsg_title onTitle" href="javascript:void(0);">标题</a></h4>
+                                    <div class="appmsg_thumb_wrp js_appmsg_thumb onImg" style="background-image:url('');">
+                                        <div class="appmsg_thumb default">
+                                            <i class="icon_appmsg_thumb">封面图片</i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a title="添加一篇图文" class="create_access_primary appmsg_add" id="js_add_appmsg" href="javascript:_additem(0);">
+                            <i class="icon35_common add_gray">增加一条</i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <form class="form-horizontal" method="post">
+                    <div class="form-group">
+                        <label for="fullname" class="col-sm-2 control-label">标题</label>
+                        <div class="col-sm-10">
+                            <input name="Title" id="Title" onchange="onTitle()" value="" type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fullname" class="col-sm-2 control-label">作者</label>
+                        <div class="col-sm-10">
+                            <input name="Auth" id="Auth" onchange="onAuth();" value="" type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fullname" class="col-sm-2 control-label">选择封面</label>
+                        <div class="col-sm-10">
+                            <button type="button" onclick="ueditImg()" class="btn btn-slategray margin-bottom-20">选择在线图片</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="input05" class="col-sm-2 control-label">正文</label>
+                        <div class="col-sm-10">
+                            <textarea id="editor" type="text/plain" style="width:100%;"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fullname" class="col-sm-2 control-label">原文连接</label>
+                        <div class="col-sm-10">
+                            <input name="Url" id="Url" onchange="onUrl()" value="" type="text" class="form-control" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </section>
+</div>
+
+
+
+
+
+
+
+

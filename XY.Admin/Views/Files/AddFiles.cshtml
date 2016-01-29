@@ -1,0 +1,99 @@
+﻿<script src="~/Scripts/jquery.img.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $.getJSON("/Files/GetFiles", { id: '@ViewBag.RelationID', v: Math.random() }, function (result) {
+            $.each(result, function (i, n) {
+                AddFile(n.ID, n.FilePath, n.FilePathStr);
+            })
+
+        })
+    })
+    function AddFile(id, url, urlStr) {
+        if (isNaN(id)) {
+            id = newGuid();
+        }
+        var html = '';
+        html += '<div class="form-group" id="div_' + id + '">'
+        html += '<label for="fullname" class="col-sm-2 control-label">';
+        if (typeof (url) == "undefined") {
+            html += '上传图片';
+            url = "";
+        } else {
+            html += '<a href="' + urlStr + '"  target="_blank" style="color:#fff;" >点击预览图片</a>';
+        }
+        html += '</label>'
+        html += '<div class="col-sm-7">'
+        html += '<div class="input-group" id="' + id + '">'
+        html += '<span class="input-group-btn">'
+        html += '<span class="btn btn-primary btn-file">'
+        html += '<i class="fa fa-upload"></i>'
+        html += '<input type="file" name="file" filepath="/UPLOAD/NEWS/" filetype="image" for="' + id + '">'
+        html += '</span>'
+        html += '</span>'
+        html += '<input type="text" class="form-control" value="' + url + '" name="' + id + '" readonly >'
+        html += '</div>'
+        html += '</div>'
+        html += '<div class="col-sm-2">'
+        html += '<a href="javascript:DelFile(\'' + id + '\');" class="btn btn-danger margin-bottom-20">删除</a>'
+        html += '</div>'
+        html += '</div>'
+        $("#filecontent").append(html);
+    }
+    function DelFile(id) {
+        $("#div_" + id).remove();
+    }
+    function newGuid() {
+        var guid = "";
+        for (var i = 1; i <= 32; i++) {
+            var n = Math.floor(Math.random() * 16.0).toString(16);
+            guid += n;
+            if ((i == 8) || (i == 12) || (i == 16) || (i == 20))
+                guid += "-";
+        }
+        return guid + "";
+    }
+    function SaveFile() {
+        if ($(".form-group").length > 0) {
+            var RelationID = '@ViewBag.RelationID'
+            var files = "";
+            $.each($(".form-group"), function (i, n) {
+                if ($.trim($(n).find("input[type=text]").val()).length > 0)
+                    files += "|" + ($(n).find("input[type=text]").val());
+            })
+            if (files.length > 2)
+                $.ajax({
+                    url: "/Files/AddFiles",
+                    type: "POST",
+                    data: { RelationID: RelationID, files: encodeURIComponent(files.substring(1)), isDel: true, v: Math.random() },
+                    success: function (data) {
+                        alert(data);
+                    }, error: function () {
+                        alert("异常！");
+                    }
+                })
+        }
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 图片补充
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="javascript:void(0);"> 图片补充</a></li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile color transparent-black">
+        <div class="tile-body">
+            <form class="form-horizontal" method="post" id="filecontent"></form>
+            <div>
+                <a href="javascript:AddFile();" class="btn btn-primary margin-bottom-20">添加</a>
+                <a href="javascript:SaveFile();" class="btn btn-success margin-bottom-20">保存</a>
+                <a href="javascript:history.go(-1);" class="btn btn-default margin-bottom-20">返回</a>
+            </div>
+        </div>
+    </section>
+</div>

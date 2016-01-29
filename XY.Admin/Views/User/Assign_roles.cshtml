@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "配置会员角色";
+}
+<script src="~/Scripts/jquery-tmpl.js"></script>
+<script type="text/x-jquery-tmpl" id="rolesModel">
+    <li>
+        <div class="checkbox">
+            <input type="checkbox" value="${id}" id="${id}" ${IsChecked(id)}>
+            <label for="${id}">${name}&#12288;</label>
+        </div>
+    </li>
+</script>
+<script type="text/javascript">
+    var ids = '@ViewBag.ids'.split('|');
+    $().ready(function () {
+        $.getJSON("/Role/GetAllJson", { v: Math.random() }, function (data) {
+            $("#rolesModel").tmpl(data).appendTo("#rowItem");
+        });
+
+    })
+    function IsChecked(id) {
+        if (ids.indexOf(id) >= 0) {
+            return "checked";
+        } else {
+            return "";
+        }
+    }
+    $("#subbtn").live("click", function () {
+        var authIds = "";
+        $.each($("#rowItem input[type=checkbox]"), function (x, y) {
+            if ($(y).attr("checked") == "checked") {
+                authIds = authIds + "|" + $(y).val();
+            }
+        })
+        if (authIds.length > 0)
+            Save(authIds.substr(1));
+        else
+            Save();
+    })
+    function Save(ids) {
+        $.getJSON("/User/UpdateUerRole", { uid: '@ViewBag.UID', ids: ids, v: Math.random() }, function (data) {
+            if (data.status == "1") {
+                alert("操作成功");
+            }
+        })
+
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 用户管理
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="/User/Index">用户管理</a></li>
+            <li class="active">角色分配</li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile color transparent-black">
+        <div class="tile-header">
+            <h1><strong>用户</strong> 信息</h1>
+        </div>
+
+        <hr />
+        <div class="tile-header">
+            <h1><strong>配置</strong> 角色</h1>
+        </div>
+        <div class="tile-body">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <ul class="nolisttypes inlineSelect inline cyan" id="rowItem"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="form-group form-footer">
+            <div class="col-sm-offset-1 ">
+                <button type="submit" class="btn btn-primary" id="subbtn">保存</button>
+                <button type="reset" class="btn btn-default" onclick="javascript:history.go(-1);">返回</button>
+            </div>
+
+        </div>
+    </section>
+</div>

@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "用户管理回收站";
+}
+@Scripts.Render("~/js/jqueryPage")
+<script type="text/x-jquery-tmpl" id="dataModel">
+    <tr class="gradeA odd" id="${ID}">
+        <td class="">${LoginName}</td>
+        <td class="">${LoginPwd}</td>
+        <td class="">${Name}</td>
+        <td class="">${CompanyName}</td>
+        <td class="text-center ">${ChangeDateFormat(CreateTime)}</td>
+        <td class="text-left ">
+            <a href="javascript:del('${ID}',this,'User','确定要恢复数据吗')" class="btn btn-blue btn-xs"> 恢复 </a>
+        </td>
+    </tr>
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("tbody").bindPage({
+            where: "DR|equal|1"
+        });
+    });
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 用户列表
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="/User/Index">用户管理</a></li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile transparent">
+        <!-- tile body -->
+        <div class="tile-body color transparent-black rounded-corners">
+            <div class="table-responsive">
+                <div id="datetable" class="dataTables_wrapper">
+                    <table class="table table-datatable table-custom dataTable" id="dataTable" url="/User/GetPage">
+                        <thead>
+                            <tr role="row">
+                                <th class="sort-alpha">登录账号</th>
+                                <th class="sort-alpha">登陆密码</th>
+                                <th class="sort-alpha">真实姓名</th>
+                                <th class="sort-alpha">所属公司</th>
+                                <th class="sort-alpha sorting">创建时间</th>
+                                <th class="">管理</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 text-right sm-center">
+                            <div class="dataTables_paginate paging_bootstrap paging_custombootstrap">
+                                <ul class="pagination"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

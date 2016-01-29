@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "权限列表";
+}
+@Scripts.Render("~/js/jqueryPage")
+<script type="text/x-jquery-tmpl" id="dataModel">
+    <tr class="gradeA odd" id="${ID}">
+        <td class="">${ID}</td>
+        <td class="">${Name}</td>
+        <td class="">${PIDName}</td>
+        <td class="text-center ">${ChangeDateFormat(CreateTime)}</td>
+        <td class="text-left ">
+            <a href="/Authority/Create/${ID}" class="btn btn-blue btn-xs"> 修改 </a>
+            <a href="javascript:del('${ID}',this,'Authority')" class="btn btn-orange btn-xs"> 删除 </a>
+            {{if Ishaschild}}<a href="javascript:getChild('${ID}','${CompanyID}')" class="btn btn-orange btn-xs" id="cklm_${ID}"> 查看子权限 </a>{{/if}}
+        </td>
+    </tr>
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("tbody").bindPage({
+            where: "PID|equal|00000000-0000-0000-0000-000000000000#DR|equal|0"
+        });
+    });
+    function getChild(id, cid) {
+        $.getJSON("/Authority/GetChilds", { id: id, v: Math.random() }, function (data) {
+            $.each(data, function (x, y) {
+                y.Name = "╞&#12288;" + y.Name
+                y.PIDName = "╞&#12288;" + y.PIDName
+            })
+            $("#" + id).after($("#dataModel").tmpl(data));
+            $("#cklm_" + id).remove();
+        });
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 权限列表
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="/Role/Index">权限管理</a></li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile transparent">
+        <!-- tile body -->
+        <div class="tile-body color transparent-black rounded-corners">
+            <div class="table-responsive">
+                <div id="datetable" class="dataTables_wrapper">
+                    <table class="table table-datatable table-custom dataTable" id="dataTable" url="/Authority/GetPage">
+                        <thead>
+                            <tr role="row">
+                                <th class="sort-alpha">权限ID</th>
+                                <th class="sort-alpha">权限名称</th>
+                                <th class="sort-alpha">上级权限</th>
+                                <th class="sort-alpha sorting">创建时间</th>
+                                <th class="">管理</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 text-right sm-center">
+                            <div class="dataTables_paginate paging_bootstrap paging_custombootstrap">
+                                <ul class="pagination"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

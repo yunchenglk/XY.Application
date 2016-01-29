@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Web;
+using XY.Entity;
+using XY.Services;
+
+namespace XY
+{
+    public static class UserDateTicket
+    {
+
+        public static Guid UID
+        {
+            get
+            {
+                return new Guid(HttpContext.Current.User.Identity.Name);
+            }
+        }
+        public static string Uname
+        {
+            get;
+            set;
+        }
+        public static Company Company
+        {
+            get;
+            set;
+        }
+        public static Boolean IsSuper
+        {
+            get;
+            set;
+        }
+        public static string MenuHTML
+        {
+            get;
+            set;
+        }
+        public static WX_Config wx_config
+        {
+            get;
+            set;
+        }
+
+    }
+}

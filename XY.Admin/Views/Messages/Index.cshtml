@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "留言主题列表";
+}
+@Scripts.Render("~/js/jqueryPage")
+<script src="/Content/js/vendor/chosen/chosen.jquery.min.js"></script>
+<script type="text/x-jquery-tmpl" id="dataModel">
+    <tr class="gradeA odd" id="${ID}">
+        <td class="">${ID}</td>
+        <td class="">${TypeStr}</td>
+        <td class="">${ContentStr}</td>
+        <td class="text-center ">${ChangeDateFormat(CreateTime)}</td>
+        <td class="text-left ">
+            <a href="/Messages/Show/${ID}" class="btn btn-blue btn-xs"> 查看详情 </a>
+            <a href="javascript:del('${ID}',this,'Class')" class="btn btn-orange btn-xs"> 删除 </a>
+        </td>
+    </tr>
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("tbody").bindPage({
+            where: "DR|equal|0#CompanyID|equal|" + '@XY.UserDateTicket.Company.ID'
+        });
+    });
+</script>
+
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 留言主题列表
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li class="active">留言主题列表</li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile transparent">
+        <!-- tile body -->
+        <div class="tile-body color transparent-black rounded-corners">
+            <div class="table-responsive">
+                <div id="datetable" class="dataTables_wrapper">
+                    <table class="table table-datatable table-custom dataTable" id="dataTable" url="/Messages/GetPage">
+                        <thead>
+                            <tr role="row">
+                                <th class="sort-alpha">ID</th>
+                                <th class="sort-alpha">类别</th>
+                                <th class="sort-alpha">主题</th>
+                                <th class="sort-alpha sorting">创建时间</th>
+                                <th class="">管理</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 text-right sm-center">
+                            <div class="dataTables_paginate paging_bootstrap paging_custombootstrap">
+                                <ul class="pagination"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

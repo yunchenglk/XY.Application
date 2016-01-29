@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "添加角色";
+}
+@Scripts.Render("~/js/jqueryValidate")
+<script src="~/Scripts/jquery-tmpl.js"></script>
+<script type="text/x-jquery-tmpl" id="authorityModel">
+    <div class="col-md-4">
+        <section class="tile color transparent-black">
+            <div class="tile-header">
+                <label for="${ID}" style="font-size:24px;"><strong>${Name}</strong></label>
+            </div>
+            <div class="tile-widget">
+                {{each(x,y) Childs}}
+                <div class="checkbox check-transparent">
+                    <input type="checkbox" value="${y.ID}" titem="auth" id="${y.ID}" ${IsChecked(ID)}>
+                    <label for="${y.ID}">${y.Name}</label>
+                </div>
+                {{/each}}
+            </div>
+        </section>
+    </div>
+</script>
+<script type="text/javascript">
+    var ids = '@Model.Item_AuthorityIDs'.split('|');
+    $().ready(function () {
+
+        $.getJSON("/Authority/GetItems", { v: Math.random() }, function (data) {
+            $("#authorityModel").tmpl(data).appendTo("#authorityItems");
+        });
+    })
+    function IsChecked(id) {
+        if (ids.indexOf(id) >= 0) {
+            return "checked";
+        } else {
+            return "";
+        }
+    }
+    function beforeSubmit() {
+        var authIds = "";
+        $.each($("form input[titem=auth]"), function (x, y) {
+            if ($(y).attr("checked") == "checked") {
+                authIds = authIds + "|" + $(y).val();
+            }
+        })
+        if (authIds.length > 0)
+            $("#authIds").val(authIds.substr(1))
+        return true;
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 编辑角色 
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="/Role/Index">角色管理</a></li>
+            <li class="active">编辑角色</li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile color transparent-black">
+        <div class="tile-body">
+            <form class="form-horizontal" method="post" action="/Role/Create" id="validate">
+                <input type="hidden" value="@Model.ID" name="ID" />
+                <input type="hidden" value="@Model.CreateTime" name="CreateTime" />
+                <input type="hidden" value="" name="authIds" id="authIds" />
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">角色名称 *</label>
+                    <div class="col-sm-9">
+                        <input name="NAME" value="@Model.Name" type="text" class="form-control {required:true,messages:{required:'名称不能为空'}}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input05" class="col-sm-3 control-label">角色描述</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" name="Description" id="input05" rows="3">@Model.Description</textarea>
+                    </div>
+                </div>
+                <div class="form-group"><label for="input05" class="col-sm-2 control-label">配置权限</label></div>
+                <hr />
+                <div class="form-group" id="authorityItems">
+
+                </div>
+                <div class="form-group form-footer">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="reset" class="btn btn-default">清空</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
