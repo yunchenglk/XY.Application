@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Authority.cs" />
     <Compile Include="Class.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="ENTITY.cs" />
     <Compile Include="Entity_Api\ClassView.cs" />
