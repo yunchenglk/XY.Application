@@ -27,6 +27,13 @@ namespace XY.API.Controllers
         {
             int totalcount = 0;
             IEnumerable<Product> datalist = ProductService.instance().GetPageByDynamic(pageIndex, pageSize, out totalcount, sortname, sortorder, wheres);
+            if (datalist.Count() > 0)
+            {
+                datalist.ToList().ForEach(m =>
+                {
+                    m.Attr = Product_AttService.GetAttsByPID(m.ID);
+                });
+            }
             ResultBase_Page page = new ResultBase_Page(pageIndex, pageSize, totalcount);
             page.content = datalist;
             return Util.Utils.ConvertToJson(page);
