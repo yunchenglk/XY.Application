@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.WeChart", "XY.WeChart\XY
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.API", "XY.API\XY.API.csproj", "{1EB2BDD3-FDCD-4962-9D7F-8797130EDA90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.Source_ext", "XY.Source_ext\XY.Source_ext.csproj", "{E85C8C15-7B99-4376-A889-52647CA6D7F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +88,10 @@ Global
 		{1EB2BDD3-FDCD-4962-9D7F-8797130EDA90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EB2BDD3-FDCD-4962-9D7F-8797130EDA90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EB2BDD3-FDCD-4962-9D7F-8797130EDA90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E85C8C15-7B99-4376-A889-52647CA6D7F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E85C8C15-7B99-4376-A889-52647CA6D7F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E85C8C15-7B99-4376-A889-52647CA6D7F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E85C8C15-7B99-4376-A889-52647CA6D7F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
