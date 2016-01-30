@@ -7,6 +7,9 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
+using XY.Entity;
+using XY.Services;
+using XY.Util;
 
 namespace XY.Source_ext
 {
@@ -21,35 +24,59 @@ namespace XY.Source_ext
             lock (obj)
             {
                 string comeURL = HttpContext.Current.Request.UrlReferrer.GetLeftPart(UriPartial.Authority);
-                string url = ConfigurationManager.AppSettings["sourceWeb"] + HttpContext.Current.Request.Url.AbsolutePath;
-                url = url.Replace("/Img.ashx/", "");
-                WebRequest request = null;
+
+                string url = HttpContext.Current.Request.Url.AbsolutePath;
+                url = url.Replace("/Img.ashx", "");
+                //WebRequest request = null;
                 WebResponse response = null;
                 try
                 {
-                    request = WebRequest.Create(url);
-                    response = request.GetResponse();
-                    if (response == null)
+                    string locationPath = ConfigurationManager.AppSettings["path"] + url;
+                    LogHelper.Info(locationPath);
+                    if (!System.IO.File.Exists(locationPath))
                     {
                         HttpContext.Current.Response.Write("图片不存在");
                         return;
                     }
-                    Stream stream = response.GetResponseStream();
+
+
+                    //request = WebRequest.Create(url);
+                    //response = request.GetResponse();
+                    //if (response == null)
+                    //{
+                    //    HttpContext.Current.Response.Write("图片不存在");
+                    //    return;
+                    //}
+                    //Stream stream = response.GetResponseStream();
 
                     ////
                     string[] Position = ConfigurationManager.AppSettings["Position"].ToLower().Split(',');
                     int X = 0;
                     int Y = 0;
-                    System.Drawing.Image imgSource = System.Drawing.Image.FromStream(stream);
+                    System.Drawing.Image imgSource = System.Drawing.Image.FromFile(locationPath);
                     System.Drawing.Graphics graphic = System.Drawing.Graphics.FromImage(imgSource);
                     //图片水印
-                    request = WebRequest.Create(ConfigurationManager.AppSettings["sourceWeb"] + "/Company/GetCompanyWatermarkPIC//?url=" + comeURL);
-                    response = request.GetResponse();
-                    string WatermarkPIC = new StreamReader(response.GetResponseStream(), Encoding.Default).ReadToEnd();
-                    request = WebRequest.Create(ConfigurationManager.AppSettings["sourceWeb"] + WatermarkPIC);
-                    response = request.GetResponse();
-                    stream = response.GetResponseStream();
-                    System.Drawing.Image image = System.Drawing.Image.FromStream(stream);
+
+                    Company company = CompanyService.instance().GetCompanyByUrl(comeURL);
+                    if (company == null)
+                    {
+                        HttpContext.Current.Response.Write("水印图片不存在");
+                        return;
+                    }
+
+                    string locationPath_w = ConfigurationManager.AppSettings["path"] + company.WatermarkPIC;
+                    LogHelper.Info(locationPath_w);
+
+
+                    // return xx == null ? "" : xx.WatermarkPIC;
+
+                    //request = WebRequest.Create(ConfigurationManager.AppSettings["sourceWeb"] + "/Home/GetCompanyWatermarkPIC/?url=" + comeURL);
+                    //response = request.GetResponse();
+                    //string WatermarkPIC = new StreamReader(response.GetResponseStream(), Encoding.Default).ReadToEnd();
+                    //request = WebRequest.Create(ConfigurationManager.AppSettings["sourceWeb"] + WatermarkPIC);
+                    //response = request.GetResponse();
+                    //Stream stream = response.GetResponseStream();
+                    System.Drawing.Image image = System.Drawing.Image.FromFile(locationPath_w);
                     if (Position.Length > 0)
                     {
                         int num;
@@ -73,32 +100,18 @@ namespace XY.Source_ext
                         image.Width,
                         image.Height,
                         GraphicsUnit.Pixel);
-                    //文字水印
-                    //System.Drawing.Font font = new System.Drawing.Font("Arial Black", 10.0f, System.Drawing.FontStyle.Bold);
-                    //SizeF sizrf = Graphics.FromImage(imgSource).MeasureString("test", font);
-                    //if (Position.Length > 0)
-                    //{
-                    //    int num;
-                    //    if (int.TryParse(Position[0], out num))
-                    //    {
-                    //        X = (int)Math.Ceiling((imgSource.Width - sizrf.Width) * (Convert.ToDouble(num) / Convert.ToDouble(100)));
-                    //    }
-                    //}
-                    //if (Position.Length > 1)
-                    //{
-                    //    int num;
-                    //    if (int.TryParse(Position[1], out num))
-                    //    {
-                    //        Y = (int)Math.Ceiling((imgSource.Height - sizrf.Height) * (Convert.ToDouble(num) / Convert.ToDouble(100)));
-                    //    }
-                    //}
-                    //graphic.DrawString("test", font, System.Drawing.Brushes.Red, X, Y);
-                    imgSource.Save(HttpContext.Current.Response.OutputStream, System.Drawing.Imaging.ImageFormat.Png);
+                    System.IO.MemoryStream ms = new System.IO.MemoryStream();
+                    imgSource.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                     imgSource.Dispose();
                     graphic.Dispose();
-                    HttpContext.Current.Response.ContentType = "image/jpeg";
-                    HttpContext.Current.Response.Flush();
-                    HttpContext.Current.Response.End();
+                    LogHelper.Info("ok");
+                    context.Response.ContentType = "image/Jpeg";
+                    context.Response.ClearContent();
+                    context.Response.BinaryWrite(ms.ToArray());
+                    //HttpContext.Current.Response.ContentType = "image/jpeg";
+                    //HttpContext.Current.Response.BinaryWrite(ms.ToArray());
+                    //HttpContext.Current.Response.Flush();
+                    //HttpContext.Current.Response.End();
                 }
                 catch (Exception)
                 {
