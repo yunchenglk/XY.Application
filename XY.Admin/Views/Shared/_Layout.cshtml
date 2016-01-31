@@ -10,7 +10,7 @@
     <link href="/content/css/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="/content/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="/content/css/vendor/animate/animate.min.css">
-   
+
     <link type="text/css" rel="stylesheet" media="all" href="/content/js/vendor/mmenu/css/jquery.mmenu.all.css" />
     <link rel="stylesheet" href="/content/js/vendor/videobackground/css/jquery.videobackground.css">
     <link rel="stylesheet" href="/content/css/vendor/bootstrap-checkbox.css">
@@ -33,6 +33,36 @@
     <![endif]-->
     <script src="~/Scripts/jquery-1.8.3.js"></script>
     @*<script src="/Content/js/jquery-1.11.1.js" type="text/javascript"></script>*@
+    <script type="text/javascript">
+        $(function () {
+            var local_href = window.location.href;
+            local_href = local_href.toLocaleLowerCase().replace("http://", "");
+            var hrefArry = local_href.split('/');
+            var over_url = "/";
+            for (var i = 1; i < hrefArry.length; i++) {
+                over_url += hrefArry[i] + "/";
+            }
+            over_url = over_url.substr(0, over_url.length - 1);
+            $(".menu > .dropdown").each(function (i, n) {
+                $(n).find("li").each(function (x, y) {
+                    if ($(y).find("a").attr("href").toLocaleLowerCase() == over_url) {
+                        $(n).addClass("open");
+                        $(y).addClass("active");
+                    }
+                })
+
+            });
+        })
+        function getUrlParam(name) {
+            //构造一个含有目标参数的正则表达式对象
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            //匹配目标参数
+            var r = window.location.search.substr(1).match(reg);
+            //返回参数值
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+    </script>
 </head>
 <body class="bg-1">
     @*<div class="mask"><div id="loader"></div></div>*@
@@ -103,29 +133,29 @@
                                 </li>
                                 @Html.Raw(XY.UserDateTicket.MenuHTML)
                                 @*<li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="fa fa-list"></i>微信公众平台 <b class="fa fa-plus dropdown-plus"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="/WeChat/Index">
-                                                <i class="fa fa-caret-right"></i>基本参数
-                                            </a>
-                                            <a href="/WeChat/KeyWords">
-                                                <i class="fa fa-caret-right"></i>关键字自动回复
-                                            </a>
-                                            <a href="/WeChat/Menu_Index">
-                                                <i class="fa fa-caret-right"></i>菜单管理
-                                            </a>
-                                            <a href="/WeChat/Picture">
-                                                <i class="fa fa-caret-right"></i>图片库
-                                            </a>
-                                            <a href="/WeChat/TextMessage">
-                                                <i class="fa fa-caret-right"></i>图文消息
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>*@
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <i class="fa fa-list"></i>微信公众平台 <b class="fa fa-plus dropdown-plus"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="/WeChat/Index">
+                                                    <i class="fa fa-caret-right"></i>基本参数
+                                                </a>
+                                                <a href="/WeChat/KeyWords">
+                                                    <i class="fa fa-caret-right"></i>关键字自动回复
+                                                </a>
+                                                <a href="/WeChat/Menu_Index">
+                                                    <i class="fa fa-caret-right"></i>菜单管理
+                                                </a>
+                                                <a href="/WeChat/Picture">
+                                                    <i class="fa fa-caret-right"></i>图片库
+                                                </a>
+                                                <a href="/WeChat/TextMessage">
+                                                    <i class="fa fa-caret-right"></i>图文消息
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>*@
                             </ul>
 
                         </li>
