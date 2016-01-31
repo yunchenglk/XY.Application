@@ -5,12 +5,12 @@
 <script src="/Content/js/vendor/chosen/chosen.jquery.min.js"></script>
 <script type="text/x-jquery-tmpl" id="dataModel">
     <tr class="gradeA odd" id="${ID}">
-        <td class="">${ID}</td>
+        <td class="" style="display:none;">${ID}</td>
         <td class="">${Name}</td>
         <td class="">${TypeStr}</td>
         <td class="">${MenuKey}</td>
         <td class="">${URL}</td>
-        <td class="text-center ">${ChangeDateFormat(CreateTime)}</td>
+        @*<td class="text-center ">${ChangeDateFormat(CreateTime)}</td>*@
         <td class="text-left ">
             <a href="/Wechat/Menu_Create/${ID}" class="btn btn-blue btn-xs"> 修改 </a>
             <a href="javascript:del('${ID}')" class="btn btn-red btn-xs"> 删除 </a>
@@ -101,12 +101,12 @@
                     <table class="table table-datatable table-custom dataTable" id="dataTable" url="/Wechat/GetMenuPage">
                         <thead>
                             <tr role="row">
-                                <th class="sort-alpha">功能ID</th>
+                                <th class="sort-alpha" style="display:none;">功能ID</th>
                                 <th class="sort-alpha">菜单名称</th>
                                 <th class="sort-alpha">菜单类型</th>
                                 <th class="sort-alpha">菜单kEY</th>
                                 <th class="sort-alpha">菜单URL</th>
-                                <th class="sort-alpha sorting">创建时间</th>
+                                @*<th class="sort-alpha sorting">创建时间</th>*@
                                 <th class="">管理</th>
                             </tr>
                         </thead>
