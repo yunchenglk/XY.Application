@@ -35,6 +35,7 @@
     @*<script src="/Content/js/jquery-1.11.1.js" type="text/javascript"></script>*@
     <script type="text/javascript">
         $(function () {
+            //注册菜单
             var local_href = window.location.href;
             local_href = local_href.toLocaleLowerCase().replace("http://", "");
             var hrefArry = local_href.split('/');
@@ -52,16 +53,8 @@
                 })
 
             });
+            //end注册菜单
         })
-        function getUrlParam(name) {
-            //构造一个含有目标参数的正则表达式对象
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-            //匹配目标参数
-            var r = window.location.search.substr(1).match(reg);
-            //返回参数值
-            if (r != null) return unescape(r[2]);
-            return null;
-        }
     </script>
 </head>
 <body class="bg-1">
