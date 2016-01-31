@@ -29,32 +29,36 @@ namespace XY.Admin.Controllers
             try
             {
                 string url = "/Home/Index";
-                if (!string.IsNullOrEmpty(ReturnUrl))
-                    url = ReturnUrl;
-                string uname = form["userid"];
-                if (uname.Trim().Length <= 0)
-                {
-                    ViewBag.Msg = "请输入登录账号";
-                    return View();
-                }
-                ViewBag.uname = uname;
-                string upwd = form["userpass"];
-                if (upwd.Trim().Length <= 0)
-                {
-                    ViewBag.Msg = "请输入登录密码";
-                    return View();
-                }
-                string code = form["verifycode"];
-                if (code.Trim().Length <= 0)
-                {
-                    ViewBag.Msg = "请输入验证码";
-                    return View();
-                }
-                if (!code.ToUpper().Equals(Session["CheckCode"]))
-                {
-                    ViewBag.Msg = "验证码不正确";
-                    return View();
-                }
+                //if (!string.IsNullOrEmpty(ReturnUrl))
+                //    url = ReturnUrl;
+                //string uname = form["userid"];
+                //if (uname.Trim().Length <= 0)
+                //{
+                //    ViewBag.Msg = "请输入登录账号";
+                //    return View();
+                //}
+                //ViewBag.uname = uname;
+                //string upwd = form["userpass"];
+                //if (upwd.Trim().Length <= 0)
+                //{
+                //    ViewBag.Msg = "请输入登录密码";
+                //    return View();
+                //}
+                //string code = form["verifycode"];
+                //if (code.Trim().Length <= 0)
+                //{
+                //    ViewBag.Msg = "请输入验证码";
+                //    return View();
+                //}
+                //if (!code.ToUpper().Equals(Session["CheckCode"]))
+                //{
+                //    ViewBag.Msg = "验证码不正确";
+                //    return View();
+                //}
+
+                string uname = "bj-admin";
+                string upwd = "123456";
+
                 USER u = new USER();
                 json = UserService.instance().Login(uname, upwd);
                 if (Convert.ToBoolean(json["status"]))

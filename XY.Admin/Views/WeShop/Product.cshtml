@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "Product";
+}
+@Scripts.Render("~/js/jqueryValidate")
+<link rel="stylesheet" href="/content/js/vendor/superbox/css/style.css">
+<script src="/content/js/vendor/superbox/superbox.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#input06').summernote({
+            toolbar: []
+        });
+        $('#superbox').SuperBox();
+    })
+    function beforeSubmit() {
+        $("#Description").val($.trim($(".note-editable").text()));
+        return true;
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 微店商品信息确认
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="javascript:void(0);">微店商品信息确认</a></li>
+        </ol>
+    </div>
+</div>
+
+<div class="main">
+    <section class="tile color transparent-black">
+        <div class="tile-widget color transparent-black rounded-top-corners">
+            <ul class="tile-navbar bg-transparent-black-3">
+                <li>
+                    <a href="#" class="gallery-tool disabled">&#12288;</a>
+                </li>
+                <li class="filters">
+                    <a href="javascript:history.go(-1);">返回</a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="tile-body">
+            <form class="form-horizontal" method="post" action="/WeShop/Product" id="validate">
+                <input type="hidden" name="Description" value="" id="Description" />
+                <input type="hidden" name="cate_ids" value="@ViewBag.cate_ids" />
+                <input type="hidden" name="ID" value="@Model.ID" />
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">图片</label>
+                    <div class="col-sm-9">
+                        <div class="tile-body color transparent-black superbox" id="superbox">
+                            @foreach (var item in ViewBag.files as List<XY.Entity.Files>)
+                            {
+                                <div class="superbox-list img-view">
+                                    <img src="@item.FilePathStr" data-img="@item.FilePathStr" class="superbox-img">
+                                    <div class="overlay">
+                                        <div class="media-info">
+                                            <span>@item.CreateTime </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">描述</label>
+                    <div class="col-sm-9">
+                        <div class="form-control" id="input06">
+                            @XY.Util.Utils.DropHTML(Model.Description)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">价格 *</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="Price" value="@Model.Attr[0].price.Price" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">库存 *</label>
+                    <div class="col-sm-9">
+                        <input type="text" name="Stock" value="@Model.Attr[0].price.Stock" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">型号</label>
+                    <div class="col-sm-9">
+                        <section class="tile color transparent-black">
+                            <!-- tile body -->
+                            <div class="tile-body nopadding">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>型号</th>
+                                            <th>价格</th>
+                                            <th>库存</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in (Model.Attr))
+                                        {
+                                            <tr>
+                                                <td>@item.key.Name : @item.val.Value</td>
+                                                <td>@item.price.PriceStr</td>
+                                                <td>@item.price.Stock</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <!-- /tile body -->
+                        </section>
+                    </div>
+                </div>
+
+                <div class="form-group form-footer">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn btn-primary">添加到微信</button>
+                        @if (!string.IsNullOrEmpty(Model.opt))
+                        {
+                            <button type="button" class="btn btn-default" onclick="">商品下架</button>
+                        }
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>

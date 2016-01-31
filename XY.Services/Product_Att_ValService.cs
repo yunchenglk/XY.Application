@@ -80,7 +80,7 @@ namespace XY.Services
             IEnumerable<Product_Att_Val> result = new List<Product_Att_Val>();
             _db.Execute(() =>
             {
-                result = _db.GetList<Product_Att_Val>(m => m.ProductID == pid);
+                result = _db.GetList<Product_Att_Val>(m => m.ProductID == pid).OrderBy(m => m.Short);
             });
             return result;
         }

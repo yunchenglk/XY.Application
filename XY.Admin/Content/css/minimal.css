@@ -13620,12 +13620,12 @@ body #content .dataTables_wrapper {
 
     .note-editor .note-editable {
         overflow: auto;
-        background-color: white;
+        background-color: rgba(0, 0, 0, 0.3);
     }
 
     .note-editor .note-toolbar {
         border-bottom: 0;
-        background-color: #f2f2f2;
+        background-color: rgba(0, 0, 0, 0.3);
         -webkit-border-radius: 4px 4px 0 0;
         -moz-border-radius: 4px 4px 0 0;
         -ms-border-radius: 4px 4px 0 0;

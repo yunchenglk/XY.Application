@@ -73,6 +73,9 @@
     <Compile Include="WeChart\ITemplate.cs" />
     <Compile Include="WeChart\news_item.cs" />
     <Compile Include="WeChart\sub_button.cs" />
+    <Compile Include="WeShop\cates.cs" />
+    <Compile Include="WeShop\product_item.cs" />
+    <Compile Include="WeShop\public.cs" />
     <Compile Include="WX_KeyWord.cs" />
     <Compile Include="WX_Menu.cs" />
     <Compile Include="WX_Message.cs" />

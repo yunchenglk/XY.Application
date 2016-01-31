@@ -7,7 +7,7 @@ using XY.Entity;
 
 namespace XY.Services
 {
-    public class Product_AttService 
+    public class Product_AttService
     {
         public static IEnumerable<ProductAttr> GetAttsByPID(Guid pid)
         {

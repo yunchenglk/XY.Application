@@ -66,6 +66,8 @@ namespace XY.Admin.Controllers
         public ActionResult Index()
         {
             WX_Config m = WX_ConfigService.instance().SingleByCompanyID(UserDateTicket.Company.ID) ?? new WX_Config();
+            if (m == null)
+                m = new WX_Config();
             return View(m);
         }
         [HttpPost]

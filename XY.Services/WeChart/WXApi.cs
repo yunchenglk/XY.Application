@@ -183,7 +183,12 @@ namespace XY.Services
                 if (response != null) response.Close();
             }
             string url = string.Format("https://api.weixin.qq.com/cgi-bin/material/add_material?access_token={0}&type=image", access_token);
-            return HttpUtitls.HttpUploadFile(url, savePath, "image");
+            string rsult_msg = HttpUtitls.HttpUploadFile(url, savePath, "image");
+            if (File.Exists(savePath))
+            {
+                File.Delete(savePath);
+            }
+            return rsult_msg;
         }
         /// <summary>
         /// 新增永久素材（图文）

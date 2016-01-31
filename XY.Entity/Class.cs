@@ -58,6 +58,5 @@ namespace XY.Entity
             get { return myVar; }
             set { myVar = value; }
         }
-
     }
 }

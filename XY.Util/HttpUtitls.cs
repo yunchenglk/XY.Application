@@ -18,6 +18,7 @@ namespace XY.Util
         {
             return RequestUrl(url, "POST");
         }
+
         #endregion
         #region 请求Url，不发送数据
         /// <summary>

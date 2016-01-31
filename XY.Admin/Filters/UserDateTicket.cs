@@ -26,6 +26,20 @@ namespace XY
             get;
             set;
         }
+        public static Boolean IsWeShop
+        {
+            get { return true; }
+            set { }
+        }
+        public static int IsWeShop_
+        {
+            get
+            {
+                if (IsWeShop)
+                    return 1;
+                return 0;
+            }
+        }
         public static Boolean IsSuper
         {
             get;

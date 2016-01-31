@@ -18,6 +18,9 @@
         <td class="">
             <input name="Stock" value="${Stock}" type="text" class="form-control" />
         </td>
+        <td class="">
+            <input name="Short" value="${Short}" type="text" class="form-control" />
+        </td>
         <td class="text-left">
             <a onclick="_del(this)" class="btn btn-blue"> 删除 </a>
         </td>
@@ -89,6 +92,7 @@
             entity.Att_val = $(n).find("input:eq(1)").val();
             entity.Price = $(n).find("input:eq(2)").val();
             entity.Stock = $(n).find("input:eq(3)").val();
+            entity.Short = $(n).find("input:eq(4)").val();
             vals.push(entity);
         })
 
@@ -132,6 +136,7 @@
                                 <th class="sort-alpha">值</th>
                                 <th class="sort-alpha">价钱</th>
                                 <th class="sort-alpha">库存</th>
+                                <th class="sort-alpha">排序</th>
                                 <th class="">管理</th>
                             </tr>
                         </thead>

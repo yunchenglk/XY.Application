@@ -116,6 +116,7 @@ namespace XY.Admin.Controllers
                         pv.ProductID = pid;
                         pv.Value = item.Att_val;
                         pv.Att_Key_ID = item.Att_key;
+                        pv.Short = item.Short;
                         if (Product_Att_ValService.instance().Insert(pv) > 0)
                         {
                             //添加价格
@@ -147,7 +148,7 @@ namespace XY.Admin.Controllers
             List<_post_Product_Attr> result = new List<_post_Product_Attr>();
             if (Guid.TryParse(id, out pid))
             {
-                IEnumerable<Product_Att_Val> pvs = Product_Att_ValService.instance().GetEnumByProductID(pid);
+                IEnumerable<Product_Att_Val> pvs = Product_Att_ValService.instance().GetEnumByProductID(pid).OrderBy(m=>m.Short);
                 foreach (var pv in pvs)
                 {
                     _post_Product_Attr att = new _post_Product_Attr();
@@ -157,6 +158,7 @@ namespace XY.Admin.Controllers
                     Product_Price pp = Product_PriceService.instance().GetEnumByKVP(pid, pv.Att_Key_ID, pv.ID);
                     att.Price = pp.Price;
                     att.Stock = pp.Stock;
+                    att.Short = pv.Short;
                     result.Add(att);
                 }
             }

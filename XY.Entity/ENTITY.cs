@@ -220,6 +220,15 @@ namespace XY.Entity
 		   get{ return _CompanyID;  } 
 		   set{_CompanyID = value;}
 		 }
+        
+		private  String _cate_id;
+
+        [Column("cate_id", DbType.String,false,false)]
+        public String  cate_id 
+		{ 
+		   get{  return _cate_id == null ?string.Empty:_cate_id;  } 
+		   set{_cate_id = value;}
+		 }
             }
 
 
@@ -1643,6 +1652,24 @@ namespace XY.Entity
 		   set{_EditorRec = value;}
 		 }
         
+		private  String _itemid;
+
+        [Column("itemid", DbType.String,false,false)]
+        public String  itemid 
+		{ 
+		   get{  return _itemid == null ?string.Empty:_itemid;  } 
+		   set{_itemid = value;}
+		 }
+        
+		private  Int32 _opt;
+
+        [Column("opt", DbType.Int32,false,false)]
+        public Int32  opt 
+		{ 
+		   get{ return _opt;  } 
+		   set{_opt = value;}
+		 }
+        
 		private  Boolean _DR;
 
         [Column("DR", DbType.Boolean,false,false)]
@@ -2140,6 +2167,76 @@ namespace XY.Entity
 		{ 
 		   get{ return _Role_ID;  } 
 		   set{_Role_ID = value;}
+		 }
+            }
+
+
+    [Table("WeShop")]
+	[Serializable] 
+    public partial class WeShop :IEntity
+    {
+        
+		private  Guid _ID;
+
+        [Column("ID", DbType.Guid,true,false)]
+        public Guid  ID 
+		{ 
+		   get{ return _ID;  } 
+		   set{_ID = value;}
+		 }
+        
+		private  Guid _CompanyID;
+
+        [Column("CompanyID", DbType.Guid,false,false)]
+        public Guid  CompanyID 
+		{ 
+		   get{ return _CompanyID;  } 
+		   set{_CompanyID = value;}
+		 }
+        
+		private  String _appkey;
+
+        [Column("appkey", DbType.String,false,false)]
+        public String  appkey 
+		{ 
+		   get{  return _appkey == null ?string.Empty:_appkey;  } 
+		   set{_appkey = value;}
+		 }
+        
+		private  String _secret;
+
+        [Column("secret", DbType.String,false,false)]
+        public String  secret 
+		{ 
+		   get{  return _secret == null ?string.Empty:_secret;  } 
+		   set{_secret = value;}
+		 }
+        
+		private  String _access_token;
+
+        [Column("access_token", DbType.String,false,false)]
+        public String  access_token 
+		{ 
+		   get{  return _access_token == null ?string.Empty:_access_token;  } 
+		   set{_access_token = value;}
+		 }
+        
+		private  Boolean _DR;
+
+        [Column("DR", DbType.Boolean,false,false)]
+        public Boolean  DR 
+		{ 
+		   get{ return _DR;  } 
+		   set{_DR = value;}
+		 }
+        
+		private  DateTime _CreateTime;
+
+        [Column("CreateTime", DbType.DateTime,false,false)]
+        public DateTime  CreateTime 
+		{ 
+		   get{ return _CreateTime;  } 
+		   set{_CreateTime = value;}
 		 }
             }
 

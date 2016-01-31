@@ -13,5 +13,6 @@ namespace XY.Entity
         public string Att_val { get; set; }
         public Decimal Price { get; set; }
         public int Stock { get; set; }
+        public int Short { get; set; }
     }
 }
