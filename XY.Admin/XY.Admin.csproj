@@ -176,6 +176,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Controllers\WeChatController.cs" />
+    <Compile Include="Controllers\WeShopController.cs" />
     <Compile Include="Controllers\xheditorController.cs" />
     <Compile Include="Filters\AuthorizeFilter.cs" />
     <Compile Include="Filters\UserDateTicket.cs" />
@@ -627,6 +628,7 @@
     <Content Include="Content\js\vendor\videobackground\css\jquery.videobackground.css" />
     <Content Include="Content\js\vendor\videobackground\jquery.videobackground.js" />
     <Content Include="Content\js\vendor\wizard\jquery.bootstrap.wizard.min.js" />
+    <Content Include="Content\js\WeShop.js" />
     <Content Include="Content\UEdit\dialogs\anchor\anchor.html" />
     <Content Include="Content\UEdit\dialogs\attachment\attachment.css" />
     <Content Include="Content\UEdit\dialogs\attachment\attachment.html" />
@@ -1677,6 +1679,8 @@
     <Content Include="Views\WeChat\TextMessage_Create.cshtml" />
     <Content Include="Views\WeChat\TextMessage_Creates.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\WeShop\Index.cshtml" />
+    <Content Include="Views\WeShop\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1722,7 +1726,7 @@
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:2520/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
+          <UseCustomServer>True</UseCustomServer>
           <CustomServerUrl>http://admin.com</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
