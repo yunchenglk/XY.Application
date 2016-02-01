@@ -77,7 +77,7 @@ namespace XY.Services
             IEnumerable<Files> result = new List<Files>();
             _db.Execute(() =>
             {
-                result = _db.GetList<Files>(m => m.RelationID == id);
+                result = _db.GetList<Files>(m => m.RelationID == id).OrderBy(m => m.CreateTime);
             });
             return result;
         }
