@@ -56,7 +56,7 @@
                     <label for="fullname" class="col-sm-3 control-label">图片</label>
                     <div class="col-sm-9">
                         <div class="tile-body color transparent-black superbox" id="superbox">
-                            @foreach (var item in ViewBag.files as List<XY.Entity.Files>)
+                            @foreach (var item in ViewBag.files)
                             {
                                 <div class="superbox-list img-view">
                                     <img src="@item.FilePathStr" data-img="@item.FilePathStr" class="superbox-img">

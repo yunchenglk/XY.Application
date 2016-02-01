@@ -42,6 +42,12 @@
                         <input name="secret" value="@Model.secret" type="text" class="form-control {required:true,messages:{required:'EncodingAESKey不能为空'}}" />
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">userid *</label>
+                    <div class="col-sm-9">
+                        <input name="userid" value="@Model.userid" type="text" class="form-control {required:true,messages:{required:'userid不能为空'}}" />
+                    </div>
+                </div>
                 <div class="form-group form-footer">
                     <div class="col-sm-offset-4 col-sm-8">
                         <button type="submit" class="btn btn-primary">提交</button>

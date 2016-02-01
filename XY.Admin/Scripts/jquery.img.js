@@ -1,4 +1,4 @@
-﻿var sourceURL = "http://source.com";
+﻿var sourceURL = "http://source.0359i.com";
 $(function () {
     BindInputFile();
 })
@@ -13,6 +13,7 @@ function UploadCallBack(result) {
         $("#" + forname).find("i").after(' <input type="file" name="file" filepath="' + result.filepath + '" filetype="' + result.filetype + '" for="' + result.forname + '">');
     }
     $("#upload_div").remove();
+    $(".mask,#loader").slideUp("slow");
 }
 function againUP(forname, filepath, filetype) {
     $("#ok_" + forname).remove();
@@ -23,6 +24,7 @@ function againUP(forname, filepath, filetype) {
 function BindInputFile() {
     $("input[type=file]").live(($.browser.msie && ($.browser.version == "6.0")) ? 'propertychange' : 'change', function () {
         $("input[type=file]").die($.browser.msie && ($.browser.version == '6.0') ? 'propertychange' : 'change');
+        $(".mask,#loader").slideDown("slow");
         var filepath = $(this).attr("filepath");
         var type = $(this).attr("filetype");
         var forname = $(this).attr("for");

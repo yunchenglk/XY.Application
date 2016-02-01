@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -75,16 +76,12 @@ namespace XY.Admin.Controllers
             ClassService.instance().Update(c);
             return Json(msg, JsonRequestBehavior.AllowGet);
         }
-
-
-
         #endregion
 
         #region 商品管理
         public ActionResult Product(string id)
         {
             Product p = ProductService.instance().Single(new Guid(id));
-            p.Attr = Product_AttService.GetAttsByPID(p.ID);
             ViewBag.files = FilesService.instance().GetFilesByRelationID(p.ID);
             ViewBag.cate_ids = ClassService.instance().Single(p.ClassID).cate_id;
             return View(p);
@@ -148,10 +145,6 @@ namespace XY.Admin.Controllers
             result.ResultURL = "/WeShop/Product/" + p.ID;
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-        /// <summary>
-        /// 商品上下架
-        /// </summary>
-        /// <returns></returns>
         public JsonResult Product_onSale(string id)
         {
             Product p = ProductService.instance().Single(new Guid(id));
@@ -163,6 +156,63 @@ namespace XY.Admin.Controllers
             }
 
             return Json(Utils.GetJsonValue(result_msg, "status_reason"), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Product_Async(string id)
+        {
+            Hashtable hash = new Hashtable();
+            Guid ID = new Guid(id);
+            List<Product> plist = ProductService.instance().GetProductByCid(ID).ToList();
+            foreach (var p in plist)
+            {
+                if (string.IsNullOrEmpty(p.itemid))
+                {
+                    product_item entity = new product_item();
+                    entity.item_name = Utils.DropHTML(p.Description);
+                    entity.price = p.Attr.First().price.Price.ToString();
+                    entity.stock = p.Attr.First().price.Stock.ToString();
+                    entity.imgs = new List<string>();
+                    entity.cate_ids = new List<string>() { ClassService.instance().Single(p.ClassID).cate_id };
+                    entity.skus = new List<skus>();
+                    entity.merchant_code = "";
+                    foreach (var item in FilesService.instance().GetFilesByRelationID(p.ID))
+                    {
+                        string reulst_msg = WSApi.upload(GetToken(), item.FilePath);
+                        if (Utils.GetJsonValue(reulst_msg, "status_code") == "0")
+                        {
+                            string imgurl = Utils.GetJsonValue(reulst_msg, "result");
+                            if (imgurl.Split('?').Length > 0)
+                                entity.imgs.Add(imgurl.Split('?')[0]);
+                            else
+                                entity.imgs.Add(imgurl);
+                        }
+                    }
+                    foreach (var item in Product_AttService.GetAttsByPID(ID))
+                    {
+                        entity.skus.Add(new skus()
+                        {
+                            price = item.price.Price.ToString(),
+                            sku_merchant_code = "",
+                            stock = item.price.Stock.ToString(),
+                            title = item.key.Name + ":" + item.val.Value
+
+                        });
+                    };
+                    string json = WSApiJson.vdian_item_add(entity);
+                    string msg = WSApi.vdian_item_add(GetToken(), json);
+                    string status_code = Utils.GetJsonValue(msg, "status_code");
+                    if (status_code == "0")
+                    {
+                        p.itemid = Utils.GetJsonValue(msg, "itemid");
+                        p.opt = "1";
+                        ProductService.instance().Update(p);
+                    }
+                    else
+                    {
+                        hash[p.Title] = Utils.GetJsonValue(msg, "status_reason");
+                    }
+                }
+            }
+            return Json(hash, JsonRequestBehavior.AllowGet);
         }
         #endregion
     }

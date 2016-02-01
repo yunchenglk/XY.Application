@@ -19,6 +19,7 @@
                 alert("错误");
                 return;
             }
+            $(".mask,#loader").slideDown("slow");
             $("#validate").find("button[type=submit]").attr("defaultval", $("#validate").find("button[type=submit]").text());
             $("#validate").find("button[type=submit]").text("信息提交中....");
             if ($(form).find("button[type=submit]").val() != $(form).find("button[type=submit]").text("defaultval")) {
@@ -30,6 +31,7 @@
                         if (!afterSubmit(result)) return;
                         if (result.msg != "") {
                             alert(result.msg);
+                            $(".mask,#loader").slideUp("slow");
                         }
                         if (result.ResultURL != "") {
                             window.location = result.ResultURL;

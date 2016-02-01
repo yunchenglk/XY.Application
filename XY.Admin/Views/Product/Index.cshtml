@@ -1,8 +1,9 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = ViewBag.ClassName + "列表";
 }
 @Scripts.Render("~/js/jqueryPage")
 <script src="/Content/js/vendor/chosen/chosen.jquery.min.js"></script>
+<script src="~/Content/js/WeShop.js"></script>
 <script type="text/x-jquery-tmpl" id="dataModel">
     <tr class="gradeA odd" id="${ID}">
         <td class="">${ID}</td>
@@ -16,9 +17,9 @@
             <a href="/Files/AddFiles/${ID}" class="btn btn-black-transparent btn-xs"> 图片补充 </a>
             {{if @XY.UserDateTicket.IsWeShop_ == 1}}
             {{if itemid == ""}}
-                <a href="/WeShop/Product/${ID}" class="btn btn-orange btn-xs"> 添加到微店 </a>
+            <a href="/WeShop/Product/${ID}" class="btn btn-orange btn-xs"> 添加到微店 </a>
             {{else}}
-                <a href="/WeShop/Product/${ID}" class="btn btn-black-transparent btn-xs"> 微店信息修改 </a>
+            <a href="/WeShop/Product/${ID}" class="btn btn-black-transparent btn-xs"> 微店信息修改 </a>
             {{/if}}
             {{/if}}
         </td>
@@ -62,6 +63,10 @@
                     </table>
                     <div class="row">
                         <div class="col-md-4">
+                            @if (XY.UserDateTicket.IsWeShop)
+                            {
+                                <button type="button" class="btn btn-danger margin-bottom-20" onclick="vdian_async_all('@ViewBag.ClassID')">一键发布到微店</button>
+                            }
                         </div>
                         <div class="col-md-4"></div>
                         <div class="col-md-4 text-right sm-center">
