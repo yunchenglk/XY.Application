@@ -78,6 +78,12 @@ namespace XY.Services
             string strJson = HttpUtitls.RequestUrl(string.Format("http://api.vdian.com/api?param={0}&public={1}", ("{\"itemid\":" + itemid + "}"), _public), "GET");
             return strJson;
         }
+        /// <summary>
+        /// 上传图片
+        /// </summary>
+        /// <param name="access_token"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public static string upload(string access_token, string path)
         {
             string url = string.Format("http://api.vdian.com/media/upload?access_token={0}", access_token);
@@ -125,6 +131,19 @@ namespace XY.Services
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="access_token"></param>
+        /// <param name="itemid">商品itemid</param>
+        /// <param name="opt">1表示商品上架，2表示商品下架</param>
+        /// <returns></returns>
+        public static string vdian_item_onSale(string access_token, string itemid, string opt)
+        {
+            string _public = JsonHelper.SerializeObject(new @public("weidian.item.onSale", access_token));
+            string strJson = HttpUtitls.RequestUrl(string.Format("http://api.vdian.com/api?public={0}&param={1}", _public, ("{\"itemid\":" + itemid + ",\"opt\":" + opt + "}")), "GET");
+            return strJson;
+        }
 
 
 

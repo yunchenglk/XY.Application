@@ -58,7 +58,7 @@ namespace XY.Services
             });
             result.Count++;
             this.Update(result);
-            result.Attr = Product_AttService.GetAttsByPID(id);
+            result.Attr = Product_AttService.GetAttsByPID(id).OrderBy(m => m.val.Short);
             return result;
         }
         public IEnumerable<Product> GetEnum()

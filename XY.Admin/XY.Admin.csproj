@@ -1624,6 +1624,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\WeShop\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1679,7 +1680,6 @@
     <Content Include="Views\WeChat\TextMessage_Create.cshtml" />
     <Content Include="Views\WeChat\TextMessage_Creates.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\WeShop\Index.cshtml" />
     <Content Include="Views\WeShop\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>

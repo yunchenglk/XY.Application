@@ -1661,12 +1661,12 @@ namespace XY.Entity
 		   set{_itemid = value;}
 		 }
         
-		private  Int32 _opt;
+		private  String _opt;
 
-        [Column("opt", DbType.Int32,false,false)]
-        public Int32  opt 
+        [Column("opt", DbType.String,false,false)]
+        public String  opt 
 		{ 
-		   get{ return _opt;  } 
+		   get{  return _opt == null ?string.Empty:_opt;  } 
 		   set{_opt = value;}
 		 }
         
