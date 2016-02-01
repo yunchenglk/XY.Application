@@ -12,7 +12,7 @@ namespace XY.Services
         public static IEnumerable<ProductAttr> GetAttsByPID(Guid pid)
         {
             List<ProductAttr> attrs = new List<ProductAttr>();
-            foreach (var item in Product_Att_ValService.instance().GetEnumByProductID(pid))
+            foreach (var item in Product_Att_ValService.instance().GetEnumByProductID(pid).OrderBy(m => m.Short))
             {
                 ProductAttr pa = new ProductAttr();
                 pa.key = Product_Att_KeyService.instance().Single(item.Att_Key_ID);

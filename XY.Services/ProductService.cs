@@ -58,7 +58,7 @@ namespace XY.Services
             });
             result.Count++;
             this.Update(result);
-            result.Attr = Product_AttService.GetAttsByPID(id).OrderBy(m => m.val.Short);
+            result.Attr = Product_AttService.GetAttsByPID(id);
             return result;
         }
         public IEnumerable<Product> GetEnum()
@@ -86,6 +86,13 @@ namespace XY.Services
             {
                 result = _db.GetList<Product>(m => m.ClassID == cid && m.DR == false).Where(m => m.IsAudit);
             });
+            if (result.Count() > 0)
+            {
+                result.Each(m =>
+                {
+                    m.Attr = Product_AttService.GetAttsByPID(m.ID);
+                });
+            }
             return result;
         }
         public IEnumerable<Product> GetProductByCid_IsRecommend(Guid cid)

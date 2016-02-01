@@ -2238,6 +2238,15 @@ namespace XY.Entity
 		   get{ return _CreateTime;  } 
 		   set{_CreateTime = value;}
 		 }
+        
+		private  String _userid;
+
+        [Column("userid", DbType.String,false,false)]
+        public String  userid 
+		{ 
+		   get{  return _userid == null ?string.Empty:_userid;  } 
+		   set{_userid = value;}
+		 }
             }
 
 

@@ -27,8 +27,6 @@ namespace XY.Source_ext
 
                 string url = HttpContext.Current.Request.Url.AbsolutePath;
                 url = url.Replace("/Img.ashx", "");
-                //WebRequest request = null;
-                WebResponse response = null;
                 try
                 {
                     string locationPath = ConfigurationManager.AppSettings["path"] + url;
@@ -38,17 +36,6 @@ namespace XY.Source_ext
                         HttpContext.Current.Response.Write("图片不存在");
                         return;
                     }
-
-
-                    //request = WebRequest.Create(url);
-                    //response = request.GetResponse();
-                    //if (response == null)
-                    //{
-                    //    HttpContext.Current.Response.Write("图片不存在");
-                    //    return;
-                    //}
-                    //Stream stream = response.GetResponseStream();
-
                     ////
                     string[] Position = ConfigurationManager.AppSettings["Position"].ToLower().Split(',');
                     int X = 0;
@@ -65,17 +52,7 @@ namespace XY.Source_ext
                     }
 
                     string locationPath_w = ConfigurationManager.AppSettings["path"] + company.WatermarkPIC;
-                    LogHelper.Info(locationPath_w);
-
-
-                    // return xx == null ? "" : xx.WatermarkPIC;
-
-                    //request = WebRequest.Create(ConfigurationManager.AppSettings["sourceWeb"] + "/Home/GetCompanyWatermarkPIC/?url=" + comeURL);
-                    //response = request.GetResponse();
-                    //string WatermarkPIC = new StreamReader(response.GetResponseStream(), Encoding.Default).ReadToEnd();
-                    //request = WebRequest.Create(ConfigurationManager.AppSettings["sourceWeb"] + WatermarkPIC);
-                    //response = request.GetResponse();
-                    //Stream stream = response.GetResponseStream();
+                    //LogHelper.Info(locationPath_w);
                     System.Drawing.Image image = System.Drawing.Image.FromFile(locationPath_w);
                     if (Position.Length > 0)
                     {
@@ -108,22 +85,10 @@ namespace XY.Source_ext
                     context.Response.ContentType = "image/Jpeg";
                     context.Response.ClearContent();
                     context.Response.BinaryWrite(ms.ToArray());
-                    //HttpContext.Current.Response.ContentType = "image/jpeg";
-                    //HttpContext.Current.Response.BinaryWrite(ms.ToArray());
-                    //HttpContext.Current.Response.Flush();
-                    //HttpContext.Current.Response.End();
                 }
                 catch (Exception)
                 {
                 }
-                finally
-                {
-                    if (response != null)
-                    {
-                        response.Close();
-                    }
-                }
-
             }
 
         }
