@@ -28,8 +28,8 @@ namespace XY
         }
         public static Boolean IsWeShop
         {
-            get { return true; }
-            set { }
+            get;
+            set;
         }
         public static int IsWeShop_
         {

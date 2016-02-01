@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Collections;
 using XY.Entity;
+using System.Linq;
 using System.Web.Security;
 using XY.Services;
 using System.Drawing;
@@ -29,35 +30,35 @@ namespace XY.Admin.Controllers
             try
             {
                 string url = "/Home/Index";
-                //if (!string.IsNullOrEmpty(ReturnUrl))
-                //    url = ReturnUrl;
-                //string uname = form["userid"];
-                //if (uname.Trim().Length <= 0)
-                //{
-                //    ViewBag.Msg = "请输入登录账号";
-                //    return View();
-                //}
-                //ViewBag.uname = uname;
-                //string upwd = form["userpass"];
-                //if (upwd.Trim().Length <= 0)
-                //{
-                //    ViewBag.Msg = "请输入登录密码";
-                //    return View();
-                //}
-                //string code = form["verifycode"];
-                //if (code.Trim().Length <= 0)
-                //{
-                //    ViewBag.Msg = "请输入验证码";
-                //    return View();
-                //}
-                //if (!code.ToUpper().Equals(Session["CheckCode"]))
-                //{
-                //    ViewBag.Msg = "验证码不正确";
-                //    return View();
-                //}
+                if (!string.IsNullOrEmpty(ReturnUrl))
+                    url = ReturnUrl;
+                string uname = form["userid"];
+                if (uname.Trim().Length <= 0)
+                {
+                    ViewBag.Msg = "请输入登录账号";
+                    return View();
+                }
+                ViewBag.uname = uname;
+                string upwd = form["userpass"];
+                if (upwd.Trim().Length <= 0)
+                {
+                    ViewBag.Msg = "请输入登录密码";
+                    return View();
+                }
+                string code = form["verifycode"];
+                if (code.Trim().Length <= 0)
+                {
+                    ViewBag.Msg = "请输入验证码";
+                    return View();
+                }
+                if (!code.ToUpper().Equals(Session["CheckCode"]))
+                {
+                    ViewBag.Msg = "验证码不正确";
+                    return View();
+                }
 
-                string uname = "bj-admin";
-                string upwd = "123456";
+                //string uname = "bj-admin";
+                //string upwd = "123456";
 
                 USER u = new USER();
                 json = UserService.instance().Login(uname, upwd);
@@ -68,12 +69,15 @@ namespace XY.Admin.Controllers
                         json["uid"].ToString(), DateTime.Now, DateTime.Now.Add(FormsAuthentication.Timeout), false,
                         "");
                     HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
+                    Guid UID = new Guid(json["uid"].ToString());
                     //初始化ticket
-                    USER m = UserService.instance().GetEntityByID(new Guid(json["uid"].ToString()));
+                    USER m = UserService.instance().GetEntityByID(UID);
                     UserDateTicket.Uname = m.Name;
                     UserDateTicket.Company = CompanyService.instance().Single(m.CompanyID);
                     UserDateTicket.wx_config = WX_ConfigService.instance().SingleByCompanyID(m.CompanyID);
                     UserDateTicket.IsSuper = m.Type == 99 ? true : false;
+                    var rlist = User_PK_Role_s_Service.instance().GetEnumByUID(UID).Select(x => x.Role_ID.ToString().ToUpper()).ToList();
+                    UserDateTicket.IsWeShop = rlist.Contains("4AD50983-426E-4A74-95FA-D4A9FFB147E5");
                     UserDateTicket.MenuHTML = new MenuService(m.ID).Html;
 
                     //end初始化ticket

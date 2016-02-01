@@ -141,12 +141,28 @@ namespace XY.Admin.Controllers
             if (result.status == 0)
             {
                 p.itemid = Utils.GetJsonValue(msg, "itemid");
-                p.opt = 1;
+                p.opt = "1";
                 ProductService.instance().Update(p);
             }
             result.msg = result.status == 0 ? "操作成功" : "操作失败";
             result.ResultURL = "/WeShop/Product/" + p.ID;
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        /// <summary>
+        /// 商品上下架
+        /// </summary>
+        /// <returns></returns>
+        public JsonResult Product_onSale(string id)
+        {
+            Product p = ProductService.instance().Single(new Guid(id));
+            p.opt = (p.opt == "1" ? "2" : "1");
+            string result_msg = WSApi.vdian_item_onSale(GetToken(), p.itemid, p.opt);
+            if (Utils.GetJsonValue(result_msg, "status_code") == "0")
+            {
+                ProductService.instance().Update(p);
+            }
+
+            return Json(Utils.GetJsonValue(result_msg, "status_reason"), JsonRequestBehavior.AllowGet);
         }
         #endregion
     }

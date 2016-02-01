@@ -15,6 +15,12 @@
         $("#Description").val($.trim($(".note-editable").text()));
         return true;
     }
+    function _onSale(id) {
+        $.getJSON("/WeShop/Product_onSale", { id: id, v: Math.random() }, function (result) {
+            alert(result);
+            window.location.reload();
+        })
+    }
 </script>
 <div class="pageheader">
     <h2>
@@ -121,7 +127,9 @@
                         <button type="submit" class="btn btn-primary">添加到微信</button>
                         @if (!string.IsNullOrEmpty(Model.opt))
                         {
-                            <button type="button" class="btn btn-default" onclick="">商品下架</button>
+                            <button type="button" class="btn btn-default" onclick="_onSale('@Model.ID')">
+                                @(Model.opt == "1" ? "下架" : "上架")
+                            </button>
                         }
 
                     </div>
