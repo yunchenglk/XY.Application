@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "视频回复";
+}
+<script type="text/javascript" src="~/Content/js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="~/Content/js/_com.js"></script>
+<script type="text/javascript">
+    $().ready(function () {
+        $('#example').dataTable({
+            "oLanguage": {
+                "sLengthMenu": "每页显示 _MENU_ 条记录",
+                "sZeroRecords": "抱歉， 没有找到",
+                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+                "sInfoEmpty": "没有数据",
+                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "前一页",
+                    "sNext": "后一页",
+                    "sLast": "尾页"
+                }, "sZeroRecords": "没有检索到数据",
+                "sProcessing": "<img src='/Content/images/loaders/loader6.gif' />"
+            },
+            "bLengthChange": false,
+            "searching": false,
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                url: "/wxRule/GetPage_Shipin",
+                type: "POST"
+            },
+            "columns": [
+                   { "data": "ID" },
+                   { "data": "reqKeywords" },
+                   {
+                       "data": "isLikeSearch",
+                       "render": function (data) {
+                           if (data == 0)
+                               return "完全匹配";
+                           else
+                               return "包含匹配";
+                       }
+                   },
+                   {
+                       "data": "ID",
+                       "render": function (data, type, full, meta) {
+                           return '<a href="/wxRule/shiPinEdit/' + data + '" class="btn btn3 btn_pencil" title="编辑"></a>'
+                                 + '&nbsp;<a href="javascript:_del(\'' + data + '\')" class="btn btn3 btn_trash" title="删除"></a>'
+                                 + '&nbsp;<a href="javascript:_attention(\'' + data + '\')" class="btn btn3 btn_chat" title="设置关注时回复"></a>'
+                                 + '&nbsp;<a href="javascript:_default(\'' + data + '\')" class="btn btn3 btn_message" title="设置默认回复"></a>'
+                                 + '&nbsp;<a href="javascript:_push(\'' + data + '\')" class="btn btn3 btn_chat2" title="推送消息"></a>';
+
+                       }
+                   }
+            ]
+        });
+    })
+    function _del(id) {
+        if (confirm("确定删除吗？\n删除后数据不可以回复")) {
+            $.getJSON("/wxRule/Del_wenben", { id: id, v: Math.random() }, function (result) {
+                alert(result);
+                window.location.reload();
+            })
+        }
+    }
+</script>
+<div class="pageheader notab">
+    <h1 class="pagetitle">视频回复</h1>
+</div>
+<div id="contentwrapper" class="contentwrapper">
+    <div class="tableoptions">
+        <button class="radius3" onclick="javascript: window.location = '/wxRule/shiPinEdit'">添加视频回复</button> &nbsp;
+    </div><!--tableoptions-->
+    <table id="example" class="stdtable" cellspacing="0" width="100%">
+        <colgroup>
+            <col class="con1" style="width: 20%" />
+            <col class="con0" style="width: 20%" />
+            <col class="con0" style="width: 20%" />
+            <col class="con1" style="width: 20%" />
+        </colgroup>
+
+        <thead>
+            <tr>
+                <th class="head1">ID</th>
+                <th class="head1">关键字</th>
+                <th class="head1">关键词类型</th>
+                <th class="head1">管理</th>
+            </tr>
+        </thead>
+    </table>
+</div>

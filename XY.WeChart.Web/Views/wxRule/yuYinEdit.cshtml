@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "编辑语音回复";
+}
+@Scripts.Render("~/js/jqueryValidate")
+<script src="~/Content/js/jquery.img.js"></script>
+<div class="pageheader notab">
+    <h1 class="pagetitle">编辑语音回复</h1>
+</div>
+<div id="contentwrapper" class="contentwrapper">
+    <form class="stdform" method="post" action="/wxRule/yuYinEdit" id="validate">
+        <input type="hidden" name="ID" value="@Model.ID" id="ID" />
+        <input type="hidden" name="CreateTime" value="@Model.CreateTime" id="CreateTime" />
+        <input type="hidden" name="mediaUrl" value="@ViewBag.mediaUrl" />
+        <p>
+            <label>关键词</label>
+            <span class="field">
+                <input type="text" name="reqKeywords" value="@Model.reqKeywords" id="reqKeywords" class="longinput {required:true,messages:{required:'关键词不能为空'}}" />
+            </span>
+            <small class="desc">*多个关键词请用|格开：例如: 美丽|漂亮|好看</small>
+        </p>
+        <p>
+            <label>关键词类型</label>
+            <span class="field">
+                <select name="isLikeSearch" class="uniformselect" id="isLikeSearch">
+                    <option value="0">完全匹配，用户输入的和此关键词一样才会触发!</option>
+                    <option value="1">包含匹配 (只要用户输入的文字包含本关键词就触发!)</option>
+                </select>
+            </span>
+            <script type="text/javascript">
+                if ('@Model.isLikeSearch' == "True") {
+                    $("#isLikeSearch").val(1)
+                } else {
+                    $("#isLikeSearch").val(0);
+                }
+            </script>
+        </p>
+        <p>
+            <label>标题</label>
+            <span class="field">
+                <textarea cols="80" rows="5" name="rContent" class="mediuminput {required:true,messages:{required:'内容或简介不能为空'}}" id="rContent">@ViewBag.rContent</textarea>
+            </span>
+        </p>
+        <p>
+            <label>语音文件</label>
+            <span class="field" id="mediaUrl">
+                <input type="file" name="file" filepath="/UPLOAD/WXIMG/" filetype="voice" for="mediaUrl" />
+            </span>
+            <small class="desc">小于2M,播放长度不超过60s,支持AMR\MP3格式</small>
+            <script type="text/javascript">
+                $(function () {
+                    if ($.trim($("input[name=mediaUrl]").val()).length > 0) {
+                        $("#mediaUrl > div").find(".filename").text($("input[name=mediaUrl]").val());
+                    }
+                })
+            </script>
+        </p>
+        <p>
+            <label>描述</label>
+            <span class="field">
+                <textarea cols="80" rows="5" name="rContent2" class="mediuminput {required:true,messages:{required:'内容或简介不能为空'}}" id="rContent">@ViewBag.rContent2</textarea>
+            </span>
+        </p>
+        <p class="stdformbutton">
+            <button class="submit radius2">提交</button>
+            <button class="stdbtn" onclick="javascript: history.go(-1);">返回</button>
+        </p>
+    </form>
+</div>

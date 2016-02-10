@@ -1681,6 +1681,7 @@
     <Content Include="Views\WeChat\TextMessage_Creates.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\WeShop\Product.cshtml" />
+    <Content Include="Views\Company\WeChart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

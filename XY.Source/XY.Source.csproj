@@ -168,6 +168,7 @@
     </Content>
     <Content Include="Configs\Database.config" />
     <Content Include="Configs\Log4Net.config" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\source.com.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

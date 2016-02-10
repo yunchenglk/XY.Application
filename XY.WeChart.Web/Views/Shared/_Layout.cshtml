@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>@ViewBag.Title - 鑫跃国际微信管理平台</title>
+    <link href="~/Content/css/style.default.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="~/Content/js/plugins/jquery-ui-1.8.16.custom.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/plugins/jquery.cookie.js"></script>
+    <script src="~/Content/js/custom/general.js"></script>
+    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="~/Content/js/plugins/excanvas.min.js"></script><![endif]-->
+    <!--[if IE 9]>
+        <link rel="stylesheet" media="screen" href="~/Content/css/style.ie9.css"/>
+    <![endif]-->
+    <!--[if IE 8]>
+        <link rel="stylesheet" media="screen" href="~/Content/css/style.ie8.css"/>
+    <![endif]-->
+    <!--[if lt IE 9]>
+        <script src="~/Content/js/plugins/css3-mediaqueries.js"></script>
+    <![endif]-->
+</head>
+<body class="withvernav">
+    <div class="bodywrapper">
+        <div class="topheader">
+            <div class="left">
+                <h1 class="logo">鑫跃☆<span>微信管理平台</span></h1>
+                <br clear="all" />
+            </div><!--left-->
+            <div class="right">
+                <div class="userinfo">
+                    <img src="~/Content/images/thumbs/avatar.png" alt="" />
+                    <span>管理员</span>
+                </div><!--userinfo-->
+
+                <div class="userinfodrop">
+                    <div class="avatar">
+                        <a href=""><img src="~/Content/images/thumbs/avatarbig.png" alt="" /></a>
+                        <div class="changetheme">
+                            切换主题: <br />
+                            <a class="default"></a>
+                            <a class="blueline"></a>
+                            <a class="greenline"></a>
+                            <a class="contrast"></a>
+                        </div>
+                    </div><!--avatar-->
+                    <div class="userdata">
+                        <h4>Juan</h4>
+                        <span class="email">youremail@yourdomain.com</span>
+                        <ul>
+                            <li><a href="#">编辑资料</a></li>
+                            <li><a href="#">账号设置</a></li>
+                            <li><a href="#">帮助</a></li>
+                            <li><a href="/Account/SignOut">退出</a></li>
+                        </ul>
+                    </div><!--userdata-->
+                </div><!--userinfodrop-->
+            </div><!--right-->
+        </div><!--topheader-->
+        <div class="header">
+            <ul class="headermenu">
+                <li class="current"><a href="dashboard.html"><span class="icon icon-speech"></span>公众号管理</a></li>
+                <li><a href="manageblog.html"><span class="icon icon-pencil"></span>博客管理</a></li>
+                <li><a href="messages.html"><span class="icon icon-message"></span>查看消息</a></li>
+                <li><a href="reports.html"><span class="icon icon-chart"></span>统计报表</a></li>
+            </ul>
+
+            <div class="headerwidget">
+                <div class="earnings">
+                    <div class="one_half">
+                        <h4>Today's Earnings</h4>
+                        <h2>$640.01</h2>
+                    </div><!--one_half-->
+                    <div class="one_half last alignright">
+                        <h4>Current Rate</h4>
+                        <h2>53%</h2>
+                    </div><!--one_half last-->
+                </div><!--earnings-->
+            </div><!--headerwidget-->
+        </div><!--header-->
+        <div class="vernav2 iconmenu">
+            <ul id="_menu">
+                <li>
+                    <a href="#callback" class="elements">微信自定义回复</a>
+                    <span class="arrow"></span>
+                    <ul id="callback">
+                        <li><a href="/wxRule/wenBen">文本回复</a></li>
+                        <li><a href="/wxRule/tuWen">图文回复</a></li>
+                        <li><a href="/wxRule/yuYin">语音回复</a></li>
+                        <li><a href="/wxRule/shiPin">视频回复</a></li>
+                        <li><a href="#">请求回复记录</a></li>
+                        <li><a href="#">LBS位置回复</a></li>
+                    </ul>
+                </li>
+                <!--<li><a href="filemanager.html" class="gallery">文件管理</a></li>-->
+                <li>
+                    <a href="#wxmenu" class="widgets">自定义菜单</a>
+                    <span class="arrow"></span>
+                    <ul id="wxmenu">
+                        <li><a href="/wxMenu/Index">菜单设置</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <a class="togglemenu"></a>
+            <br /><br />
+        </div><!--leftmenu-->
+        <div class="centercontent">
+            @RenderBody()
+
+            <br clear="all" />
+        </div><!-- centercontent -->
+    </div><!--bodywrapper-->
+
+</body>
+</html>

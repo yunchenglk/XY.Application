@@ -69,5 +69,26 @@ namespace XY.Admin.Controllers
         {
             return Json(CompanyService.instance().GetEnum().Select(m => new { id = m.ID, name = m.Name }), JsonRequestBehavior.AllowGet);
         }
+        public ActionResult WeChart(string id)
+        {
+            wx_userweixin wxuser = wx_userweixinService.instance().SingleByCompanyID(new Guid(id));
+            if (wxuser == null)
+                wxuser = new wx_userweixin() { CompanyID = new Guid(id) };
+            return View(wxuser);
+        }
+        [HttpPost]
+        public JsonResult WeChart(FormCollection form)
+        {
+            ResultBase_form result = new ResultBase_form();
+            wx_userweixin m = new wx_userweixin();
+            TryUpdateModel<wx_userweixin>(m, form);
+            if (m.ID == Guid.Empty)
+                result.status = wx_userweixinService.instance().Insert(m);
+            else
+                result.status = wx_userweixinService.instance().Update(m);
+            result.msg = result.status == 0 ? "操作失败" : "操作成功";
+            result.ResultURL = "/Company/Index";
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }

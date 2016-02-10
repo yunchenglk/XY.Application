@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "配置微信公众号信息";
+}
+@Scripts.Render("~/js/jqueryValidate")
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i> 编辑公司信息
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li><a href="/Role/Index">公司信息管理</a></li>
+            <li class="active">配置微信公众号信息</li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile color transparent-black">
+        <div class="tile-body">
+            <form class="form-horizontal" method="post" action="/Company/WeChart" id="validate">
+                <input type="hidden" value="@Model.ID" name="ID" />
+                <input type="hidden" value="@Model.CreateTime" name="CreateTime" />
+                <input type="hidden" value="@Model.CompanyID" name="CompanyID"/>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">公众帐号名称 *</label>
+                    <div class="col-sm-9">
+                        <input name="wxName" value="@Model.wxName" type="text" class="form-control {required:true}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">公众号原始ID *</label>
+                    <div class="col-sm-9">
+                        <input name="wxId" value="@Model.wxId" type="text" class="form-control {required:true}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">微信号 *</label>
+                    <div class="col-sm-9">
+                        <input name="weixinCode" value="@Model.weixinCode" type="text" class="form-control {required:true}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">微信号密码 *</label>
+                    <div class="col-sm-9">
+                        <input name="wxPwd" value="@Model.wxPwd" type="text" class="form-control {required:true}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">接口地址 *</label>
+                    <div class="col-sm-9">
+                        <input name="apiurl" value="@Model.apiurl" type="text" class="form-control {required:true}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">TOKEN值 *</label>
+                    <div class="col-sm-9">
+                        <input name="wxToken" value="@Model.wxToken" type="text" class="form-control {required:true}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">AppId *</label>
+                    <div class="col-sm-9">
+                        <input name="AppId" value="@Model.AppId" type="text" class="form-control {required:true}" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">AppSecret *</label>
+                    <div class="col-sm-9">
+                        <input name="AppSecret" value="@Model.AppSecret" type="text" class="form-control {required:true}" />
+                    </div>
+                </div>
+                <div class="form-group form-footer">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="reset" class="btn btn-default">清空</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+

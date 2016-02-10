@@ -14,16 +14,36 @@ namespace XY.Source.Controllers
     // GET: Uploadfile
     public class UploadfileController : Controller
     {
-        public const long upfileSize = 9999999999;
+        private long upfileSize = 9999999999;
         // public const string fileext = "gif,jpg,jpeg,png,bmp,txt,rar,zip,ppt,pptx,doc,docx,xls,xlsx,swf,flv,pdf";
         public const string fileext = "png,jpg,jpeg,gif,bmp,flv,swf,mkv,avi,rm,rmvb,mpeg,mpg,ogg,ogv,mov,wmv,mp4,webm,mp3,wav,mid,rar,zip,tar,gz,7z,bz2,cab,iso,doc,docx,xls,xlsx,ppt,pptx,pdf,txt,md,xml";
         public const string imageext = "gif,jpg,jpeg,png,bmp";
+        public const string voiceext = "amr,mp3";
+        public const string videoext = "mp4";
         [HttpPost]
         public void Upfile(string jsonpcallback, string filepath, string type, string forname, string backurl)
         {
             string savePath = filepath;
             string saveUrl = filepath;
-            string fileTypes = (type == "image" ? imageext : fileext);
+            string fileTypes;
+            switch (type)
+            {
+                case "image"://微信图片格式
+                    fileTypes = imageext;
+                    upfileSize = 2097152;
+                    break;
+                case "video"://微信视频格式
+                    fileTypes = videoext;
+                    upfileSize = 10485760;
+                    break;
+                case "voice"://微信语音格式
+                    fileTypes = voiceext;
+                    upfileSize = 2097152;
+                    break;
+                default:
+                    fileTypes = fileext;
+                    break;
+            }
             Hashtable hash = new Hashtable();
             HttpPostedFileBase file = Request.Files["file"];
             if (file == null)
@@ -50,10 +70,8 @@ namespace XY.Source.Controllers
                 hash = new Hashtable();
                 hash["error"] = 1;
                 hash["message"] = "上传文件大小超过限制";
-
             }
-
-            if (string.IsNullOrEmpty(fileExt) || Array.IndexOf(fileTypes.Split(','), fileExt.Substring(1).ToLower()) == -1)
+            else if (string.IsNullOrEmpty(fileExt) || Array.IndexOf(fileTypes.Split(','), fileExt.Substring(1).ToLower()) == -1)
             {
                 hash = new Hashtable();
                 hash["error"] = 1;
@@ -64,20 +82,17 @@ namespace XY.Source.Controllers
                 string newFileName = DateTime.Now.ToString("yyyyMMddHHmmss_ffff", DateTimeFormatInfo.InvariantInfo) + fileExt;
                 string filePath = dirPath + newFileName;
                 file.SaveAs(filePath);
-                
-
                 hash = new Hashtable();
                 hash["error"] = 0;
                 hash["message"] = "success";
                 hash["newname"] = newFileName;
                 hash["oldname"] = fileName;
                 hash["savePath"] = savePath;
-                hash["filepath"] = filepath;
-                hash["filetype"] = type;
-                hash["forname"] = forname;
-                hash["forname"] = forname;
                 hash["websiteurl"] = ConfigurationManager.AppSettings["webSiteUrl"];
             }
+            hash["filepath"] = filepath;
+            hash["filetype"] = type;
+            hash["forname"] = forname;
             string url = Utils.ComUrlTxt(hash);
             Response.Write("<script type='text/javascript'>window.location.href='" + backurl + url + "'</script>");
 

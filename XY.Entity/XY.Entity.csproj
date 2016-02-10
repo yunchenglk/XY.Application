@@ -70,8 +70,30 @@
     <Compile Include="USER.cs" />
     <Compile Include="WeChart\articles.cs" />
     <Compile Include="WeChart\button.cs" />
+    <Compile Include="WeChart\Config.cs" />
+    <Compile Include="WeChart\Enums.cs" />
     <Compile Include="WeChart\ITemplate.cs" />
+    <Compile Include="WeChart\JsonResult\AccessTokenResult.cs" />
+    <Compile Include="WeChart\JsonResult\GetMenuResult.cs" />
+    <Compile Include="WeChart\JsonResult\GetMenuResultFull.cs" />
+    <Compile Include="WeChart\JsonResult\JsApiTicketResult.cs" />
+    <Compile Include="WeChart\JsonResult\UploadMediaFileResult.cs" />
+    <Compile Include="WeChart\JsonResult\WeixinUserInfoResult.cs" />
+    <Compile Include="WeChart\JsonResult\WxJsonResult.cs" />
+    <Compile Include="WeChart\Menu\BaseButton.cs" />
+    <Compile Include="WeChart\Menu\ButtonGroup.cs" />
+    <Compile Include="WeChart\Menu\SingleButton.cs" />
+    <Compile Include="WeChart\Menu\SingleClickButton.cs" />
+    <Compile Include="WeChart\Menu\SingleLocationSelectButton.cs" />
+    <Compile Include="WeChart\Menu\SinglePicPhotoOrAlbumButton.cs" />
+    <Compile Include="WeChart\Menu\SinglePicSysphotoButton.cs" />
+    <Compile Include="WeChart\Menu\SinglePicWeixinButton.cs" />
+    <Compile Include="WeChart\Menu\SingleScancodePushButton.cs" />
+    <Compile Include="WeChart\Menu\SingleScancodeWaitmsgButton.cs" />
+    <Compile Include="WeChart\Menu\SingleViewButton.cs" />
+    <Compile Include="WeChart\Menu\SubButton.cs" />
     <Compile Include="WeChart\news_item.cs" />
+    <Compile Include="WeChart\Returneddata.cs" />
     <Compile Include="WeChart\sub_button.cs" />
     <Compile Include="WeShop\cates.cs" />
     <Compile Include="WeShop\product_item.cs" />
@@ -80,6 +102,7 @@
     <Compile Include="WX_Menu.cs" />
     <Compile Include="WX_Message.cs" />
     <Compile Include="WX_MessageGroup.cs" />
+    <Compile Include="wx_requestRuleContent.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XY.Util\XY.Util.csproj">

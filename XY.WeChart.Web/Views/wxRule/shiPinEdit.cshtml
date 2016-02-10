@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "编辑视频回复";
+}
+@Scripts.Render("~/js/jqueryValidate")
+<script src="~/Content/js/jquery.img.js"></script>
+<div class="pageheader notab">
+    <h1 class="pagetitle">编辑视频回复</h1>
+</div>
+<div id="contentwrapper" class="contentwrapper">
+    <form class="stdform" method="post" action="/wxRule/shiPinEdit" id="validate">
+        <input type="hidden" name="ID" value="@Model.ID" id="ID" />
+        <input type="hidden" name="CreateTime" value="@Model.CreateTime" id="CreateTime" />
+        <input type="hidden" name="meidaHDUrl" value="@ViewBag.meidaHDUrl" />
+
+        <p>
+            <label>关键词</label>
+            <span class="field">
+                <input type="text" name="reqKeywords" value="@Model.reqKeywords" id="reqKeywords" class="longinput {required:true,messages:{required:'关键词不能为空'}}" />
+            </span>
+            <small class="desc">*多个关键词请用|格开：例如: 美丽|漂亮|好看</small>
+        </p>
+        <p>
+            <label>关键词类型</label>
+            <span class="field">
+                <select name="isLikeSearch" class="uniformselect" id="isLikeSearch">
+                    <option value="0">完全匹配，用户输入的和此关键词一样才会触发!</option>
+                    <option value="1">包含匹配 (只要用户输入的文字包含本关键词就触发!)</option>
+                </select>
+            </span>
+            <small class="desc">*完全匹配，用户输入的和此关键词一样才会触发!</small>
+            <small class="desc">*包含匹配 (只要用户输入的文字包含本关键词就触发!)</small>
+            <script type="text/javascript">
+                 if ('@Model.isLikeSearch' == "True") {
+                    $("#isLikeSearch").val(1)
+                } else {
+                    $("#isLikeSearch").val(0);
+                }
+            </script>
+        </p>
+        <p>
+            <label>标题</label>
+            <span class="field">
+                <textarea cols="80" rows="5" name="rContent" class="mediuminput {required:true,messages:{required:'内容或简介不能为空'}}" id="rContent">@ViewBag.rContent</textarea>
+            </span>
+        </p>
+        <p>
+            <label>视频文件</label>
+            <span class="field" id="meidaHDUrl">
+                <input type="file" name="file" filepath="/UPLOAD/WXIMG/" filetype="video" for="meidaHDUrl" />
+            </span>
+            <small class="desc">小于10MB，支持MP4格式</small>
+            <script type="text/javascript">
+                $(function () {
+                    if ($.trim($("input[name=meidaHDUrl]").val()).length > 0) {
+                        $("#meidaHDUrl > div").find(".filename").text($("input[name=meidaHDUrl]").val());
+                    }
+                })
+            </script>
+        </p>
+        <p>
+            <label>描述</label>
+            <span class="field">
+                <textarea cols="80" rows="5" name="rContent2" class="mediuminput {required:true,messages:{required:'内容或简介不能为空'}}" id="rContent">@ViewBag.rContent2</textarea>
+            </span>
+        </p>
+        <p class="stdformbutton">
+            <button class="submit radius2">提交</button>
+            <button class="stdbtn" onclick="javascript: history.go(-1);">返回</button>
+        </p>
+    </form>
+</div>

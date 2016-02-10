@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "图文回复内容";
+}
+<script type="text/javascript" src="~/Content/js/plugins/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    $().ready(function () {
+        $('#example').dataTable({
+            "oLanguage": {
+                "sLengthMenu": "每页显示 _MENU_ 条记录",
+                "sZeroRecords": "抱歉， 没有找到",
+                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据",
+                "sInfoEmpty": "没有数据",
+                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "前一页",
+                    "sNext": "后一页",
+                    "sLast": "尾页"
+                }, "sZeroRecords": "没有检索到数据",
+                "sProcessing": "<img src='/Content/images/loaders/loader6.gif' />"
+            },
+            "bLengthChange": false,
+            "searching": false,
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                url: "/wxRule/GetPage_TuwenList/" + '@ViewBag.ID',
+                type: "POST"
+            },
+            "columns": [
+                   { "data": "ID" },
+                   {
+                       "data": "picUrl",
+                       "render": function (data, type, full, meta) {
+                           return "<div class=\"avatar\"><img src=\"" + full.picUrlStr + "\" ></div>";
+                       }
+                   },
+                   {
+                       "data": "ID", "render": function (data, type, full, meta) {
+                           return full.rContent;
+                       }
+                   },
+                   { "data": "detailUrl" },
+                   { "data": "seq" },
+                   {
+                       "data": "ID",
+                       "render": function (data, type, full, meta) {
+                           //return '<a href="/wxRule/tuWenListEdit/' + data + '?rid=@ViewBag.ID" class="edit">编辑</a> &nbsp; <a href="javascript:_del(\'' + data + '\')" class="delete">删除</a>';
+
+                           return '<a href="/wxRule/tuWenListEdit/' + data + '?rid=@ViewBag.ID" class="btn btn3 btn_pencil" title="编辑"></a>'
+                                  + '&nbsp;<a href="javascript:_del(\'' + data + '\')" class="btn btn3 btn_trash" title="删除"></a>';
+                       }
+                   }
+            ]
+        });
+    })
+    function _del(id) {
+        if (confirm("确定删除吗？\n删除后数据不可以回复")) {
+            $.getJSON("/wxRule/Del_tuwenList", { id: id, v: Math.random() }, function (result) {
+                alert(result);
+                window.location.reload();
+            })
+        }
+    }
+</script>
+<style type="text/css">
+    .avatar {
+        width: 100%;
+        height: 100%;
+        padding: 2px;
+        border: 1px solid #eee;
+    }
+
+        .avatar img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+</style>
+<div class="pageheader notab">
+    <h1 class="pagetitle">图文回复内容</h1>
+</div>
+<div id="contentwrapper" class="contentwrapper">
+    <div class="tableoptions">
+        <button class="radius3" onclick="javascript: window.location = '/wxRule/tuWenListEdit/?rid=@ViewBag.ID'">添加图文内容</button> &nbsp;
+        <button class="radius3" onclick="javascript: window.history.go(-1);">返回图文回复列表</button>
+
+    </div><!--tableoptions-->
+    <table id="example" class="stdtable" cellspacing="0" width="100%">
+        <colgroup>
+            <col class="con1" style="width: 25%" />
+            <col class="con0" style="width: 20%" />
+            <col class="con0" style="width: 20%" />
+            <col class="con0" style="width: 10%" />
+            <col class="con1" style="width: 10%" />
+            <col class="con1" style="width: 20%" />
+        </colgroup>
+
+        <thead>
+            <tr>
+                <th class="head1">ID</th>
+                <th class="head1">图片</th>
+                <th class="head1">标题</th>
+                <th class="head1">链接</th>
+                <th class="head1">排序</th>
+                <th class="head1">管理</th>
+            </tr>
+        </thead>
+    </table>
+</div>

@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "编辑图文回复";
+}
+@Scripts.Render("~/js/jqueryValidate")
+<div class="pageheader notab">
+    <h1 class="pagetitle">编辑图文回复</h1>
+</div>
+<div id="contentwrapper" class="contentwrapper">
+    <form class="stdform" method="post" action="/wxRule/tuWenEdit" id="validate">
+        <input type="hidden" name="ID" value="@Model.ID" id="ID" />
+        <input type="hidden" name="CreateTime" value="@Model.CreateTime" id="CreateTime" />
+        <p>
+            <label>关键词</label>
+            <span class="field">
+                <input type="text" name="reqKeywords" value="@Model.reqKeywords" id="reqKeywords" class="longinput {required:true,messages:{required:'关键词不能为空'}}" />
+            </span>
+            <small class="desc">*多个关键词请用|格开：例如: 美丽|漂亮|好看</small>
+        </p>
+        <p>
+            <label>关键词类型</label>
+            <span class="field">
+                <select name="isLikeSearch" class="uniformselect" id="isLikeSearch">
+                    <option value="0">完全匹配，用户输入的和此关键词一样才会触发!</option>
+                    <option value="1">包含匹配 (只要用户输入的文字包含本关键词就触发!)</option>
+                </select>
+            </span>
+            <small class="desc">*完全匹配，用户输入的和此关键词一样才会触发!</small>
+            <small class="desc">*包含匹配 (只要用户输入的文字包含本关键词就触发!)</small>
+            <script type="text/javascript">
+                 if ('@Model.isLikeSearch' == "True") {
+                    $("#isLikeSearch").val(1)
+                } else {
+                    $("#isLikeSearch").val(0);
+                }
+            </script>
+        </p>
+        <p class="stdformbutton">
+            <button class="submit radius2">提交</button>
+            <button class="stdbtn" onclick="javascript: history.go(-1);">返回</button>
+        </p>
+    </form>
+</div>

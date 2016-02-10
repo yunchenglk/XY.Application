@@ -40,6 +40,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -74,8 +75,13 @@
     <Compile Include="SendMail.cs" />
     <Compile Include="UserService.cs" />
     <Compile Include="User_PK_Role_s_Service.cs" />
+    <Compile Include="WeChart\WeChartAPI.cs" />
+    <Compile Include="WeChart\WeChartAPI.Menu.cs" />
     <Compile Include="WeChart\WXApi.cs" />
     <Compile Include="WeChart\WXApiJson.cs" />
+    <Compile Include="WeChart\wx_requestRuleContentService.cs" />
+    <Compile Include="WeChart\wx_requestRuleService.cs" />
+    <Compile Include="WeChart\wx_userweixinService.cs" />
     <Compile Include="WeShopService.cs" />
     <Compile Include="WeShop\WSApi.cs" />
     <Compile Include="WeShop\WSApiJson.cs" />
@@ -94,6 +100,10 @@
     <ProjectReference Include="..\XY.Entity\XY.Entity.csproj">
       <Project>{f2b2132d-f68c-4b45-9fb3-b3491b09a916}</Project>
       <Name>XY.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XY.Senparc.Weixin.MP\XY.Senparc.Weixin.MP.csproj">
+      <Project>{5be65b52-dc27-4788-9984-2a970d09bc92}</Project>
+      <Name>XY.Senparc.Weixin.MP</Name>
     </ProjectReference>
     <ProjectReference Include="..\XY.Util\XY.Util.csproj">
       <Project>{d8dfbc42-3db7-4d9c-bf24-c656bc33524a}</Project>
