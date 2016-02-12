@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XY.Entity;
-using XY.Senparc.Weixin.MP.CommonAPIs;
+using XY.Senparc.Weixin.MP.CommonAPI;
 
 namespace XY.Services
 {

@@ -2066,6 +2066,32 @@ namespace XY.Util
         }
         #endregion
 
+
+        #region 时间戳处理
+        /// <summary>
+        /// 时间戳转时间
+        /// </summary>
+        /// <param name="timeStamp"></param>
+        /// <returns></returns>
+        public static DateTime StampToDateTime(long timeStamp)
+        {
+            DateTime dateTimeStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+            long lTime = long.Parse(timeStamp + "0000000");
+            TimeSpan toNow = new TimeSpan(lTime);
+            return dateTimeStart.Add(toNow);
+        }
+        /// <summary>
+        /// 时间转换时间戳
+        /// </summary>
+        /// <param name="datetime"></param>
+        /// <returns></returns>
+        public static long DateTimeToStamp(DateTime datetime)
+        {
+            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
+            return (long)(datetime - startTime).TotalSeconds;
+        }
+        #endregion
+
         public static string ImgRemoveURL(string Description)
         {
             Regex regImg = new Regex(@"<img\b[^<>]*?\bsrc[\s\t\r\n]*=[\s\t\r\n]*[""']?[\s\t\r\n]*(?<imgUrl>[^\s\t\r\n""'<>]*)[^<>]*?/?[\s\t\r\n]*>", RegexOptions.IgnoreCase);

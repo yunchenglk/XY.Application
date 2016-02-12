@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using XY.Senparc.Weixin.Exceptions;
 using XY.Entity.WeChart;
 
-namespace XY.Senparc.Weixin.MP.CommonAPIs
+namespace XY.Senparc.Weixin.MP.CommonAPI
 {
     class JsApiTicketBag
     {

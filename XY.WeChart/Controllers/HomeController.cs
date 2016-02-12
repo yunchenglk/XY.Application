@@ -60,10 +60,6 @@ namespace XY.WeChart.Controllers
             }
             return handler;
         }
-
-
-
-
         public string Index()
         {
             HttpRequestBase Request = HttpContext.Request;

@@ -41,15 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonAPIs\AccessTokenContainer.cs" />
-    <Compile Include="CommonAPIs\AccessTokenHandlerWapper.cs" />
-    <Compile Include="CommonAPIs\CommonApi.cs" />
-    <Compile Include="CommonAPIs\CommonJsonSend.cs" />
-    <Compile Include="CommonAPIs\JsApiTicketContainer.cs" />
+    <Compile Include="AdvancedAPI\Groups.cs" />
+    <Compile Include="AdvancedAPI\User.cs" />
+    <Compile Include="CommonAPI\AccessTokenContainer.cs" />
+    <Compile Include="CommonAPI\AccessTokenHandlerWapper.cs" />
+    <Compile Include="CommonAPI\CommonApi.cs" />
+    <Compile Include="CommonAPI\CommonApi.UserInfo.cs" />
+    <Compile Include="CommonAPI\CommonJsonSend.cs" />
+    <Compile Include="CommonAPI\JsApiTicketContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonAPIs\CommonApi.Menu.cs" />
+    <Compile Include="CommonAPI\CommonApi.Menu.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XY.Entity\XY.Entity.csproj">
@@ -61,6 +64,7 @@
       <Name>XY.Senparc.Weixin</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

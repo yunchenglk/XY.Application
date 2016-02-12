@@ -5,7 +5,7 @@ using XY.Senparc.Weixin.Helpers;
 using XY.Senparc.Weixin.HttpUtility;
 using XY.Entity.WeChart;
 
-namespace XY.Senparc.Weixin.MP.CommonAPIs
+namespace XY.Senparc.Weixin.MP.CommonAPI
 {
     public enum CommonJsonSendType
     {

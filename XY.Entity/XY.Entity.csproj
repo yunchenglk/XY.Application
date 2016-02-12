@@ -72,12 +72,17 @@
     <Compile Include="WeChart\button.cs" />
     <Compile Include="WeChart\Config.cs" />
     <Compile Include="WeChart\Enums.cs" />
+    <Compile Include="WeChart\Groups\CreateGroupResult.cs" />
+    <Compile Include="WeChart\Groups\GetGroupIdResult.cs" />
+    <Compile Include="WeChart\Groups\GroupsJson.cs" />
+    <Compile Include="WeChart\Groups\GroupsJson_Group.cs" />
     <Compile Include="WeChart\ITemplate.cs" />
     <Compile Include="WeChart\JsonResult\AccessTokenResult.cs" />
     <Compile Include="WeChart\JsonResult\GetMenuResult.cs" />
     <Compile Include="WeChart\JsonResult\GetMenuResultFull.cs" />
     <Compile Include="WeChart\JsonResult\JsApiTicketResult.cs" />
     <Compile Include="WeChart\JsonResult\UploadMediaFileResult.cs" />
+    <Compile Include="WeChart\JsonResult\UserinfoGroups.cs" />
     <Compile Include="WeChart\JsonResult\WeixinUserInfoResult.cs" />
     <Compile Include="WeChart\JsonResult\WxJsonResult.cs" />
     <Compile Include="WeChart\Menu\BaseButton.cs" />
@@ -95,6 +100,9 @@
     <Compile Include="WeChart\news_item.cs" />
     <Compile Include="WeChart\Returneddata.cs" />
     <Compile Include="WeChart\sub_button.cs" />
+    <Compile Include="WeChart\User\OpenIdResultJson.cs" />
+    <Compile Include="WeChart\User\OpenIdResultJson_Data.cs" />
+    <Compile Include="WeChart\User\UserInfoJson.cs" />
     <Compile Include="WeShop\cates.cs" />
     <Compile Include="WeShop\product_item.cs" />
     <Compile Include="WeShop\public.cs" />
@@ -103,6 +111,7 @@
     <Compile Include="WX_Message.cs" />
     <Compile Include="WX_MessageGroup.cs" />
     <Compile Include="wx_requestRuleContent.cs" />
+    <Compile Include="wx_userinfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XY.Util\XY.Util.csproj">

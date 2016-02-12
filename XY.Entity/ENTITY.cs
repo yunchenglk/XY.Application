@@ -3161,6 +3161,290 @@ namespace XY.Entity
             }
 
 
+    [Table("wx_usergroup")]
+	[Serializable] 
+    public partial class wx_usergroup :IEntity
+    {
+        
+		private  Guid _ID;
+
+        [Column("ID", DbType.Guid,true,false)]
+        public Guid  ID 
+		{ 
+		   get{ return _ID;  } 
+		   set{_ID = value;}
+		 }
+        
+		private  Guid _wID;
+
+        [Column("wID", DbType.Guid,false,false)]
+        public Guid  wID 
+		{ 
+		   get{ return _wID;  } 
+		   set{_wID = value;}
+		 }
+        
+		private  Guid _cID;
+
+        [Column("cID", DbType.Guid,false,false)]
+        public Guid  cID 
+		{ 
+		   get{ return _cID;  } 
+		   set{_cID = value;}
+		 }
+        
+		private  Int32 _gid;
+
+        [Column("gid", DbType.Int32,false,false)]
+        public Int32  gid 
+		{ 
+		   get{ return _gid;  } 
+		   set{_gid = value;}
+		 }
+        
+		private  String _gname;
+
+        [Column("gname", DbType.String,false,false)]
+        public String  gname 
+		{ 
+		   get{  return _gname == null ?string.Empty:_gname;  } 
+		   set{_gname = value;}
+		 }
+        
+		private  DateTime _CreateTime;
+
+        [Column("CreateTime", DbType.DateTime,false,false)]
+        public DateTime  CreateTime 
+		{ 
+		   get{ return _CreateTime;  } 
+		   set{_CreateTime = value;}
+		 }
+        
+		private  Boolean _DR;
+
+        [Column("DR", DbType.Boolean,false,false)]
+        public Boolean  DR 
+		{ 
+		   get{ return _DR;  } 
+		   set{_DR = value;}
+		 }
+            }
+
+
+    [Table("wx_userinfo")]
+	[Serializable] 
+    public partial class wx_userinfo :IEntity
+    {
+        
+		private  Guid _ID;
+
+        [Column("ID", DbType.Guid,true,false)]
+        public Guid  ID 
+		{ 
+		   get{ return _ID;  } 
+		   set{_ID = value;}
+		 }
+        
+		private  Guid _wID;
+
+        [Column("wID", DbType.Guid,false,false)]
+        public Guid  wID 
+		{ 
+		   get{ return _wID;  } 
+		   set{_wID = value;}
+		 }
+        
+		private  Guid _cID;
+
+        [Column("cID", DbType.Guid,false,false)]
+        public Guid  cID 
+		{ 
+		   get{ return _cID;  } 
+		   set{_cID = value;}
+		 }
+        
+		private  String _openid;
+
+        [Column("openid", DbType.String,false,false)]
+        public String  openid 
+		{ 
+		   get{  return _openid == null ?string.Empty:_openid;  } 
+		   set{_openid = value;}
+		 }
+        
+		private  Int32 _subscribe;
+
+        [Column("subscribe", DbType.Int32,false,false)]
+        public Int32  subscribe 
+		{ 
+		   get{ return _subscribe;  } 
+		   set{_subscribe = value;}
+		 }
+        
+		private  String _nickname;
+
+        [Column("nickname", DbType.String,false,false)]
+        public String  nickname 
+		{ 
+		   get{  return _nickname == null ?string.Empty:_nickname;  } 
+		   set{_nickname = value;}
+		 }
+        
+		private  Int32 _sex;
+
+        [Column("sex", DbType.Int32,false,false)]
+        public Int32  sex 
+		{ 
+		   get{ return _sex;  } 
+		   set{_sex = value;}
+		 }
+        
+		private  String _language;
+
+        [Column("language", DbType.String,false,false)]
+        public String  language 
+		{ 
+		   get{  return _language == null ?string.Empty:_language;  } 
+		   set{_language = value;}
+		 }
+        
+		private  String _city;
+
+        [Column("city", DbType.String,false,false)]
+        public String  city 
+		{ 
+		   get{  return _city == null ?string.Empty:_city;  } 
+		   set{_city = value;}
+		 }
+        
+		private  String _province;
+
+        [Column("province", DbType.String,false,false)]
+        public String  province 
+		{ 
+		   get{  return _province == null ?string.Empty:_province;  } 
+		   set{_province = value;}
+		 }
+        
+		private  String _country;
+
+        [Column("country", DbType.String,false,false)]
+        public String  country 
+		{ 
+		   get{  return _country == null ?string.Empty:_country;  } 
+		   set{_country = value;}
+		 }
+        
+		private  String _headimgul;
+
+        [Column("headimgul", DbType.String,false,false)]
+        public String  headimgul 
+		{ 
+		   get{  return _headimgul == null ?string.Empty:_headimgul;  } 
+		   set{_headimgul = value;}
+		 }
+        
+		private  DateTime _subscribe_time;
+
+        [Column("subscribe_time", DbType.DateTime,false,false)]
+        public DateTime  subscribe_time 
+		{ 
+		   get{ return _subscribe_time;  } 
+		   set{_subscribe_time = value;}
+		 }
+        
+		private  DateTime _unsubscribe_time;
+
+        [Column("unsubscribe_time", DbType.DateTime,false,false)]
+        public DateTime  unsubscribe_time 
+		{ 
+		   get{ return _unsubscribe_time;  } 
+		   set{_unsubscribe_time = value;}
+		 }
+        
+		private  String _remark;
+
+        [Column("remark", DbType.String,false,false)]
+        public String  remark 
+		{ 
+		   get{  return _remark == null ?string.Empty:_remark;  } 
+		   set{_remark = value;}
+		 }
+        
+		private  Int32 _groupid;
+
+        [Column("groupid", DbType.Int32,false,false)]
+        public Int32  groupid 
+		{ 
+		   get{ return _groupid;  } 
+		   set{_groupid = value;}
+		 }
+        
+		private  String _groupname;
+
+        [Column("groupname", DbType.String,false,false)]
+        public String  groupname 
+		{ 
+		   get{  return _groupname == null ?string.Empty:_groupname;  } 
+		   set{_groupname = value;}
+		 }
+        
+		private  Int32 _extInt;
+
+        [Column("extInt", DbType.Int32,false,false)]
+        public Int32  extInt 
+		{ 
+		   get{ return _extInt;  } 
+		   set{_extInt = value;}
+		 }
+        
+		private  String _extStr1;
+
+        [Column("extStr1", DbType.String,false,false)]
+        public String  extStr1 
+		{ 
+		   get{  return _extStr1 == null ?string.Empty:_extStr1;  } 
+		   set{_extStr1 = value;}
+		 }
+        
+		private  String _extStr2;
+
+        [Column("extStr2", DbType.String,false,false)]
+        public String  extStr2 
+		{ 
+		   get{  return _extStr2 == null ?string.Empty:_extStr2;  } 
+		   set{_extStr2 = value;}
+		 }
+        
+		private  String _extStr3;
+
+        [Column("extStr3", DbType.String,false,false)]
+        public String  extStr3 
+		{ 
+		   get{  return _extStr3 == null ?string.Empty:_extStr3;  } 
+		   set{_extStr3 = value;}
+		 }
+        
+		private  DateTime _CreateTime;
+
+        [Column("CreateTime", DbType.DateTime,false,false)]
+        public DateTime  CreateTime 
+		{ 
+		   get{ return _CreateTime;  } 
+		   set{_CreateTime = value;}
+		 }
+        
+		private  Boolean _DR;
+
+        [Column("DR", DbType.Boolean,false,false)]
+        public Boolean  DR 
+		{ 
+		   get{ return _DR;  } 
+		   set{_DR = value;}
+		 }
+            }
+
+
     [Table("wx_userweixin")]
 	[Serializable] 
     public partial class wx_userweixin :IEntity

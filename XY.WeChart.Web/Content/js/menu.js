@@ -74,7 +74,6 @@ function _getMenuOnline() {
                     })
                 }
             })
-            alert("成功");
         }
         else
             alert("错误");
@@ -100,6 +99,7 @@ function _makeMenuOnline() {
         data: { menus: menus, v: Math.random() },
         async: false,
         success: function (result) {
+            _getMenuOnline();
             alert(result.errmsg);
         }, error: function () {
             alert("错误");

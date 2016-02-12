@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "查看用户信息";
+}
+@Scripts.Render("~/js/jqueryValidate")
+<script type="text/javascript">
+    function _saveGroup() {
+        $.getJSON("/wxUserInfo/MoveGroup", { gid: $("#wx_usergroup").val(), id: $("#ID").val(), v: Math.random() }, function (result) {
+            alert(result);
+        })
+    }
+</script>
+<div class="pageheader notab">
+    <h1 class="pagetitle">查看用户信息</h1>
+</div>
+<div id="contentwrapper" class="contentwrapper">
+    <ul class="entrylist">
+        <li>
+            <div class="slide_wrap">
+                <div class="slide_img"><img src="@Model.headimgul" alt="" width="60" height="60"></div>
+                <div class="slide_content">
+                    <h4><a href="javascript:void(0)">@Model.nickname</a> @Model.SexStr</h4>
+                    <small>关注事件: <a href=""><strong>@Model.subscribe_timeStr</strong></a></small>
+                    <p>位置：@Model.location</p>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="stdform">
+                <input type="hidden" name="ID" value="@Model.ID" id="ID" />
+                <p>
+                    <label>修改分组</label>
+                    <span class="field">
+                        <select name="wx_usergroup" class="uniformselect" id="wx_usergroup"></select>
+                    </span>
+                    <script type="text/javascript">
+                        $.ajax({
+                            url: "/wxUserInfo/GetAllGroup",
+                            type: "GET",
+                            data: { v: Math.random() },
+                            async: false,
+                            success: function (result) {
+                                $("#wx_usergroup").append('<option value="0">未分组</option><option value="1">黑名单</option><option value="2">星标组</option>');
+                                if (result.length > 0) {
+                                    $.each(result, function (i, n) {
+                                        $("#wx_usergroup").append('<option value="' + n.id + '">' + n.name + '</option>');
+                                    })
+                                    $("#wx_usergroup").val('@Model.groupid');
+                                }
+                            },
+                            error: function () {
+                                alert("错误");
+                            }
+                        })
+
+                    </script>
+                </p>
+                <p class="stdformbutton">
+                    <button class="stdbtn btn_orange" onclick="_saveGroup();">提交</button>
+                    <button class="stdbtn" onclick="javascript: history.go(-1);">返回</button>
+                </p>
+            </div>
+        </li>
+    </ul>
+</div>

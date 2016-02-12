@@ -2,7 +2,7 @@
 using XY.Entity.WeChart;
 using XY.Senparc.Weixin.Exceptions;
 
-namespace XY.Senparc.Weixin.MP.CommonAPIs
+namespace XY.Senparc.Weixin.MP.CommonAPI
 {
     public static class AccessTokenHandlerWapper
     {

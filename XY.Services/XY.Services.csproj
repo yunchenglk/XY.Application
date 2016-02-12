@@ -77,10 +77,13 @@
     <Compile Include="User_PK_Role_s_Service.cs" />
     <Compile Include="WeChart\WeChartAPI.cs" />
     <Compile Include="WeChart\WeChartAPI.Menu.cs" />
+    <Compile Include="WeChart\WeChartAPI.UserInfo.cs" />
     <Compile Include="WeChart\WXApi.cs" />
     <Compile Include="WeChart\WXApiJson.cs" />
     <Compile Include="WeChart\wx_requestRuleContentService.cs" />
     <Compile Include="WeChart\wx_requestRuleService.cs" />
+    <Compile Include="WeChart\wx_usergroupService.cs" />
+    <Compile Include="WeChart\wx_userinfoService.cs" />
     <Compile Include="WeChart\wx_userweixinService.cs" />
     <Compile Include="WeShopService.cs" />
     <Compile Include="WeShop\WSApi.cs" />

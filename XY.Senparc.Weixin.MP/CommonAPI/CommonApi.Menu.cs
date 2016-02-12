@@ -9,7 +9,7 @@ using XY.Entity.WeChart;
 using System.Net;
 using System.IO;
 
-namespace XY.Senparc.Weixin.MP.CommonAPIs
+namespace XY.Senparc.Weixin.MP.CommonAPI
 {
     public partial class CommonApi
     {

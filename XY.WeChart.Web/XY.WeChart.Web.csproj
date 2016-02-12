@@ -132,6 +132,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\wxMenuController.cs" />
     <Compile Include="Controllers\wxRuleController.cs" />
+    <Compile Include="Controllers\wxUserInfoController.cs" />
     <Compile Include="Controllers\_baseController.cs" />
     <Compile Include="Filters\AuthorizeFilter.cs" />
     <Compile Include="Filters\UserDateTicket.cs" />
@@ -488,6 +489,10 @@
     <Content Include="Views\wxRule\shiPin.cshtml" />
     <Content Include="Views\wxRule\shiPinEdit.cshtml" />
     <Content Include="Views\wxMenu\Index.cshtml" />
+    <Content Include="Views\wxUserInfo\Group.cshtml" />
+    <Content Include="Views\wxUserInfo\GroupEdit.cshtml" />
+    <Content Include="Views\wxUserInfo\Index.cshtml" />
+    <Content Include="Views\wxUserInfo\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -510,6 +515,10 @@
     <ProjectReference Include="..\XY.Services\XY.Services.csproj">
       <Project>{b73ef3de-5538-44ec-a423-15362be64f50}</Project>
       <Name>XY.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XY.Util\XY.Util.csproj">
+      <Project>{d8dfbc42-3db7-4d9c-bf24-c656bc33524a}</Project>
+      <Name>XY.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

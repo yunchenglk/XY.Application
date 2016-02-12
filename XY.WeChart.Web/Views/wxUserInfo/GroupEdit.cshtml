@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "编辑用户分组";
+}
+@Scripts.Render("~/js/jqueryValidate")
+<div class="pageheader notab">
+    <h1 class="pagetitle">编辑用户分组</h1>
+</div>
+<div id="contentwrapper" class="contentwrapper">
+    <form class="stdform" method="post" action="/wxUserInfo/GroupEdit" id="validate">
+        <input type="hidden" name="ID" value="@Model.ID" id="ID" />
+        <input type="hidden" name="CreateTime" value="@Model.CreateTime" id="CreateTime" />
+        <input type="hidden" name="gid" value="@Model.gid" id="gid" />
+        <p>
+            <label>分组名字</label>
+            <span class="field">
+                <input type="text" name="gname" value="@Model.gname" id="gname" class="longinput {required:true,remote:{url:'/wxUserInfo/CheckGroupNameExists?v='+Math.random(),data:{id:function(){return $('#ID').val()},name:function(){return $('#gname').val()}}},messages:{required:'关键词不能为空',remote:'用户分组名称重复，请重新输入'}}" />
+            </span>
+        </p>
+        <p class="stdformbutton">
+            <button class="submit radius2">提交</button>
+            <button class="stdbtn" onclick="javascript: history.go(-1);">返回</button>
+        </p>
+    </form>
+</div>
