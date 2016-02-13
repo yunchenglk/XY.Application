@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace XY.Senparc.Weixin.Exceptions
+namespace XY.Weixin.Exceptions
 {
     public class WeixinMenuException : WeixinException
     {

@@ -14,3 +14,10 @@ function _push(id) {
         alert(id);
     }
 }
+function _reloadToken() {
+    if (confirm("确定更新Access_Token值吗？")) {
+        $.getJSON("/_base/ReloadToken", { v: Math.random() }, function (result) {
+            alert(result);
+        })
+    }
+}

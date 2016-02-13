@@ -2,10 +2,10 @@
 using System.Net;
 using System.Text;
 using System.Web.Script.Serialization;
-using XY.Entity.WeChart;
-using XY.Senparc.Weixin.Exceptions;
+using XY.Entity.Weixin;
+using XY.Weixin.Exceptions;
 
-namespace XY.Senparc.Weixin.HttpUtility
+namespace XY.Weixin.HttpUtility
 {
     public static class Get
     {

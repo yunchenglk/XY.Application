@@ -1,8 +1,8 @@
 ﻿using System;
-using XY.Entity.WeChart;
-using XY.Senparc.Weixin.Exceptions;
+using XY.Entity.Weixin;
+using XY.Weixin.Exceptions;
 
-namespace XY.Senparc.Weixin.MP.CommonAPI
+namespace XY.Weixin.MP.CommonAPI
 {
     public static class AccessTokenHandlerWapper
     {

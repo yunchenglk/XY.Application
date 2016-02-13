@@ -19,5 +19,9 @@ namespace XY.WeChart.Web.Controllers
             }
             return token;
         }
+        public JsonResult ReloadToken()
+        {
+            return Json(WeChartAPI.ReloadToken(UserDateTicket.Company.ID), JsonRequestBehavior.AllowGet);
+        }
     }
 }

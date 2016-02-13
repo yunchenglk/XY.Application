@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using XY.Entity.WeChart;
+﻿using XY.Entity.Weixin;
 
-namespace XY.Senparc.Weixin.MP.AdvancedAPI
+namespace XY.Weixin.MP.AdvancedAPI
 {
     /// <summary>
     /// 用户接口

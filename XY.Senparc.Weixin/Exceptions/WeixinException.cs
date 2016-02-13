@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace XY.Senparc.Weixin.Exceptions
+namespace XY.Weixin.Exceptions
 {
     /// <summary>
     /// 微信自定义异常基类

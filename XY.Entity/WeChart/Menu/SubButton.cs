@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace XY.Entity.WeChart
+namespace XY.Entity.Weixin
 {
     /// <summary>
     /// 子菜单

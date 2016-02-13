@@ -1,7 +1,7 @@
 ﻿using System;
-using XY.Entity.WeChart;
+using XY.Entity.Weixin;
 
-namespace XY.Senparc.Weixin.Exceptions
+namespace XY.Weixin.Exceptions
 {
     /// <summary>
     /// JSON返回错误代码（比如token_access相关操作中使用）。

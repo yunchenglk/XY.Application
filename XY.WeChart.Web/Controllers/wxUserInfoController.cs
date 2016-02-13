@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using XY.Entity;
-using XY.Entity.WeChart;
+using XY.Entity.Weixin;
 using XY.Services;
 
 namespace XY.WeChart.Web.Controllers
@@ -44,6 +43,7 @@ namespace XY.WeChart.Web.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
 
         }
+        [HttpGet]
         public JsonResult syncOnlineUser()
         {
             OpenIdResultJson data = WeChartAPI.GetUsers(GetToken());
@@ -76,7 +76,7 @@ namespace XY.WeChart.Web.Controllers
                     }
                 }
             }
-            return Json("ok", JsonRequestBehavior.AllowGet);
+            return Json(data.errcode.ToString(), JsonRequestBehavior.AllowGet);
         }
         #region 用户分组管理
         // GET: wxUserInfo

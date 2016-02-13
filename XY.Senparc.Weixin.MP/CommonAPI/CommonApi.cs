@@ -1,7 +1,7 @@
-﻿using XY.Senparc.Weixin.HttpUtility;
-using XY.Entity.WeChart;
+﻿using XY.Entity.Weixin;
+using XY.Weixin.HttpUtility;
 
-namespace XY.Senparc.Weixin.MP.CommonAPI
+namespace XY.Weixin.MP.CommonAPI
 {
     /// <summary>
     /// 通用接口

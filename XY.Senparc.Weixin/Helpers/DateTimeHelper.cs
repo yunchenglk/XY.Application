@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace XY.Senparc.Weixin.Helpers
+namespace XY.Weixin.Helpers
 {
     public static class DateTimeHelper
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using XY.Senparc.Weixin.Exceptions;
-using XY.Entity.WeChart;
+using XY.Entity.Weixin;
+using XY.Weixin.Exceptions;
 
-namespace XY.Senparc.Weixin.MP.CommonAPI
+namespace XY.Weixin.MP.CommonAPI
 {
     class JsApiTicketBag
     {

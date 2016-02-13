@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace XY.Entity.WeChart
+﻿namespace XY.Entity.Weixin
 {
     /// <summary>
     /// 单个按键

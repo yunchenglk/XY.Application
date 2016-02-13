@@ -21,7 +21,8 @@ namespace XY.Services
         public int Insert(wx_userinfo entity)
         {
             int result = 0;
-            if (this.Single(entity.openid, entity.cID) == null)
+            wx_userinfo oldentity = Single(entity.openid, entity.cID);
+            if (oldentity == null)
             {
                 entity.ID = Guid.NewGuid();
                 entity.CreateTime = DateTime.Now;
@@ -33,6 +34,8 @@ namespace XY.Services
             }
             else
             {
+                entity.CreateTime = oldentity.CreateTime;
+                entity.unsubscribe_time = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
                 this.Update(entity);
             }
             return result;

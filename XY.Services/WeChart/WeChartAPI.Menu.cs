@@ -1,5 +1,5 @@
-﻿using XY.Entity.WeChart;
-using XY.Senparc.Weixin.MP.CommonAPI;
+﻿using XY.Entity.Weixin;
+using XY.Weixin.MP.CommonAPI;
 
 namespace XY.Services
 {

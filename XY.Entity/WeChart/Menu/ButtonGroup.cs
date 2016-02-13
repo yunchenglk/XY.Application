@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace XY.Entity.WeChart
+namespace XY.Entity.Weixin
 {
     /// <summary>
     /// 整个按钮设置（可以直接用ButtonGroup实例返回JSON对象）

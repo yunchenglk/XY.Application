@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using XY.Senparc.Weixin.Helpers;
-using XY.Senparc.Weixin.HttpUtility;
-using XY.Entity.WeChart;
+using XY.Entity.Weixin;
+using XY.Weixin.Helpers;
+using XY.Weixin.HttpUtility;
 
-namespace XY.Senparc.Weixin.MP.CommonAPI
+namespace XY.Weixin.MP.CommonAPI
 {
     public enum CommonJsonSendType
     {

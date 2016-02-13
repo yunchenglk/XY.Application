@@ -5,9 +5,9 @@ using System.Net;
 using System.Text;
 using System.Web;
 using XY.Entity.WeChart;
-using XY.Senparc.Weixin.Helpers;
+using XY.Weixin.Helpers;
 
-namespace XY.Senparc.Weixin.HttpUtility
+namespace XY.Weixin.HttpUtility
 {
     public static class RequestUtility
     {

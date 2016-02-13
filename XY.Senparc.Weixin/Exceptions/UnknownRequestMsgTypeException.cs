@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace XY.Senparc.Weixin.Exceptions
+namespace XY.Weixin.Exceptions
 {
     /// <summary>
     /// 未知请求类型。

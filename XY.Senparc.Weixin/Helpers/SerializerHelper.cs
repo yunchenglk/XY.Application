@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using System.Web.Script.Serialization;
 
-namespace XY.Senparc.Weixin.Helpers
+namespace XY.Weixin.Helpers
 {
     public class SerializerHelper
     {

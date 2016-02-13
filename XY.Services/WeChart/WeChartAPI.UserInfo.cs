@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using XY.Entity.WeChart;
-using XY.Senparc.Weixin.MP.AdvancedAPI;
+﻿using XY.Entity.Weixin;
+using XY.Weixin.MP.AdvancedAPI;
 
 namespace XY.Services
 {

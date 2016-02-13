@@ -1,7 +1,7 @@
 ﻿using System.IO;
 
 
-namespace XY.Senparc.Weixin.Helpers
+namespace XY.Weixin.Helpers
 {
     public class FileHelper
     {

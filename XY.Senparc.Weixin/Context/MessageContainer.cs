@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace XY.Senparc.Weixin.Context
+namespace XY.Weixin.Context
 {
     public class MessageContainer<T> : List<T>
     //where T : IMessageBase

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using XY.Entity;
-using XY.Senparc.Weixin.MP.CommonAPI;
+using XY.Weixin.MP.CommonAPI;
 
 namespace XY.Services
 {
@@ -34,7 +30,7 @@ namespace XY.Services
                 {
                     var result = CommonApi.GetToken(wx.AppId, wx.AppSecret);
                     wx.Access_Token = result.access_token;
-                    wx.expires_in = result.expires_in - 1000;
+                    wx.expires_in = result.expires_in;
                     wx.ModifyTime = DateTime.Now;
                     if (wx_userweixinService.instance().Update(wx) == 1)
                     {
@@ -51,6 +47,26 @@ namespace XY.Services
                 error = "获得access_token出错:" + ex.Message;
             }
             return token;
+        }
+
+        public static string ReloadToken(Guid CompanyID)
+        {
+            wx_userweixin wx = wx_userweixinService.instance().SingleByCompanyID(CompanyID);
+            if (wx.AppId == null || wx.AppSecret == null || wx.AppId.Trim().Length <= 0 || wx.AppSecret.Trim().Length <= 0)
+            {
+                return "appId或者AppSecret未填写完全,请在[我的公众帐号]里补全信息！";
+            }
+            var result = CommonApi.GetToken(wx.AppId, wx.AppSecret);
+            if (result.errcode == Entity.Weixin.ReturnCode.请求成功)
+            {
+                wx.Access_Token = result.access_token;
+                wx.expires_in = result.expires_in;
+                wx.ModifyTime = DateTime.Now;
+                if (wx_userweixinService.instance().Update(wx) == 1)
+                    return "ok";
+                return "更新数据库出错";
+            }
+            return result.errcode.ToString();
         }
     }
 }

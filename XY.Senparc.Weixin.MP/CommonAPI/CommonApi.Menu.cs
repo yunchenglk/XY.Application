@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
-using XY.Senparc.Weixin.Exceptions;
-using XY.Senparc.Weixin.HttpUtility;
-using XY.Entity.WeChart;
 using System.Net;
 using System.IO;
+using XY.Entity.Weixin;
+using XY.Weixin.Exceptions;
+using XY.Weixin.HttpUtility;
 
-namespace XY.Senparc.Weixin.MP.CommonAPI
+namespace XY.Weixin.MP.CommonAPI
 {
     public partial class CommonApi
     {
@@ -131,8 +131,7 @@ namespace XY.Senparc.Weixin.MP.CommonAPI
         {
             var url = string.Format("https://api.weixin.qq.com/cgi-bin/menu/get?access_token={0}", accessToken);
 
-            var jsonString = HttpUtility.RequestUtility.HttpGet(url, Encoding.UTF8);
-            //var finalResult = GetMenuFromJson(jsonString);
+            var jsonString = RequestUtility.HttpGet(url, Encoding.UTF8);
 
             GetMenuResult finalResult;
             JavaScriptSerializer js = new JavaScriptSerializer();

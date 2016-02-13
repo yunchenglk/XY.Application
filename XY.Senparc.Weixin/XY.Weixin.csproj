@@ -7,8 +7,8 @@
     <ProjectGuid>{79BF7EE5-72B4-4A21-B84A-39282A6BC66E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XY.Senparc.Weixin</RootNamespace>
-    <AssemblyName>XY.Senparc.Weixin</AssemblyName>
+    <RootNamespace>XY.Weixin</RootNamespace>
+    <AssemblyName>XY.Weixin</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,6 +43,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\MessageContainer.cs" />
+    <Compile Include="Context\MessageContext.cs" />
+    <Compile Include="Context\MessageQueue.cs" />
+    <Compile Include="Context\WeixinContext.cs" />
+    <Compile Include="Context\WeixinContextRemovedEventArgs.cs" />
+    <Compile Include="Entities\EncryptPostModel.cs" />
+    <Compile Include="Entities\MessageBase.cs" />
+    <Compile Include="Entities\RequestMessageBase.cs" />
+    <Compile Include="Entities\ResponseMessageBase.cs" />
     <Compile Include="Exceptions\UnknownRequestMsgTypeException.cs" />
     <Compile Include="Exceptions\ErrorJsonResultException.cs" />
     <Compile Include="Exceptions\MessageHandlerException.cs" />
@@ -54,6 +62,9 @@
     <Compile Include="HttpUtility\Get.cs" />
     <Compile Include="HttpUtility\Post.cs" />
     <Compile Include="HttpUtility\RequestUtility.cs" />
+    <Compile Include="MessageHandlers\IMessageHandler.cs" />
+    <Compile Include="MessageHandlers\IMessageHandlerDocument.cs" />
+    <Compile Include="MessageHandlers\MessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

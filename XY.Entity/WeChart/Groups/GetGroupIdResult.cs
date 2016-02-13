@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace XY.Entity.WeChart
+﻿namespace XY.Entity.Weixin
 {
     /// <summary>
     /// 获取用户分组ID返回结果

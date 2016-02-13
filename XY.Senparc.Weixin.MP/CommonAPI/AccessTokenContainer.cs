@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using XY.Entity.WeChart;
-using XY.Senparc.Weixin.Exceptions;
+using XY.Entity.Weixin;
+using XY.Weixin.Exceptions;
 
-namespace XY.Senparc.Weixin.MP.CommonAPI
+namespace XY.Weixin.MP.CommonAPI
 {
     class AccessTokenBag
     {

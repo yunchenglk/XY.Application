@@ -51,19 +51,12 @@
             ]
         });
     })
-    function _del(id) {
-        if (confirm("确定删除吗？\n删除后将移除粉丝关注，并且数据不可以回复")) {
-            $.getJSON("/wxUserInfo/Del_User", { id: id, v: Math.random() }, function (result) {
-                alert(result);
-                window.location.reload();
-            })
-        }
-    }
     function syncOnle() {
         if ($.trim($("#syncbtn").text()) == "同步用户列表") {
             $("#syncbtn").text("用户列表同步中....");
             $.getJSON("/wxUserInfo/syncOnlineUser", { v: Math.random() }, function (result) {
                 $("#syncbtn").text("同步用户列表");
+                alert(result);
             })
         }
     }
