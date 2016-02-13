@@ -1,7 +1,4 @@
-﻿/*
- * V3.1
- */
-using System;
+﻿using System;
 using System.IO;
 using System.Xml.Linq;
 using XY.Entity.Weixin.MP;
