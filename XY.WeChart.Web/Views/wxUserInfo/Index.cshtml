@@ -45,7 +45,10 @@
                    {
                        "data": "ID",
                        "render": function (data, type, full, meta) {
-                           return '<a href="/wxUserInfo/Edit/' + data + '" class="btn btn3 btn_pencil" title="编辑"></a>';
+                           if (full.subscribe == 0)
+                               return "已经取消关注";
+                           else
+                               return '<a href="/wxUserInfo/Edit/' + data + '" class="btn btn3 btn_pencil" title="编辑"></a>';
                        }
                    }
             ]

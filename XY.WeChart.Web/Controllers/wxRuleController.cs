@@ -35,7 +35,7 @@ namespace XY.WeChart.Web.Controllers
             m.wID = UserDateTicket.wx_user.ID;
             m.cID = UserDateTicket.Company.ID;
             m.ruleName = "纯文本回复";
-            m.reqestType = 1;
+            m.reqestType = 0;
             m.responseType = 1;
             m.isLikeSearch = form["isLikeSearch"] == "1";
             if (m.ID == Guid.Empty)
@@ -119,7 +119,7 @@ namespace XY.WeChart.Web.Controllers
             m.wID = UserDateTicket.wx_user.ID;
             m.cID = UserDateTicket.Company.ID;
             m.ruleName = "语音回复";
-            m.reqestType = 1;
+            m.reqestType = 0;
             m.responseType = 3;
             m.isLikeSearch = form["isLikeSearch"] == "1";
             if (m.ID == Guid.Empty)
@@ -189,7 +189,7 @@ namespace XY.WeChart.Web.Controllers
             m.cID = UserDateTicket.Company.ID;
             m.ruleName = "图文回复";
             m.responseType = 2;
-            m.reqestType = 1;
+            m.reqestType = 0;
             m.isLikeSearch = form["isLikeSearch"] == "1";
             if (m.ID == Guid.Empty)
             {
@@ -312,7 +312,7 @@ namespace XY.WeChart.Web.Controllers
             m.wID = UserDateTicket.wx_user.ID;
             m.cID = UserDateTicket.Company.ID;
             m.ruleName = "视频回复";
-            m.reqestType = 1;
+            m.reqestType = 0;
             m.responseType = 4;
             m.isLikeSearch = form["isLikeSearch"] == "1";
             if (m.ID == Guid.Empty)

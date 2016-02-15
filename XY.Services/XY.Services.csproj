@@ -104,13 +104,13 @@
       <Project>{f2b2132d-f68c-4b45-9fb3-b3491b09a916}</Project>
       <Name>XY.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\XY.Services.Weixin\XY.Services.Weixin.csproj">
+      <Project>{16f42a23-537b-48e5-8d25-a1211bae347f}</Project>
+      <Name>XY.Services.Weixin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XY.Util\XY.Util.csproj">
       <Project>{d8dfbc42-3db7-4d9c-bf24-c656bc33524a}</Project>
       <Name>XY.Util</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\XY.Weixin.MP\XY.Weixin.MP.csproj">
-      <Project>{5be65b52-dc27-4788-9984-2a970d09bc92}</Project>
-      <Name>XY.Weixin.MP</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

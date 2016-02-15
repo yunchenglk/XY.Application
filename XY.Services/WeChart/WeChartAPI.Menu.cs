@@ -1,5 +1,5 @@
 ﻿using XY.Entity.Weixin;
-using XY.Weixin.MP.CommonAPI;
+using XY.Services.Weixin.CommonAPI;
 
 namespace XY.Services
 {

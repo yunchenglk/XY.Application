@@ -3442,6 +3442,33 @@ namespace XY.Entity
 		   get{ return _DR;  } 
 		   set{_DR = value;}
 		 }
+        
+		private  String _Latitude;
+
+        [Column("Latitude", DbType.String,false,false)]
+        public String  Latitude 
+		{ 
+		   get{  return _Latitude == null ?string.Empty:_Latitude;  } 
+		   set{_Latitude = value;}
+		 }
+        
+		private  String _Longitude;
+
+        [Column("Longitude", DbType.String,false,false)]
+        public String  Longitude 
+		{ 
+		   get{  return _Longitude == null ?string.Empty:_Longitude;  } 
+		   set{_Longitude = value;}
+		 }
+        
+		private  String _Precision;
+
+        [Column("Precision", DbType.String,false,false)]
+        public String  Precision 
+		{ 
+		   get{  return _Precision == null ?string.Empty:_Precision;  } 
+		   set{_Precision = value;}
+		 }
             }
 
 

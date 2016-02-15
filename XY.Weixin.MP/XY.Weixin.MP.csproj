@@ -49,6 +49,12 @@
     <Compile Include="CommonAPI\CommonApi.UserInfo.cs" />
     <Compile Include="CommonAPI\CommonJsonSend.cs" />
     <Compile Include="CommonAPI\JsApiTicketContainer.cs" />
+    <Compile Include="Context\IMessageContext.cs" />
+    <Compile Include="Context\MessageContainer.cs" />
+    <Compile Include="Context\MessageContext.cs" />
+    <Compile Include="Context\WeixinContext.cs" />
+    <Compile Include="Context\WeixinContextGlobal.cs" />
+    <Compile Include="Context\WeixinContextRemovedEventArgs.cs" />
     <Compile Include="Entities\BaiduMap\BaiduMapMarkers.cs" />
     <Compile Include="Entities\Extensions.cs" />
     <Compile Include="Entities\GoogleMap\GoogleMapMarkers.cs" />

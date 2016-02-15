@@ -1,5 +1,5 @@
 ﻿using XY.Entity.Weixin;
-using XY.Weixin.MP.AdvancedAPI;
+using XY.Services.Weixin.CommonAPI;
 
 namespace XY.Services
 {
@@ -7,27 +7,27 @@ namespace XY.Services
     {
         public static CreateGroupResult CreateGroup(string accessToken, string name)
         {
-            return Groups.Create(accessToken, name);
+            return  CommonApi.Groups_Create(accessToken, name);
         }
         public static WxJsonResult UpdateGroup(string accessToken, int id, string name)
         {
-            return Groups.Update(accessToken, id, name);
+            return CommonApi.Groups_Update(accessToken, id, name);
         }
         public static WxJsonResult DeleteGroup(string accessToken, int id)
         {
-            return Groups.Delete(accessToken, id);
+            return CommonApi.Groups_Delete(accessToken, id);
         }
         public static OpenIdResultJson GetUsers(string accessToken)
         {
-            return User.Get(accessToken);
+            return CommonApi.User_Get(accessToken);
         }
         public static UserInfoJson GetUserInfo(string accessToken, string openId, Language lang = Language.zh_CN)
         {
-            return User.Info(accessToken, openId);
+            return CommonApi.User_Info(accessToken, openId);
         }
         public static WxJsonResult UserMoveGroup(string accessToken, string openId, int toGroupId)
         {
-            return Groups.MemberUpdate(accessToken, openId, toGroupId);
+            return CommonApi.Groups_MemberUpdate(accessToken, openId, toGroupId);
         }
     }
 }

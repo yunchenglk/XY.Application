@@ -26,7 +26,6 @@ namespace XY.Weixin.MP.AdvancedAPI
             };
             return CommonJsonSend.Send<CreateGroupResult>(accessToken, urlFormat, data);
         }
-
         /// <summary>
         /// 查询所有分组
         /// </summary>
@@ -38,7 +37,6 @@ namespace XY.Weixin.MP.AdvancedAPI
             var url = string.Format(urlFormat, accessToken);
             return HttpUtility.Get.GetJson<GroupsJson>(url);
         }
-
         /// <summary>
         /// 查询用户所在分组
         /// </summary>
@@ -51,7 +49,6 @@ namespace XY.Weixin.MP.AdvancedAPI
             var data = new { openid = openId };
             return CommonJsonSend.Send<GetGroupIdResult>(accessToken, urlFormat, data);
         }
-
         /// <summary>
         /// 修改分组名
         /// </summary>
@@ -72,7 +69,6 @@ namespace XY.Weixin.MP.AdvancedAPI
             };
             return CommonJsonSend.Send(accessToken, urlFormat, data);
         }
-
         /// <summary>
         /// 移动用户分组
         /// </summary>
@@ -90,7 +86,6 @@ namespace XY.Weixin.MP.AdvancedAPI
             };
             return CommonJsonSend.Send(accessToken, urlFormat, data);
         }
-
         /// <summary>
         /// 删除分组
         /// </summary>

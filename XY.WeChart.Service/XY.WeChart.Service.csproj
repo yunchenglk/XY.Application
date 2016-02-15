@@ -105,6 +105,7 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
+    <Content Include="Configs\Database.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -121,6 +122,14 @@
     <ProjectReference Include="..\XY.Entity\XY.Entity.csproj">
       <Project>{f2b2132d-f68c-4b45-9fb3-b3491b09a916}</Project>
       <Name>XY.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XY.Services.WeixinComm\XY.Services.WeixinComm.csproj">
+      <Project>{a1542597-9736-4520-b2a6-22bbfa36e06e}</Project>
+      <Name>XY.Services.WeixinComm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XY.Services.Weixin\XY.Services.Weixin.csproj">
+      <Project>{16f42a23-537b-48e5-8d25-a1211bae347f}</Project>
+      <Name>XY.Services.Weixin</Name>
     </ProjectReference>
     <ProjectReference Include="..\XY.Services\XY.Services.csproj">
       <Project>{b73ef3de-5538-44ec-a423-15362be64f50}</Project>
@@ -141,15 +150,14 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3465</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:3465/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://wechart.com/</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

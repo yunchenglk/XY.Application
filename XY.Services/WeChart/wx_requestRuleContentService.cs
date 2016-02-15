@@ -74,5 +74,15 @@ namespace XY.Services
             });
             return result;
         }
+        public IEnumerable<wx_requestRuleContent> GetByRuleID(Guid ruleid)
+        {
+            IEnumerable<wx_requestRuleContent> result = new List<wx_requestRuleContent>();
+            _db.Execute(() =>
+            {
+                result = _db.GetList<wx_requestRuleContent>(m => m.RuleID == ruleid);
+            });
+
+            return result;
+        }
     }
 }

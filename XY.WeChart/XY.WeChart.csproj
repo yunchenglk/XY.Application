@@ -148,54 +148,44 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\Common.cs" />
-    <Compile Include="Controllers\EventHandler.cs" />
-    <Compile Include="Controllers\EventMessage.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IHandler.cs" />
-    <Compile Include="Controllers\ITemplate.cs" />
-    <Compile Include="Controllers\Message.cs" />
-    <Compile Include="Controllers\NewsMessage.cs" />
-    <Compile Include="Controllers\TextHandler.cs" />
-    <Compile Include="Controllers\TextMessage.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ILogProvider.cs" />
-    <Compile Include="Models\Log4NetLogProvider.cs" />
-    <Compile Include="Models\LogHelper.cs" />
-    <Compile Include="Models\LogLevel.cs" />
-    <Compile Include="Models\SecurityUtility.cs" />
+    <Compile Include="Handler\HandlerFactory.cs" />
+    <Compile Include="Helpers\CheckSignature.cs" />
+    <Compile Include="Helpers\CommConfig.cs" />
+    <Compile Include="Helpers\CommFun.cs" />
+    <Compile Include="Handler\EventHandler.cs" />
+    <Compile Include="Message\EventMessage.cs" />
+    <Compile Include="Handler\IHandler.cs" />
+    <Compile Include="Message\ImageMessage.cs" />
+    <Compile Include="Message\ITemplate.cs" />
+    <Compile Include="Message\LocationMessage.cs" />
+    <Compile Include="Message\MessageBase.cs" />
+    <Compile Include="Message\MusicMessage.cs" />
+    <Compile Include="Message\NewsMessage.cs" />
+    <Compile Include="Handler\TextHandler.cs" />
+    <Compile Include="Message\subscribeMessage.cs" />
+    <Compile Include="Message\TextMessage.cs" />
+    <Compile Include="Helpers\Log\ILogProvider.cs" />
+    <Compile Include="Helpers\Log\Log4NetLogProvider.cs" />
+    <Compile Include="Helpers\Log\LogHelper.cs" />
+    <Compile Include="Helpers\Log\LogLevel.cs" />
+    <Compile Include="Helpers\SecurityUtility.cs" />
+    <Compile Include="Message\VideoMessage.cs" />
+    <Compile Include="Message\VoiceMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\ai.0.15.0-build58334.js" />
-    <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Configs\Database.config" />
     <Content Include="Configs\Log4Net.config" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -203,25 +193,23 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XY.Entity\XY.Entity.csproj">
       <Project>{f2b2132d-f68c-4b45-9fb3-b3491b09a916}</Project>
       <Name>XY.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XY.Services.Weixin\XY.Services.Weixin.csproj">
+      <Project>{16f42a23-537b-48e5-8d25-a1211bae347f}</Project>
+      <Name>XY.Services.Weixin</Name>
     </ProjectReference>
     <ProjectReference Include="..\XY.Services\XY.Services.csproj">
       <Project>{b73ef3de-5538-44ec-a423-15362be64f50}</Project>
@@ -246,15 +234,14 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2847</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:2847/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://WeChart.com</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
