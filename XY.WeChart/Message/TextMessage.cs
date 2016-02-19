@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Xml.Linq;
-using XY.WeChart.Helpers;
 
 namespace XY.WeChart
 {
@@ -71,7 +70,6 @@ namespace XY.WeChart
         public override string GenerateContent()
         {
             this.CreateTime = CommConfig.GetNowTime();
-            //收发互换
             return string.Format(this.Template, this.FromUserName, this.ToUserName, this.CreateTime, this.MsgType, this.Content, this.MsgId);
         }
         /// <summary>

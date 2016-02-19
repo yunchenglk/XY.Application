@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 
-namespace XY.WeChart.Helpers
+namespace XY.WeChart
 {
     /// <summary>
     /// 公共功能

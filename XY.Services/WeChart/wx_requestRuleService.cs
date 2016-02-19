@@ -105,7 +105,8 @@ namespace XY.Services
             sql.Append(string.Format(" AND ( REQKEYWORDS LIKE '{0}|%'", reqKeywords));
             sql.Append(string.Format(" OR REQKEYWORDS LIKE '%|{0}'", reqKeywords));
             sql.Append(string.Format(" OR REQKEYWORDS LIKE '%|{0}|%'", reqKeywords));
-            sql.Append(string.Format(" OR REQKEYWORDS LIKE '%{0}%' )", reqKeywords));
+            sql.Append(string.Format(" OR REQKEYWORDS = '{0}' )", reqKeywords));
+            sql.Append(string.Format(" ORDER BY CREATETIME DESC", reqKeywords));
             _db.Execute(() =>
             {
                 result = _DbHelper.GetDataList(sql.ToString(), CommandType.Text, _DbHelper.GetDataReader<wx_requestRule>, null).FirstOrDefault();

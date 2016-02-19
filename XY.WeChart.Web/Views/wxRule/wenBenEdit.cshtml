@@ -3,6 +3,18 @@
     ViewBag.Title = "编辑文本回复";
 }
 @Scripts.Render("~/js/jqueryValidate")
+<script type="text/javascript">
+    $(function () {
+        if ($.trim($("#rContent").val()).length > 0) {
+            $("#rContent_temp").val($("#rContent").val());
+        }
+    })
+    function beforeSubmit() {
+        $("#rContent").val(encodeURIComponent($("#rContent_temp").val()));
+
+        return true;
+    }
+</script>
 <div class="pageheader notab">
     <h1 class="pagetitle">编辑文本回复</h1>
 </div>
@@ -10,6 +22,7 @@
     <form class="stdform" method="post" action="/wxRule/wenBenEdit" id="validate">
         <input type="hidden" name="ID" value="@Model.ID" id="ID" />
         <input type="hidden" name="CreateTime" value="@Model.CreateTime" id="CreateTime" />
+        <input type="hidden" name="rContent" id="rContent" value="@ViewBag.rContent" />
         <p>
             <label>关键词</label>
             <span class="field">
@@ -37,7 +50,7 @@
         <p>
             <label>内容或简介</label>
             <span class="field">
-                <textarea cols="80" rows="5" name="rContent" class="mediuminput {required:true,messages:{required:'内容或简介不能为空'}}" id="rContent">@ViewBag.rContent</textarea>
+                <textarea cols="80" rows="5" name="rContent_temp" class="mediuminput {required:true,messages:{required:'内容或简介不能为空'}}" id="rContent_temp"></textarea>
             </span>
         </p>
         <p class="stdformbutton">

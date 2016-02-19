@@ -18,6 +18,15 @@
     <!--[if lt IE 9]>
         <script src="~/Content/js/plugins/css3-mediaqueries.js"></script>
     <![endif]-->
+    <script type="text/javascript">
+        function _menulist(sort) {
+            $(".headermenu > li ").removeClass("current");
+            $(".headermenu > li:eq(" + sort + ") ").addClass("current");
+
+            $(".iconmenu > ul").slideUp();
+            $(".iconmenu > ul:eq(" + sort + ") ").slideDown();
+        }
+    </script>
 </head>
 <body class="withvernav">
     <div class="bodywrapper">
@@ -58,10 +67,10 @@
         </div><!--topheader-->
         <div class="header">
             <ul class="headermenu">
-                <li class="current"><a href="dashboard.html"><span class="icon icon-speech"></span>公众号管理</a></li>
-                <li><a href="manageblog.html"><span class="icon icon-pencil"></span>博客管理</a></li>
-                <li><a href="messages.html"><span class="icon icon-message"></span>查看消息</a></li>
-                <li><a href="reports.html"><span class="icon icon-chart"></span>统计报表</a></li>
+                <li class="current"><a href="javascript:_menulist(0);"><span class="icon icon-speech"></span>公众号管理</a></li>
+                <li><a href="javascript:_menulist(1);"><span class="icon icon-pencil"></span>微网站</a></li>
+                <li><a href="javascript:_menulist(2);"><span class="icon icon-message"></span>查看消息</a></li>
+                <li><a href="javascript:_menulist(3);"><span class="icon icon-chart"></span>统计报表</a></li>
             </ul>
 
             <div class="headerwidget">
@@ -78,7 +87,7 @@
             </div><!--headerwidget-->
         </div><!--header-->
         <div class="vernav2 iconmenu">
-            <ul id="_menu">
+            <ul>
                 <li>
                     <a href="#callback" class="elements">微信自定义回复</a>
                     <span class="arrow"></span>
@@ -103,8 +112,16 @@
                     </ul>
                 </li>
             </ul>
+            <ul style="display:none;">
+                <li>
+                    <a href="/wxMenu/Index" class="widgets">微网站</a>
+                </li>
+            </ul>
+
+
+
+
             <a class="togglemenu"></a>
-            <br /><br />
         </div><!--leftmenu-->
         <div class="centercontent">
             @RenderBody()

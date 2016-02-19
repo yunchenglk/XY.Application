@@ -1,6 +1,6 @@
 ﻿using System;
 using XY.Entity;
-using XY.Services.Weixin.CommonAPI;
+using XY.Services.Weixin;
 
 namespace XY.Services
 {

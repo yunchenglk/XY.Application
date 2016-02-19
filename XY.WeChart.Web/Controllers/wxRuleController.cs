@@ -27,6 +27,7 @@ namespace XY.WeChart.Web.Controllers
             return View(m);
         }
         [HttpPost]
+        [ValidateInput(false)]
         public JsonResult wenBenEdit(FormCollection form)
         {
             ResultBase_form result = new ResultBase_form();
@@ -43,14 +44,14 @@ namespace XY.WeChart.Web.Controllers
                 m.ID = Guid.NewGuid();
                 result.status = wx_requestRuleService.instance().Insert(m);
                 wx_requestRuleContent rc = new wx_requestRuleContent();
-                rc.rContent = form["rContent"];
+                rc.rContent = Server.UrlDecode(form["rContent"]);
                 rc.RuleID = m.ID;
                 wx_requestRuleContentService.instance().Insert(rc);
             }
             else
             {
                 wx_requestRuleContent rc = wx_requestRuleContentService.instance().SingleByRuleID(m.ID);
-                rc.rContent = form["rContent"];
+                rc.rContent = Server.UrlDecode(form["rContent"]);
                 rc.RuleID = m.ID;
                 wx_requestRuleContentService.instance().Update(rc);
                 result.status = wx_requestRuleService.instance().Update(m);
@@ -298,7 +299,7 @@ namespace XY.WeChart.Web.Controllers
                 wx_requestRuleContent rc = wx_requestRuleContentService.instance().SingleByRuleID(m.ID);
                 ViewBag.rContent = rc.rContent;
                 ViewBag.rContent2 = rc.rContent2;
-                ViewBag.meidaHDUrl = rc.meidaHDUrl;
+                ViewBag.mediaUrl = rc.mediaUrl;
 
             }
             return View(m);
@@ -323,7 +324,7 @@ namespace XY.WeChart.Web.Controllers
                 rc.rContent = form["rContent"];
                 rc.rContent2 = form["rContent2"];
                 rc.RuleID = m.ID;
-                rc.meidaHDUrl = form["meidaHDUrl"];
+                rc.mediaUrl = form["mediaUrl"];
                 wx_requestRuleContentService.instance().Insert(rc);
             }
             else
@@ -332,7 +333,7 @@ namespace XY.WeChart.Web.Controllers
                 rc.rContent = form["rContent"];
                 rc.rContent2 = form["rContent2"];
                 rc.RuleID = m.ID;
-                rc.meidaHDUrl = form["meidaHDUrl"];
+                rc.mediaUrl = form["mediaUrl"];
                 wx_requestRuleContentService.instance().Update(rc);
                 result.status = wx_requestRuleService.instance().Update(m);
             }
@@ -363,7 +364,7 @@ namespace XY.WeChart.Web.Controllers
 
         public JsonResult GetKeywordsByType(int type)
         {
-            var result = wx_requestRuleService.instance().GetByResponseType(type,UserDateTicket.Company.ID);
+            var result = wx_requestRuleService.instance().GetByResponseType(type, UserDateTicket.Company.ID);
             return Json(result.Select(m => m.reqKeywords), JsonRequestBehavior.AllowGet);
         }
 

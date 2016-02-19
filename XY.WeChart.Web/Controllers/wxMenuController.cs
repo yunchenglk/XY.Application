@@ -96,11 +96,11 @@ namespace XY.WeChart.Web.Controllers
         public JsonResult getMenuOnline()
         {
             GetMenuResult result = WeChartAPI.GetMenu(GetToken());
-            if (result != null)
+            if (result.errcode == ReturnCode.请求成功)
             {
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
-            return Json("error", JsonRequestBehavior.AllowGet);
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
     public class _poseMenu

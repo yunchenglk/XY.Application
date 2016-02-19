@@ -15,6 +15,21 @@ namespace XY.Entity
                 return Util.Utils.AddURL(picUrl);
             }
         }
+        public string mediaUrlStr
+        {
+            get
+            {
+                return Util.Utils.AddURL(mediaUrl);
+            }
+        }
+        public string meidaHDUrlStr
+        {
+            get
+            {
+                return Util.Utils.AddURL(meidaHDUrl);
+            }
+        }
+
 
     }
 }

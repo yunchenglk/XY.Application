@@ -5,7 +5,6 @@ using System.Web;
 using System.Xml.Linq;
 using XY.Entity;
 using XY.Services;
-using XY.WeChart.Helpers;
 
 namespace XY.WeChart
 {

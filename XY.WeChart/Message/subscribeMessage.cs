@@ -6,7 +6,6 @@ using System.Xml.Linq;
 using XY.Entity;
 using XY.Services;
 using XY.Services.Weixin.Helpers;
-using XY.WeChart.Helpers;
 
 namespace XY.WeChart
 {

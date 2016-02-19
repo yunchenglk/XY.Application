@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using XY.Entity;
 using XY.Entity.Weixin;
@@ -41,27 +39,27 @@ namespace XY.WeChart.Web.Controllers
 
                     //文本1，图文2，语音3，视频4
                     case 1:
-                        result = Services.Weixin.CommonAPI.CommonApi.SendTextGroupMessageByOpenId(GetToken(),
+                        result = Services.Weixin.CommonApi.SendTextGroupMessageByOpenId(GetToken(),
                            contentlist.First().rContent, openIds);
                         break;
                     case 2:
 
                         break;
                     case 3:
-                        var voicetempre = Services.Weixin.CommonAPI.CommonApi.Upload(GetToken(), Entity.Weixin.UploadMediaFileType.voice, contentlist.First().mediaUrl);
+                        var voicetempre = Services.Weixin.CommonApi.Upload(GetToken(), Entity.Weixin.UploadMediaFileType.voice, contentlist.First().mediaUrl);
                         if (voicetempre.errcode == Entity.Weixin.ReturnCode.请求成功)
                         {
-                            result = Services.Weixin.CommonAPI.CommonApi.SendGroupMessageByOpenId(GetToken(),
+                            result = Services.Weixin.CommonApi.SendGroupMessageByOpenId(GetToken(),
                                                                                    GroupMessageType.voice,
                                                                                    voicetempre.media_id,
                                                                                    openIds);
                         }
                         break;
                     case 4:
-                        var videotempre = Services.Weixin.CommonAPI.CommonApi.Upload(GetToken(), Entity.Weixin.UploadMediaFileType.video, contentlist.First().meidaHDUrl);
+                        var videotempre = Services.Weixin.CommonApi.Upload(GetToken(), Entity.Weixin.UploadMediaFileType.video, contentlist.First().meidaHDUrl);
                         if (videotempre.errcode == Entity.Weixin.ReturnCode.请求成功)
                         {
-                            result = Services.Weixin.CommonAPI.CommonApi.SendVideoGroupMessageByOpenId(GetToken(),
+                            result = Services.Weixin.CommonApi.SendVideoGroupMessageByOpenId(GetToken(),
                                                                                     contentlist.First().rContent,
                                                                                     contentlist.First().rContent2,
                                                                                     videotempre.media_id,

@@ -5,8 +5,7 @@ using System.Web;
 using System.Xml.Linq;
 using XY.Entity;
 using XY.Services;
-using XY.Services.Weixin.CommonAPI;
-using XY.WeChart.Helpers;
+using XY.Services.Weixin;
 
 namespace XY.WeChart
 {

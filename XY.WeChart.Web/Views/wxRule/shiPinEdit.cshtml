@@ -10,7 +10,7 @@
     <form class="stdform" method="post" action="/wxRule/shiPinEdit" id="validate">
         <input type="hidden" name="ID" value="@Model.ID" id="ID" />
         <input type="hidden" name="CreateTime" value="@Model.CreateTime" id="CreateTime" />
-        <input type="hidden" name="meidaHDUrl" value="@ViewBag.meidaHDUrl" />
+        <input type="hidden" name="mediaUrl" value="@ViewBag.mediaUrl" />
 
         <p>
             <label>关键词</label>
@@ -45,14 +45,16 @@
         </p>
         <p>
             <label>视频文件</label>
-            <span class="field" id="meidaHDUrl">
-                <input type="file" name="file" filepath="/UPLOAD/WXIMG/" filetype="video" for="meidaHDUrl" />
+            <span class="field" id="mediaUrl">
+                <input type="file" name="file" filepath="/UPLOAD/WXIMG/" filetype="video" for="mediaUrl" />
             </span>
-            <small class="desc">小于10MB，支持MP4格式</small>
+            <small class="desc" id="desc">小于10MB，支持MP4格式</small>
             <script type="text/javascript">
                 $(function () {
-                    if ($.trim($("input[name=meidaHDUrl]").val()).length > 0) {
-                        $("#meidaHDUrl > div").find(".filename").text($("input[name=meidaHDUrl]").val());
+                    if ($.trim($("input[name=mediaUrl]").val()).length > 0) {
+                        $("#mediaUrl > div").find(".filename").text($("input[name=mediaUrl]").val());
+                        $("#desc").append('&#12288;<a style="color:red" href="@Model.mediaUrlStr" target="_blank">点击预览收视频</a>')
+
                     }
                 })
             </script>

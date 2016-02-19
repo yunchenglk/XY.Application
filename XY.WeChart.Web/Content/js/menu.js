@@ -50,7 +50,7 @@ function makeCenter() {
 //获取当前菜单
 function _getMenuOnline() {
     $.getJSON("/wxMenu/getMenuOnline", { v: Math.random() }, function (result) {
-        if (result != "error") {
+        if (result.errcode == 0) {
             $("#mlist > tbody").find("input").val("");
             $.each(result.menu.button, function (i, n) {
                 if (n.sub_button == undefined) {
@@ -64,11 +64,11 @@ function _getMenuOnline() {
                 } else {
                     $("#mlist > tbody").find("td[list=col" + i + "]:eq(0)").find("input[name=title]").val(n.name);
                     $.each(n.sub_button, function (x, y) {
-                        $("#mlist > tbody").find("td[list=col" + i + "]:eq(" + x + 1 + ")").find("input[name=title]").val(y.name);
+                        $("#mlist > tbody").find("td[list=col" + i + "]:eq(" + (x + 1) + ")").find("input[name=title]").val(y.name);
                         if (y.type == "view") {
-                            $("#mlist > tbody").find("td[list=col" + i + "]:eq(" + x + 1 + ")").find("input[name=url]").val(y.url);
+                            $("#mlist > tbody").find("td[list=col" + i + "]:eq(" + (x + 1) + ")").find("input[name=url]").val(y.url);
                         } else if (y.type = "click") {
-                            $("#mlist > tbody").find("td[list=col" + i + "]:eq(" + x + 1 + ")").find("input[name=key]").val(y.key);
+                            $("#mlist > tbody").find("td[list=col" + i + "]:eq(" + (x + 1) + ")").find("input[name=key]").val(y.key);
 
                         }
                     })

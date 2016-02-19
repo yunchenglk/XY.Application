@@ -42,10 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonAPI\Analysis\CommonApi.ArticleAnalysis.cs" />
+    <Compile Include="CommonAPI\Analysis\CommonApi.InterfaceAnalysis.cs" />
+    <Compile Include="CommonAPI\Analysis\CommonApi.MessageAnalysis.cs" />
+    <Compile Include="CommonAPI\CommonApi.CardManage.cs" />
     <Compile Include="CommonAPI\CommonApi.cs" />
+    <Compile Include="CommonAPI\Analysis\CommonApi.UserAnalysis.cs" />
+    <Compile Include="CommonAPI\CommonApi.Custom.cs" />
+    <Compile Include="CommonAPI\CommonApi.CustomService.cs" />
     <Compile Include="CommonAPI\CommonApi.Media.cs" />
     <Compile Include="CommonAPI\CommonApi.Menu.cs" />
+    <Compile Include="CommonAPI\CommonApi.QrCode.cs" />
+    <Compile Include="CommonAPI\CommonApi.Store.cs" />
+    <Compile Include="CommonAPI\CommonApi.Template.cs" />
     <Compile Include="CommonAPI\CommonJsonSend.cs" />
+    <Compile Include="CommonAPI\CommonApi.Semantic.cs" />
     <Compile Include="Entities\IMessageBase.cs" />
     <Compile Include="Entities\Request\Event\IRequestMessageEventBase.cs" />
     <Compile Include="Entities\Request\Event\IRequestMessageEventKey.cs" />
@@ -70,6 +81,7 @@
     <Compile Include="Exceptions\UnknownRequestMsgTypeException.cs" />
     <Compile Include="Exceptions\WeixinException.cs" />
     <Compile Include="Exceptions\WeixinMenuException.cs" />
+    <Compile Include="Helpers\BaiduMapHelper.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
     <Compile Include="Helpers\EntityHelper.cs" />
     <Compile Include="Entities\Response\Video.cs" />
@@ -94,7 +106,13 @@
     <Compile Include="CommonAPI\CommonApi.User.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonAPI\CommonAPI.SendMessage.cs" />
+    <Compile Include="CommonAPI\CommonApi.SendMessage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="datacube\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommonAPI\CommonApi.CardCreate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

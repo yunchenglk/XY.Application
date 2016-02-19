@@ -69,6 +69,16 @@ namespace XY.Admin.Controllers
             else
                 return Json(new { status = 0 }, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult _Delete(string id)
+        {
+            USER m = UserService.instance().GetEnumByID(new Guid(id)).FirstOrDefault();
+            if (m != null)
+            {
+                UserService.instance().Delete(new Guid(id));
+            }
+            return Json(new { status = 1, id = m.ID, dr = !m.DR }, JsonRequestBehavior.AllowGet);
+
+        }
         public ActionResult Assign_roles(string id)
         {
             if (!UserDateTicket.IsSuper)

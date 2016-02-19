@@ -3,6 +3,65 @@
     ViewBag.Title = "编辑图文回复内容";
 }
 @Scripts.Render("~/js/jqueryValidate")
+<script type="text/javascript">
+    function showDiv() {
+        document.getElementById('popDiv').style.display = 'block';
+        document.getElementById('bg').style.display = 'block';
+    }
+
+    function closeDiv() {
+        document.getElementById('popDiv').style.display = 'none';
+        document.getElementById('bg').style.display = 'none';
+    }
+    function iFrameHeight() {
+        var ifm = document.getElementById("mainFrame");
+        var subWeb = document.frames ? document.frames["mainFrame"].document : ifm.contentDocument;
+        if (ifm != null && subWeb != null) {
+            ifm.height = subWeb.body.scrollHeight;
+        }
+    }
+    function getDate() {
+        var data = document.getElementById("mainFrame").contentWindow._getDate();
+        alert(data);
+    }
+</script>
+<style type="text/css">
+    .mydiv {
+        background-color: #FFF;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0; /*FF IE7*/
+        z-index: 2;
+        position: fixed !important; /*FF IE7*/
+        position: absolute; /*IE6*/
+        _top: expression(eval(document.compatMode && document.compatMode=='CSS1Compat') ? documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 : /*IE6*/
+        document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2); /*IE5 IE5.5*/
+    }
+
+
+    .bg {
+        background-color: #ccc;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0; /*FF IE7*/
+        filter: alpha(opacity=50); /*IE*/
+        opacity: 0.5; /*FF*/
+        z-index: 1;
+        position: fixed !important; /*FF IE7*/
+        position: absolute; /*IE6*/
+        _top: expression(eval(document.compatMode && document.compatMode=='CSS1Compat') ? documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 : /*IE6*/
+        document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2); /*IE5 IE5.5*/
+    }
+</style>
+<div id="popDiv" class="mydiv" style="display:block;">
+    <iframe name="mainFrame" id="mainFrame" src="/Home/Edit" width="90%" onload='iFrameHeight()' style=" float:left"></iframe>
+    <span class="stdbtn" onclick="closeDiv()" style="float:left;margin:100px 0;">关闭窗口</span>
+    <span class="stdbtn" onclick="getDate()" style="float:left;">高级编辑器</span>
+</div>
+<div id="bg" class="bg" style="display:block;"></div>
+
 <script src="~/Content/js/jquery.img.js"></script>
 <div class="pageheader notab">
     <h1 class="pagetitle">编辑图文回复内容</h1>
@@ -12,11 +71,11 @@
         <input type="hidden" name="ID" value="@Model.ID" />
         <input type="hidden" name="CreateTime" value="@Model.CreateTime" />
         <input type="hidden" value="@Model.picUrl" name="picUrl">
-        <input type="text" name="RuleID" value="@ViewBag.RID" />
+        <input type="hidden" name="RuleID" value="@ViewBag.RID" />
         <p>
             <label>标题</label>
             <span class="field">
-                <textarea cols="80" rows="5" name="rContent" class="mediuminput {required:true,messages:{required:'内容或简介不能为空'}}" id="rContent">@Model.rContent</textarea>
+                <input type="text" name="rContent" id="rContent" class="mediuminput {required:true,messages:{required:'标题不能为空'}}" value="@Model.rContent" />
             </span>
         </p>
         <p style="margin:30px 0;">
@@ -24,11 +83,12 @@
             <span class="field" id="picUrl">
                 <input type="file" name="file" filepath="/UPLOAD/WXIMG/" filetype="image" for="picUrl" />
             </span>
-            <small class="desc">小于2M,支持bmp/png/jpeg/jpg/gif格式</small>
+            <small class="desc" id="desc">小于2M,支持bmp/png/jpeg/jpg/gif格式</small>
             <script type="text/javascript">
                 $(function () {
                     if ($.trim($("input[name=picUrl]").val()).length > 0) {
                         $("#picUrl > div").find(".filename").text($("input[name=picUrl]").val());
+                        $("#desc").append('&#12288;<a style="color:red" href="@Model.picUrlStr" target="_blank">点击预览图片</a>')
                     }
                 })
             </script>
@@ -41,9 +101,17 @@
             </span>
         </p>
         <p>
+            <label>内容</label>
+            <span class="field">
+                <textarea cols="80" rows="5" name="rContent2" class="mediuminput"></textarea>
+                <br /><span class="stdbtn" onclick="showDiv()">高级编辑器</span>
+            </span>
+        </p>
+        <p>
             <label>链接</label>
             <span class="field">
-                <textarea cols="80" rows="5" name="detailUrl" class="mediuminput">@Model.detailUrl</textarea>
+
+                <input type="text" name="detailUrl" id="detailUrl" class="mediuminput" value="@Model.detailUrl" />
             </span>
         </p>
         <p>

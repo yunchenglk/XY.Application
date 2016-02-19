@@ -2,13 +2,54 @@
     ViewBag.Title = "查看用户信息";
 }
 @Scripts.Render("~/js/jqueryValidate")
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=SAVewRYiePQrRZUhycmTcpzW"></script>
 <script type="text/javascript">
     function _saveGroup() {
         $.getJSON("/wxUserInfo/MoveGroup", { gid: $("#wx_usergroup").val(), id: $("#ID").val(), v: Math.random() }, function (result) {
             alert(result);
         })
     }
+    $(function () {
+        // 百度地图API功能
+        // 百度地图API功能
+        var map = new BMap.Map("allmap");
+        if (document.getElementById("longitude").value != "" && document.getElementById("latitude").value != "") {
+            var point = new BMap.Point(document.getElementById("longitude").value, document.getElementById("latitude").value);
+            var marker = new BMap.Marker(point);  // 创建标注
+            map.addOverlay(marker);              // 将标注添加到地图中
+            map.centerAndZoom(point, 15);
+            var opts = {
+                width: 200,     // 信息窗口宽度
+                height: 50,     // 信息窗口高度
+                title: '<h4><a href="javascript:void(0)" id="nickname">@Model.nickname</a> @Model.SexStr</h4>', // 信息窗口标题
+                enableMessage: true,//设置允许信息窗发送短息
+                message: '<small>关注事件: <a href=""><strong>@Model.subscribe_timeStr</strong></a></small>'
+            }
+            var infoWindow = new BMap.InfoWindow('<small>关注时间: <a href=""><strong>@Model.subscribe_timeStr</strong></a></small>', opts);  // 创建信息窗口对象
+            marker.addEventListener("click", function () {
+                map.openInfoWindow(infoWindow, point); //开启信息窗口
+            });
+        }
+    })
 </script>
+<style type="text/css">
+    body, html {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        font-family: "微软雅黑";
+    }
+
+    #allmap {
+        height: 500px;
+        width: 100%;
+    }
+
+    #r-result {
+        width: 100%;
+        font-size: 14px;
+    }
+</style>
 <div class="pageheader notab">
     <h1 class="pagetitle">查看用户信息</h1>
 </div>
@@ -18,8 +59,8 @@
             <div class="slide_wrap">
                 <div class="slide_img"><img src="@Model.headimgul" alt="" width="60" height="60"></div>
                 <div class="slide_content">
-                    <h4><a href="javascript:void(0)">@Model.nickname</a> @Model.SexStr</h4>
-                    <small>关注事件: <a href=""><strong>@Model.subscribe_timeStr</strong></a></small>
+                    <h4><a href="javascript:void(0)" id="nickname">@Model.nickname</a> @Model.SexStr</h4>
+                    <small>关注时间: <a href=""><strong>@Model.subscribe_timeStr</strong></a></small>
                     <p>位置：@Model.location</p>
                 </div>
             </div>
@@ -59,6 +100,15 @@
                     <button class="stdbtn" onclick="javascript: history.go(-1);">返回</button>
                 </p>
             </div>
+        </li>
+        <li style="padding:0;">
+            <div id="allmap"></div>
+            <div id="r-result">
+                经度: <input id="longitude" type="text" value="@Model.Longitude" />
+                纬度: <input id="latitude" type="text" value="@Model.Latitude" />
+                @*<input type="button" value="查询" onclick="theLocation()" />*@
+            </div>
+
         </li>
     </ul>
 </div>

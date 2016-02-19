@@ -42,6 +42,17 @@ function del(id, obj, controller, con) {
             }
         })
 }
+function _del(id, obj, controller, con) {
+    if (confirm(con == null ? "确定删除吗？\n删除后数据不可恢复" : con))
+        $.getJSON("/" + controller + "/_Delete/", { id: id, v: Math.random() }, function (result) {
+            if (result.status == 1) {
+                alert("操作成功");
+                $("#" + id).remove();
+            } else {
+                alert("操作失败");
+            }
+        })
+}
 function clearOldDate(obj) {
     $(obj).find("tr").remove();
 }

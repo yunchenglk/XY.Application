@@ -71,6 +71,24 @@
     <Compile Include="WeChart\articles.cs" />
     <Compile Include="WeChart\button.cs" />
     <Compile Include="WeChart\Config.cs" />
+    <Compile Include="Weixin\Analysis\ArticleAnalysisResultJson.cs" />
+    <Compile Include="Weixin\Analysis\InterfaceAnalysisResultJson.cs" />
+    <Compile Include="Weixin\Analysis\MessageAnalysisResultJson.cs" />
+    <Compile Include="Weixin\Analysis\UserAnalysisResultJson.cs" />
+    <Compile Include="Weixin\Article.cs" />
+    <Compile Include="Weixin\BaiduMap\BaiduMapMarkers.cs" />
+    <Compile Include="Weixin\Card\CardCreateData.cs" />
+    <Compile Include="Weixin\Card\CardCreateInfo.cs" />
+    <Compile Include="Weixin\Card\CardCreateResultJson.cs" />
+    <Compile Include="Weixin\Card\CardDetails.cs" />
+    <Compile Include="Weixin\Card\CardManageResultJson.cs" />
+    <Compile Include="Weixin\Card\CardUpdateData.cs" />
+    <Compile Include="Weixin\Card\CardUpdateInfo.cs" />
+    <Compile Include="Weixin\CustomService\CustomInfoJson.cs" />
+    <Compile Include="Weixin\CustomService\CustomOnlineJson.cs" />
+    <Compile Include="Weixin\CustomService\GetRecordResult.cs" />
+    <Compile Include="Weixin\CustomService\RecordJson.cs" />
+    <Compile Include="Weixin\QrCodeResult.cs" />
     <Compile Include="Weixin\Menu\SingleButton.cs" />
     <Compile Include="Weixin\Menu\SingleClickButton.cs" />
     <Compile Include="Weixin\Menu\SingleLocationSelectButton.cs" />
@@ -96,11 +114,17 @@
     <Compile Include="WeChart\JsonResult\JsApiTicketResult.cs" />
     <Compile Include="WeChart\JsonResult\UploadMediaFileResult.cs" />
     <Compile Include="Weixin\NewsModel.cs" />
+    <Compile Include="Weixin\SemanticResultJson.cs" />
     <Compile Include="Weixin\SendMessage\BaseGroupMessageDataByGroupId.cs" />
     <Compile Include="Weixin\SendMessage\BaseGroupMessageDataByOpenId.cs" />
     <Compile Include="Weixin\SendMessage\BaseGroupMessageDataPreview.cs" />
     <Compile Include="Weixin\SendMessage\GetSendResult.cs" />
     <Compile Include="Weixin\SendMessage\SendResult.cs" />
+    <Compile Include="Weixin\Store\StoreLocationData.cs" />
+    <Compile Include="Weixin\Store\StoreResultJson.cs" />
+    <Compile Include="Weixin\Template\SendTemplateMessageResult.cs" />
+    <Compile Include="Weixin\Template\TemplateDataItem.cs" />
+    <Compile Include="Weixin\Template\TempleteModel.cs" />
     <Compile Include="Weixin\UploadResultJson.cs" />
     <Compile Include="Weixin\User\UserinfoGroups.cs" />
     <Compile Include="Weixin\User\WeixinUserInfoResult.cs" />
@@ -119,8 +143,8 @@
     <Compile Include="WX_Menu.cs" />
     <Compile Include="WX_Message.cs" />
     <Compile Include="WX_MessageGroup.cs" />
-    <Compile Include="wx_requestRuleContent.cs" />
-    <Compile Include="wx_userinfo.cs" />
+    <Compile Include="Weixin\wx_requestRuleContent.cs" />
+    <Compile Include="Weixin\wx_userinfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XY.Util\XY.Util.csproj">
