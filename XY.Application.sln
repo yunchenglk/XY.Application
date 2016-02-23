@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.Admin", "XY.Admin\XY.Admin.csproj", "{51F0E633-F7BE-48FC-AD7C-A9369196E98B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F2B2132D-F68C-4B45-9FB3-B3491B09A916} = {F2B2132D-F68C-4B45-9FB3-B3491B09A916}
+		{D8DFBC42-3DB7-4D9C-BF24-C656BC33524A} = {D8DFBC42-3DB7-4D9C-BF24-C656BC33524A}
+		{B73EF3DE-5538-44EC-A423-15362BE64F50} = {B73EF3DE-5538-44EC-A423-15362BE64F50}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.AutoEntity", "XY.AutoEntity\XY.AutoEntity.csproj", "{B2A668FF-0B19-4252-8C4E-414C382AB1EB}"
 EndProject
@@ -27,10 +32,16 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.DataAccess", "XY.DataAccess\XY.DataAccess.csproj", "{C504AA63-51F2-4FC2-A7D4-E8808256DD43}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.Entity", "XY.Entity\XY.Entity.csproj", "{F2B2132D-F68C-4B45-9FB3-B3491B09A916}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D8DFBC42-3DB7-4D9C-BF24-C656BC33524A} = {D8DFBC42-3DB7-4D9C-BF24-C656BC33524A}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.Util", "XY.Util\XY.Util.csproj", "{D8DFBC42-3DB7-4D9C-BF24-C656BC33524A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.Services", "XY.Services\XY.Services.csproj", "{B73EF3DE-5538-44EC-A423-15362BE64F50}"
+	ProjectSection(ProjectDependencies) = postProject
+		{16F42A23-537B-48E5-8D25-A1211BAE347F} = {16F42A23-537B-48E5-8D25-A1211BAE347F}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.Source", "XY.Source\XY.Source.csproj", "{7982B081-33DD-438A-B77D-3463E2EC71CA}"
 EndProject
@@ -46,13 +57,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.weidian", "XY.weidian\XY
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.WeChart.Web", "XY.WeChart.Web\XY.WeChart.Web.csproj", "{E706490F-1CE7-4CAD-AE1D-5D536F5AC1D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.WeChart.Service", "XY.WeChart.Service\XY.WeChart.Service.csproj", "{ABFE42B3-00C8-4EC2-87FB-7CA8DC5232BE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.Weixin.PF.Comm", "XY.Weixin.PF.Comm\XY.Weixin.PF.Comm.csproj", "{F59AA9FD-833D-41CA-A678-5C50ED6F80D5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.Weixin.MP", "XY.Weixin.MP\XY.Weixin.MP.csproj", "{5BE65B52-DC27-4788-9984-2A970D09BC92}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.Weixin", "XY.Weixin\XY.Weixin.csproj", "{79BF7EE5-72B4-4A21-B84A-39282A6BC66E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.Services.Weixin", "XY.Services.Weixin\XY.Services.Weixin.csproj", "{16F42A23-537B-48E5-8D25-A1211BAE347F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -112,22 +117,10 @@ Global
 		{E706490F-1CE7-4CAD-AE1D-5D536F5AC1D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E706490F-1CE7-4CAD-AE1D-5D536F5AC1D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E706490F-1CE7-4CAD-AE1D-5D536F5AC1D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ABFE42B3-00C8-4EC2-87FB-7CA8DC5232BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ABFE42B3-00C8-4EC2-87FB-7CA8DC5232BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ABFE42B3-00C8-4EC2-87FB-7CA8DC5232BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ABFE42B3-00C8-4EC2-87FB-7CA8DC5232BE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F59AA9FD-833D-41CA-A678-5C50ED6F80D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F59AA9FD-833D-41CA-A678-5C50ED6F80D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F59AA9FD-833D-41CA-A678-5C50ED6F80D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F59AA9FD-833D-41CA-A678-5C50ED6F80D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5BE65B52-DC27-4788-9984-2A970D09BC92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5BE65B52-DC27-4788-9984-2A970D09BC92}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5BE65B52-DC27-4788-9984-2A970D09BC92}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5BE65B52-DC27-4788-9984-2A970D09BC92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{79BF7EE5-72B4-4A21-B84A-39282A6BC66E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79BF7EE5-72B4-4A21-B84A-39282A6BC66E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79BF7EE5-72B4-4A21-B84A-39282A6BC66E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79BF7EE5-72B4-4A21-B84A-39282A6BC66E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16F42A23-537B-48E5-8D25-A1211BAE347F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16F42A23-537B-48E5-8D25-A1211BAE347F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16F42A23-537B-48E5-8D25-A1211BAE347F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16F42A23-537B-48E5-8D25-A1211BAE347F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
