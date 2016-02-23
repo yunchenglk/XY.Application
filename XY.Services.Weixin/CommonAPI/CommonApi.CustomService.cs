@@ -41,7 +41,7 @@ namespace XY.Services.Weixin
         /// <returns></returns>
         public static WxJsonResult Custom_Del(string accessToken, Custom_add data)
         {
-            var urlFormat = "https://api.weixin.qq.com/customservice/kfaccount/del?access_token=0}";
+            var urlFormat = "https://api.weixin.qq.com/customservice/kfaccount/del?access_token={0}";
             return CommonJsonSend.Send(accessToken, urlFormat, data);
         }
         /// <summary>

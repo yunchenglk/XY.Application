@@ -135,6 +135,7 @@
     <Compile Include="Weixin\User\OpenIdResultJson_Data.cs" />
     <Compile Include="Weixin\User\UserInfoJson.cs" />
     <Compile Include="Weixin\WxJsonResult.cs" />
+    <Compile Include="Weixin\wx_customer.cs" />
     <Compile Include="Weixin\wx_requestRule.cs" />
     <Compile Include="Weixin\wx_userweixin.cs" />
     <Compile Include="WeShop\cates.cs" />
