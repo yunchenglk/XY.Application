@@ -36,7 +36,7 @@ jQuery(document).ready(function(){
 		
 		//display message from a message box
 		if(msg != '') {
-			jQuery('#chatmessageinner').append('<p><img src="images/thumbs/avatar12.png" alt="" />'
+			jQuery('#chatmessageinner').append('<p><img src="/content/images/thumbs/avatar12.png" alt="" />'
 											   +'<span class="msgblock radius2"><strong>You</strong> <span class="time">- 10:14 am</span>'
 											   +'<span class="msg">'+msg+'</span></span></p>');
 			jQuery('.messagebox input').val('');
@@ -47,7 +47,7 @@ jQuery(document).ready(function(){
 			window.setTimeout(  
 				function() {  
 					//this is just a sample reply when somebody send a message
-					jQuery('#chatmessageinner').append('<p class="reply"><img src="images/thumbs/avatar13.png" alt="" />'
+				    jQuery('#chatmessageinner').append('<p class="reply"><img src="/content/images/thumbs/avatar13.png" alt="" />'
 													   +'<span class="msgblock radius2"><strong>Tigress:</strong> <span class="time">10:15 am</span>'
 													   +'<span class="msg">This is an automated reply!!</span></span></p>', function(){
 						jQuery(this).animate({scrollTop: jQuery(this).height()});

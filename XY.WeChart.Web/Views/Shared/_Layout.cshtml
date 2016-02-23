@@ -19,13 +19,31 @@
         <script src="~/Content/js/plugins/css3-mediaqueries.js"></script>
     <![endif]-->
     <script type="text/javascript">
+        $(function () {
+            var setMenu = '@ViewBag.setMenu'.split('-');
+            _menulist(setMenu[0] - 1);
+            if (setMenu.length > 1)
+                _menulist1(setMenu[0] - 1, setMenu[1] - 1);
+            if (setMenu.length == 3)
+                _menulist2(setMenu[2] - 1);
+        })
         function _menulist(sort) {
             $(".headermenu > li ").removeClass("current");
             $(".headermenu > li:eq(" + sort + ") ").addClass("current");
-
             $(".iconmenu > ul").slideUp();
             $(".iconmenu > ul:eq(" + sort + ") ").slideDown();
         }
+        function _menulist1(sort, int) {
+            $(".iconmenu > ul:eq(" + sort + ") > li").removeClass("current");
+            $(".iconmenu > ul:eq(" + sort + ") > li:eq(" + int + ")").addClass("current");
+        }
+        function _menulist2(int) {
+            $(".iconmenu").find(".current").find("li").removeClass("current");
+            $(".iconmenu").find(".current").find("li:eq(" + int + ")").addClass("current");
+        }
+        $(document).ajaxError(function (event, xhr, options, exc) {
+            //window.location = "/Home/Error";
+        })
     </script>
 </head>
 <body class="withvernav">
@@ -56,7 +74,7 @@
                         <h4>Juan</h4>
                         <span class="email">youremail@yourdomain.com</span>
                         <ul>
-                            <li><a href="#">编辑资料</a></li>
+                            <li><a href="/Info/Index">编辑资料</a></li>
                             <li><a href="#">账号设置</a></li>
                             <li><a href="#">帮助</a></li>
                             <li><a href="/Account/SignOut">退出</a></li>
@@ -68,9 +86,7 @@
         <div class="header">
             <ul class="headermenu">
                 <li class="current"><a href="javascript:_menulist(0);"><span class="icon icon-speech"></span>公众号管理</a></li>
-                <li><a href="javascript:_menulist(1);"><span class="icon icon-pencil"></span>微网站</a></li>
-                <li><a href="javascript:_menulist(2);"><span class="icon icon-message"></span>查看消息</a></li>
-                <li><a href="javascript:_menulist(3);"><span class="icon icon-chart"></span>统计报表</a></li>
+                <li><a href="javascript:_menulist(1);"><span class="icon icon-pencil"></span>在线客服</a></li>
             </ul>
 
             <div class="headerwidget">
@@ -114,7 +130,17 @@
             </ul>
             <ul style="display:none;">
                 <li>
-                    <a href="/wxMenu/Index" class="widgets">微网站</a>
+                    <a href="#message" class="widgets">在线客服</a>
+                    <span class="arrow"></span>
+                    <ul id="message">
+                        <li><a href="/Message/Index">客服管理</a></li>
+                        <li><a href="/Message/Edit">图文回复</a></li>
+                        <li><a href="/wxRule/yuYin">语音回复</a></li>
+                        <li><a href="/wxRule/shiPin">视频回复</a></li>
+                        <li><a href="#">请求回复记录</a></li>
+                        <li><a href="#">LBS位置回复</a></li>
+                    </ul>
+                </li>
                 </li>
             </ul>
 

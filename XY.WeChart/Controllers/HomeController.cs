@@ -59,46 +59,5 @@ namespace XY.WeChart.Controllers
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-        //string signature = Request["signature"];
-        //string timestamp = Request["timestamp"];
-        //string nonce = Request["nonce"];
-        //string echostr = Request["echostr"];
-
-        //string method = Request.HttpMethod.ToUpper();
-        //switch (method)
-        //{
-        //    case "GET":
-        //        if (CheckSignature.Check(signature, timestamp, nonce, wxConfig.wxToken))
-        //            WriteContent(echostr);
-        //        else
-        //            WriteContent("failed:" + signature + ",token:" + wxConfig.wxToken + " " + CheckSignature.GetSignature(timestamp, nonce, wxConfig.wxToken) + "。" +
-        //                    "如果你在浏览器中看到这句话，说明此地址可以被作为微信公众账号后台的Url，请注意保持Token一致。");
-        //        break;
-        //    case "POST":
-        //        using (Stream s = Request.InputStream)
-        //        {
-        //            using (StreamReader reader = new StreamReader(s, Encoding.UTF8))
-        //            {
-        //                IHandler handler = CreateHandler(reader.ReadToEnd());
-        //                string temp = handler.HandleRequest(wxConfig);
-        //                WriteContent(temp);
-        //            }
-        //        }
-        //        break;
-        //    default:
-        //        break;
-        //}
-        ////return responseMsg;
     }
 }

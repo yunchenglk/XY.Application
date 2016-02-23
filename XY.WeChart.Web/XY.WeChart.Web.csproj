@@ -138,6 +138,8 @@
     <Compile Include="Content\edit\ueditor\net\App_Code\UploadHandler.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InfoController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\wxMenuController.cs" />
     <Compile Include="Controllers\wxRuleController.cs" />
     <Compile Include="Controllers\wxUserInfoController.cs" />
@@ -827,6 +829,11 @@
     <Content Include="Views\wxUserInfo\Index.cshtml" />
     <Content Include="Views\wxUserInfo\Edit.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Message\Index---.cshtml" />
+    <Content Include="Views\Message\Index.cshtml" />
+    <Content Include="Views\Message\Edit.cshtml" />
+    <Content Include="Views\Info\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

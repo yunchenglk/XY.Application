@@ -11,6 +11,7 @@ using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Runtime.Serialization.Json;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -50,6 +51,23 @@ namespace XY.Util
         //    }
         //}
         //#endregion
+
+        #region MD5加密
+        public static string MD5(string pwd)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] data = System.Text.Encoding.Default.GetBytes(pwd);
+            byte[] md5data = md5.ComputeHash(data);
+            md5.Clear();
+            string str = "";
+            for (int i = 0; i < md5data.Length; i++)
+            {
+                str += md5data[i].ToString("x").PadLeft(2, '0');
+
+            }
+            return str;
+        }
+        #endregion
 
         #region 对象转换处理
         public static object ConvertObject(object obj, Type type)
@@ -2133,7 +2151,12 @@ namespace XY.Util
                 return System.Configuration.ConfigurationManager.AppSettings["sourceWeb_"] + imgurl;
             return imgurl;
         }
-
+        public static string AddConfigURL(string key, string url)
+        {
+            if (!string.IsNullOrEmpty(key) && !string.IsNullOrEmpty(url))
+                return System.Configuration.ConfigurationManager.AppSettings[key] + url;
+            return "";
+        }
 
     }
 }

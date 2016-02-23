@@ -16,7 +16,12 @@ namespace XY.WeChart.Web.Controllers
         {
             return View();
         }
-        public ActionResult Edit() {
+        public ActionResult Edit()
+        {
+            return View();
+        }
+        public ActionResult Error()
+        {
             return View();
         }
     }

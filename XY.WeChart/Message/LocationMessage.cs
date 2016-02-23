@@ -60,7 +60,6 @@ namespace XY.WeChart
         //执行操作
         public override string GenerateContent()
         {
-
             wx_userinfo entity = wx_userinfoService.instance().GetByopenidAndCompanyID(this.FromUserName, CommFun.companyid);
             if (entity != null)
             {

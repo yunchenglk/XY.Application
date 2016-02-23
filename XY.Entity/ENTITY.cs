@@ -2347,6 +2347,121 @@ namespace XY.Entity
             }
 
 
+    [Table("wx_customer")]
+	[Serializable] 
+    public partial class wx_customer :IEntity
+    {
+        
+		private  Guid _ID;
+
+        [Column("ID", DbType.Guid,true,false)]
+        public Guid  ID 
+		{ 
+		   get{ return _ID;  } 
+		   set{_ID = value;}
+		 }
+        
+		private  Guid _wID;
+
+        [Column("wID", DbType.Guid,false,false)]
+        public Guid  wID 
+		{ 
+		   get{ return _wID;  } 
+		   set{_wID = value;}
+		 }
+        
+		private  Guid _cID;
+
+        [Column("cID", DbType.Guid,false,false)]
+        public Guid  cID 
+		{ 
+		   get{ return _cID;  } 
+		   set{_cID = value;}
+		 }
+        
+		private  String _kf_account;
+
+        [Column("kf_account", DbType.String,false,false)]
+        public String  kf_account 
+		{ 
+		   get{  return _kf_account == null ?string.Empty:_kf_account;  } 
+		   set{_kf_account = value;}
+		 }
+        
+		private  String _kf_nick;
+
+        [Column("kf_nick", DbType.String,false,false)]
+        public String  kf_nick 
+		{ 
+		   get{  return _kf_nick == null ?string.Empty:_kf_nick;  } 
+		   set{_kf_nick = value;}
+		 }
+        
+		private  Int32 _kf_id;
+
+        [Column("kf_id", DbType.Int32,false,false)]
+        public Int32  kf_id 
+		{ 
+		   get{ return _kf_id;  } 
+		   set{_kf_id = value;}
+		 }
+        
+		private  String _nickname;
+
+        [Column("nickname", DbType.String,false,false)]
+        public String  nickname 
+		{ 
+		   get{  return _nickname == null ?string.Empty:_nickname;  } 
+		   set{_nickname = value;}
+		 }
+        
+		private  String _password;
+
+        [Column("password", DbType.String,false,false)]
+        public String  password 
+		{ 
+		   get{  return _password == null ?string.Empty:_password;  } 
+		   set{_password = value;}
+		 }
+        
+		private  String _headImg;
+
+        [Column("headImg", DbType.String,false,false)]
+        public String  headImg 
+		{ 
+		   get{  return _headImg == null ?string.Empty:_headImg;  } 
+		   set{_headImg = value;}
+		 }
+        
+		private  String _media;
+
+        [Column("media", DbType.String,false,false)]
+        public String  media 
+		{ 
+		   get{  return _media == null ?string.Empty:_media;  } 
+		   set{_media = value;}
+		 }
+        
+		private  Boolean _DR;
+
+        [Column("DR", DbType.Boolean,false,false)]
+        public Boolean  DR 
+		{ 
+		   get{ return _DR;  } 
+		   set{_DR = value;}
+		 }
+        
+		private  DateTime _CreateTime;
+
+        [Column("CreateTime", DbType.DateTime,false,false)]
+        public DateTime  CreateTime 
+		{ 
+		   get{ return _CreateTime;  } 
+		   set{_CreateTime = value;}
+		 }
+            }
+
+
     [Table("WX_Fans")]
 	[Serializable] 
     public partial class WX_Fans :IEntity

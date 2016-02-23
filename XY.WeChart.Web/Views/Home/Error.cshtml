@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Error";
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404错误提示页面_AmaAdmin后台管理系统模板</title>
+    <link rel="stylesheet" href="~/Content/css/style.default.css" type="text/css" />
+    <script type="text/javascript" src="~/Content/js/plugins/jquery-1.7.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/plugins/jquery-ui-1.8.16.custom.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/plugins/jquery.cookie.js"></script>
+    <script type="text/javascript" src="~/Content/js/custom/general.js"></script>
+    <!--[if IE 9]>
+        <link rel="stylesheet" media="screen" href="~/Content/css/style.ie9.css"/>
+    <![endif]-->
+    <!--[if IE 8]>
+        <link rel="stylesheet" media="screen" href="~/Content/css/style.ie8.css"/>
+    <![endif]-->
+    <!--[if lt IE 9]>
+        <script src="~/Content/js/plugins/css3-mediaqueries.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="bodywrapper">
+        <div class="contentwrapper padding10">
+            <div class="errorwrapper error404">
+                <div class="errorcontent">
+                    <h1>错误了</h1>
+                    <h3>很抱歉，服务器出现了错误....</h3>
+
+                    <p>可能出现的原因是</p>
+                    <ul>
+                        <li>您的登陆过去，请&nbsp;<button class="stdbtn btn_red" onclick="location.href = '/Account/SignOut'">重新登陆</button>.</li>
+                        <li>您的请求，我们没有想到，请联系我们.</li>
+                        <li>You were looking for something that is not here.</li>
+                        <li>You like this page.</li>
+                    </ul>
+                    <br />
+                    <button class="stdbtn btn_black" onclick="history.back()">返回重试</button> &nbsp;
+                    <button onclick="location.href='/'" class="stdbtn btn_orange">返回首页</button>
+                </div><!--errorcontent-->
+            </div><!--errorwrapper-->
+        </div>
+    </div><!--bodywrapper-->
+</body>
+</html>
+

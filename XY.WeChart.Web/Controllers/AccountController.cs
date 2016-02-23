@@ -61,7 +61,7 @@ namespace XY.WeChart.Web.Controllers
                         return View();
                     }
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
-                        json["uid"].ToString(), DateTime.Now, DateTime.Now.Add(FormsAuthentication.Timeout), false,
+                        json["uid"].ToString(), DateTime.Now, DateTime.Now.Add(FormsAuthentication.Timeout), true,
                         "");
                     HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
 

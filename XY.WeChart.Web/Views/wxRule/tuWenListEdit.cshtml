@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "编辑图文回复内容";
+    ViewBag.setMenu = "1-1-2";
 }
 @Scripts.Render("~/js/jqueryValidate")
 <script type="text/javascript">
@@ -22,7 +23,8 @@
     }
     function getDate() {
         var data = document.getElementById("mainFrame").contentWindow._getDate();
-        alert(data);
+        $("#content_txt").val(data);
+        closeDiv();
     }
 </script>
 <style type="text/css">
@@ -55,12 +57,12 @@
         document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2); /*IE5 IE5.5*/
     }
 </style>
-<div id="popDiv" class="mydiv" style="display:block;">
+<div id="popDiv" class="mydiv" style="display:none;">
     <iframe name="mainFrame" id="mainFrame" src="/Home/Edit" width="90%" onload='iFrameHeight()' style=" float:left"></iframe>
-    <span class="stdbtn" onclick="closeDiv()" style="float:left;margin:100px 0;">关闭窗口</span>
-    <span class="stdbtn" onclick="getDate()" style="float:left;">高级编辑器</span>
+    <span class="stdbtn" onclick="closeDiv()" style="float:left;">关闭窗口</span>
+    <span class="stdbtn" onclick="getDate()" style="float:left;">确定</span>
 </div>
-<div id="bg" class="bg" style="display:block;"></div>
+<div id="bg" class="bg" style="display:none;"></div>
 
 <script src="~/Content/js/jquery.img.js"></script>
 <div class="pageheader notab">
@@ -103,7 +105,7 @@
         <p>
             <label>内容</label>
             <span class="field">
-                <textarea cols="80" rows="5" name="rContent2" class="mediuminput"></textarea>
+                <textarea cols="80" rows="5" name="rContent2" class="mediuminput" id="content_txt"></textarea>
                 <br /><span class="stdbtn" onclick="showDiv()">高级编辑器</span>
             </span>
         </p>

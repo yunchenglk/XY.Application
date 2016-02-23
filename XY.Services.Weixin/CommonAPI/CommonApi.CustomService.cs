@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using XY.Entity.Weixin;
 using XY.Services.Weixin.Helpers;
@@ -12,8 +9,41 @@ namespace XY.Services.Weixin
     /// <summary>
     /// 多客服接口聊天记录接口，官方API：http://mp.weixin.qq.com/wiki/index.php?title=%E8%8E%B7%E5%8F%96%E5%AE%A2%E6%9C%8D%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95
     /// </summary>
-    public  partial class CommonApi
+    public partial class CommonApi
     {
+        /// <summary>
+        /// 添加客服。每个公众号最多添加10个客服账号
+        /// </summary>
+        /// <param name="accessToken"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static WxJsonResult Custom_Add(string accessToken, Custom_add data)
+        {
+            var urlFormat = "https://api.weixin.qq.com/customservice/kfaccount/add?access_token={0}";
+            return CommonJsonSend.Send(accessToken, urlFormat, data);
+        }
+        /// <summary>
+        /// 修改客服
+        /// </summary>
+        /// <param name="accessToken"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static WxJsonResult Custom_Edit(string accessToken, Custom_add data)
+        {
+            var urlFormat = "https://api.weixin.qq.com/customservice/kfaccount/update?access_token={0}";
+            return CommonJsonSend.Send(accessToken, urlFormat, data);
+        }
+        /// <summary>
+        /// 删除客服帐号
+        /// </summary>
+        /// <param name="accessToken"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static WxJsonResult Custom_Del(string accessToken, Custom_add data)
+        {
+            var urlFormat = "https://api.weixin.qq.com/customservice/kfaccount/del?access_token=0}";
+            return CommonJsonSend.Send(accessToken, urlFormat, data);
+        }
         /// <summary>
         /// 获取用户聊天记录
         /// </summary>

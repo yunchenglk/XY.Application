@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "编辑在线客服";
+    ViewBag.setMenu = "2-1-1";
+}
+@Scripts.Render("~/js/jqueryValidate")
+<script src="~/Content/js/jquery.img.js"></script>
+<div class="pageheader notab">
+    <h1 class="pagetitle">编辑在线客服</h1>
+</div>
+<div id="contentwrapper" class="contentwrapper">
+    <form class="stdform" method="post" action="/Message/Edit" id="validate">
+        <input type="hidden" name="ID" value="@Model.ID" id="ID" />
+        <input type="hidden" name="CreateTime" value="@Model.CreateTime" id="CreateTime" />
+        <input type="text" name="headImg" value="@Model.headImg" />
+        <p>
+            <label>工号</label>
+            <span class="field">
+                <input type="text" name="kf_account" value="@Model.kf_account" id="kf_account" class="mediuminput {required:true,remote:{url:'/Message/CheckExists?v='+Math.random(),data:{id:function(){return $('#ID').val()},kf_account:function(){return $('#kf_account').val()}}},messages:{required:'关键词不能为空',remote:'工号重复，请重新输入'}}" />
+            </span>
+            <small class="desc">*工号不能重复，一旦输入不能修改，由字母、数字组成</small>
+        </p>
+        <p>
+            <label>昵称</label>
+            <span class="field">
+                <input type="text" name="nickname" value="@Model.nickname" id="nickname" class="mediuminput {required:true,messages:{required:'关键词不能为空'}}" />
+            </span>
+        </p>
+        <p>
+            <label>密码</label>
+            <span class="field">
+                <input type="text" name="password" value="@Model.password" id="password" class="mediuminput {required:true,messages:{required:'关键词不能为空'}}" />
+            </span>
+        </p>
+        <p style="margin:30px 0;">
+            <label>头像</label>
+            <span class="field" id="headImg">
+                <input type="file" name="file" filepath="/UPLOAD/WXIMG/" filetype="image" for="headImg" />
+            </span>
+            <small class="desc" id="desc">推荐使用640*640大小的图片,支持bmp/png/jpeg/jpg/gif格式</small>
+        </p> 
+        <p class="stdformbutton">
+            <button class="submit radius2">提交</button>
+            <button class="stdbtn" onclick="javascript: history.go(-1);">返回</button>
+        </p>
+    </form>
+</div>

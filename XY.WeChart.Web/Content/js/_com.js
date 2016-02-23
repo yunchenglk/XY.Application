@@ -1,5 +1,4 @@
 ﻿function _attention(id) {
-
     if (confirm("确定设置关注时回复吗？\n设定后将取消其他关注时回复")) {
         $.getJSON("/_base/_subscribe", { id: id, v: Math.random() }, function (result) {
             alert(result);

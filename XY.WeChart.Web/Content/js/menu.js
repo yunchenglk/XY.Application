@@ -49,35 +49,35 @@ function makeCenter() {
 }
 //获取当前菜单
 function _getMenuOnline() {
-    $.getJSON("/wxMenu/getMenuOnline", { v: Math.random() }, function (result) {
-        if (result.errcode == 0) {
-            $("#mlist > tbody").find("input").val("");
-            $.each(result.menu.button, function (i, n) {
-                if (n.sub_button == undefined) {
-                    $("#mlist > tbody").find("td[list=col" + i + "]:eq(0)").find("input[name=title]").val(n.name);
-                    if (n.type == "view") {
-                        $("#mlist > tbody").find("td[list=col" + i + "]:eq(0)").find("input[name=url]").val(n.url);
-                    } else if (n.type = "click") {
-                        $("#mlist > tbody").find("td[list=col" + i + "]:eq(0)").find("input[name=key]").val(n.key);
-
-                    }
-                } else {
-                    $("#mlist > tbody").find("td[list=col" + i + "]:eq(0)").find("input[name=title]").val(n.name);
-                    $.each(n.sub_button, function (x, y) {
-                        $("#mlist > tbody").find("td[list=col" + i + "]:eq(" + (x + 1) + ")").find("input[name=title]").val(y.name);
-                        if (y.type == "view") {
-                            $("#mlist > tbody").find("td[list=col" + i + "]:eq(" + (x + 1) + ")").find("input[name=url]").val(y.url);
-                        } else if (y.type = "click") {
-                            $("#mlist > tbody").find("td[list=col" + i + "]:eq(" + (x + 1) + ")").find("input[name=key]").val(y.key);
+        $.getJSON("/wxMenu/getMenuOnline", { v: Math.random() }, function (result) {
+            if (result.errcode == 0) {
+                $("#mlist > tbody").find("input").val("");
+                $.each(result.menu.button, function (i, n) {
+                    if (n.sub_button == undefined) {
+                        $("#mlist > tbody").find("td[list=col" + i + "]:eq(0)").find("input[name=title]").val(n.name);
+                        if (n.type == "view") {
+                            $("#mlist > tbody").find("td[list=col" + i + "]:eq(0)").find("input[name=url]").val(n.url);
+                        } else if (n.type = "click") {
+                            $("#mlist > tbody").find("td[list=col" + i + "]:eq(0)").find("input[name=key]").val(n.key);
 
                         }
-                    })
-                }
-            })
-        }
-        else
-            alert("错误");
-    })
+                    } else {
+                        $("#mlist > tbody").find("td[list=col" + i + "]:eq(0)").find("input[name=title]").val(n.name);
+                        $.each(n.sub_button, function (x, y) {
+                            $("#mlist > tbody").find("td[list=col" + i + "]:eq(" + (x + 1) + ")").find("input[name=title]").val(y.name);
+                            if (y.type == "view") {
+                                $("#mlist > tbody").find("td[list=col" + i + "]:eq(" + (x + 1) + ")").find("input[name=url]").val(y.url);
+                            } else if (y.type = "click") {
+                                $("#mlist > tbody").find("td[list=col" + i + "]:eq(" + (x + 1) + ")").find("input[name=key]").val(y.key);
+
+                            }
+                        })
+                    }
+                })
+            }
+            else
+                alert("错误");
+        })
 }
 //生成自定义菜单
 function _makeMenuOnline() {

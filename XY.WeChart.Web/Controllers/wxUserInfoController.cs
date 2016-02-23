@@ -16,24 +16,24 @@ namespace XY.WeChart.Web.Controllers
 
         public ActionResult Index()
         {
-            var markersList = new List<BaiduMarkers>();
-            markersList.Add(new BaiduMarkers()
-            {
-                Longitude = 31.285774,
-                Latitude = 120.597610,
-                Color = "red",
-                Label = "O",
-                Size = BaiduMarkerSize.Default,
-            });
-            markersList.Add(new BaiduMarkers()
-            {
-                Longitude = 31.289774,
-                Latitude = 120.597910,
-                Color = "blue",
-                Label = "T",
-                Size = BaiduMarkerSize.Default,
-            });
-            var url = BaiduMapHelper.GetBaiduStaticMap(31.285774, 120.597610, 2, 16, markersList);
+            //var markersList = new List<BaiduMarkers>();
+            //markersList.Add(new BaiduMarkers()
+            //{
+            //    Longitude = 31.285774,
+            //    Latitude = 120.597610,
+            //    Color = "red",
+            //    Label = "O",
+            //    Size = BaiduMarkerSize.Default,
+            //});
+            //markersList.Add(new BaiduMarkers()
+            //{
+            //    Longitude = 31.289774,
+            //    Latitude = 120.597910,
+            //    Color = "blue",
+            //    Label = "T",
+            //    Size = BaiduMarkerSize.Default,
+            //});
+            //var url = BaiduMapHelper.GetBaiduStaticMap(31.285774, 120.597610, 2, 16, markersList);
 
 
 
