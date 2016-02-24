@@ -786,6 +786,7 @@
     <Content Include="Content\edit\ueditor\net\controller.ashx" />
     <Content Include="Content\edit\ueditor\net\README.md" />
     <Content Include="Content\edit\ueditor\net\Web.config" />
+    <None Include="Properties\PublishProfiles\weixin.0359i.com.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

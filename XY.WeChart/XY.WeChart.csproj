@@ -201,6 +201,7 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+    <None Include="Properties\PublishProfiles\wechart.com.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XY.Entity\XY.Entity.csproj">

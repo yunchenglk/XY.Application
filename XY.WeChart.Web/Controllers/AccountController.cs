@@ -54,17 +54,15 @@ namespace XY.WeChart.Web.Controllers
                     USER m = UserService.instance().Single(UID);
                     UserDateTicket.Uname = m.Name;
                     UserDateTicket.Company = CompanyService.instance().Single(m.CompanyID);
-                    UserDateTicket.wx_user = wx_userweixinService.instance().SingleByCompanyID(m.CompanyID);// WX_ConfigService.instance().SingleByCompanyID(m.CompanyID);
-                    if (UserDateTicket.wx_user == null)
-                    {
-                        ViewBag.Msg = "账号密码错误";
-                        return View();
-                    }
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
                         json["uid"].ToString(), DateTime.Now, DateTime.Now.Add(FormsAuthentication.Timeout), true,
                         "");
                     HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
-
+                    var wxuser = wx_userweixinService.instance().SingleByCompanyID(m.CompanyID);// WX_ConfigService.instance().SingleByCompanyID(m.CompanyID);
+                    if (wxuser != null)
+                    {
+                        UserDateTicket.wx_user = wxuser;
+                    }
                     Response.Cookies.Add(cookie);
                     Response.Redirect(url);
                 }

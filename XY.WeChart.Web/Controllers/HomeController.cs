@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace XY.WeChart.Web.Controllers
 {
+    [Filters.AuthorizeFilter]
     public class HomeController : Controller
     {
         public ActionResult JSCallBack()
