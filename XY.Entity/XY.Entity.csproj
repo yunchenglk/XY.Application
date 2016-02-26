@@ -84,6 +84,17 @@
     <Compile Include="Weixin\Card\CardManageResultJson.cs" />
     <Compile Include="Weixin\Card\CardUpdateData.cs" />
     <Compile Include="Weixin\Card\CardUpdateInfo.cs" />
+    <Compile Include="Weixin\ComponentJson\AuthorizationInfo.cs" />
+    <Compile Include="Weixin\ComponentJson\AuthorizerInfo.cs" />
+    <Compile Include="Weixin\ComponentJson\AuthorizerOptionResult.cs" />
+    <Compile Include="Weixin\ComponentJson\BusinessInfo.cs" />
+    <Compile Include="Weixin\ComponentJson\ComponentAccessTokenResult.cs" />
+    <Compile Include="Weixin\ComponentJson\GetAuthorizerInfoResult.cs" />
+    <Compile Include="Weixin\ComponentJson\PreAuthCodeResult.cs" />
+    <Compile Include="Weixin\ComponentJson\QRConnectAccessTokenResult.cs" />
+    <Compile Include="Weixin\ComponentJson\QRConnectUserInfo.cs" />
+    <Compile Include="Weixin\ComponentJson\QueryAuthResult.cs" />
+    <Compile Include="Weixin\ComponentJson\RefreshAuthorizerTokenResult.cs" />
     <Compile Include="Weixin\CustomService\CustomInfoJson.cs" />
     <Compile Include="Weixin\CustomService\CustomOnlineJson.cs" />
     <Compile Include="Weixin\CustomService\GetRecordResult.cs" />

@@ -15,6 +15,10 @@ namespace XY.WeChart.Web.Controllers
         }
         public ActionResult Index()
         {
+
+
+
+
             return View();
         }
         public ActionResult Edit()
@@ -25,5 +29,9 @@ namespace XY.WeChart.Web.Controllers
         {
             return View();
         }
+        public void wxCall() {
+            string xcx;
+        }
+
     }
 }

@@ -42,6 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cache\CacheStrategyFactory.cs" />
+    <Compile Include="Cache\CacheStrategy\IBaseCacheStrategy.cs" />
+    <Compile Include="Cache\ContainerCacheStragegy\ContainerItemCollection.cs" />
+    <Compile Include="Cache\ContainerCacheStragegy\IContainerCacheStragegy.cs" />
+    <Compile Include="Cache\ContainerCacheStragegy\LocalContainerCacheStrategy.cs" />
     <Compile Include="CommonAPI\Analysis\CommonApi.ArticleAnalysis.cs" />
     <Compile Include="CommonAPI\Analysis\CommonApi.InterfaceAnalysis.cs" />
     <Compile Include="CommonAPI\Analysis\CommonApi.MessageAnalysis.cs" />
@@ -57,6 +62,12 @@
     <Compile Include="CommonAPI\CommonApi.Template.cs" />
     <Compile Include="CommonAPI\CommonJsonSend.cs" />
     <Compile Include="CommonAPI\CommonApi.Semantic.cs" />
+    <Compile Include="ComponentAPI\ComponentApi.cs" />
+    <Compile Include="ComponentAPI\ComponentApi.QRConnectAPI.cs" />
+    <Compile Include="Containers\BaseContainer.cs" />
+    <Compile Include="Containers\BaseContainerBag.cs" />
+    <Compile Include="Entities\BindableBase.cs" />
+    <Compile Include="Helpers\WeixinJsonConventer.cs" />
     <Compile Include="Entities\IMessageBase.cs" />
     <Compile Include="Entities\Request\Event\IRequestMessageEventBase.cs" />
     <Compile Include="Entities\Request\Event\IRequestMessageEventKey.cs" />
@@ -86,17 +97,29 @@
     <Compile Include="Helpers\EntityHelper.cs" />
     <Compile Include="Entities\Response\Video.cs" />
     <Compile Include="Entities\Response\Voice.cs" />
+    <Compile Include="Helpers\ExpandoJsonConverter.cs" />
+    <Compile Include="Helpers\IDictionaryExtensions.cs" />
+    <Compile Include="Helpers\JsonSetting.cs" />
     <Compile Include="HTTPGet.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\SerializerHelper.cs" />
     <Compile Include="HTTPPost.cs" />
+    <Compile Include="MessageQueue\SenparcMessageQueue.cs" />
+    <Compile Include="MessageQueue\SenparcMessageQueueItem.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestUtility.cs" />
+    <Compile Include="Tencent\Cryptography.cs" />
+    <Compile Include="Tencent\WXBizMsgCrypt.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XY.Entity\XY.Entity.csproj">
       <Project>{f2b2132d-f68c-4b45-9fb3-b3491b09a916}</Project>
       <Name>XY.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XY.Util\XY.Util.csproj">
+      <Project>{d8dfbc42-3db7-4d9c-bf24-c656bc33524a}</Project>
+      <Name>XY.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

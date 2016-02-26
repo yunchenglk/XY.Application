@@ -21,6 +21,7 @@ namespace XY.WeChart.Controllers
             Guid CompanyID = CommFun.RequestGuid("cid");
             if (CompanyID.Equals(Guid.Empty))
             {
+                Util.LogHelper.Error("参数非法");
                 return ("参数非法");
             }
             lock (obj)
@@ -59,5 +60,22 @@ namespace XY.WeChart.Controllers
                 }
             }
         }
+        public void wxCall()
+        {
+            HttpRequestBase Request = HttpContext.Request;
+            string sToken = "0359i";
+            string sAppID = "wx3822e482594a911e";
+            string sEncodingAESKey = "yF94w3TeWPAqCQNUaqByFD39KrLHc2exOLh6RZGXNhU";
+            Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(sToken, sEncodingAESKey, sAppID);
+            string sReqMsgSig = Request["msg_signature"];
+            string sReqTimeStamp = Request["timestamp"];
+            string sReqNonce = Request["nonce"];
+            string sReqData = CommFun.ReadRequest(HttpContext.Request);
+            string sMsg = "";  //解析之后的明文
+            int ret = 0;
+            ret = wxcpt.DecryptMsg(sReqMsgSig, sReqTimeStamp, sReqNonce, sReqData, ref sMsg);
+            Util.LogHelper.Info(sMsg);
+        }
+
     }
 }
