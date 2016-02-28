@@ -2929,6 +2929,103 @@ namespace XY.Entity
             }
 
 
+    [Table("wx_openInfo")]
+	[Serializable] 
+    public partial class wx_openInfo :IEntity
+    {
+        
+		private  Guid _ID;
+
+        [Column("ID", DbType.Guid,true,false)]
+        public Guid  ID 
+		{ 
+		   get{ return _ID;  } 
+		   set{_ID = value;}
+		 }
+        
+		private  String _open_sAppID;
+
+        [Column("open_sAppID", DbType.String,false,false)]
+        public String  open_sAppID 
+		{ 
+		   get{  return _open_sAppID == null ?string.Empty:_open_sAppID;  } 
+		   set{_open_sAppID = value;}
+		 }
+        
+		private  String _open_sAppSecret;
+
+        [Column("open_sAppSecret", DbType.String,false,false)]
+        public String  open_sAppSecret 
+		{ 
+		   get{  return _open_sAppSecret == null ?string.Empty:_open_sAppSecret;  } 
+		   set{_open_sAppSecret = value;}
+		 }
+        
+		private  String _open_sToken;
+
+        [Column("open_sToken", DbType.String,false,false)]
+        public String  open_sToken 
+		{ 
+		   get{  return _open_sToken == null ?string.Empty:_open_sToken;  } 
+		   set{_open_sToken = value;}
+		 }
+        
+		private  String _open_sEncodingAESKey;
+
+        [Column("open_sEncodingAESKey", DbType.String,false,false)]
+        public String  open_sEncodingAESKey 
+		{ 
+		   get{  return _open_sEncodingAESKey == null ?string.Empty:_open_sEncodingAESKey;  } 
+		   set{_open_sEncodingAESKey = value;}
+		 }
+        
+		private  String _open_ticket;
+
+        [Column("open_ticket", DbType.String,false,false)]
+        public String  open_ticket 
+		{ 
+		   get{  return _open_ticket == null ?string.Empty:_open_ticket;  } 
+		   set{_open_ticket = value;}
+		 }
+        
+		private  String _open_access_token;
+
+        [Column("open_access_token", DbType.String,false,false)]
+        public String  open_access_token 
+		{ 
+		   get{  return _open_access_token == null ?string.Empty:_open_access_token;  } 
+		   set{_open_access_token = value;}
+		 }
+        
+		private  String _open_pre_auth_code;
+
+        [Column("open_pre_auth_code", DbType.String,false,false)]
+        public String  open_pre_auth_code 
+		{ 
+		   get{  return _open_pre_auth_code == null ?string.Empty:_open_pre_auth_code;  } 
+		   set{_open_pre_auth_code = value;}
+		 }
+        
+		private  Boolean _DR;
+
+        [Column("DR", DbType.Boolean,false,false)]
+        public Boolean  DR 
+		{ 
+		   get{ return _DR;  } 
+		   set{_DR = value;}
+		 }
+        
+		private  DateTime _CreateTime;
+
+        [Column("CreateTime", DbType.DateTime,false,false)]
+        public DateTime  CreateTime 
+		{ 
+		   get{ return _CreateTime;  } 
+		   set{_CreateTime = value;}
+		 }
+            }
+
+
     [Table("wx_requestRule")]
 	[Serializable] 
     public partial class wx_requestRule :IEntity
@@ -3727,6 +3824,15 @@ namespace XY.Entity
 		   set{_Access_Token = value;}
 		 }
         
+		private  String _refresh_token;
+
+        [Column("refresh_token", DbType.String,false,false)]
+        public String  refresh_token 
+		{ 
+		   get{  return _refresh_token == null ?string.Empty:_refresh_token;  } 
+		   set{_refresh_token = value;}
+		 }
+        
 		private  Int32 _expires_in;
 
         [Column("expires_in", DbType.Int32,false,false)]
@@ -3844,6 +3950,24 @@ namespace XY.Entity
 		   set{_wxType = value;}
 		 }
         
+		private  String _qrcode_url;
+
+        [Column("qrcode_url", DbType.String,false,false)]
+        public String  qrcode_url 
+		{ 
+		   get{  return _qrcode_url == null ?string.Empty:_qrcode_url;  } 
+		   set{_qrcode_url = value;}
+		 }
+        
+		private  Int32 _verify_type_info;
+
+        [Column("verify_type_info", DbType.Int32,false,false)]
+        public Int32  verify_type_info 
+		{ 
+		   get{ return _verify_type_info;  } 
+		   set{_verify_type_info = value;}
+		 }
+        
 		private  String _remark;
 
         [Column("remark", DbType.String,false,false)]
@@ -3932,6 +4056,51 @@ namespace XY.Entity
 		{ 
 		   get{ return _ModifyTime;  } 
 		   set{_ModifyTime = value;}
+		 }
+        
+		private  Boolean _open_store;
+
+        [Column("open_store", DbType.Boolean,false,false)]
+        public Boolean  open_store 
+		{ 
+		   get{ return _open_store;  } 
+		   set{_open_store = value;}
+		 }
+        
+		private  Boolean _open_scan;
+
+        [Column("open_scan", DbType.Boolean,false,false)]
+        public Boolean  open_scan 
+		{ 
+		   get{ return _open_scan;  } 
+		   set{_open_scan = value;}
+		 }
+        
+		private  Boolean _open_pay;
+
+        [Column("open_pay", DbType.Boolean,false,false)]
+        public Boolean  open_pay 
+		{ 
+		   get{ return _open_pay;  } 
+		   set{_open_pay = value;}
+		 }
+        
+		private  Boolean _open_card;
+
+        [Column("open_card", DbType.Boolean,false,false)]
+        public Boolean  open_card 
+		{ 
+		   get{ return _open_card;  } 
+		   set{_open_card = value;}
+		 }
+        
+		private  Boolean _open_shake;
+
+        [Column("open_shake", DbType.Boolean,false,false)]
+        public Boolean  open_shake 
+		{ 
+		   get{ return _open_shake;  } 
+		   set{_open_shake = value;}
 		 }
             }
 

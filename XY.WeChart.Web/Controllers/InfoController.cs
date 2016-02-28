@@ -12,26 +12,32 @@ namespace XY.WeChart.Web.Controllers
     public class InfoController : Controller
     {
         // GET: Info
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
-            string componentAppId = "wx3822e482594a911e";
-            string componentAppSecret = "e4c38475d58cc2c95c74d22e746ddeae";
-            string componentVerifyTicket = "ticket@@@BZZpl-gmnjXEt2C-UbWBzE5i4goCbcbuiD9mHHjPfsHzgOT-cvss2PXw0SxBa29Yt114S1P7XzNVuRkCH5fmbg";
-
-            var test = ComponentApi.GetComponentAccessToken(componentAppId, componentAppSecret, componentVerifyTicket);
-            if (test.errcode == Entity.Weixin.ReturnCode.请求成功)
+            if (!string.IsNullOrEmpty(id))
             {
-                string token = test.component_access_token;
-                var xx = ComponentApi.GetPreAuthCode(componentAppId, token);
-                if (xx.errcode == Entity.Weixin.ReturnCode.请求成功)
+                var infoRes = ComponentApi.GetAuthorizerInfo(UserDateTicket.wx_open.open_access_token,
+                       UserDateTicket.wx_open.open_sAppID,
+                       UserDateTicket.wx_user.AppId);
+                if (infoRes.errcode == Entity.Weixin.ReturnCode.请求成功)
                 {
-                    string pre = xx.pre_auth_code;
+                    UserDateTicket.wx_user.wxName = infoRes.authorizer_info.nick_name;
+                    UserDateTicket.wx_user.headerpic = infoRes.authorizer_info.head_img;
+                    UserDateTicket.wx_user.wxType = (int)infoRes.authorizer_info.service_type_info.id;
+                    UserDateTicket.wx_user.verify_type_info = (int)infoRes.authorizer_info.verify_type_info.id;
+                    UserDateTicket.wx_user.wxId = infoRes.authorizer_info.user_name;
+                    UserDateTicket.wx_user.weixinCode = infoRes.authorizer_info.alias;
+                    UserDateTicket.wx_user.qrcode_url = infoRes.authorizer_info.qrcode_url;
+                    UserDateTicket.wx_user.open_card = Convert.ToBoolean(infoRes.authorizer_info.business_info.open_card);
+                    UserDateTicket.wx_user.open_pay= Convert.ToBoolean(infoRes.authorizer_info.business_info.open_pay);
+                    UserDateTicket.wx_user.open_scan = Convert.ToBoolean(infoRes.authorizer_info.business_info.open_scan);
+                    UserDateTicket.wx_user.open_shake = Convert.ToBoolean(infoRes.authorizer_info.business_info.open_shake);
+                    UserDateTicket.wx_user.open_store = Convert.ToBoolean(infoRes.authorizer_info.business_info.open_store);
+
+                    wx_userweixinService.instance().Update(UserDateTicket.wx_user);
                 }
             }
-
-
-
-
+            ViewBag.CompanyID = UserDateTicket.Company.ID;
             wx_userweixin m = new wx_userweixin();
             if (UserDateTicket.wx_user != null)
                 m = wx_userweixinService.instance().SingleByCompanyID(UserDateTicket.Company.ID);

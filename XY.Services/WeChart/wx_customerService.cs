@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using XY.Entity;
 
-namespace XY.Services.WeChart
+namespace XY.Services
 {
     public class wx_customerService : BaseService<wx_customer>
     {

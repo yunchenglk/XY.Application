@@ -29,6 +29,10 @@ namespace XY.WeChart.Web
         {
             get;
             set;
-        } 
+        }
+        public static wx_openInfo wx_open
+        {
+            get; set;
+        }
     }
 }

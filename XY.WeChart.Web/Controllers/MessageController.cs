@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using XY.Entity;
-using XY.Services.WeChart;
+using XY.Services;
 using XY.Services.Weixin;
 
 namespace XY.WeChart.Web.Controllers
