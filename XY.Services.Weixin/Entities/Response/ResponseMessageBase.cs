@@ -32,21 +32,21 @@ namespace XY.Services.Weixin.Entities
                     case ResponseMsgType.Text:
                         responseMessage = new ResponseMessageText();
                         break;
-                    //case ResponseMsgType.News:
-                    //    responseMessage = new ResponseMessageNews();
-                    //    break;
-                    //case ResponseMsgType.Music:
-                    //    responseMessage = new ResponseMessageMusic();
-                    //    break;
-                    //case ResponseMsgType.Image:
-                    //    responseMessage = new ResponseMessageImage();
-                    //    break;
-                    //case ResponseMsgType.Voice:
-                    //    responseMessage = new ResponseMessageVoice();
-                    //    break;
-                    //case ResponseMsgType.Video:
-                    //    responseMessage = new ResponseMessageVideo();
-                    //    break;
+                    case ResponseMsgType.News:
+                        responseMessage = new ResponseMessageNews();
+                        break;
+                    case ResponseMsgType.Music:
+                        responseMessage = new ResponseMessageMusic();
+                        break;
+                    case ResponseMsgType.Image:
+                        responseMessage = new ResponseMessageImage();
+                        break;
+                    case ResponseMsgType.Voice:
+                        responseMessage = new ResponseMessageVoice();
+                        break;
+                    case ResponseMsgType.Video:
+                        responseMessage = new ResponseMessageVideo();
+                        break;
                     case ResponseMsgType.Transfer_Customer_Service:
                         responseMessage = new ResponseMessageTransfer_Customer_Service();
                         break;
@@ -108,24 +108,24 @@ namespace XY.Services.Weixin.Entities
                     case ResponseMsgType.Text:
                         responseMessage = new ResponseMessageText();
                         break;
-                        //case ResponseMsgType.Image:
-                        //    responseMessage = new ResponseMessageImage();
-                        //    break;
-                        //case ResponseMsgType.Voice:
-                        //    responseMessage = new ResponseMessageVoice();
-                        //    break;
-                        //case ResponseMsgType.Video:
-                        //    responseMessage = new ResponseMessageVideo();
-                        //    break;
-                        //case ResponseMsgType.Music:
-                        //    responseMessage = new ResponseMessageMusic();
-                        //    break;
-                        //case ResponseMsgType.News:
-                        //    responseMessage = new ResponseMessageNews();
-                        //    break;
-                        //case ResponseMsgType.Transfer_Customer_Service:
-                        //    responseMessage = new ResponseMessageTransfer_Customer_Service();
-                        //    break;
+                    case ResponseMsgType.Image:
+                        responseMessage = new ResponseMessageImage();
+                        break;
+                    case ResponseMsgType.Voice:
+                        responseMessage = new ResponseMessageVoice();
+                        break;
+                    case ResponseMsgType.Video:
+                        responseMessage = new ResponseMessageVideo();
+                        break;
+                    case ResponseMsgType.Music:
+                        responseMessage = new ResponseMessageMusic();
+                        break;
+                    case ResponseMsgType.News:
+                        responseMessage = new ResponseMessageNews();
+                        break;
+                    case ResponseMsgType.Transfer_Customer_Service:
+                        responseMessage = new ResponseMessageTransfer_Customer_Service();
+                        break;
                 }
 
                 responseMessage.FillEntityWithXml(doc);

@@ -3725,15 +3725,6 @@ namespace XY.Entity
 		   set{_wxId = value;}
 		 }
         
-		private  String _yixinId;
-
-        [Column("yixinId", DbType.String,false,false)]
-        public String  yixinId 
-		{ 
-		   get{  return _yixinId == null ?string.Empty:_yixinId;  } 
-		   set{_yixinId = value;}
-		 }
-        
 		private  String _weixinCode;
 
         [Column("weixinCode", DbType.String,false,false)]
@@ -3779,24 +3770,6 @@ namespace XY.Entity
 		   set{_wxToken = value;}
 		 }
         
-		private  String _wxProvince;
-
-        [Column("wxProvince", DbType.String,false,false)]
-        public String  wxProvince 
-		{ 
-		   get{  return _wxProvince == null ?string.Empty:_wxProvince;  } 
-		   set{_wxProvince = value;}
-		 }
-        
-		private  String _wxCity;
-
-        [Column("wxCity", DbType.String,false,false)]
-        public String  wxCity 
-		{ 
-		   get{  return _wxCity == null ?string.Empty:_wxCity;  } 
-		   set{_wxCity = value;}
-		 }
-        
 		private  String _AppId;
 
         [Column("AppId", DbType.String,false,false)]
@@ -3840,105 +3813,6 @@ namespace XY.Entity
 		{ 
 		   get{ return _expires_in;  } 
 		   set{_expires_in = value;}
-		 }
-        
-		private  String _openIdStr;
-
-        [Column("openIdStr", DbType.String,false,false)]
-        public String  openIdStr 
-		{ 
-		   get{  return _openIdStr == null ?string.Empty:_openIdStr;  } 
-		   set{_openIdStr = value;}
-		 }
-        
-		private  Int32 _wenziMaxNum;
-
-        [Column("wenziMaxNum", DbType.Int32,false,false)]
-        public Int32  wenziMaxNum 
-		{ 
-		   get{ return _wenziMaxNum;  } 
-		   set{_wenziMaxNum = value;}
-		 }
-        
-		private  Int32 _tuwenMaxNum;
-
-        [Column("tuwenMaxNum", DbType.Int32,false,false)]
-        public Int32  tuwenMaxNum 
-		{ 
-		   get{ return _tuwenMaxNum;  } 
-		   set{_tuwenMaxNum = value;}
-		 }
-        
-		private  Int32 _yuyinMaxNum;
-
-        [Column("yuyinMaxNum", DbType.Int32,false,false)]
-        public Int32  yuyinMaxNum 
-		{ 
-		   get{ return _yuyinMaxNum;  } 
-		   set{_yuyinMaxNum = value;}
-		 }
-        
-		private  Int32 _wenziDefineNum;
-
-        [Column("wenziDefineNum", DbType.Int32,false,false)]
-        public Int32  wenziDefineNum 
-		{ 
-		   get{ return _wenziDefineNum;  } 
-		   set{_wenziDefineNum = value;}
-		 }
-        
-		private  Int32 _tuwenDefineNum;
-
-        [Column("tuwenDefineNum", DbType.Int32,false,false)]
-        public Int32  tuwenDefineNum 
-		{ 
-		   get{ return _tuwenDefineNum;  } 
-		   set{_tuwenDefineNum = value;}
-		 }
-        
-		private  Int32 _yuyinDefineNum;
-
-        [Column("yuyinDefineNum", DbType.Int32,false,false)]
-        public Int32  yuyinDefineNum 
-		{ 
-		   get{ return _yuyinDefineNum;  } 
-		   set{_yuyinDefineNum = value;}
-		 }
-        
-		private  Int32 _requestTTNum;
-
-        [Column("requestTTNum", DbType.Int32,false,false)]
-        public Int32  requestTTNum 
-		{ 
-		   get{ return _requestTTNum;  } 
-		   set{_requestTTNum = value;}
-		 }
-        
-		private  Int32 _requestUsedNum;
-
-        [Column("requestUsedNum", DbType.Int32,false,false)]
-        public Int32  requestUsedNum 
-		{ 
-		   get{ return _requestUsedNum;  } 
-		   set{_requestUsedNum = value;}
-		 }
-        
-		private  Int32 _smsTTNum;
-
-        [Column("smsTTNum", DbType.Int32,false,false)]
-        public Int32  smsTTNum 
-		{ 
-		   get{ return _smsTTNum;  } 
-		   set{_smsTTNum = value;}
-		 }
-        
-		private  Int32 _smsUsedNum;
-
-        [Column("smsUsedNum", DbType.Int32,false,false)]
-        public Int32  smsUsedNum 
-		{ 
-		   get{ return _smsUsedNum;  } 
-		   set{_smsUsedNum = value;}
 		 }
         
 		private  Int32 _wxType;

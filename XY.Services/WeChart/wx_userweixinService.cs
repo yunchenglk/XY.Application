@@ -33,6 +33,7 @@ namespace XY.Services
         public int Update(wx_userweixin entity)
         {
             int result = 0;
+            entity.ModifyTime = DateTime.Now;
             _db.Execute(() =>
             {
                 result = _db.Update<wx_userweixin>(entity, m => m.ID == entity.ID);
@@ -63,6 +64,24 @@ namespace XY.Services
             _db.Execute(() =>
             {
                 result = _db.Single<wx_userweixin>(m => m.CompanyID == companyid);
+            });
+            return result;
+        }
+        public wx_userweixin SingleBywxID(string wxid)
+        {
+            wx_userweixin result = new wx_userweixin();
+            _db.Execute(() =>
+            {
+                result = _db.Single<wx_userweixin>(m => m.wxId == wxid);
+            });
+            return result;
+        }
+        public wx_userweixin SingleByAppId(string AppId)
+        {
+            wx_userweixin result = new wx_userweixin();
+            _db.Execute(() =>
+            {
+                result = _db.Single<wx_userweixin>(m => m.AppId == AppId);
             });
             return result;
         }

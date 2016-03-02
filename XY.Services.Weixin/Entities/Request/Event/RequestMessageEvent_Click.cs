@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+
 using XY.Entity.Weixin;
 
 namespace XY.Services.Weixin.Entities
 {
+    /// <summary>
+    /// 事件之取消订阅
+    /// </summary>
     public class RequestMessageEvent_Click : RequestMessageEventBase, IRequestMessageEventBase, IRequestMessageEventKey
     {
         /// <summary>
@@ -16,6 +16,7 @@ namespace XY.Services.Weixin.Entities
         {
             get { return Event.CLICK; }
         }
+
         /// <summary>
         /// 事件KEY值，与自定义菜单接口中KEY值对应
         /// </summary>

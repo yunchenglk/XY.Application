@@ -18,6 +18,7 @@ namespace XY.Entity.Weixin
         VIDEO, //视频
         LINK, //连接信息
         EVENT, //事件推送
+        SHORTVIDEO,//小视频
     }
 
 
@@ -121,6 +122,60 @@ namespace XY.Entity.Weixin
         /// </summary>
         USER_DEL_CARD,
 
+        /// <summary>
+        /// 多客服接入会话
+        /// </summary>
+        KF_CREATE_SESSION,
+
+        /// <summary>
+        /// 多客服关闭会话
+        /// </summary>
+        KF_CLOSE_SESSION,
+
+        /// <summary>
+        /// 多客服转接会话
+        /// </summary>
+        KF_SWITCH_SESSION,
+
+        /// <summary>
+        /// 审核结果事件推送
+        /// </summary>
+        POI_CHECK_NOTIFY,
+
+        /// <summary>
+        /// Wi-Fi连网成功
+        /// </summary>
+        WIFICONNECTED,
+
+        /// <summary>
+        /// 卡券核销
+        /// </summary>
+        USER_CONSUME_CARD,
+
+        /// <summary>
+        /// 进入会员卡
+        /// </summary>
+        USER_VIEW_CARD,
+
+        /// <summary>
+        /// 从卡券进入公众号会话
+        /// </summary>
+        USER_ENTER_SESSION_FROM_CARD,
+
+        /// <summary>
+        /// 微小店订单付款通知
+        /// </summary>
+        MERCHANT_ORDER,
+
+        /// <summary>
+        /// 接收会员信息事件通知
+        /// </summary>
+        SUBMIT_MEMBERCARD_USER_INFO,
+
+        /// <summary>
+        /// 摇一摇事件通知
+        /// </summary>
+        SHAKEAROUNDUSERSHAKE,
     }
 
 
@@ -129,14 +184,48 @@ namespace XY.Entity.Weixin
     /// </summary>
     public enum ResponseMsgType
     {
-        Text,
-        News,
-        Music,
-        Image,
-        Voice,
-        Video,
+        /// <summary>
+        /// 文本
+        /// </summary>
+        Text = 0,
+        /// <summary>
+        /// 单图文
+        /// </summary>
+        News = 1,
+        /// <summary>
+        /// 音乐
+        /// </summary>
+        Music = 2,
+        /// <summary>
+        /// 图片
+        /// </summary>
+        Image = 3,
+        /// <summary>
+        /// 语音
+        /// </summary>
+        Voice = 4,
+        /// <summary>
+        /// 视频
+        /// </summary>
+        Video = 5,
+        /// <summary>
+        /// 多客服
+        /// </summary>
         Transfer_Customer_Service,
-        //transfer_customer_service
+
+        //以下为延伸类型，微信官方并未提供具体的回复类型
+        /// <summary>
+        /// 多图文
+        /// </summary>
+        MultipleNews = 106,
+        /// <summary>
+        /// 位置
+        /// </summary>
+        LocationMessage = 107,
+        /// <summary>
+        /// 无回复
+        /// </summary>
+        NoResponse = 110,
     }
 
     /// <summary>
@@ -428,16 +517,6 @@ namespace XY.Entity.Weixin
         /// </summary>
         snsapi_login,
     }
-
-
-
-
-
-
-
-
-
-
     /// <summary>
     /// 企业接收消息类型
     /// </summary>
@@ -545,5 +624,23 @@ namespace XY.Entity.Weixin
         /// 英文
         /// </summary>
         en
+    }
+    /// <summary>
+    /// AppStore状态
+    /// </summary>
+    public enum AppStoreState
+    {
+        /// <summary>
+        /// 无状态
+        /// </summary>
+        None = 1,
+        /// <summary>
+        /// 已进入应用状态
+        /// </summary>
+        Enter = 2,
+        /// <summary>
+        /// 退出App状态（临时传输状态，退出后即为None）
+        /// </summary>
+        Exit = 4
     }
 }

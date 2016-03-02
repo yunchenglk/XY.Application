@@ -20,7 +20,6 @@ namespace XY.WeChart.Web.Controllers
             ButtonGroup bg = new ButtonGroup();
             IList<BaseButton> topList = new List<BaseButton>();
             IList<SingleButton> subList = new List<SingleButton>();
-
             for (int i = 0; i < menus.Count; i++)
             {
                 List<_poseMenu> list = menus[i].OrderBy(m => m.sort).ToList();
@@ -33,8 +32,6 @@ namespace XY.WeChart.Web.Controllers
                     if (string.IsNullOrEmpty(list[x].key) && string.IsNullOrEmpty(list[x].url))
                         list.RemoveAt(x);
                 }
-
-
                 if (!string.IsNullOrEmpty(list[0].title))
                 {
                     if (list.Count() == 1) //没有子菜单
@@ -82,7 +79,6 @@ namespace XY.WeChart.Web.Controllers
                             topList.Add(topButton);
                         }
                     }
-
                 }
             }
             bg.button.AddRange(topList);
@@ -90,9 +86,6 @@ namespace XY.WeChart.Web.Controllers
                 result = WeChartAPI.CreateMenu(GetToken(), bg);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
-
-
         public JsonResult getMenuOnline()
         {
             GetMenuResult result = WeChartAPI.GetMenu(GetToken());

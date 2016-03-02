@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XY.Entity.Weixin;
+using XY.Services.Weixin.Entities;
 
 namespace XY.Services.Weixin
 {

@@ -75,8 +75,7 @@
     <Compile Include="Weixin\Analysis\InterfaceAnalysisResultJson.cs" />
     <Compile Include="Weixin\Analysis\MessageAnalysisResultJson.cs" />
     <Compile Include="Weixin\Analysis\UserAnalysisResultJson.cs" />
-    <Compile Include="Weixin\Article.cs" />
-    <Compile Include="Weixin\BaiduMap\BaiduMapMarkers.cs" />
+    <Compile Include="Weixin\Map\BaiduMapMarkers.cs" />
     <Compile Include="Weixin\Card\CardCreateData.cs" />
     <Compile Include="Weixin\Card\CardCreateInfo.cs" />
     <Compile Include="Weixin\Card\CardCreateResultJson.cs" />
@@ -95,10 +94,14 @@
     <Compile Include="Weixin\ComponentJson\QRConnectUserInfo.cs" />
     <Compile Include="Weixin\ComponentJson\QueryAuthResult.cs" />
     <Compile Include="Weixin\ComponentJson\RefreshAuthorizerTokenResult.cs" />
+    <Compile Include="Weixin\CreateQrCodeResult.cs" />
     <Compile Include="Weixin\CustomService\CustomInfoJson.cs" />
     <Compile Include="Weixin\CustomService\CustomOnlineJson.cs" />
     <Compile Include="Weixin\CustomService\GetRecordResult.cs" />
     <Compile Include="Weixin\CustomService\RecordJson.cs" />
+    <Compile Include="Weixin\EncryptPostModel.cs" />
+    <Compile Include="Weixin\IEncryptPostModel.cs" />
+    <Compile Include="Weixin\Map\GoogleMapMarkers.cs" />
     <Compile Include="Weixin\QrCodeResult.cs" />
     <Compile Include="Weixin\Menu\SingleButton.cs" />
     <Compile Include="Weixin\Menu\SingleClickButton.cs" />

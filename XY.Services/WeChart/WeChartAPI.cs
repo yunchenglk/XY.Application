@@ -1,5 +1,6 @@
 ﻿using System;
 using XY.Entity;
+using XY.Entity.Weixin;
 using XY.Services.Weixin;
 
 namespace XY.Services
@@ -20,11 +21,11 @@ namespace XY.Services
             try
             {
                 wx_userweixin wx = wx_userweixinService.instance().SingleByCompanyID(CompanyID);
-                if (wx.AppId == null || wx.AppSecret == null || wx.AppId.Trim().Length <= 0 || wx.AppSecret.Trim().Length <= 0)
-                {
-                    error = "appId或者AppSecret未填写完全,请在[我的公众帐号]里补全信息！";
-                    return "";
-                }
+                //if (wx.AppId == null || wx.AppSecret == null || wx.AppId.Trim().Length <= 0 || wx.AppSecret.Trim().Length <= 0)
+                //{
+                //    error = "appId或者AppSecret未填写完全,请在[我的公众帐号]里补全信息！";
+                //    return "";
+                //}
                 TimeSpan chajun = DateTime.Now - wx.ModifyTime;
                 if (string.IsNullOrEmpty(wx.Access_Token) || chajun.TotalSeconds >= wx.expires_in)
                 {
@@ -52,14 +53,16 @@ namespace XY.Services
         public static string ReloadToken(Guid CompanyID)
         {
             wx_userweixin wx = wx_userweixinService.instance().SingleByCompanyID(CompanyID);
-            if (wx.AppId == null || wx.AppSecret == null || wx.AppId.Trim().Length <= 0 || wx.AppSecret.Trim().Length <= 0)
-            {
-                return "appId或者AppSecret未填写完全,请在[我的公众帐号]里补全信息！";
-            }
-            var result = CommonApi.GetToken(wx.AppId, wx.AppSecret);
+            //if (wx.AppId == null || wx.AppSecret == null || wx.AppId.Trim().Length <= 0 || wx.AppSecret.Trim().Length <= 0)
+            //{
+            //    return "appId或者AppSecret未填写完全,请在[我的公众帐号]里补全信息！";
+            //}
+            var wx_open = wx_openInfoService.instance().Single(new Guid("477F0554-837C-4D10-9C12-3DFE44B8DD60"));
+            RefreshAuthorizerTokenResult result = ComponentApi.ApiAuthorizerToken(wx_open.open_access_token, wx_open.open_sAppID, wx.AppId,wx.refresh_token);
             if (result.errcode == Entity.Weixin.ReturnCode.请求成功)
             {
-                wx.Access_Token = result.access_token;
+                wx.Access_Token = result.authorizer_access_token;
+                wx.refresh_token = result.authorizer_refresh_token;
                 wx.expires_in = result.expires_in;
                 wx.ModifyTime = DateTime.Now;
                 if (wx_userweixinService.instance().Update(wx) == 1)
