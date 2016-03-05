@@ -3466,6 +3466,15 @@ namespace XY.Entity
 		   set{_wID = value;}
 		 }
         
+		private  String _wxId;
+
+        [Column("wxId", DbType.String,false,false)]
+        public String  wxId 
+		{ 
+		   get{  return _wxId == null ?string.Empty:_wxId;  } 
+		   set{_wxId = value;}
+		 }
+        
 		private  Guid _cID;
 
         [Column("cID", DbType.Guid,false,false)]

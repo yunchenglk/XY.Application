@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using XY.Services;
+using XY.Services.Weixin;
 
 namespace test
 {
@@ -12,33 +14,21 @@ namespace test
         static void Main(string[] args)
         {
             //signature=cb40d15f2a5cddb6b7951b543d485922198b9b0b&timestamp=1456443100&nonce=1898623024&encrypt_type=aes&msg_signature=c923de30d01ddd929c927e74a13e4b66b77f1b48
-            string sToken = "0359i";
-            string sAppID = "wx3822e482594a911e";
-            string sEncodingAESKey = "yF94w3TeWPAqCQNUaqByFD39KrLHc2exOLh6RZGXNhU";
-
-            Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(sToken, sEncodingAESKey, sAppID);
+            var wx_open = wx_openInfoService.instance().Single(new Guid("477F0554-837C-4D10-9C12-3DFE44B8DD60"));
+            var Company = CompanyService.instance().Single(new Guid("02A07495-5484-4162-A70D-B7341096A1D4"));
 
 
-            string sReqMsgSig = "c923de30d01ddd929c927e74a13e4b66b77f1b48";
-            string sReqTimeStamp = "1456443100";
-            string sReqNonce = "1898623024";
-            string sReqData = @"
-                            <xml>
-    <AppId><![CDATA[wx3822e482594a911e]]></AppId>
-    <Encrypt><![CDATA[SoHtAQe0M1sygtrVPZGgqJw12GL3v5hMVeUUS9tVf3vmq86tZf2gVag8mnjrJ8VYVBXp9pcmCr+RLCe2f/1u9rXZdA0ZnPFcHXBzbAiNtK//C4u9F3gKNMiWJg5ikKLWexMFFtKITM5oe1bU5HQ/p6oiHlafIBwHeLihFCg+Ne/UWW1A7eKyfN96ZvIq8XedF/zMQ84inD7+BntdimijxL9tilLevTT+9JA7JiWfJ+rYTLFIlc9Ptw5fKdnhWtUpL2hHmFjTLuvDg729s8bGvoGvWkm4EgNbBMKiWjrxM91NMPpCRnVYrU+pHS63LjxY7ypTOvOusbmRsNA5vcPiM/Y8uVnziVXDieXwfAAN0+ZvDLYoCF0vrFa2y+0htEEVAlN9bysu8ucJl4IfJNRN94IzVKqNlXpv6Cly/ylbTr9zlIsIbc5rJR0/riTDmToaOjBkFJh0RnvFyj8L35OjZw==]]></Encrypt>
-</xml>
+            var result = ComponentApi.GetComponentAccessToken(wx_open.open_sAppID, wx_open.open_sAppSecret, wx_open.open_ticket);
+            //mUqPNgfa8cNXYDWoKAoJL2xwcaS5EY_0Go0HS_3c4JOJ045Cml3zFjRFftbG-z1rMJY6DbpOEwGoXwvuIvHjmESbTb1HCVHsUs7f2IW95WoHOBjACAMTG
 
+            var coderesult = ComponentApi.GetPreAuthCode(wx_open.open_sAppID, result.component_access_token);
 
-                                ";
-            string sMsg = "";  //解析之后的明文
-            int ret = 0;
-            ret = wxcpt.DecryptMsg(sReqMsgSig, sReqTimeStamp, sReqNonce, sReqData, ref sMsg);
-
-
-
-           
 
             Console.WriteLine();
         }
+
+
+
     }
+
 }

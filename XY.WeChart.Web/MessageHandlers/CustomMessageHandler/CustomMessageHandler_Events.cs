@@ -216,7 +216,24 @@ namespace XY.WeChart.Web.MessageHandlers
         {
             //这里是微信客户端（通过微信服务器）自动发送过来的位置信息
             var responseMessage = CreateResponseMessage<ResponseMessageText>();
-            responseMessage.Content = "这里写什么都无所谓，比如：上帝爱你！";
+            var entity = wx_userinfoService.instance().GetByopenidAndwxID(responseMessage.ToUserName, responseMessage.FromUserName);
+            if (entity != null)
+            {
+                if (entity.location != requestMessage.Latitude.ToString() && entity.Longitude != requestMessage.Longitude.ToString())
+                {
+                    entity.Latitude = requestMessage.Latitude.ToString();
+                    entity.Longitude = requestMessage.Longitude.ToString();
+                    entity.Precision = requestMessage.Precision.ToString();
+                    if (wx_userinfoService.instance().Update(entity) == 1)
+                    {
+                        Util.LogHelper.Info(string.Format("同步{0}位置成功", responseMessage.ToUserName));
+                    }
+                    else {
+                        Util.LogHelper.Info(string.Format("同步{0}位置成功", responseMessage.ToUserName));
+                    }
+                }
+            }
+            responseMessage.Content = null;
             return responseMessage;//这里也可以返回null（需要注意写日志时候null的问题）
         }
 
@@ -241,11 +258,7 @@ namespace XY.WeChart.Web.MessageHandlers
                     responseMessage.Content = "您已通过二维码验证，浏览器即将开始下载。";
                 }
             }
-
             responseMessage.Content = responseMessage.Content ?? "通过扫描二维码进入。";
-
-
-
             return responseMessage;
         }
 

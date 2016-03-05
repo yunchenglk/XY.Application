@@ -46,6 +46,7 @@
     <Compile Include="CommonAPI\Analysis\CommonApi.ArticleAnalysis.cs" />
     <Compile Include="CommonAPI\Analysis\CommonApi.InterfaceAnalysis.cs" />
     <Compile Include="CommonAPI\Analysis\CommonApi.MessageAnalysis.cs" />
+    <Compile Include="CommonAPI\CommonApi.AutoReplyApi.cs" />
     <Compile Include="CommonAPI\CommonApi.CardManage.cs" />
     <Compile Include="CommonAPI\CommonApi.cs" />
     <Compile Include="CommonAPI\Analysis\CommonApi.UserAnalysis.cs" />

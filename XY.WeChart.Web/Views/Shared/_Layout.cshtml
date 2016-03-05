@@ -55,13 +55,13 @@
             </div><!--left-->
             <div class="right">
                 <div class="userinfo">
-                    <img src="~/Content/images/thumbs/avatar.png" alt="" />
+                    <img src="@UserDateTicket.wx_user.headerpic" style="width:23px;" alt="" />
                     <span>管理员</span>
                 </div><!--userinfo-->
 
                 <div class="userinfodrop">
                     <div class="avatar">
-                        <a href=""><img src="~/Content/images/thumbs/avatarbig.png" alt="" /></a>
+                        <a href=""><img src="@UserDateTicket.wx_user.headerpic" style="width:95px;" alt="" /></a>
                         <div class="changetheme">
                             切换主题: <br />
                             <a class="default"></a>
@@ -71,11 +71,11 @@
                         </div>
                     </div><!--avatar-->
                     <div class="userdata">
-                        <h4>Juan</h4>
-                        <span class="email">youremail@yourdomain.com</span>
+                        <h4>@UserDateTicket.wx_user.wxName</h4>
+                        <span class="email">@UserDateTicket.wx_user.weixinCode</span>
                         <ul>
                             <li><a href="/Info/Index">编辑资料</a></li>
-                            <li><a href="#">账号设置</a></li>
+                            @*<li><a href="#">账号设置</a></li>*@
                             <li><a href="#">帮助</a></li>
                             <li><a href="/Account/SignOut">退出</a></li>
                         </ul>
@@ -135,10 +135,10 @@
                     <ul id="message">
                         <li><a href="/Message/Index">客服管理</a></li>
                         @*<li><a href="/Message/Edit">图文回复</a></li>
-                        <li><a href="/wxRule/yuYin">语音回复</a></li>
-                        <li><a href="/wxRule/shiPin">视频回复</a></li>
-                        <li><a href="#">请求回复记录</a></li>
-                        <li><a href="#">LBS位置回复</a></li>*@
+                            <li><a href="/wxRule/yuYin">语音回复</a></li>
+                            <li><a href="/wxRule/shiPin">视频回复</a></li>
+                            <li><a href="#">请求回复记录</a></li>
+                            <li><a href="#">LBS位置回复</a></li>*@
                     </ul>
                 </li>
                 </li>

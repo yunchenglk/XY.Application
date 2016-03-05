@@ -29,14 +29,15 @@ namespace XY.Services
                 TimeSpan chajun = DateTime.Now - wx.ModifyTime;
                 if (string.IsNullOrEmpty(wx.Access_Token) || chajun.TotalSeconds >= wx.expires_in)
                 {
-                    var result = CommonApi.GetToken(wx.AppId, wx.AppSecret);
-                    wx.Access_Token = result.access_token;
-                    wx.expires_in = result.expires_in;
-                    wx.ModifyTime = DateTime.Now;
-                    if (wx_userweixinService.instance().Update(wx) == 1)
-                    {
-                        token = result.access_token;
-                    }
+                    //var result = CommonApi.GetToken(wx.AppId, wx.AppSecret);
+                    //wx.Access_Token = result.access_token;
+                    //wx.expires_in = result.expires_in;
+                    //wx.ModifyTime = DateTime.Now;
+                    //if (wx_userweixinService.instance().Update(wx) == 1)
+                    //{
+                    //    token = result.access_token;
+                    //}
+                    token = ReloadToken(CompanyID);
                 }
                 else
                 {

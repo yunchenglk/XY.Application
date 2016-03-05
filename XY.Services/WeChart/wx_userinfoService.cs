@@ -86,7 +86,7 @@ namespace XY.Services
         /// <param name="openid"></param>
         /// <param name="companyid"></param>
         /// <returns></returns>
-        public wx_userinfo GetByopenidAndCompanyID(string openid,Guid companyid)
+        public wx_userinfo GetByopenidAndCompanyID(string openid, Guid companyid)
         {
             wx_userinfo result = new wx_userinfo();
             _db.Execute(() =>
@@ -95,6 +95,22 @@ namespace XY.Services
             });
             return result;
         }
+        /// <summary>
+        /// 根据openid和微信原始ID 获取 关注着
+        /// </summary>
+        /// <param name="openid"></param>
+        /// <param name="wxID"></param>
+        /// <returns></returns>
+        public wx_userinfo GetByopenidAndwxID(string openid, string wxID)
+        {
+            wx_userinfo result = new wx_userinfo();
+            _db.Execute(() =>
+            {
+                result = _db.Single<wx_userinfo>(m => m.openid == openid && m.wxId == wxID);
+            });
+            return result;
+        }
+
 
 
     }

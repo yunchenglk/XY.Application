@@ -75,6 +75,7 @@
     <Compile Include="Weixin\Analysis\InterfaceAnalysisResultJson.cs" />
     <Compile Include="Weixin\Analysis\MessageAnalysisResultJson.cs" />
     <Compile Include="Weixin\Analysis\UserAnalysisResultJson.cs" />
+    <Compile Include="Weixin\AutoReplyResultJson.cs" />
     <Compile Include="Weixin\Map\BaiduMapMarkers.cs" />
     <Compile Include="Weixin\Card\CardCreateData.cs" />
     <Compile Include="Weixin\Card\CardCreateInfo.cs" />

@@ -26,6 +26,13 @@ namespace XY.WeChart.Web.Controllers
         [HttpPost]
         public void Notice()
         {
+            /*
+            <xml><AppId><![CDATA[wx3822e482594a911e]]></AppId>
+            <CreateTime>1456903904</CreateTime>
+            <InfoType><![CDATA[component_verify_ticket]]></InfoType>
+            <ComponentVerifyTicket><![CDATA[ticket@@@Iv_fUfslI38h5WzYWsa6s1nvVyw8NI8ZxumDTw7nIa0WmE0y9yp0UFU3XLo7CuVKtUvSbwG2eG7-W1EirYHSvA]]></ComponentVerifyTicket>
+            </xml>
+            */
             HttpRequestBase Request = HttpContext.Request;
             string sToken = UserDateTicket.wx_open.open_sToken;
             string sAppID = UserDateTicket.wx_open.open_sAppID;
@@ -51,12 +58,12 @@ namespace XY.WeChart.Web.Controllers
                 {
                     _queue = _queue.Where(q => { return q.CreateTime.AddSeconds(20) > DateTime.Now; }).ToList();//保留20秒内未响应的消息
                 }
-                if (_queue.FirstOrDefault(m => { return m.time == element.Element("CreateTime").Value.ToLower().ToString() && m.FromUserName == element.Element("FromUserName").Value.ToLower().ToString(); }) == null)
+                if (_queue.FirstOrDefault(m => { return m.time == element.Element("CreateTime").Value.ToLower().ToString() && m.FromUserName == element.Element("InfoType").Value.ToLower().ToString(); }) == null)
                 {
                     _queue.Add(new queue
                     {
                         CreateTime = DateTime.Now,
-                        FromUserName = element.Element("FromUserName").Value.ToLower().ToString(),
+                        FromUserName = element.Element("InfoType").Value.ToLower().ToString(),
                         time = element.Element("CreateTime").Value.ToLower().ToString()
                     });
                 }
@@ -105,22 +112,32 @@ namespace XY.WeChart.Web.Controllers
                         string appid = element.Element("AuthorizerAppid").Value;
                         Util.LogHelper.Info(appid + "取消授权--start");
                         var entity = wx_userweixinService.instance().SingleByAppId(appid);
-                        entity.DR = true;
-                        if (wx_userweixinService.instance().Update(entity) == 1)
-                            Util.LogHelper.Info(appid + "取消授权--成功--start");
-                        else
-                            Util.LogHelper.Info(appid + "取消授权--失败--start");
+                        if (entity != null)
+                        {
+                            entity.DR = true;
+                            if (wx_userweixinService.instance().Update(entity) == 1)
+                                Util.LogHelper.Info(appid + "取消授权--成功--start");
+                            else
+                                Util.LogHelper.Info(appid + "取消授权--失败--start");
+                        }
                         break;
-                    case "AUTHORIZED"://授权成功通知
-
+                    case "AUTHORIZED"://授权成功通知 
                         string au_appid = element.Element("AuthorizerAppid").Value.ToString();
                         Util.LogHelper.Info(au_appid + "授权--start");
                         var au_entity = wx_userweixinService.instance().SingleByAppId(au_appid);
-                        au_entity.DR = false;
-                        if (wx_userweixinService.instance().Update(au_entity) == 1)
-                            Util.LogHelper.Info(au_appid + "授权--成功--start");
+                        if (au_entity != null)
+                        {
+                            au_entity.DR = false;
+                            Util.LogHelper.Info(au_appid + "授权--更新--start");
+                            if (wx_userweixinService.instance().Update(au_entity) == 1)
+                                Util.LogHelper.Info(au_appid + "授权--成功--start");
+                            else
+                                Util.LogHelper.Info(au_appid + "授权--失败--start");
+                        }
                         else
-                            Util.LogHelper.Info(au_appid + "授权--失败--start");
+                        {
+                            Util.LogHelper.Info(au_appid + "数据库没有数据");
+                        }
                         /*<xml>
                             <AppId>第三方平台appid</AppId>
                             <CreateTime>1413192760</CreateTime>
@@ -172,130 +189,130 @@ namespace XY.WeChart.Web.Controllers
         /// <param name="appId"></param>
         /// <returns></returns>
         [HttpPost]
-        public string Callback(PostModel postModel)
+        public ActionResult Callback(PostModel postModel)
         {
-            HttpRequestBase Request = HttpContext.Request;
-            string sToken = UserDateTicket.wx_open.open_sToken;
-            string sAppID = UserDateTicket.wx_open.open_sAppID;
-            string sAppSecret = UserDateTicket.wx_open.open_sAppSecret;
-            string sEncodingAESKey = UserDateTicket.wx_open.open_sEncodingAESKey;
-            Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(sToken, sEncodingAESKey, sAppID);
-            string sReqMsgSig = Request["msg_signature"];
-            string sReqTimeStamp = Request["timestamp"];
-            string sReqNonce = Request["nonce"];
-            string sReqData = ReadRequest(HttpContext.Request);
-            string sMsg = "";  //解析之后的明文
-            int ret = 0;
-            ret = wxcpt.DecryptMsg(sReqMsgSig, sReqTimeStamp, sReqNonce, sReqData, ref sMsg);
-            if (!string.IsNullOrEmpty(sMsg))
+            var logPath = Server.MapPath(string.Format("~/App_Data/Open/{0}/", DateTime.Now.ToString("yyyy-MM-dd")));
+            if (!Directory.Exists(logPath))
             {
-
-                XElement element = XElement.Parse(sMsg);
-
-                if (_queue == null)
+                Directory.CreateDirectory(logPath);
+            }
+            postModel.EncodingAESKey = UserDateTicket.wx_open.open_sEncodingAESKey; //根据自己后台的设置保持一致
+            postModel.AppId = UserDateTicket.wx_open.open_sAppID; //根据自己后台的设置保持一致
+            postModel.Token = UserDateTicket.wx_open.open_sToken;
+            var maxRecordCount = 10;
+            MessageHandler<CustomMessageContext> messageHandler = null;
+            try
+            {
+                var checkPublish = false; //是否在“全网发布”阶段
+                if (checkPublish)
                 {
-                    _queue = new List<queue>();
-                }
-                else if (_queue.Count >= 20)
-                {
-                    _queue = _queue.Where(q => { return q.CreateTime.AddSeconds(20) > DateTime.Now; }).ToList();//保留20秒内未响应的消息
-                }
-                if (_queue.FirstOrDefault(m => { return m.time == element.Element("CreateTime").Value.ToLower().ToString() && m.FromUserName == element.Element("FromUserName").Value.ToLower().ToString(); }) == null)
-                {
-                    _queue.Add(new queue
-                    {
-                        CreateTime = DateTime.Now,
-                        FromUserName = element.Element("FromUserName").Value.ToLower().ToString(),
-                        time = element.Element("CreateTime").Value.ToLower().ToString()
-                    });
+                    messageHandler = new OpenCheckMessageHandler(Request.InputStream, postModel, 10);
                 }
                 else
                 {
-                    return string.Empty;
+                    messageHandler = new CustomMessageHandler(Request.InputStream, postModel, maxRecordCount);
                 }
 
-                postModel.Token = UserDateTicket.wx_open.open_sToken;
-                postModel.EncodingAESKey = UserDateTicket.wx_open.open_sEncodingAESKey; //根据自己后台的设置保持一致
-                postModel.AppId = UserDateTicket.wx_open.open_sAppID; //根据自己后台的设置保持一致
-
-
-                MessageHandler<CustomMessageContext> messageHandler = null;
-
-                messageHandler = new CustomMessageHandler(Request.InputStream, postModel);
+                messageHandler.RequestDocument.Save(Path.Combine(logPath,
+                    string.Format("{0}_Request_{1}.txt", DateTime.Now.Ticks, messageHandler.RequestMessage.FromUserName)));
                 messageHandler.Execute(); //执行
-
-
+                return new FixWeixinBugWeixinResult(messageHandler);
             }
-            return string.Empty;
+            catch (Exception ex)
+            {
+                using (TextWriter tw = new StreamWriter(Server.MapPath("~/App_Data/Open/Error_" + DateTime.Now.Ticks + ".txt")))
+                {
+                    tw.WriteLine("ExecptionMessage:" + ex.Message);
+                    tw.WriteLine(ex.Source);
+                    tw.WriteLine(ex.StackTrace);
+                    //tw.WriteLine("InnerExecptionMessage:" + ex.InnerException.Message);
 
+                    if (messageHandler.ResponseDocument != null)
+                    {
+                        tw.WriteLine(messageHandler.ResponseDocument.ToString());
+                    }
 
+                    if (ex.InnerException != null)
+                    {
+                        tw.WriteLine("========= InnerException =========");
+                        tw.WriteLine(ex.InnerException.Message);
+                        tw.WriteLine(ex.InnerException.Source);
+                        tw.WriteLine(ex.InnerException.StackTrace);
+                    }
 
-
-
-
-
-
-
-
-
-
-            //string cid = Request["cid"];
-            //Guid CID;
-            //int dbresult = 0;
-            //if (Guid.TryParse(cid, out CID))
-            //{
-            //    string auth_code = Request["auth_code"];
-            //    string expires_in = Request["expires_in"];
-            //    string open_access_token = UserDateTicket.wx_open.open_access_token;
-            //    string open_sAppID = UserDateTicket.wx_open.open_sAppID;
-            //    var infoRes = ComponentApi.QueryAuth(open_access_token, open_sAppID, auth_code);
-            //    if (infoRes.errcode == Entity.Weixin.ReturnCode.请求成功)
-            //    {
-
-            //        wx_userweixin entity = wx_userweixinService.instance().SingleByCompanyID(CID);
-            //        if (entity == null)
-            //            entity = new wx_userweixin();
-            //        entity.expires_in = infoRes.authorization_info.expires_in;
-            //        entity.AppId = infoRes.authorization_info.authorizer_appid;
-            //        entity.Access_Token = infoRes.authorization_info.authorizer_access_token;
-            //        entity.refresh_token = infoRes.authorization_info.authorizer_refresh_token;
-
-            //        if (entity.ID == Guid.Empty)
-            //        {
-            //            entity.CompanyID = CID;
-            //            entity.ID = Guid.NewGuid();
-            //            dbresult = wx_userweixinService.instance().Insert(entity);
-            //        }
-            //        else {
-            //            dbresult = wx_userweixinService.instance().Update(entity);
-            //        }
-
-            //    }
-            //}
-            //if (dbresult > 0)
-            //{
-            //    UserDateTicket.wx_user = wx_userweixinService.instance().SingleByCompanyID(CID);
-            //    Response.Redirect("/Info/Index/id=true");
-            //}
-            //else
-            //{
-            //    Response.Write("<script>alert('拉去信息错误');</script>");
-            //}
+                    tw.Flush();
+                    tw.Close();
+                    return Content("");
+                }
+            }
         }
-    }
-    public class queue
-    {
-        /// <summary>
-        /// 事件标识
-        /// </summary>
-        public string FromUserName { get; set; }
-        /// <summary>
-        /// 事件时间标识
-        /// </summary>
-        public string time { get; set; }
-        /// <summary>
-        /// 添加到队列的时间
-        /// </summary>
-        public DateTime CreateTime { get; set; }
+
+        public void Callback(string id)
+        {
+            //string cid = Request["cid"];
+            //http://weixin.com/Open/Callback?id=02a07495-5484-4162-a70d-b7341096a1d4&auth_code=queryauthcode@@@zQaA25MwNP71mnGlwrwuRnx2lxw3NvCpK7n-BM01BJlBIkGIZaSluaGzAvdz_oX8sI4kc4wRx7MfLfaEqa8gJA&expires_in=3600
+            Guid CID;
+            int dbresult = 0;
+            if (Guid.TryParse(id, out CID))
+            {
+                string auth_code = Request["auth_code"];
+                string expires_in = Request["expires_in"];
+                var result = ComponentApi.GetComponentAccessToken(UserDateTicket.wx_open.open_sAppID, UserDateTicket.wx_open.open_sAppSecret, UserDateTicket.wx_open.open_ticket);
+                if (result.errcode == Entity.Weixin.ReturnCode.请求成功)
+                {
+                    string open_access_token = result.component_access_token;
+                    string open_sAppID = UserDateTicket.wx_open.open_sAppID;
+                    var infoRes = ComponentApi.QueryAuth(open_access_token, open_sAppID, auth_code);
+                    if (infoRes.errcode == Entity.Weixin.ReturnCode.请求成功)
+                    {
+
+                        wx_userweixin entity = wx_userweixinService.instance().SingleByCompanyID(CID);
+                        if (entity == null)
+                            entity = new wx_userweixin();
+                        entity.expires_in = infoRes.authorization_info.expires_in;
+                        entity.AppId = infoRes.authorization_info.authorizer_appid;
+                        entity.Access_Token = infoRes.authorization_info.authorizer_access_token;
+                        entity.refresh_token = infoRes.authorization_info.authorizer_refresh_token;
+
+                        if (entity.ID == Guid.Empty)
+                        {
+                            entity.CompanyID = CID;
+                            entity.ID = Guid.NewGuid();
+                            dbresult = wx_userweixinService.instance().Insert(entity);
+                        }
+                        else {
+                            dbresult = wx_userweixinService.instance().Update(entity);
+                        }
+
+                    }
+                }
+                if (dbresult > 0)
+                {
+                    UserDateTicket.wx_user = wx_userweixinService.instance().SingleByCompanyID(CID);
+                    Response.Redirect("/Info/Index/id=true");
+                }
+                else
+                {
+                    Response.Write("<script>alert('拉去信息错误');</script>");
+                }
+            }
+
+
+        }
+        public class queue
+        {
+            /// <summary>
+            /// 事件标识
+            /// </summary>
+            public string FromUserName { get; set; }
+            /// <summary>
+            /// 事件时间标识
+            /// </summary>
+            public string time { get; set; }
+            /// <summary>
+            /// 添加到队列的时间
+            /// </summary>
+            public DateTime CreateTime { get; set; }
+        }
     }
 }

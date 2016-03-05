@@ -147,14 +147,18 @@
     <Compile Include="Controllers\_baseController.cs" />
     <Compile Include="Filters\AuthorizeFilter.cs" />
     <Compile Include="Filters\UserDateTicket.cs" />
+    <Compile Include="FixWeixinBugWeixinResult.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ConfigHelper.cs" />
+    <Compile Include="Helpers\OpenTicketHelper.cs" />
+    <Compile Include="Helpers\Server.cs" />
     <Compile Include="LocationService.cs" />
     <Compile Include="MessageHandlers\CustomMessageHandler\CustomMessageContext.cs" />
     <Compile Include="MessageHandlers\CustomMessageHandler\CustomMessageHandler.cs" />
     <Compile Include="MessageHandlers\CustomMessageHandler\CustomMessageHandler_Events.cs" />
+    <Compile Include="MessageHandlers\OpenCheckMessageHandler.cs" />
     <Compile Include="Models\CodeRecord.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

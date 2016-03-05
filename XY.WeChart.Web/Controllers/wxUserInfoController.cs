@@ -85,6 +85,7 @@ namespace XY.WeChart.Web.Controllers
                         entity.openid = item;
                         entity.cID = UserDateTicket.Company.ID;
                         entity.wID = UserDateTicket.wx_user.ID;
+                        entity.wxId = UserDateTicket.wx_user.wxId;
                         entity.groupid = info.groupid;
                         if (!groupids.Contains(entity.groupid))
                             entity.groupname = wx_usergroupService.instance().Single(info.groupid, UserDateTicket.Company.ID).gname;
