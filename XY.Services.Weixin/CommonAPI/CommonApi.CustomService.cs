@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Web.Script.Serialization;
 using XY.Entity.Weixin;
@@ -41,8 +43,30 @@ namespace XY.Services.Weixin
         /// <returns></returns>
         public static WxJsonResult Custom_Del(string accessToken, Custom_add data)
         {
-            var urlFormat = "https://api.weixin.qq.com/customservice/kfaccount/del?access_token={0}";
-            return CommonJsonSend.Send(accessToken, urlFormat, data);
+            var urlFormat = string.Format("https://api.weixin.qq.com/customservice/kfaccount/del?access_token={0}&kf_account={1}", accessToken, data.kf_account);
+            return CommonJsonSend.Send<WxJsonResult>(null, urlFormat, null, CommonJsonSendType.GET);
+        }
+        /// <summary>
+        /// 上传客服头像
+        /// </summary>
+        /// <param name="accessTokenOrAppId"></param>
+        /// <param name="kfAccount">完整客服账号，格式为：账号前缀@公众号微信号</param>
+        /// <param name="file">form-data中媒体文件标识，有filename、filelength、content-type等信息</param>
+        /// <param name="timeOut">代理请求超时时间（毫秒）</param>
+        /// <returns></returns>
+        public static WxJsonResult CustomUploadHeadimg(string accessToken, string kfAccount, string file, int timeOut = Config.TIME_OUT)
+        {
+
+            file = FileHelper.DownLoadFile(file);
+            var url = string.Format("http://api.weixin.qq.com/customservice/kfaccount/uploadheadimg?access_token={0}&kf_account={1}", accessToken, kfAccount);
+            var fileDictionary = new Dictionary<string, string>();
+            fileDictionary["media"] = file;
+            var result = HTTPPost.PostFileGetJson<WxJsonResult>(url, null, fileDictionary, null, timeOut: timeOut);
+            if (File.Exists(file))
+            {
+                File.Delete(file);
+            }
+            return result;
         }
         /// <summary>
         /// 获取用户聊天记录

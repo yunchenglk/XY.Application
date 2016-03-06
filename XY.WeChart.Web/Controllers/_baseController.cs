@@ -15,6 +15,7 @@ namespace XY.WeChart.Web.Controllers
             string token = WeChartAPI.getAccessToken(UserDateTicket.Company.ID, out error);
             if (!string.IsNullOrEmpty(error))
             {
+                string xx = WeChartAPI.ReloadToken(UserDateTicket.Company.ID);
                 return error;
             }
             return token;

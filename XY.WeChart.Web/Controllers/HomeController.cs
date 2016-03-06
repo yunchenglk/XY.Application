@@ -13,13 +13,13 @@ using XY.Services.Weixin;
 
 namespace XY.WeChart.Web.Controllers
 {
-    [Filters.AuthorizeFilter]
     public class HomeController : Controller
     {
         public ActionResult JSCallBack()
         {
             return View();
         }
+        [Filters.AuthorizeFilter]
         public ActionResult Index()
         {
             return View();
@@ -30,6 +30,23 @@ namespace XY.WeChart.Web.Controllers
         }
         public ActionResult Error()
         {
+            return View();
+        }
+        public ActionResult wxContent(string id)
+        {
+            Guid ID;
+            if (Guid.TryParse(id, out ID))
+            {
+                wx_requestRuleContent content = wx_requestRuleContentService.instance().Single(ID);
+                wx_requestRule rule = wx_requestRuleService.instance().Single(content.RuleID);
+                Company com = CompanyService.instance().Single(rule.cID);
+                ViewBag.content = content;
+                ViewBag.rule = rule;
+                ViewBag.com = com;
+            }
+            else {
+
+            }
             return View();
         }
     }

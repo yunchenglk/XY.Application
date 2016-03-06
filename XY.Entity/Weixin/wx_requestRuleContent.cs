@@ -29,7 +29,5 @@ namespace XY.Entity
                 return Util.Utils.AddURL(meidaHDUrl);
             }
         }
-
-
     }
 }

@@ -2347,6 +2347,67 @@ namespace XY.Entity
             }
 
 
+    [Table("wx_contentTemp")]
+	[Serializable] 
+    public partial class wx_contentTemp :IEntity
+    {
+        
+		private  Guid _ID;
+
+        [Column("ID", DbType.Guid,true,false)]
+        public Guid  ID 
+		{ 
+		   get{ return _ID;  } 
+		   set{_ID = value;}
+		 }
+        
+		private  Guid _cID;
+
+        [Column("cID", DbType.Guid,false,false)]
+        public Guid  cID 
+		{ 
+		   get{ return _cID;  } 
+		   set{_cID = value;}
+		 }
+        
+		private  String _wxId;
+
+        [Column("wxId", DbType.String,false,false)]
+        public String  wxId 
+		{ 
+		   get{  return _wxId == null ?string.Empty:_wxId;  } 
+		   set{_wxId = value;}
+		 }
+        
+		private  String _Content;
+
+        [Column("Content", DbType.String,false,false)]
+        public String  Content 
+		{ 
+		   get{  return _Content == null ?string.Empty:_Content;  } 
+		   set{_Content = value;}
+		 }
+        
+		private  Boolean _DR;
+
+        [Column("DR", DbType.Boolean,false,false)]
+        public Boolean  DR 
+		{ 
+		   get{ return _DR;  } 
+		   set{_DR = value;}
+		 }
+        
+		private  DateTime _CreateTime;
+
+        [Column("CreateTime", DbType.DateTime,false,false)]
+        public DateTime  CreateTime 
+		{ 
+		   get{ return _CreateTime;  } 
+		   set{_CreateTime = value;}
+		 }
+            }
+
+
     [Table("wx_customer")]
 	[Serializable] 
     public partial class wx_customer :IEntity
@@ -3047,6 +3108,15 @@ namespace XY.Entity
 		{ 
 		   get{ return _wID;  } 
 		   set{_wID = value;}
+		 }
+        
+		private  String _wxId;
+
+        [Column("wxId", DbType.String,false,false)]
+        public String  wxId 
+		{ 
+		   get{  return _wxId == null ?string.Empty:_wxId;  } 
+		   set{_wxId = value;}
 		 }
         
 		private  Guid _cID;

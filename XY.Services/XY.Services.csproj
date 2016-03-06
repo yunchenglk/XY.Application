@@ -80,6 +80,7 @@
     <Compile Include="WeChart\WeChartAPI.UserInfo.cs" />
     <Compile Include="WeChart\WXApi.cs" />
     <Compile Include="WeChart\WXApiJson.cs" />
+    <Compile Include="WeChart\wx_contentTempService.cs" />
     <Compile Include="WeChart\wx_customerService.cs" />
     <Compile Include="WeChart\wx_openInfoService.cs" />
     <Compile Include="WeChart\wx_requestRuleContentService.cs" />

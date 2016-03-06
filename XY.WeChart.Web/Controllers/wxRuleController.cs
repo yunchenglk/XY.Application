@@ -35,6 +35,7 @@ namespace XY.WeChart.Web.Controllers
             TryUpdateModel<wx_requestRule>(m, form);
             m.wID = UserDateTicket.wx_user.ID;
             m.cID = UserDateTicket.Company.ID;
+            m.wxId = UserDateTicket.wx_user.wxId;
             m.ruleName = "纯文本回复";
             m.reqestType = 0;
             m.responseType = 1;
@@ -119,6 +120,7 @@ namespace XY.WeChart.Web.Controllers
             TryUpdateModel<wx_requestRule>(m, form);
             m.wID = UserDateTicket.wx_user.ID;
             m.cID = UserDateTicket.Company.ID;
+            m.wxId = UserDateTicket.wx_user.wxId;
             m.ruleName = "语音回复";
             m.reqestType = 0;
             m.responseType = 3;
@@ -188,6 +190,7 @@ namespace XY.WeChart.Web.Controllers
             TryUpdateModel<wx_requestRule>(m, form);
             m.wID = UserDateTicket.wx_user.ID;
             m.cID = UserDateTicket.Company.ID;
+            m.wxId = UserDateTicket.wx_user.wxId;
             m.ruleName = "图文回复";
             m.responseType = 2;
             m.reqestType = 0;
@@ -219,6 +222,7 @@ namespace XY.WeChart.Web.Controllers
             return View(m);
         }
         [HttpPost]
+        [ValidateInput(false)]
         public JsonResult tuWenListEdit(FormCollection form)
         {
             ResultBase_form result = new ResultBase_form();
@@ -282,6 +286,33 @@ namespace XY.WeChart.Web.Controllers
             }
             return Json("error", JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public JsonResult Add_ContentTemp(string id, string coutent)
+        {
+            Guid ID;
+            if (Guid.TryParse(id, out ID))
+            {
+                wx_contentTemp entity = wx_contentTempService.instance().Single(ID);
+                if (entity == null)
+                {
+                    entity = new wx_contentTemp()
+                    {
+                        ID = Guid.NewGuid(),
+                        Content = coutent
+                    };
+                    wx_contentTempService.instance().Insert(entity);
+                }
+                else {
+                    entity.Content = coutent;
+                    wx_contentTempService.instance().Update(entity);
+                }
+                return Json(new { status = 1, id = entity.ID }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { status = 0 }, JsonRequestBehavior.AllowGet);
+        }
+
+
+
         #endregion
 
         #region 视频回复
@@ -312,6 +343,7 @@ namespace XY.WeChart.Web.Controllers
             TryUpdateModel<wx_requestRule>(m, form);
             m.wID = UserDateTicket.wx_user.ID;
             m.cID = UserDateTicket.Company.ID;
+            m.wxId = UserDateTicket.wx_user.wxId;
             m.ruleName = "视频回复";
             m.reqestType = 0;
             m.responseType = 4;

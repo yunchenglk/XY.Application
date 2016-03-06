@@ -496,6 +496,7 @@
     <Content Include="Content\edit\ueditor\ueditor.parse.js" />
     <Content Include="Content\edit\ueditor\ueditor.parse.min.js" />
     <Content Include="Content\images\2012072500060712.gif" />
+    <Content Include="Content\images\2v.png" />
     <Content Include="Content\images\accordinarrow.png" />
     <Content Include="Content\images\addfolder.png" />
     <Content Include="Content\images\arrow.png" />
@@ -639,6 +640,7 @@
     <Content Include="Content\images\sort_both.png" />
     <Content Include="Content\images\sort_desc.png" />
     <Content Include="Content\images\spinner.png" />
+    <Content Include="Content\images\step3.png" />
     <Content Include="Content\images\stepline.png" />
     <Content Include="Content\images\steps.png" />
     <Content Include="Content\images\thead.png" />
@@ -847,6 +849,7 @@
     <Content Include="Views\Message\Index.cshtml" />
     <Content Include="Views\Message\Edit.cshtml" />
     <Content Include="Views\Info\Index.cshtml" />
+    <Content Include="Views\Home\wxContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

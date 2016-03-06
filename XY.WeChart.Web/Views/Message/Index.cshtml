@@ -32,15 +32,19 @@
             },
             "columns": [
                    { "data": "ID" },
-                   { "data": "kf_account" },
-                   { "data": "kf_nick" },
+                   {
+                       "data": "kf_account", "render": function (data, type, full, meta) {
+                           return data + '@@ @UserDateTicket.wx_user.weixinCode';
+                       }
+                   },
+                   { "data": "nickname" },
                    { "data": "password" },
                    {
                        "data": "ID",
                        "render": function (data, type, full, meta) {
                            return '<a href="/Message/Edit/' + data + '" class="btn btn3 btn_pencil" title="编辑"></a>'
                                  + '&nbsp;<a href="javascript:_del(\'' + data + '\')" class="btn btn3 btn_trash" title="删除"></a>';
-                                 
+
 
                        }
                    }
@@ -58,29 +62,54 @@
 </script>
 <div class="pageheader notab">
     <h1 class="pagetitle">客服管理</h1>
+
+    <ul class="hornav">
+        <li class="current"><a href="#updates">客服列表</a></li>
+        <li><a href="#activities">使用规则</a></li>
+    </ul>
 </div>
 <div id="contentwrapper" class="contentwrapper">
-    <div class="tableoptions">
-        <button class="radius3" onclick="javascript: window.location = '/Message/Edit'">添加客服</button> &nbsp;
-    </div><!--tableoptions-->    <table id="example" class="stdtable" cellspacing="0" width="100%">
-        <colgroup>
-            <col class="con1" style="width: 15%" />
-            <col class="con0" style="width: 10%" />
-            <col class="con0" style="width: 10%" />
-            <col class="con0" style="width: 10%" />
-            <col class="con1" style="width: 20%" />
-        </colgroup>
+    <div id="updates" class="subcontent">
+        <div class="tableoptions">
+            <button class="radius3" onclick="javascript: window.location = '/Message/Edit'">添加客服</button> &nbsp;
+        </div><!--tableoptions-->
+        <table id="example" class="stdtable" cellspacing="0" width="100%">
+            <colgroup>
+                <col class="con1" style="width: 15%" />
+                <col class="con0" style="width: 10%" />
+                <col class="con0" style="width: 10%" />
+                <col class="con0" style="width: 10%" />
+                <col class="con1" style="width: 20%" />
+            </colgroup>
 
-        <thead>
-            <tr>
-                <th class="head1">ID</th>
-                <th class="head1">工号</th>
-                <th class="head1">昵称</th>
-                <th class="head1">密码</th>
-                <th class="head1">管理</th>
-            </tr>
-        </thead>
-    </table>
+            <thead>
+                <tr>
+                    <th class="head1">ID</th>
+                    <th class="head1">工号</th>
+                    <th class="head1">昵称</th>
+                    <th class="head1">密码</th>
+                    <th class="head1">管理</th>
+                </tr>
+            </thead>
+        </table>
+
+    </div>
+    <div id="activities" class="subcontent" style="display: none;">
+        <div class="notibar announcement">
+            <h3>在微信上使用多客服接待，请仔细阅读</h3>
+            <p>关注公众号”多客服助手“（duokefu）</p>
+            <p>
+                <img src="~/Content/images/2v.png" />
+            </p>
+            <p>绑定工号</p>
+            <p>
+                <img src="~/Content/images/step3.png" />
+            </p>
+        </div>
+    </div>
+
+
+
 </div>
 
 

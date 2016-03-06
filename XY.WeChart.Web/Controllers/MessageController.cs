@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using XY.Entity;
+using XY.Entity.Weixin;
 using XY.Services;
 using XY.Services.Weixin;
 
@@ -35,14 +36,16 @@ namespace XY.WeChart.Web.Controllers
             TryUpdateModel<wx_customer>(m, form);
             m.wID = UserDateTicket.wx_user.ID;
             m.cID = UserDateTicket.Company.ID;
+            Custom_add custom = new Custom_add()
+            {
+                kf_account = m.kf_account + "@" + UserDateTicket.wx_user.weixinCode,
+                nickname = m.nickname,
+                password = Util.Utils.MD5(m.password)
+            };
             if (m.ID == Guid.Empty)
             {
-                var resultcode = CommonApi.Custom_Add(GetToken(), new Entity.Weixin.Custom_add
-                {
-                    kf_account = m.kf_account + "@" + UserDateTicket.wx_user.weixinCode,
-                    nickname = m.nickname,
-                    password = Util.Utils.MD5(m.password)
-                });
+
+                var resultcode = CommonApi.Custom_Add(GetToken(), custom);
                 if (resultcode.errcode == Entity.Weixin.ReturnCode.请求成功)
                     result.status = wx_customerService.instance().Insert(m);
                 else
@@ -50,17 +53,34 @@ namespace XY.WeChart.Web.Controllers
             }
             else
             {
-                var resultcode = CommonApi.Custom_Edit(GetToken(), new Entity.Weixin.Custom_add
-                {
-                    kf_account = m.kf_account + "@" + UserDateTicket.wx_user.weixinCode,
-                    nickname = m.nickname,
-                    password = Util.Utils.MD5(m.password)
-                });
+                var resultcode = CommonApi.Custom_Edit(GetToken(), custom);
                 if (resultcode.errcode == Entity.Weixin.ReturnCode.请求成功)
                     result.status = wx_customerService.instance().Update(m);
                 else
                     result.msg = resultcode.errcode.ToString();
             }
+
+            if (!string.IsNullOrEmpty(m.headImg))
+            {
+                var temp = CommonApi.CustomUploadHeadimg(GetToken(), custom.kf_account, m.headImg);
+                if (temp.errcode == Entity.Weixin.ReturnCode.请求成功)
+                {
+
+                }
+            }
+
+
+
+            /*
+             var temp = CommonApi.CustomUploadHeadimg(GetToken(), custom.kf_account, form["headImg"]);
+                    if (resultcode.errcode == Entity.Weixin.ReturnCode.请求成功)
+                    {
+
+                    }
+            */
+
+
+
             result.msg = result.status == 0 ? "操作失败" : "操作成功";
             return Json(result, JsonRequestBehavior.AllowGet);
         }
