@@ -20,7 +20,7 @@ namespace XY.Services.Weixin.MessageHandlers
             IResponseMessageBase responseMessage = null;
             switch (strongRequestMessage.Event)
             {
-                case Event.ENTER:
+                case Event.ENTER://
                     responseMessage = OnEvent_EnterRequest(RequestMessage as RequestMessageEvent_Enter);
                     break;
                 case Event.LOCATION://自动发送的用户当前位置

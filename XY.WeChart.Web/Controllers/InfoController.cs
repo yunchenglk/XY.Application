@@ -14,7 +14,6 @@ namespace XY.WeChart.Web.Controllers
         // GET: Info
         public ActionResult Index()
         {
-            wx_userweixin m = new wx_userweixin() { DR = true };
             ViewBag.CompanyID = UserDateTicket.Company.ID;
             ViewBag.open_sAppid = UserDateTicket.wx_open.open_sAppID;
             var result = ComponentApi.GetComponentAccessToken(UserDateTicket.wx_open.open_sAppID, UserDateTicket.wx_open.open_sAppSecret, UserDateTicket.wx_open.open_ticket);
@@ -27,7 +26,11 @@ namespace XY.WeChart.Web.Controllers
                     ViewBag.pre_auth_code = UserDateTicket.wx_open.open_pre_auth_code;
                 }
             }
-            if (UserDateTicket.wx_user != null)
+            wx_userweixin m;
+
+            if (UserDateTicket.wx_user.ID == Guid.Empty)
+                m = new wx_userweixin() { DR = true };
+            else
                 m = wx_userweixinService.instance().SingleByCompanyID(UserDateTicket.Company.ID);
             return View(m);
         }

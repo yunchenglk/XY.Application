@@ -19,6 +19,8 @@ namespace XY.Entity
         {
             get
             {
+                if (string.IsNullOrEmpty(mediaUrl))
+                    return "";
                 return Util.Utils.AddURL(mediaUrl);
             }
         }

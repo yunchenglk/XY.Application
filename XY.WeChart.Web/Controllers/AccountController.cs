@@ -60,9 +60,9 @@ namespace XY.WeChart.Web.Controllers
                     HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
                     var wxuser = wx_userweixinService.instance().SingleByCompanyID(m.CompanyID);// WX_ConfigService.instance().SingleByCompanyID(m.CompanyID);
                     if (wxuser != null)
-                    {
                         UserDateTicket.wx_user = wxuser;
-                    }
+                    else
+                        UserDateTicket.wx_user = new wx_userweixin();
                     Response.Cookies.Add(cookie);
                     Response.Redirect(url);
                 }

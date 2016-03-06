@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "消息推送";
+    ViewBag.setMenu = "1";
+}
+@Scripts.Render("~/js/jqueryValidate")
+<script type="text/javascript" src="/Content/js/plugins/jquery.smartWizard-2.0.min.js"></script>
+<script type="text/javascript" src="/Content/js/plugins/jquery.colorbox-min.js"></script>
+<script type="text/javascript" src="~/Content/js/_com.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#wizard').smartWizard({ onFinish: onFinishCallback });
+        $('#wizard2').smartWizard({ onFinish: onFinishCallback });
+        $('#wizard3').smartWizard({ onFinish: onFinishCallback });
+
+        function onFinishCallback() {
+            var rid = $("#rules").val();
+            var gid = $("#usergroup").val();
+            _push(rid, gid);
+
+        }
+
+        $(".inline").colorbox({ inline: true, height: '500px' });
+
+
+
+        $("#ruleType").on("change", function () {
+            $.getJSON("/GetJson/GetByResponseType", { id: $(this).val(), v: Math.random() }, function (result) {
+                $("#rules option").remove();
+                if (result.length > 0) {
+                    $.each(result, function (i, n) {
+                        $("#rules").append('<option value="' + n.id + '">' + n.name + '</option>');
+                    })
+                }
+            })
+        });
+        $("#ruleType").change();
+        $.getJSON("/GetJson/GetGroup", { v: Math.random() }, function (result) {
+            $("#usergroup option").remove();
+            if (result.length > 0) {
+                $.each(result, function (i, n) {
+                    $("#usergroup").append('<option value="' + n.gid + '">' + n.name + '</option>');
+                })
+            }
+        })
+    })
+</script>
+<div class="pageheader">
+    <h1 class="pagetitle">消息推送</h1>
+    <span class="pagedesc">页面的描述内容</span>
+    <ul class="hornav">
+        <li class="current"><a href="#updates">分组推送</a></li>
+        <li><a href="#activities">选择用户推送</a></li>
+    </ul>
+</div>
+<div id="contentwrapper" class="contentwrapper">
+    <div id="updates" class="subcontent">
+        <div id="default" class="subcontent">
+            <form class="stdform" method="post" action="" id="validate">
+                <div id="wizard" class="wizard">
+                    <br />
+                    <ul class="hormenu">
+                        <li>
+                            <a href="#wiz1step1">
+                                <span class="h2">第一步</span>
+                                <span class="dot"><span></span></span>
+                                <span class="label">选择推送消息</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#wiz1step2">
+                                <span class="h2">第二步</span>
+                                <span class="dot"><span></span></span>
+                                <span class="label">选择粉丝组</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#wiz1step3">
+                                <span class="h2">第三步</span>
+                                <span class="dot"><span></span></span>
+                                <span class="label">消息推送说明</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <br clear="all" /><br /><br />
+                    <div id="wiz1step1" class="formwiz">
+                        <h4>第一步: 选择推送消息</h4>
+
+                        <p>
+                            <label>消息类别</label>
+                            <span class="field">
+                                <select name="selection" id="ruleType">
+                                    <option value="1">文本</option>
+                                    <option value="2">图文</option>
+                                    <option value="3">语音</option>
+                                    <option value="4">视频</option>
+                                </select>
+                            </span>
+                        </p>
+                        <p>
+                            <label>选择消息</label>
+                            <select name="selection" id="rules"></select>
+                        </p>
+                    </div>
+                    <div id="wiz1step2" class="formwiz">
+                        <h4>第二步: 选择粉丝组</h4>
+                        <p>
+                            <label>选择粉丝组</label>
+                            <span class="field">
+                                <select name="selection" id="usergroup"></select>
+                            </span>
+                        </p>
+                    </div>
+                    <div id="wiz1step3">
+                        <h4>第三步: 消息推送说明</h4>
+                        <div class="par terms">
+                            <p>配饰完成！点击“Finish”进行推送</p>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="activities" class="subcontent" style="display:none;">
+        选择用户推送
+    </div>
+</div>
+
+

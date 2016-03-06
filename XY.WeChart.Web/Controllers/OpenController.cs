@@ -246,7 +246,6 @@ namespace XY.WeChart.Web.Controllers
                 }
             }
         }
-
         public void Callback(string id)
         {
             //string cid = Request["cid"];

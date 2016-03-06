@@ -79,7 +79,7 @@ namespace XY.DataAccess
             DbConnection dc = dbProviderFactory.CreateConnection();
             dc.ConnectionString = connectionString;
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
                 try
                 {

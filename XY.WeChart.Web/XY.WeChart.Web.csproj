@@ -137,6 +137,7 @@
     <Compile Include="Content\edit\ueditor\net\App_Code\PathFormater.cs" />
     <Compile Include="Content\edit\ueditor\net\App_Code\UploadHandler.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GetJsonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
@@ -850,9 +851,11 @@
     <Content Include="Views\Message\Edit.cshtml" />
     <Content Include="Views\Info\Index.cshtml" />
     <Content Include="Views\Home\wxContent.cshtml" />
+    <Content Include="Views\wxRule\Push.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\GetJson\" />
     <Folder Include="Views\Open\" />
     <Folder Include="Views\_base\" />
   </ItemGroup>

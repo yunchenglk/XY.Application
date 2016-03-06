@@ -81,7 +81,6 @@
                             data: { v: Math.random() },
                             async: false,
                             success: function (result) {
-                                $("#wx_usergroup").append('<option value="0">未分组</option><option value="1">黑名单</option><option value="2">星标组</option>');
                                 if (result.length > 0) {
                                     $.each(result, function (i, n) {
                                         $("#wx_usergroup").append('<option value="' + n.id + '">' + n.name + '</option>');

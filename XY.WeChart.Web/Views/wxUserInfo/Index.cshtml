@@ -55,15 +55,7 @@
             ]
         });
     })
-    function syncOnle() {
-        if ($.trim($("#syncbtn").text()) == "同步用户列表") {
-            $("#syncbtn").text("用户列表同步中....");
-            $.getJSON("/wxUserInfo/syncOnlineUser", { v: Math.random() }, function (result) {
-                $("#syncbtn").text("同步用户列表");
-                alert(result);
-            })
-        }
-    }
+    
 </script>
 <div class="pageheader notab">
     <h1 class="pagetitle">用户分组管理</h1>

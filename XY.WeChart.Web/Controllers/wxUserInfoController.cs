@@ -5,15 +5,13 @@ using System.Web.Mvc;
 using XY.Entity;
 using XY.Entity.Weixin;
 using XY.Services;
+using XY.Services.Weixin;
 using XY.Services.Weixin.Helpers;
 
 namespace XY.WeChart.Web.Controllers
 {
     public class wxUserInfoController : _baseController
     {
-        int[] groupids = { 0, 1, 2 };
-        string[] groupnames = { "未分组", "黑名单", "星标组" };
-
         public ActionResult Index()
         {
             //var markersList = new List<BaiduMarkers>();
@@ -87,10 +85,7 @@ namespace XY.WeChart.Web.Controllers
                         entity.wID = UserDateTicket.wx_user.ID;
                         entity.wxId = UserDateTicket.wx_user.wxId;
                         entity.groupid = info.groupid;
-                        if (!groupids.Contains(entity.groupid))
-                            entity.groupname = wx_usergroupService.instance().Single(info.groupid, UserDateTicket.Company.ID).gname;
-                        else
-                            entity.groupname = groupnames[info.groupid];
+                        entity.groupname = wx_usergroupService.instance().Single(info.groupid, UserDateTicket.Company.ID).gname;
                         entity.headimgul = info.headimgurl;
                         entity.language = info.language;
                         entity.nickname = info.nickname;
@@ -201,24 +196,49 @@ namespace XY.WeChart.Web.Controllers
             {
                 wx_userinfo info = wx_userinfoService.instance().Single(ID);
                 wx_usergroup group = wx_usergroupService.instance().Single(GID, UserDateTicket.Company.ID);
-                if (groupids.Contains(GID) || group != null)
+                if (group != null)
                 {
                     var result = WeChartAPI.UserMoveGroup(GetToken(), info.openid, GID);
                     if (result.errcode == ReturnCode.请求成功)
                     {
                         info.groupid = GID;
-                        if (!groupids.Contains(info.groupid))
-                            info.groupname = wx_usergroupService.instance().Single(info.groupid, UserDateTicket.Company.ID).gname;
-                        else
-                            info.groupname = groupnames[info.groupid];
+                        info.groupname = wx_usergroupService.instance().Single(info.groupid, UserDateTicket.Company.ID).gname;
                         if (wx_userinfoService.instance().Update(info) == 1)
                         {
+                            syncGroups();
                             return Json("ok", JsonRequestBehavior.AllowGet);
                         }
                     }
                 }
             }
             return Json("error", JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpGet]
+        public JsonResult syncGroups()
+        {
+            var data = CommonApi.Groups_GetAll(GetToken());// WeChartAPI.GetUserInfo(GetToken(), item);
+            if (data.errcode == ReturnCode.请求成功)
+            {
+                foreach (var item in data.groups)
+                {
+                    var entity = wx_usergroupService.instance().Single(item.id, UserDateTicket.Company.ID);
+                    if (entity == null)
+                        entity = new wx_usergroup();
+                    entity.wID = UserDateTicket.wx_user.ID;
+                    entity.cID = UserDateTicket.Company.ID;
+                    entity.gid = item.id;
+                    entity.gname = item.name;
+                    entity.gcount = item.count;
+                    if (entity.ID == Guid.Empty)
+                        wx_usergroupService.instance().Insert(entity);
+                    else
+                        wx_usergroupService.instance().Update(entity);
+                }
+
+            }
+            return Json(data.errcode.ToString(), JsonRequestBehavior.AllowGet);
         }
         #endregion
 

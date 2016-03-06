@@ -12,7 +12,12 @@
         <input type="hidden" name="ID" value="@Model.ID" id="ID" />
         <input type="hidden" name="CreateTime" value="@Model.CreateTime" id="CreateTime" />
         <input type="hidden" name="mediaUrl" value="@ViewBag.mediaUrl" />
-
+        <p>
+            <label>标题</label>
+            <span class="field">
+                <input type="text" name="ruleName" value="@Model.ruleName" id="ruleName" class="longinput {required:true,messages:{required:'标题不能为空'}}" />
+            </span>
+        </p>
         <p>
             <label>关键词</label>
             <span class="field">
@@ -39,12 +44,6 @@
             </script>
         </p>
         <p>
-            <label>标题</label>
-            <span class="field">
-                <textarea cols="80" rows="5" name="rContent" class="mediuminput {required:true,messages:{required:'内容或简介不能为空'}}" id="rContent">@ViewBag.rContent</textarea>
-            </span>
-        </p>
-        <p>
             <label>视频文件</label>
             <span class="field" id="mediaUrl">
                 <input type="file" name="file" filepath="/UPLOAD/WXIMG/" filetype="video" for="mediaUrl" />
@@ -54,7 +53,7 @@
                 $(function () {
                     if ($.trim($("input[name=mediaUrl]").val()).length > 0) {
                         $("#mediaUrl > div").find(".filename").text($("input[name=mediaUrl]").val());
-                        $("#desc").append('&#12288;<a style="color:red" href="@Model.mediaUrlStr" target="_blank">点击预览收视频</a>')
+                        $("#desc").append('&#12288;<a style="color:red" href="@ViewBag.mediaUrl" target="_blank">点击预览收视频</a>')
 
                     }
                 })

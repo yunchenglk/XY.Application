@@ -8,7 +8,7 @@ using XY.Services;
 namespace XY.WeChart.Web.Controllers
 {
     [XY.WeChart.Web.Filters.AuthorizeFilter]
-    public class wxRuleController : Controller
+    public class wxRuleController : _baseController
     {
         #region 文本回复
         public ActionResult wenBen()
@@ -36,7 +36,6 @@ namespace XY.WeChart.Web.Controllers
             m.wID = UserDateTicket.wx_user.ID;
             m.cID = UserDateTicket.Company.ID;
             m.wxId = UserDateTicket.wx_user.wxId;
-            m.ruleName = "纯文本回复";
             m.reqestType = 0;
             m.responseType = 1;
             m.isLikeSearch = form["isLikeSearch"] == "1";
@@ -121,7 +120,7 @@ namespace XY.WeChart.Web.Controllers
             m.wID = UserDateTicket.wx_user.ID;
             m.cID = UserDateTicket.Company.ID;
             m.wxId = UserDateTicket.wx_user.wxId;
-            m.ruleName = "语音回复";
+            //m.ruleName = "语音回复";
             m.reqestType = 0;
             m.responseType = 3;
             m.isLikeSearch = form["isLikeSearch"] == "1";
@@ -130,7 +129,7 @@ namespace XY.WeChart.Web.Controllers
                 m.ID = Guid.NewGuid();
                 result.status = wx_requestRuleService.instance().Insert(m);
                 wx_requestRuleContent rc = new wx_requestRuleContent();
-                rc.rContent = form["rContent"];
+                rc.rContent = m.ruleName;
                 rc.rContent2 = form["rContent2"];
                 rc.RuleID = m.ID;
                 rc.mediaUrl = form["mediaUrl"];
@@ -139,7 +138,7 @@ namespace XY.WeChart.Web.Controllers
             else
             {
                 wx_requestRuleContent rc = wx_requestRuleContentService.instance().SingleByRuleID(m.ID);
-                rc.rContent = form["rContent"];
+                rc.rContent = m.ruleName;
                 rc.rContent2 = form["rContent2"];
                 rc.RuleID = m.ID;
                 rc.mediaUrl = form["mediaUrl"];
@@ -191,7 +190,7 @@ namespace XY.WeChart.Web.Controllers
             m.wID = UserDateTicket.wx_user.ID;
             m.cID = UserDateTicket.Company.ID;
             m.wxId = UserDateTicket.wx_user.wxId;
-            m.ruleName = "图文回复";
+            //m.ruleName = "图文回复";
             m.responseType = 2;
             m.reqestType = 0;
             m.isLikeSearch = form["isLikeSearch"] == "1";
@@ -344,7 +343,7 @@ namespace XY.WeChart.Web.Controllers
             m.wID = UserDateTicket.wx_user.ID;
             m.cID = UserDateTicket.Company.ID;
             m.wxId = UserDateTicket.wx_user.wxId;
-            m.ruleName = "视频回复";
+            //m.ruleName = "视频回复";
             m.reqestType = 0;
             m.responseType = 4;
             m.isLikeSearch = form["isLikeSearch"] == "1";
@@ -353,7 +352,7 @@ namespace XY.WeChart.Web.Controllers
                 m.ID = Guid.NewGuid();
                 result.status = wx_requestRuleService.instance().Insert(m);
                 wx_requestRuleContent rc = new wx_requestRuleContent();
-                rc.rContent = form["rContent"];
+                rc.rContent = m.ruleName;
                 rc.rContent2 = form["rContent2"];
                 rc.RuleID = m.ID;
                 rc.mediaUrl = form["mediaUrl"];
@@ -362,7 +361,7 @@ namespace XY.WeChart.Web.Controllers
             else
             {
                 wx_requestRuleContent rc = wx_requestRuleContentService.instance().SingleByRuleID(m.ID);
-                rc.rContent = form["rContent"];
+                rc.rContent = m.ruleName;
                 rc.rContent2 = form["rContent2"];
                 rc.RuleID = m.ID;
                 rc.mediaUrl = form["mediaUrl"];
@@ -398,6 +397,15 @@ namespace XY.WeChart.Web.Controllers
         {
             var result = wx_requestRuleService.instance().GetByResponseType(type, UserDateTicket.Company.ID);
             return Json(result.Select(m => m.reqKeywords), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult Push(string id)
+        {
+            Guid ID = IsGID(id);
+            wx_requestRule m = new wx_requestRule();
+            m = wx_requestRuleService.instance().Single(ID);
+            return View(m);
         }
 
     }

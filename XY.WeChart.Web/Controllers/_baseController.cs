@@ -24,55 +24,12 @@ namespace XY.WeChart.Web.Controllers
         {
             return Json(WeChartAPI.ReloadToken(UserDateTicket.Company.ID), JsonRequestBehavior.AllowGet);
         }
-        //推送消息
-        public JsonResult _push(string id)
-        {
-            Guid ID;
-            if (Guid.TryParse(id, out ID))
-            {
-                wx_requestRule rule = wx_requestRuleService.instance().Single(ID);
-                string[] openIds = wx_userinfoService.instance().GetByCompanyID(UserDateTicket.Company.ID).Select(n => n.openid).ToArray();
-                if (rule == null || openIds.Count() == 0) { return Json("错误", JsonRequestBehavior.AllowGet); }
-                SendResult result = new SendResult();
-                var contentlist = wx_requestRuleContentService.instance().GetByRuleID(rule.ID);
-                switch (rule.responseType)
-                {
+        
 
-                    //文本1，图文2，语音3，视频4
-                    case 1:
-                        result = Services.Weixin.CommonApi.SendTextGroupMessageByOpenId(GetToken(),
-                           contentlist.First().rContent, openIds);
-                        break;
-                    case 2:
 
-                        break;
-                    case 3:
-                        var voicetempre = Services.Weixin.CommonApi.Upload(GetToken(), Entity.Weixin.UploadMediaFileType.voice, contentlist.First().mediaUrl);
-                        if (voicetempre.errcode == Entity.Weixin.ReturnCode.请求成功)
-                        {
-                            result = Services.Weixin.CommonApi.SendGroupMessageByOpenId(GetToken(),
-                                                                                   GroupMessageType.voice,
-                                                                                   voicetempre.media_id,
-                                                                                   openIds);
-                        }
-                        break;
-                    case 4:
-                        var videotempre = Services.Weixin.CommonApi.Upload(GetToken(), Entity.Weixin.UploadMediaFileType.video, contentlist.First().meidaHDUrl);
-                        if (videotempre.errcode == Entity.Weixin.ReturnCode.请求成功)
-                        {
-                            result = Services.Weixin.CommonApi.SendVideoGroupMessageByOpenId(GetToken(),
-                                                                                    contentlist.First().rContent,
-                                                                                    contentlist.First().rContent2,
-                                                                                    videotempre.media_id,
-                                                                                    openIds);
-                        }
-                        break;
 
-                }
-                return Json(result.errcode.ToString(), JsonRequestBehavior.AllowGet);
-            }
-            return Json("错误", JsonRequestBehavior.AllowGet);
-        }
+
+
         //关注时回复
         public JsonResult _subscribe(string id)
         {
@@ -95,5 +52,26 @@ namespace XY.WeChart.Web.Controllers
             return Json("错误", JsonRequestBehavior.AllowGet);
 
         }
+
+        public Guid IsGID(string id)
+        {
+            Guid ID = Guid.Empty;
+            if (Guid.TryParse(id, out ID))
+            {
+                ID = new Guid(id);
+            }
+            return ID;
+        }
+
+        public int IsInt(string id)
+        {
+            int ID = 0;
+            if (int.TryParse(id, out ID))
+            {
+                ID = int.Parse(id);
+            }
+            return ID;
+        }
+
     }
 }

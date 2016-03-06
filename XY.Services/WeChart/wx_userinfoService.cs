@@ -78,6 +78,15 @@ namespace XY.Services
             });
             return result;
         }
+        public IEnumerable<wx_userinfo> GetByGroupID(Guid companyid, int gid)
+        {
+            IEnumerable<wx_userinfo> result = new List<wx_userinfo>();
+            _db.Execute(() =>
+            {
+                result = _db.GetList<wx_userinfo>(m => m.cID == companyid && m.groupid == gid);
+            });
+            return result;
+        }
 
 
         /// <summary>

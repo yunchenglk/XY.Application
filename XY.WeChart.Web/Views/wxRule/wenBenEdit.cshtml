@@ -25,6 +25,12 @@
         <input type="hidden" name="CreateTime" value="@Model.CreateTime" id="CreateTime" />
         <input type="hidden" name="rContent" id="rContent" value="@ViewBag.rContent" />
         <p>
+            <label>标题</label>
+            <span class="field">
+                <input type="text" name="ruleName" value="@Model.ruleName" id="ruleName" class="longinput {required:true,messages:{required:'标题不能为空'}}" />
+            </span>
+        </p>
+        <p>
             <label>关键词</label>
             <span class="field">
                 <input type="text" name="reqKeywords" value="@Model.reqKeywords" id="reqKeywords" class="longinput {required:true,messages:{required:'关键词不能为空'}}" />

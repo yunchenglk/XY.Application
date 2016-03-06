@@ -3493,6 +3493,15 @@ namespace XY.Entity
 		   set{_gname = value;}
 		 }
         
+		private  Int32 _gcount;
+
+        [Column("gcount", DbType.Int32,false,false)]
+        public Int32  gcount 
+		{ 
+		   get{ return _gcount;  } 
+		   set{_gcount = value;}
+		 }
+        
 		private  DateTime _CreateTime;
 
         [Column("CreateTime", DbType.DateTime,false,false)]
