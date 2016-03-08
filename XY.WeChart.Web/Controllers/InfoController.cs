@@ -27,7 +27,7 @@ namespace XY.WeChart.Web.Controllers
                 }
             }
             wx_userweixin m;
-
+            ViewBag.webSite = System.Configuration.ConfigurationManager.AppSettings["webSite"];
             if (UserDateTicket.wx_user.ID == Guid.Empty)
                 m = new wx_userweixin() { DR = true };
             else
