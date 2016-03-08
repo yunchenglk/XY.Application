@@ -13,7 +13,7 @@ namespace XY.WeChart.Web
     {
         protected void Application_Start()
         {
-            UserDateTicket.wx_open = wx_openInfoService.instance().Single(new Guid("47012F6E-98C8-4207-AFAF-D9A15B1C39F0"));
+            UserDateTicket.wx_open = wx_openInfoService.instance().Single(new Guid("477F0554-837C-4D10-9C12-3DFE44B8DD60"));
             //UserDateTicket.Company = CompanyService.instance().Single(new Guid("02A07495-5484-4162-A70D-B7341096A1D4"));
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

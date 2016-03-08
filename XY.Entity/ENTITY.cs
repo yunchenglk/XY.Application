@@ -3058,6 +3058,15 @@ namespace XY.Entity
 		   set{_open_access_token = value;}
 		 }
         
+		private  Int32 _expires_in;
+
+        [Column("expires_in", DbType.Int32,false,false)]
+        public Int32  expires_in 
+		{ 
+		   get{ return _expires_in;  } 
+		   set{_expires_in = value;}
+		 }
+        
 		private  String _open_pre_auth_code;
 
         [Column("open_pre_auth_code", DbType.String,false,false)]

@@ -86,7 +86,8 @@ namespace XY.WeChart.Web.Controllers
                             var result = ComponentApi.GetComponentAccessToken(sAppID, sAppSecret, ticket);
                             if (result.errcode == Entity.Weixin.ReturnCode.请求成功)
                             {
-                                UserDateTicket.wx_open.open_access_token = result.component_access_token; ;
+                                UserDateTicket.wx_open.open_access_token = result.component_access_token;
+                                UserDateTicket.wx_open.expires_in = result.expires_in;
                                 Util.LogHelper.Info("更新open_access_token" + result.component_access_token);
                                 var coderesult = ComponentApi.GetPreAuthCode(sAppID, result.component_access_token);
                                 if (coderesult.errcode == Entity.Weixin.ReturnCode.请求成功)
