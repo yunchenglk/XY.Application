@@ -104,6 +104,7 @@
     <Compile Include="Entities\Request\RequestMessageShortVideo.cs" />
     <Compile Include="Entities\Request\RequestMessageVideo.cs" />
     <Compile Include="Entities\Request\RequestMessageVoice.cs" />
+    <Compile Include="Entities\Response\IResponseMessageBase.cs" />
     <Compile Include="Entities\Response\ResponseMessageImage.cs" />
     <Compile Include="Entities\Response\ResponseMessageMusic.cs" />
     <Compile Include="Entities\Response\ResponseMessageNews.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Entities\Response\ResponseMessageVoice.cs" />
     <Compile Include="Exceptions\MessageHandlerException.cs" />
     <Compile Include="Helpers\GoogleMapHelper.cs" />
+    <Compile Include="Helpers\JsonSetting.cs" />
     <Compile Include="Helpers\MessageAgent.cs" />
     <Compile Include="Helpers\MsgTypeHelper.cs" />
     <Compile Include="Helpers\WeixinJsonConventer.cs" />
@@ -128,7 +130,6 @@
     <Compile Include="Entities\Request\RequestMessageText.cs" />
     <Compile Include="Entities\Response\Article.cs" />
     <Compile Include="Entities\Response\Image.cs" />
-    <Compile Include="Entities\Response\IResponseMessageBase.cs" />
     <Compile Include="Entities\MessageBase.cs" />
     <Compile Include="Entities\Response\Music.cs" />
     <Compile Include="Entities\Response\ResponseMessageBase.cs" />
@@ -145,7 +146,6 @@
     <Compile Include="Entities\Response\Voice.cs" />
     <Compile Include="Helpers\ExpandoJsonConverter.cs" />
     <Compile Include="Helpers\IDictionaryExtensions.cs" />
-    <Compile Include="Helpers\JsonSetting.cs" />
     <Compile Include="HTTPGet.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\SerializerHelper.cs" />
