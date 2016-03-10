@@ -36,7 +36,7 @@
             <small class="desc">*完全匹配，用户输入的和此关键词一样才会触发!</small>
             <small class="desc">*包含匹配 (只要用户输入的文字包含本关键词就触发!)</small>
             <script type="text/javascript">
-                 if ('@Model.isLikeSearch' == "True") {
+                if ('@Model.isLikeSearch' == "True") {
                     $("#isLikeSearch").val(1)
                 } else {
                     $("#isLikeSearch").val(0);
@@ -58,6 +58,13 @@
                     }
                 })
             </script>
+        </p>
+        <p>
+            <label>视频呢地址</label>
+            <span class="field">
+                <input type="hidden" name="mediaUrl" value="@ViewBag.mediaUrl" />
+            </span>
+            <small class="desc">*必须通过腾讯视频审核的视频才可以</small>
         </p>
         <p>
             <label>描述</label>
