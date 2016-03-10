@@ -16,16 +16,17 @@ namespace XY.WeChart.Web.Controllers
         {
             ViewBag.CompanyID = UserDateTicket.Company.ID;
             ViewBag.open_sAppid = UserDateTicket.wx_open.open_sAppID;
-            var result = ComponentApi.GetComponentAccessToken(UserDateTicket.wx_open.open_sAppID, UserDateTicket.wx_open.open_sAppSecret, UserDateTicket.wx_open.open_ticket);
-            if (result.errcode == Entity.Weixin.ReturnCode.请求成功)
-            {
-                var coderesult = ComponentApi.GetPreAuthCode(UserDateTicket.wx_open.open_sAppID, result.component_access_token);
-                if (coderesult.errcode == Entity.Weixin.ReturnCode.请求成功)
-                {
-                    UserDateTicket.wx_open.open_pre_auth_code = coderesult.pre_auth_code;
-                    ViewBag.pre_auth_code = UserDateTicket.wx_open.open_pre_auth_code;
-                }
-            }
+            //var result = ComponentApi.GetComponentAccessToken(UserDateTicket.wx_open.open_sAppID, UserDateTicket.wx_open.open_sAppSecret, UserDateTicket.wx_open.open_ticket);
+            //if (result.errcode == Entity.Weixin.ReturnCode.请求成功)
+            //{
+            //    var coderesult = ComponentApi.GetPreAuthCode(UserDateTicket.wx_open.open_sAppID, result.component_access_token);
+            //    if (coderesult.errcode == Entity.Weixin.ReturnCode.请求成功)
+            //    {
+            //        UserDateTicket.wx_open.open_pre_auth_code = coderesult.pre_auth_code;
+            //        ViewBag.pre_auth_code = UserDateTicket.wx_open.open_pre_auth_code;
+            //    }
+            //}
+            ViewBag.pre_auth_code = UserDateTicket.wx_open.open_pre_auth_code;
             wx_userweixin m;
             ViewBag.webSite = System.Configuration.ConfigurationManager.AppSettings["webSite"];
             if (UserDateTicket.wx_user.ID == Guid.Empty)

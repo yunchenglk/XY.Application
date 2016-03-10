@@ -289,7 +289,7 @@ namespace XY.WeChart.Web.Controllers
                 if (dbresult > 0)
                 {
                     UserDateTicket.wx_user = wx_userweixinService.instance().SingleByCompanyID(CID);
-                    Response.Redirect("/Info/Index/id=true");
+                    Response.Redirect("/Info/Index");
                 }
                 else
                 {

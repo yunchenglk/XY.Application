@@ -34,19 +34,16 @@ namespace XY.WeChart.Web.Controllers
         }
         public ActionResult wxContent(string id)
         {
-            //Guid ID;
-            //if (Guid.TryParse(id, out ID))
-            //{
-            //    wx_requestRuleContent content = wx_requestRuleContentService.instance().Single(ID);
-            //    wx_requestRule rule = wx_requestRuleService.instance().Single(content.RuleID);
-            //    Company com = CompanyService.instance().Single(rule.cID);
-            //    ViewBag.content = content;
-            //    ViewBag.rule = rule;
-            //    ViewBag.com = com;
-            //}
-            //else {
-
-            //}
+            Guid ID;
+            if (Guid.TryParse(id, out ID))
+            {
+                wx_requestRuleContent content = wx_requestRuleContentService.instance().Single(ID);
+                wx_requestRule rule = wx_requestRuleService.instance().Single(content.RuleID);
+                Company com = CompanyService.instance().Single(rule.cID);
+                ViewBag.content = content;
+                ViewBag.rule = rule;
+                ViewBag.com = com;
+            }
             return View();
         }
     }
