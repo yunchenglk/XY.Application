@@ -153,11 +153,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Handler\EventHandler.cs" />
     <Compile Include="Handler\HandlerFactory.cs" />
     <Compile Include="Helpers\CheckSignature.cs" />
     <Compile Include="Helpers\CommConfig.cs" />
     <Compile Include="Helpers\CommFun.cs" />
-    <Compile Include="Handler\EventHandler.cs" />
     <Compile Include="Message\EventMessage.cs" />
     <Compile Include="Handler\IHandler.cs" />
     <Compile Include="Message\ImageMessage.cs" />
@@ -179,6 +179,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -196,7 +197,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

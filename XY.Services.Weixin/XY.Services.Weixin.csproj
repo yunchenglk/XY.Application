@@ -68,6 +68,7 @@
     <Compile Include="Context\WeixinContextRemovedEventArgs.cs" />
     <Compile Include="Entities\BindableBase.cs" />
     <Compile Include="Entities\Extensions.cs" />
+    <Compile Include="Entities\Request\Event\IRequestMessageEventBase.cs" />
     <Compile Include="Entities\Request\Event\RequestMessageEvent_Card_Not_Pass_Check.cs" />
     <Compile Include="Entities\Request\Event\RequestMessageEvent_Card_Pass_Check.cs" />
     <Compile Include="Entities\Request\Event\RequestMessageEvent_Kf_Close_Session.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Entities\Request\Event\RequestMessageEvent_View.cs" />
     <Compile Include="Entities\Request\Event\RequestMessageEvent_WifiConnected.cs" />
     <Compile Include="Entities\Request\Event\ShakearoundUserShake.cs" />
+    <Compile Include="Entities\Request\IRequestMessageBase.cs" />
     <Compile Include="Entities\Request\PostModel.cs" />
     <Compile Include="Entities\Request\RequestMessageImage.cs" />
     <Compile Include="Entities\Request\RequestMessageLink.cs" />
@@ -117,7 +119,6 @@
     <Compile Include="Helpers\MsgTypeHelper.cs" />
     <Compile Include="Helpers\WeixinJsonConventer.cs" />
     <Compile Include="Entities\IMessageBase.cs" />
-    <Compile Include="Entities\Request\Event\IRequestMessageEventBase.cs" />
     <Compile Include="Entities\Request\Event\IRequestMessageEventKey.cs" />
     <Compile Include="Entities\Request\Event\RequestMessageEventBase.cs" />
     <Compile Include="Entities\Request\Event\RequestMessageEvent_Click.cs" />
@@ -125,7 +126,6 @@
     <Compile Include="Entities\Request\Event\ScanCodeInfo.cs" />
     <Compile Include="Entities\Request\Event\SendLocationInfo.cs" />
     <Compile Include="Entities\Request\Event\SendPicsInfo.cs" />
-    <Compile Include="Entities\Request\IRequestMessageBase.cs" />
     <Compile Include="Entities\Request\RequestMessageBase.cs" />
     <Compile Include="Entities\Request\RequestMessageText.cs" />
     <Compile Include="Entities\Response\Article.cs" />
