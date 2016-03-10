@@ -71,6 +71,8 @@
     <Compile Include="WeChart\articles.cs" />
     <Compile Include="WeChart\button.cs" />
     <Compile Include="WeChart\Config.cs" />
+    <Compile Include="WeChart\JsonResult\JsApiTicketResult.cs" />
+    <Compile Include="WeChart\JsonResult\UploadMediaFileResult.cs" />
     <Compile Include="Weixin\Analysis\ArticleAnalysisResultJson.cs" />
     <Compile Include="Weixin\Analysis\InterfaceAnalysisResultJson.cs" />
     <Compile Include="Weixin\Analysis\MessageAnalysisResultJson.cs" />
@@ -127,8 +129,6 @@
     <Compile Include="WeChart\ITemplate.cs" />
     <Compile Include="Weixin\Menu\GetMenuResult.cs" />
     <Compile Include="Weixin\Menu\GetMenuResultFull.cs" />
-    <Compile Include="WeChart\JsonResult\JsApiTicketResult.cs" />
-    <Compile Include="WeChart\JsonResult\UploadMediaFileResult.cs" />
     <Compile Include="Weixin\SemanticResultJson.cs" />
     <Compile Include="Weixin\SendMessage\BaseGroupMessageDataByGroupId.cs" />
     <Compile Include="Weixin\SendMessage\BaseGroupMessageDataByOpenId.cs" />
