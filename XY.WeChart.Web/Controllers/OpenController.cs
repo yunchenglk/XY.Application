@@ -19,6 +19,7 @@ namespace XY.WeChart.Web.Controllers
     public class OpenController : Controller
     {
         private static List<queue> _queue;
+
         // GET: Open
         /// <summary>
         /// 授权事件接收URL
@@ -33,11 +34,12 @@ namespace XY.WeChart.Web.Controllers
             <ComponentVerifyTicket><![CDATA[ticket@@@Iv_fUfslI38h5WzYWsa6s1nvVyw8NI8ZxumDTw7nIa0WmE0y9yp0UFU3XLo7CuVKtUvSbwG2eG7-W1EirYHSvA]]></ComponentVerifyTicket>
             </xml>
             */
+            wx_openInfo wx_open = wx_openInfoService.instance().Single(new Guid(System.Configuration.ConfigurationManager.AppSettings["openID"]));
             HttpRequestBase Request = HttpContext.Request;
-            string sToken = UserDateTicket.wx_open.open_sToken;
-            string sAppID = UserDateTicket.wx_open.open_sAppID;
-            string sAppSecret = UserDateTicket.wx_open.open_sAppSecret;
-            string sEncodingAESKey = UserDateTicket.wx_open.open_sEncodingAESKey;
+            string sToken = wx_open.open_sToken;
+            string sAppID = wx_open.open_sAppID;
+            string sAppSecret = wx_open.open_sAppSecret;
+            string sEncodingAESKey = wx_open.open_sEncodingAESKey;
             Tencent.WXBizMsgCrypt wxcpt = new Tencent.WXBizMsgCrypt(sToken, sEncodingAESKey, sAppID);
             string sReqMsgSig = Request["msg_signature"];
             string sReqTimeStamp = Request["timestamp"];
@@ -77,36 +79,94 @@ namespace XY.WeChart.Web.Controllers
                 switch (type)
                 {
                     case "COMPONENT_VERIFY_TICKET"://推送component_verify_ticket协议,每隔10分钟定时推送
-                        Util.LogHelper.Info("推送component_verify_ticket协议--start");
+                        Util.LogHelper.Info("推送component_verify_ticket协议--start【");
                         string ticket = element.Element("ComponentVerifyTicket").Value.ToString();
-                        if (UserDateTicket.wx_open.open_ticket != ticket)
+                        //更新ticket
+                        if (wx_open.open_ticket != ticket)
                         {
-                            UserDateTicket.wx_open.open_ticket = ticket;
+                            wx_open.open_ticket = ticket;
                             Util.LogHelper.Info("更新ticket:" + ticket);
-                            var result = ComponentApi.GetComponentAccessToken(sAppID, sAppSecret, ticket);
-                            if (result.errcode == Entity.Weixin.ReturnCode.请求成功)
+                        }
+                        else {
+                            Util.LogHelper.Info("ticket无需更新:" + ticket);
+                        }
+                        //更新open_access_token
+                        var result = ComponentApi.GetComponentAccessToken(sAppID, sAppSecret, ticket);
+                        if (result.errcode == ReturnCode.请求成功)
+                        {
+                            if (wx_open.open_access_token != result.component_access_token)
                             {
-                                UserDateTicket.wx_open.open_access_token = result.component_access_token;
-                                UserDateTicket.wx_open.expires_in = result.expires_in;
-                                Util.LogHelper.Info("更新open_access_token" + result.component_access_token);
-                                var coderesult = ComponentApi.GetPreAuthCode(sAppID, result.component_access_token);
-                                if (coderesult.errcode == Entity.Weixin.ReturnCode.请求成功)
-                                {
-                                    UserDateTicket.wx_open.open_pre_auth_code = coderesult.pre_auth_code;
-                                    Util.LogHelper.Info("更新open_pre_auth_code" + coderesult.pre_auth_code);
-                                    if (wx_openInfoService.instance().Update(UserDateTicket.wx_open) == 1)
-                                    {
-                                        Util.LogHelper.Info("推送component_verify_ticket协议--成功--end");
-                                    }
-                                    else {
-                                        Util.LogHelper.Info("推送component_verify_ticket协议--失败--end");
-                                    }
-                                }
+                                wx_open.open_access_token = result.component_access_token;
+                                wx_open.access_token_expires_in = result.expires_in;
+                                Util.LogHelper.Info("更新open_access_token:" + result.component_access_token);
+                            }
+                            else {
+                                Util.LogHelper.Info("open_access_token无需更新:" + result.component_access_token);
                             }
                         }
                         else {
-                            Util.LogHelper.Info("推送component_verify_ticket协议--不需更新--end");
+                            Util.LogHelper.Info("更新open_access_token错误:" + result.errcode.ToString());
                         }
+                        //更新open_pre_auth_cod
+                        var coderesult = ComponentApi.GetPreAuthCode(sAppID, result.component_access_token);
+                        if (coderesult.errcode == ReturnCode.请求成功)
+                        {
+                            if (wx_open.open_pre_auth_code != coderesult.pre_auth_code)
+                            {
+                                wx_open.open_pre_auth_code = coderesult.pre_auth_code;
+                                wx_open.pre_auth_code_wxpires_in = coderesult.expires_in;
+                                Util.LogHelper.Info("更新open_pre_auth_code:" + coderesult.pre_auth_code);
+                            }
+                            else {
+                                Util.LogHelper.Info("open_pre_auth_code无需更新:" + coderesult.pre_auth_code);
+                            }
+                        }
+                        else {
+                            Util.LogHelper.Info("更新open_pre_auth_code错误:" + coderesult.errcode.ToString());
+                        }
+                        wx_open.ModifyTime = DateTime.Now;
+                        //保存到数据库
+                        if (wx_openInfoService.instance().Update(wx_open) == 1)
+                        {
+                            Util.LogHelper.Info("推送component_verify_ticket协议--成功--end】");
+                        }
+                        else {
+                            Util.LogHelper.Info("推送component_verify_ticket协议--失败--end】");
+                        }
+
+
+
+
+
+
+                        //if (wx_open.open_ticket != ticket)
+                        //{
+                        //    wx_open.open_ticket = ticket;
+                        //    Util.LogHelper.Info("更新ticket:" + ticket);
+                        //    var result = ComponentApi.GetComponentAccessToken(sAppID, sAppSecret, ticket);
+                        //    if (result.errcode == Entity.Weixin.ReturnCode.请求成功)
+                        //    {
+                        //        wx_open.open_access_token = result.component_access_token;
+                        //        wx_open.expires_in = result.expires_in;
+                        //        Util.LogHelper.Info("更新open_access_token" + result.component_access_token);
+                        //        var coderesult = ComponentApi.GetPreAuthCode(sAppID, result.component_access_token);
+                        //        if (coderesult.errcode == Entity.Weixin.ReturnCode.请求成功)
+                        //        {
+                        //            wx_open.open_pre_auth_code = coderesult.pre_auth_code;
+                        //            Util.LogHelper.Info("更新open_pre_auth_code" + coderesult.pre_auth_code);
+                        //            if (wx_openInfoService.instance().Update(wx_open) == 1)
+                        //            {
+                        //                Util.LogHelper.Info("推送component_verify_ticket协议--成功--end");
+                        //            }
+                        //            else {
+                        //                Util.LogHelper.Info("推送component_verify_ticket协议--失败--end");
+                        //            }
+                        //        }
+                        //    }
+                        //}
+                        //else {
+                        //    Util.LogHelper.Info("推送component_verify_ticket协议--不需更新--end");
+                        //}
                         break;
 
                     case "UNAUTHORIZED"://取消授权通知
@@ -185,7 +245,7 @@ namespace XY.WeChart.Web.Controllers
             return reqStr;
         }
         /// <summary>
-        /// 微信服务器会不间断推送最新的Ticket（10分钟一次），需要在此方法中更新缓存
+        /// 微信服务器会不间断推送最新的Ticket（10分钟一次）
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>
@@ -197,9 +257,10 @@ namespace XY.WeChart.Web.Controllers
             {
                 Directory.CreateDirectory(logPath);
             }
-            postModel.EncodingAESKey = UserDateTicket.wx_open.open_sEncodingAESKey; //根据自己后台的设置保持一致
-            postModel.AppId = UserDateTicket.wx_open.open_sAppID; //根据自己后台的设置保持一致
-            postModel.Token = UserDateTicket.wx_open.open_sToken;
+            wx_openInfo wx_open = wx_openInfoService.instance().Single(new Guid(System.Configuration.ConfigurationManager.AppSettings["openID"]));
+            postModel.EncodingAESKey = wx_open.open_sEncodingAESKey; //根据自己后台的设置保持一致
+            postModel.AppId = wx_open.open_sAppID; //根据自己后台的设置保持一致
+            postModel.Token = wx_open.open_sToken;
             var maxRecordCount = 10;
             MessageHandler<CustomMessageContext> messageHandler = null;
             try
@@ -253,15 +314,16 @@ namespace XY.WeChart.Web.Controllers
             //http://weixin.com/Open/Callback?id=02a07495-5484-4162-a70d-b7341096a1d4&auth_code=queryauthcode@@@zQaA25MwNP71mnGlwrwuRnx2lxw3NvCpK7n-BM01BJlBIkGIZaSluaGzAvdz_oX8sI4kc4wRx7MfLfaEqa8gJA&expires_in=3600
             Guid CID;
             int dbresult = 0;
+            wx_openInfo wx_open = wx_openInfoService.instance().Single(new Guid(System.Configuration.ConfigurationManager.AppSettings["openID"]));
             if (Guid.TryParse(id, out CID))
             {
                 string auth_code = Request["auth_code"];
                 string expires_in = Request["expires_in"];
-                var result = ComponentApi.GetComponentAccessToken(UserDateTicket.wx_open.open_sAppID, UserDateTicket.wx_open.open_sAppSecret, UserDateTicket.wx_open.open_ticket);
+                var result = ComponentApi.GetComponentAccessToken(wx_open.open_sAppID, wx_open.open_sAppSecret, wx_open.open_ticket);
                 if (result.errcode == Entity.Weixin.ReturnCode.请求成功)
                 {
                     string open_access_token = result.component_access_token;
-                    string open_sAppID = UserDateTicket.wx_open.open_sAppID;
+                    string open_sAppID = wx_open.open_sAppID;
                     var infoRes = ComponentApi.QueryAuth(open_access_token, open_sAppID, auth_code);
                     if (infoRes.errcode == Entity.Weixin.ReturnCode.请求成功)
                     {

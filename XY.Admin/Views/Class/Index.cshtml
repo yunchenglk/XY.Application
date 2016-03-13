@@ -35,7 +35,7 @@
                 $("#CompanyID").append(" <option value=" + o["id"] + ">" + o["name"] + "</option>")
             })
             $("tbody").bindPage({
-                where: "ParentID|equal|00000000-0000-0000-0000-000000000000#CompanyID|equal|" + $("#CompanyID").val(),
+                where: "DR|equal|0#ParentID|equal|00000000-0000-0000-0000-000000000000#CompanyID|equal|" + $("#CompanyID").val(),
                 sortorder: "asc",
                 sortname: "Sort"
             });
@@ -44,7 +44,7 @@
         });
         $("#CompanyID").change(function () {
             $("#dataTable tbody").bindPage({
-                where: "ParentID|equal|00000000-0000-0000-0000-000000000000#CompanyID|equal|" + $(this).val(),
+                where: "DR|equal|0#ParentID|equal|00000000-0000-0000-0000-000000000000#CompanyID|equal|" + $(this).val(),
                 sortorder: "asc",
                 sortname: "Sort"
             });

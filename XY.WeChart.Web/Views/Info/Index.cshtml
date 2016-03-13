@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    ViewBag.setMenu = "1";
+}
+@Scripts.Render("~/js/jqueryValidate")
+<script src="~/Content/js/jquery.img.js"></script>
+<script type="text/javascript">
+    function reload() {
+        $.getJSON("/Info/reLoad", { v: Math.random() }, function (result) {
+            alert(result.msg);
+        })
+    }
+    function UploadAfer() {
+        alert("after");
+    }
+</script>
+<div class="pageheader">
+    <span class="profilepic"><img src="@Model.headerpic" alt="" /></span>
+    <div class="profiletitle">
+        <h1 class="pagetitle">@UserDateTicket.Company.Name</h1>
+    </div>
+    <ul class="hornav">
+        <li class="current"><a href="#profile">公众号基本信息设置</a></li>
+    </ul>
+</div><!--pageheader-->
+<div id="contentwrapper" class="contentwrapper">
+    <form class="stdform" method="post" action="/Info/Index" id="validate">
+        <input type="hidden" name="ID" value="@Model.ID" />
+        <input type="hidden" name="ModifyTime" value="@Model.ModifyTime" />
+        <input type="hidden" name="headerpic" value="@Model.headerpic" />
+        <p>
+            <label>公众号名称</label>
+            <span class="field">
+                <input type="text" name="wxName" value="@Model.wxName" id="wxName" class="longinput {required:true,messages:{required:'不能为空'}}" />
+            </span>
+        </p>
+        <p>
+            <label>微信号</label>
+            <span class="field">
+                <input type="text" name="weixinCode" value="@Model.weixinCode" id="weixinCode" class="longinput {required:true,messages:{required:'不能为空'}}" />
+            </span>
+        </p>
+        <p>
+            <label>登录密码</label>
+            <span class="field">
+                <input type="text" name="wxPwd" value="@Model.wxPwd" id="wxPwd" class="longinput {required:true,messages:{required:'不能为空'}}" />
+            </span>
+        </p>
+        <p>
+            <label>公众号原始id</label>
+            <span class="field">
+                <input type="text" name="wxId" value="@Model.wxId" id="wxId" class="longinput {required:true,messages:{required:'不能为空'}}" />
+            </span>
+        </p>
+        <p>
+            <label>AppID（公众号）</label>
+            <span class="field">
+                <input type="text" name="AppId" value="@Model.AppId" id="AppId" class="longinput {required:true,messages:{required:'不能为空'}}" />
+            </span>
+        </p>
+        <p>
+            <label>AppSecret</label>
+            <span class="field">
+                <input type="text" name="AppSecret" value="@Model.AppSecret" id="AppSecret" class="longinput {required:true,messages:{required:'不能为空'}}" />
+            </span>
+        </p>
+        <p>
+            <label>微信号类型</label>
+            <span class="field">
+                <select name="wxType" class="uniformselect" id="wxType">
+                    <option value="0">订阅号</option>
+                    <option value="1">服务号</option>
+                </select>
+            </span>
+        </p>
+        <p>
+            <label>接口地址</label>
+            <span class="field">
+                <input type="text" name="apiurl" value="@Model.apiurlStr" class="longinput" disabled />
+            </span>
+        </p>
+        <p>
+            <label>TOKEN值</label>
+            <span class="field">
+                <input type="text" name="wxToken" value="@Model.wxToken" id="wxToken" class="longinput {required:true,messages:{required:'不能为空'}}" />
+            </span>
+        </p>
+        <p style="margin:30px 0;">
+            <label>头像</label>
+            <span class="field" id="headerpic">
+                <input type="file" name="file" filepath="/UPLOAD/WXIMG/" filetype="image" for="headerpic" />
+            </span>
+            <small class="desc" id="desc">推荐使用640*640大小的图片,支持bmp/png/jpeg/jpg/gif格式</small>
+            <script type="text/javascript">
+                $(function () {
+                    if ($.trim($("input[name=headerpic]").val()).length > 0) {
+                        $("#headerpic > div").find(".filename").text($("input[name=headerpic]").val());
+                        $("#desc").append('&#12288;<a style="color:red" href="@Model.headerpic" target="_blank">点击预览图片</a>')
+                    }
+                })
+            </script>
+        </p>
+        <p class="stdformbutton">
+            @if (Model.DR)
+            {
+                <a class="stdbtn" href="https://mp.weixin.qq.com/cgi-bin/componentloginpage?component_appid=@ViewBag.open_sAppid&pre_auth_code=@ViewBag.pre_auth_code&redirect_uri=@ViewBag.webSite/Open/Callback?id=@ViewBag.CompanyID">授权</a>
+            }
+            else {
+                <a class="stdbtn" href="javascript:reload();">更新</a>
+            }
+            <button class="stdbtn" onclick="javascript: history.go(-1);">返回</button>
+
+        </p>
+    </form>
+</div>

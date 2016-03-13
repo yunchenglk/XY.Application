@@ -61,6 +61,9 @@
     <Compile Include="CommonAPI\CommonApi.Semantic.cs" />
     <Compile Include="ComponentAPI\ComponentApi.cs" />
     <Compile Include="ComponentAPI\ComponentApi.QRConnectAPI.cs" />
+    <Compile Include="ComShopAPI\ComShopApi.cs" />
+    <Compile Include="ComShopAPI\ComShopApi.Group.cs" />
+    <Compile Include="ComShopAPI\ComShopApi.Product.cs" />
     <Compile Include="Context\MessageContainer.cs" />
     <Compile Include="Context\MessageContext.cs" />
     <Compile Include="Context\MessageQueue.cs" />

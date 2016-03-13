@@ -142,6 +142,7 @@
     <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\OpenController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\wxMenuController.cs" />
     <Compile Include="Controllers\wxRuleController.cs" />
     <Compile Include="Controllers\wxUserInfoController.cs" />
@@ -815,6 +816,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -852,6 +854,7 @@
     <Content Include="Views\Info\Index.cshtml" />
     <Content Include="Views\Home\wxContent.cshtml" />
     <Content Include="Views\wxRule\Push.cshtml" />
+    <Content Include="Views\Shop\Group.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

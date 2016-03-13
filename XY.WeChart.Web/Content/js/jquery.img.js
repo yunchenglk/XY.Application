@@ -15,6 +15,7 @@ function UploadCallBack(result) {
         alert(result.message);
     }
     $("#upload_div").remove();
+    UploadAfer();
 }
 function againUP(forname, filepath, filetype) {
     $("#ok_" + forname).remove();
@@ -41,4 +42,7 @@ function BindInputFile() {
         $("#" + forname + " > div").find(".filename").text("文件上传中...");
         $("#File_ajax").submit();
     })
+}
+function UploadAfer() {
+
 }

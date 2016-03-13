@@ -59,6 +59,7 @@ namespace XY.WeChart.Web.Controllers
                         "");
                     HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
                     var wxuser = wx_userweixinService.instance().SingleByCompanyID(m.CompanyID);// WX_ConfigService.instance().SingleByCompanyID(m.CompanyID);
+                    UserDateTicket.wx_open = wx_openInfoService.instance().Single(new Guid(System.Configuration.ConfigurationManager.AppSettings["openID"]));// new Guid("477F0554-837C-4D10-9C12-3DFE44B8DD60"));
                     if (wxuser != null)
                         UserDateTicket.wx_user = wxuser;
                     else

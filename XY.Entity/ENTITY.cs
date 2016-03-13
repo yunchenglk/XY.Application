@@ -229,6 +229,15 @@ namespace XY.Entity
 		   get{  return _cate_id == null ?string.Empty:_cate_id;  } 
 		   set{_cate_id = value;}
 		 }
+        
+		private  Int32 _wx_group_id;
+
+        [Column("wx_group_id", DbType.Int32,false,false)]
+        public Int32  wx_group_id 
+		{ 
+		   get{ return _wx_group_id;  } 
+		   set{_wx_group_id = value;}
+		 }
             }
 
 
@@ -3058,13 +3067,13 @@ namespace XY.Entity
 		   set{_open_access_token = value;}
 		 }
         
-		private  Int32 _expires_in;
+		private  Int32 _access_token_expires_in;
 
-        [Column("expires_in", DbType.Int32,false,false)]
-        public Int32  expires_in 
+        [Column("access_token_expires_in", DbType.Int32,false,false)]
+        public Int32  access_token_expires_in 
 		{ 
-		   get{ return _expires_in;  } 
-		   set{_expires_in = value;}
+		   get{ return _access_token_expires_in;  } 
+		   set{_access_token_expires_in = value;}
 		 }
         
 		private  String _open_pre_auth_code;
@@ -3074,6 +3083,15 @@ namespace XY.Entity
 		{ 
 		   get{  return _open_pre_auth_code == null ?string.Empty:_open_pre_auth_code;  } 
 		   set{_open_pre_auth_code = value;}
+		 }
+        
+		private  Int32 _pre_auth_code_wxpires_in;
+
+        [Column("pre_auth_code_wxpires_in", DbType.Int32,false,false)]
+        public Int32  pre_auth_code_wxpires_in 
+		{ 
+		   get{ return _pre_auth_code_wxpires_in;  } 
+		   set{_pre_auth_code_wxpires_in = value;}
 		 }
         
 		private  Boolean _DR;
@@ -3092,6 +3110,15 @@ namespace XY.Entity
 		{ 
 		   get{ return _CreateTime;  } 
 		   set{_CreateTime = value;}
+		 }
+        
+		private  DateTime _ModifyTime;
+
+        [Column("ModifyTime", DbType.DateTime,false,false)]
+        public DateTime  ModifyTime 
+		{ 
+		   get{ return _ModifyTime;  } 
+		   set{_ModifyTime = value;}
 		 }
             }
 

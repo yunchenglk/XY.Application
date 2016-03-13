@@ -86,7 +86,7 @@ namespace XY.Services
             IEnumerable<Class> result = new List<Class>();
             _db.Execute(() =>
             {
-                result = _db.GetList<Class>(m => m.CompanyID == cid);
+                result = _db.GetList<Class>(m => m.CompanyID == cid && m.DR == false);
             });
             result.Each(m =>
             {

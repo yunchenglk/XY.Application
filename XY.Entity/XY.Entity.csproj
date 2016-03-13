@@ -149,6 +149,10 @@
     <Compile Include="Weixin\User\OpenIdResultJson.cs" />
     <Compile Include="Weixin\User\OpenIdResultJson_Data.cs" />
     <Compile Include="Weixin\User\UserInfoJson.cs" />
+    <Compile Include="Weixin\WeixinShop\GroupPostData.cs" />
+    <Compile Include="Weixin\WeixinShop\GroupResult.cs" />
+    <Compile Include="Weixin\WeixinShop\ProductPostData.cs" />
+    <Compile Include="Weixin\WeixinShop\ProductResult.cs" />
     <Compile Include="Weixin\WxJsonResult.cs" />
     <Compile Include="Weixin\wx_customer.cs" />
     <Compile Include="Weixin\wx_requestRule.cs" />

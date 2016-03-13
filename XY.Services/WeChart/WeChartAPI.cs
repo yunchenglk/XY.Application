@@ -58,8 +58,8 @@ namespace XY.Services
             //{
             //    return "appId或者AppSecret未填写完全,请在[我的公众帐号]里补全信息！";
             //}
-            var wx_open = wx_openInfoService.instance().Single(new Guid("477F0554-837C-4D10-9C12-3DFE44B8DD60"));
-            RefreshAuthorizerTokenResult result = ComponentApi.ApiAuthorizerToken(wx_open.open_access_token, wx_open.open_sAppID, wx.AppId,wx.refresh_token);
+            var wx_open = wx_openInfoService.instance().Single(new Guid(System.Configuration.ConfigurationManager.AppSettings["openID"]));
+            RefreshAuthorizerTokenResult result = ComponentApi.ApiAuthorizerToken(wx_open.open_access_token, wx_open.open_sAppID, wx.AppId, wx.refresh_token);
             if (result.errcode == Entity.Weixin.ReturnCode.请求成功)
             {
                 wx.Access_Token = result.authorizer_access_token;

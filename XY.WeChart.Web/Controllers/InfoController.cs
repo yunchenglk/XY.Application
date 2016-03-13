@@ -16,17 +16,38 @@ namespace XY.WeChart.Web.Controllers
         {
             ViewBag.CompanyID = UserDateTicket.Company.ID;
             ViewBag.open_sAppid = UserDateTicket.wx_open.open_sAppID;
-            //var result = ComponentApi.GetComponentAccessToken(UserDateTicket.wx_open.open_sAppID, UserDateTicket.wx_open.open_sAppSecret, UserDateTicket.wx_open.open_ticket);
-            //if (result.errcode == Entity.Weixin.ReturnCode.请求成功)
-            //{
-            //    var coderesult = ComponentApi.GetPreAuthCode(UserDateTicket.wx_open.open_sAppID, result.component_access_token);
-            //    if (coderesult.errcode == Entity.Weixin.ReturnCode.请求成功)
-            //    {
-            //        UserDateTicket.wx_open.open_pre_auth_code = coderesult.pre_auth_code;
-            //        ViewBag.pre_auth_code = UserDateTicket.wx_open.open_pre_auth_code;
-            //    }
-            //}
-            ViewBag.pre_auth_code = UserDateTicket.wx_open.open_pre_auth_code;
+
+
+
+            TimeSpan chajun = DateTime.Now - UserDateTicket.wx_open.ModifyTime;
+
+            if (string.IsNullOrEmpty(UserDateTicket.wx_open.open_pre_auth_code) || chajun.TotalSeconds >= UserDateTicket.wx_open.pre_auth_code_wxpires_in)
+            {
+                var result = ComponentApi.GetComponentAccessToken(UserDateTicket.wx_open.open_sAppID, UserDateTicket.wx_open.open_sAppSecret, UserDateTicket.wx_open.open_ticket);
+                if (result.errcode == Entity.Weixin.ReturnCode.请求成功)
+                {
+                    UserDateTicket.wx_open.open_access_token = result.component_access_token;
+                    UserDateTicket.wx_open.access_token_expires_in = result.expires_in;
+
+                    var coderesult = ComponentApi.GetPreAuthCode(UserDateTicket.wx_open.open_sAppID, result.component_access_token);
+                    if (coderesult.errcode == Entity.Weixin.ReturnCode.请求成功)
+                    {
+
+
+                        UserDateTicket.wx_open.open_pre_auth_code = coderesult.pre_auth_code;
+                        UserDateTicket.wx_open.pre_auth_code_wxpires_in = coderesult.expires_in;
+                        UserDateTicket.wx_open.ModifyTime = DateTime.Now;
+                        wx_openInfoService.instance().Update(UserDateTicket.wx_open);
+                        ViewBag.pre_auth_code = UserDateTicket.wx_open.open_pre_auth_code;
+                    }
+                }
+            }
+            else {
+                ViewBag.pre_auth_code = UserDateTicket.wx_open.open_pre_auth_code;
+            }
+
+
+
             wx_userweixin m;
             ViewBag.webSite = System.Configuration.ConfigurationManager.AppSettings["webSite"];
             if (UserDateTicket.wx_user.ID == Guid.Empty)

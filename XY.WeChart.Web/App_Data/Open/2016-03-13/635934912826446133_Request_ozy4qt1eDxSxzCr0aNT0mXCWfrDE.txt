@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <ToUserName><![CDATA[gh_3c884a361561]]></ToUserName>
+  <FromUserName><![CDATA[ozy4qt1eDxSxzCr0aNT0mXCWfrDE]]></FromUserName>
+  <CreateTime>1457865684</CreateTime>
+  <MsgType><![CDATA[text]]></MsgType>
+  <Content><![CDATA[QUERY_AUTH_CODE:queryauthcode@@@0XcnvFB8MOsbwODsKHBCMQAXQ_zlICh3KnBDaT6QNOKY6dhpRbPFVinwhQxq-ZM0jyoHE2W5653kF3x-Xdc-5Q]]></Content>
+  <MsgId>6261485435143081441</MsgId>
+</xml>

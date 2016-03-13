@@ -11,7 +11,6 @@
     <form class="stdform" method="post" action="/wxRule/shiPinEdit" id="validate">
         <input type="hidden" name="ID" value="@Model.ID" id="ID" />
         <input type="hidden" name="CreateTime" value="@Model.CreateTime" id="CreateTime" />
-        <input type="hidden" name="mediaUrl" value="@ViewBag.mediaUrl" />
         <p>
             <label>标题</label>
             <span class="field">
@@ -62,7 +61,7 @@
         <p>
             <label>视频呢地址</label>
             <span class="field">
-                <input type="hidden" name="mediaUrl" value="@ViewBag.mediaUrl" />
+                <input type="text" name="mediaUrl" value="@ViewBag.mediaUrl" class="mediuminput" />
             </span>
             <small class="desc">*必须通过腾讯视频审核的视频才可以</small>
         </p>

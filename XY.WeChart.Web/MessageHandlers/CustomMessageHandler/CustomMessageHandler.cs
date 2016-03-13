@@ -102,7 +102,9 @@ namespace XY.WeChart.Web.MessageHandlers
                     case 3://语音
                         break;
                     case 4://视频
-                        break;
+                        var openResponseMessageVideo = requestMessage.CreateResponseMessage<ResponseMessageVideo>();
+
+                        return openResponseMessageVideo;
                     case 5://第三方接口
                         break;
                     default:
