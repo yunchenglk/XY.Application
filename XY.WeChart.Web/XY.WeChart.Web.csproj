@@ -376,7 +376,6 @@
     <Content Include="Content\edit\ueditor\lang\zh-cn\images\upload.png" />
     <Content Include="Content\edit\ueditor\lang\zh-cn\zh-cn.js" />
     <Content Include="Content\edit\ueditor\net\Bin\Newtonsoft.Json.dll" />
-    <Content Include="Content\edit\ueditor\net\Bin\Newtonsoft.Json.pdb" />
     <Content Include="Content\edit\ueditor\net\Bin\Newtonsoft.Json.xml" />
     <Content Include="Content\edit\ueditor\net\net.sln" />
     <Content Include="Content\edit\ueditor\net\upload\image\20151126\6358415747918654628780849.png" />

@@ -265,7 +265,7 @@ namespace XY.WeChart.Web.Controllers
             MessageHandler<CustomMessageContext> messageHandler = null;
             try
             {
-                var checkPublish = false; //是否在“全网发布”阶段
+                var checkPublish = bool.Parse(System.Configuration.ConfigurationManager.AppSettings["checkPublish"]);// false; //是否在“全网发布”阶段
                 if (checkPublish)
                 {
                     messageHandler = new OpenCheckMessageHandler(Request.InputStream, postModel, 10);
