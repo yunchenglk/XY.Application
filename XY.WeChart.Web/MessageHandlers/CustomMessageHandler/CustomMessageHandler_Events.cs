@@ -211,10 +211,9 @@ namespace XY.WeChart.Web.MessageHandlers
                                 case 1://文本
                                     var strongResponseMessage = CreateResponseMessage<ResponseMessageText>();
                                     strongResponseMessage.Content = listContext.First().rContent;
-                                    reponseMessage = strongResponseMessage;
-                                    return reponseMessage;
+                                    return strongResponseMessage;
                                 case 2://图文
-                                    var openResponseMessage = requestMessage.CreateResponseMessage<ResponseMessageNews>();
+                                    var openResponseMessage = CreateResponseMessage<ResponseMessageNews>();
                                     foreach (var item in listContext)
                                     {
                                         openResponseMessage.Articles.Add(new Article()
@@ -225,7 +224,7 @@ namespace XY.WeChart.Web.MessageHandlers
                                             PicUrl = item.picUrlStr
                                         });
                                     }
-                                    break;
+                                    return openResponseMessage;
                                 case 3://语音
                                     break;
                                 case 4://视频
