@@ -301,6 +301,7 @@ namespace XY.Services.Weixin.MessageHandlers
                             var requestMessageText = (RequestMessage as IRequestMessageEventBase).ConvertToRequestMessageText();
                             ResponseMessage = OnTextOrEventRequest(requestMessageText)
                                                 ?? OnEventRequest(RequestMessage as IRequestMessageEventBase);
+                            //Util.LogHelper.Info(ResponseMessage.Content);
                         }
                         break;
                     default:

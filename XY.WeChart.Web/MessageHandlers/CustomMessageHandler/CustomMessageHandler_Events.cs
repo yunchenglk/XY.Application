@@ -195,13 +195,51 @@ namespace XY.WeChart.Web.MessageHandlers
                     break;
                 default:
                     {
-                        var strongResponseMessage = CreateResponseMessage<ResponseMessageText>();
-                        strongResponseMessage.Content = "您点击了按钮，EventKey：" + requestMessage.EventKey;
-                        reponseMessage = strongResponseMessage;
+                        //var strongResponseMessage = CreateResponseMessage<ResponseMessageText>();
+
+                        //strongResponseMessage.Content = "您点击了按钮，EventKey：" + requestMessage.EventKey;
+                        //reponseMessage = strongResponseMessage;
+
+
+                        var rule = wx_requestRuleService.instance().GetByreqestType_Key(0, requestMessage.ToUserName, requestMessage.EventKey.Trim());
+
+                        if (rule != null)
+                        {
+                            var listContext = wx_requestRuleContentService.instance().GetByRuleID(rule.ID);
+                            switch (rule.responseType)
+                            {
+                                case 1://文本
+                                    var strongResponseMessage = CreateResponseMessage<ResponseMessageText>();
+                                    strongResponseMessage.Content = listContext.First().rContent;
+                                    reponseMessage = strongResponseMessage;
+                                    return reponseMessage;
+                                case 2://图文
+                                    var openResponseMessage = requestMessage.CreateResponseMessage<ResponseMessageNews>();
+                                    foreach (var item in listContext)
+                                    {
+                                        openResponseMessage.Articles.Add(new Article()
+                                        {
+                                            Title = item.rContent,
+                                            Description = item.rContent2,
+                                            Url = string.IsNullOrEmpty(item.detailUrl) ? Util.Utils.AddConfigURL("webSite", "/Home/wxContent/" + item.ID) : item.detailUrl,
+                                            PicUrl = item.picUrlStr
+                                        });
+                                    }
+                                    break;
+                                case 3://语音
+                                    break;
+                                case 4://视频
+                                    var openResponseMessageVideo = requestMessage.CreateResponseMessage<ResponseMessageVideo>();
+                                    break;
+                                case 5://第三方接口
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
                     }
                     break;
             }
-
             return reponseMessage;
         }
 
