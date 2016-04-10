@@ -119,9 +119,33 @@ namespace XY.WeChart.Web.Controllers
                 case 2:
 
                     //var newtemp = Services.Weixin.CommonApi.Upload(GetToken(), Entity.Weixin.UploadMediaFileType.news, contentlist.First().picUrl);
+                    var file = @"D:\1.jpg";
+                    var fileresult = Services.Weixin.CommonApi.UploadForeverMedia(GetToken(), file);
+                    var new1 = new NewsModel()
+                    {
+                        author = "test",
+                        content = "test",
+                        content_source_url = "http://qy.weiweihi.com/Content/Images/app/qyhelper.png",
+                        digest = "test",
+                        show_cover_pic = "1",
+                        thumb_media_id = fileresult.media_id,
+                        title = "test"
+                    };
 
+                    var new2 = new NewsModel()
+                    {
+                        author = "test",
+                        content = "test111",
+                        content_source_url = "http://qy.weiweihi.com/Content/Images/app/qyhelper.png",
+                        digest = "test",
+                        show_cover_pic = "1",
+                        thumb_media_id = fileresult.media_id,
+                        title = "test"
+                    };
 
+                    var newtemp = Services.Weixin.CommonApi.UploadNews(GetToken(), 10000, new1, new2);
 
+                    result = Services.Weixin.CommonApi.SendGroupMessageByOpenId(GetToken(), GroupMessageType.mpnews, newtemp.media_id, openIds);
 
 
 
