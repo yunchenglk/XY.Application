@@ -88,6 +88,7 @@ namespace XY.WeChart.Web.MessageHandlers
                         return responseMessage;
                     case 2://图文
                         var openResponseMessage = requestMessage.CreateResponseMessage<ResponseMessageNews>();
+                        listContext = listContext.OrderBy(m => m.seq);
                         foreach (var item in listContext)
                         {
                             openResponseMessage.Articles.Add(new Article()

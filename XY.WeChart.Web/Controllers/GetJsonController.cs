@@ -118,6 +118,13 @@ namespace XY.WeChart.Web.Controllers
                     break;
                 case 2:
 
+                    //var newtemp = Services.Weixin.CommonApi.Upload(GetToken(), Entity.Weixin.UploadMediaFileType.news, contentlist.First().picUrl);
+
+
+
+
+
+
                     break;
                 case 3:
                     var voicetempre = Services.Weixin.CommonApi.Upload(GetToken(), Entity.Weixin.UploadMediaFileType.voice, contentlist.First().mediaUrl);
