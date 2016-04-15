@@ -97,7 +97,6 @@ namespace XY.Entity
                 return 0;
             }
         }
-
         public int IsVote_
         {
             get
@@ -119,6 +118,21 @@ namespace XY.Entity
             get
             {
                 return System.Configuration.ConfigurationManager.AppSettings["sourceWeb_"];
+            }
+        }
+        public Time CreateTime_
+        {
+            get
+            {
+                return new Time()
+                {
+                    Year = CreateTime.Year.ToString(),
+                    Month = CreateTime.Month.ToString(),
+                    Day = CreateTime.Day.ToString(),
+                    Hour = CreateTime.Hour.ToString(),
+                    Minute = CreateTime.Minute.ToString(),
+                    Second = CreateTime.Second.ToString()
+                };
             }
         }
     }

@@ -67,6 +67,7 @@
     <Compile Include="ResultBase_form.cs" />
     <Compile Include="ResultBase_Page.cs" />
     <Compile Include="Role.cs" />
+    <Compile Include="Time.cs" />
     <Compile Include="USER.cs" />
     <Compile Include="WeChart\articles.cs" />
     <Compile Include="WeChart\button.cs" />
