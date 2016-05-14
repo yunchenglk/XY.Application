@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xml>
+  <ToUserName><![CDATA[gh_98eed3e556e2]]></ToUserName>
+  <FromUserName><![CDATA[oGSPpslMDOeKr5V5XP_OK69XpAs4]]></FromUserName>
+  <CreateTime>1460290420</CreateTime>
+  <MsgType><![CDATA[event]]></MsgType>
+  <Event><![CDATA[MASSSENDJOBFINISH]]></Event>
+  <MsgID>2549810747</MsgID>
+  <Status><![CDATA[send success]]></Status>
+  <TotalCount>2</TotalCount>
+  <FilterCount>2</FilterCount>
+  <SentCount>2</SentCount>
+  <ErrorCount>0</ErrorCount>
+</xml>

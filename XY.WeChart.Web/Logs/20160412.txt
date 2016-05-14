@@ -1,0 +1,28 @@
+2016-04-12 09:56:12,714 [6] ERROR ErrorJsonResultException
+2016-04-12 09:56:12,727 [6] ERROR URL：https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Hf14oEVKxLaTATI9KWJR1Ng5YaGhjLgsIqyaBdktogw0X3Gbh_aeA3PO5FusuAy8x5E0-gn_8RUFSn2HjwToxeiBzJaB78KA_efeLwbAiGHAJMhNKejMZVZeVaKslLh3YDLhAGDDIQ
+2016-04-12 09:56:12,728 [6] ERROR errcode：61004
+2016-04-12 09:56:12,728 [6] ERROR errmsg：access clientip is not registered hint: [ASx0176vr19] requestIP: 60.222.124.219
+2016-04-12 09:56:24,971 [12] ERROR ErrorJsonResultException
+2016-04-12 09:56:24,971 [12] ERROR URL：https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Hf14oEVKxLaTATI9KWJR1Ng5YaGhjLgsIqyaBdktogw0X3Gbh_aeA3PO5FusuAy8x5E0-gn_8RUFSn2HjwToxeiBzJaB78KA_efeLwbAiGHAJMhNKejMZVZeVaKslLh3YDLhAGDDIQ
+2016-04-12 09:56:24,972 [12] ERROR errcode：61004
+2016-04-12 09:56:24,972 [12] ERROR errmsg：access clientip is not registered hint: [nL3vXa0189vr23] requestIP: 60.222.124.219
+2016-04-12 09:56:29,104 [13] ERROR ErrorJsonResultException
+2016-04-12 09:56:29,104 [13] ERROR URL：https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Hf14oEVKxLaTATI9KWJR1Ng5YaGhjLgsIqyaBdktogw0X3Gbh_aeA3PO5FusuAy8x5E0-gn_8RUFSn2HjwToxeiBzJaB78KA_efeLwbAiGHAJMhNKejMZVZeVaKslLh3YDLhAGDDIQ
+2016-04-12 09:56:29,104 [13] ERROR errcode：61004
+2016-04-12 09:56:29,104 [13] ERROR errmsg：access clientip is not registered hint: [M88qZa0193vr21] requestIP: 60.222.124.219
+2016-04-12 09:57:34,609 [6] ERROR ErrorJsonResultException
+2016-04-12 09:57:34,609 [6] ERROR URL：https://api.weixin.qq.com/cgi-bin/groups/get?access_token=Hf14oEVKxLaTATI9KWJR1Ng5YaGhjLgsIqyaBdktogw0X3Gbh_aeA3PO5FusuAy8x5E0-gn_8RUFSn2HjwToxeiBzJaB78KA_efeLwbAiGHAJMhNKejMZVZeVaKslLh3YDLhAGDDIQ
+2016-04-12 09:57:34,609 [6] ERROR errcode：61004
+2016-04-12 09:57:34,609 [6] ERROR errmsg：access clientip is not registered hint: [O3k1Na0258vr21] requestIP: 60.222.124.219
+2016-04-12 09:59:24,563 [6] INFO  接口调用
+2016-04-12 09:59:24,565 [6] INFO  URL：https://api.weixin.qq.com/cgi-bin/groups/delete?access_token=Hf14oEVKxLaTATI9KWJR1Ng5YaGhjLgsIqyaBdktogw0X3Gbh_aeA3PO5FusuAy8x5E0-gn_8RUFSn2HjwToxeiBzJaB78KA_efeLwbAiGHAJMhNKejMZVZeVaKslLh3YDLhAGDDIQ
+2016-04-12 09:59:24,565 [6] INFO  Result：
+{"errcode":0,"errmsg":"ok"}
+2016-04-12 09:59:31,985 [16] INFO  接口调用
+2016-04-12 09:59:31,985 [16] INFO  URL：https://api.weixin.qq.com/cgi-bin/groups/create?access_token=Hf14oEVKxLaTATI9KWJR1Ng5YaGhjLgsIqyaBdktogw0X3Gbh_aeA3PO5FusuAy8x5E0-gn_8RUFSn2HjwToxeiBzJaB78KA_efeLwbAiGHAJMhNKejMZVZeVaKslLh3YDLhAGDDIQ
+2016-04-12 09:59:31,986 [16] INFO  Result：
+{"group":{"id":105,"name":"test"}}
+2016-04-12 10:30:05,533 [17] INFO  接口调用
+2016-04-12 10:30:05,549 [17] INFO  URL：https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=Hf14oEVKxLaTATI9KWJR1Ng5YaGhjLgsIqyaBdktogw0X3Gbh_aeA3PO5FusuAy8x5E0-gn_8RUFSn2HjwToxeiBzJaB78KA_efeLwbAiGHAJMhNKejMZVZeVaKslLh3YDLhAGDDIQ
+2016-04-12 10:30:05,549 [17] INFO  Result：
+{"errcode":0,"errmsg":"send job submission success","msg_id":2549388801}

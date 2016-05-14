@@ -1,0 +1,140 @@
+2016-04-10 18:41:41,564 [16] INFO  推送component_verify_ticket协议--start【
+2016-04-10 18:41:41,578 [16] INFO  更新ticket:ticket@@@igTJrgSfAiR7ec-TEvvatpalf007eFcuP6mXI79tKLCYGZ9ywR9H161NDrKpRXNjQnM3iVniETY2P4Xrf_vJrw
+2016-04-10 18:41:42,872 [16] INFO  接口调用
+2016-04-10 18:41:42,872 [16] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_component_token
+2016-04-10 18:41:42,872 [16] INFO  Result：
+{"component_access_token":"DHyYz6jLyGa9qStUU1sB-MCAxuXcu9X-70y9T2E3qg6g-gLMzil-bnOy1PeZy_mxAlqOodOvnNLtr4j-Fk3FeyIghS1JCWJRmK-WYZVG0hiIznY6YNw4OObSlWgkh1RFQVHeABAMRD","expires_in":7200}
+2016-04-10 18:41:42,908 [16] INFO  更新open_access_token:DHyYz6jLyGa9qStUU1sB-MCAxuXcu9X-70y9T2E3qg6g-gLMzil-bnOy1PeZy_mxAlqOodOvnNLtr4j-Fk3FeyIghS1JCWJRmK-WYZVG0hiIznY6YNw4OObSlWgkh1RFQVHeABAMRD
+2016-04-10 18:41:43,245 [16] INFO  接口调用
+2016-04-10 18:41:43,245 [16] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_create_preauthcode?component_access_token=DHyYz6jLyGa9qStUU1sB-MCAxuXcu9X-70y9T2E3qg6g-gLMzil-bnOy1PeZy_mxAlqOodOvnNLtr4j-Fk3FeyIghS1JCWJRmK-WYZVG0hiIznY6YNw4OObSlWgkh1RFQVHeABAMRD
+2016-04-10 18:41:43,245 [16] INFO  Result：
+{"pre_auth_code":"preauthcode@@@AzCgy3Qlae-8Dk_3QssmPvGQt7MsqYUCYgengv5zxy37Mvap5jZRrLssnHuV92ui","expires_in":1800}
+2016-04-10 18:41:43,246 [16] INFO  更新open_pre_auth_code:preauthcode@@@AzCgy3Qlae-8Dk_3QssmPvGQt7MsqYUCYgengv5zxy37Mvap5jZRrLssnHuV92ui
+2016-04-10 18:41:43,282 [16] INFO  推送component_verify_ticket协议--成功--end】
+2016-04-10 18:42:18,929 [15] INFO  wxe7ab6cba7e5b268a取消授权--start
+2016-04-10 18:42:19,013 [15] INFO  wxe7ab6cba7e5b268a取消授权--成功--start
+2016-04-10 18:46:08,243 [22] INFO  wxe7ab6cba7e5b268a授权--start
+2016-04-10 18:46:08,280 [22] INFO  wxe7ab6cba7e5b268a授权--更新--start
+2016-04-10 18:46:08,415 [22] INFO  wxe7ab6cba7e5b268a授权--成功--start
+2016-04-10 18:46:09,263 [35] INFO  接口调用
+2016-04-10 18:46:09,263 [35] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_component_token
+2016-04-10 18:46:09,263 [35] INFO  Result：
+{"component_access_token":"pZGOph9kiXBYsKJ9C-7NTZfu-KrYckDoi2GmuyxLM9zKJqD-5WNcT-vGpSJ42Ks42dA5Rri_NmbxxqttMPPnSY60VpjOiBRDXJ_j1A0Xz8s20-ZEKwVxd_22U5ERvp5oMHIaAGATOP","expires_in":7200}
+2016-04-10 18:46:09,775 [35] INFO  接口调用
+2016-04-10 18:46:09,775 [35] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token=pZGOph9kiXBYsKJ9C-7NTZfu-KrYckDoi2GmuyxLM9zKJqD-5WNcT-vGpSJ42Ks42dA5Rri_NmbxxqttMPPnSY60VpjOiBRDXJ_j1A0Xz8s20-ZEKwVxd_22U5ERvp5oMHIaAGATOP
+2016-04-10 18:46:09,775 [35] INFO  Result：
+{"authorization_info":{"authorizer_appid":"wxe7ab6cba7e5b268a","authorizer_access_token":"Q3y2zrAN4fNcIl6TVfWfd7JGrRvlaep9JwQ4YteWCl35eqlSE4iTNgdGzmfZIf1biAbrkYzrtg39tIiG2RgMa3NLc84aPED6gs5GWEz8RHKGcmnrhDFOCvKsitNTg8PrIANeAGDSKX","expires_in":7200,"authorizer_refresh_token":"refreshtoken@@@gh_nkl07xbBD8dYm06gmyaXYhUvMkOlpmHPy1YbMXCY","func_info":[{"funcscope_category":{"id":1}},{"funcscope_category":{"id":15}},{"funcscope_category":{"id":4}},{"funcscope_category":{"id":7}},{"funcscope_category":{"id":2}},{"funcscope_category":{"id":3}},{"funcscope_category":{"id":11}},{"funcscope_category":{"id":6}},{"funcscope_category":{"id":5}},{"funcscope_category":{"id":8}},{"funcscope_category":{"id":13}},{"funcscope_category":{"id":10}},{"funcscope_category":{"id":12}}]}}
+2016-04-10 18:46:12,983 [28] INFO  接口调用
+2016-04-10 18:46:12,983 [28] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_component_token
+2016-04-10 18:46:12,983 [28] INFO  Result：
+{"component_access_token":"pZGOph9kiXBYsKJ9C-7NTZfu-KrYckDoi2GmuyxLM9xmYjnQ79ooFfk3Q1jXj_k8dQl4bZW41xxkjhTE63-npmHQn_GJttbaq6T6oJtqaq1xw2L7F7jxHRuoOnzWjj-BMJIaAGAURQ","expires_in":7196}
+2016-04-10 18:46:13,960 [28] INFO  接口调用
+2016-04-10 18:46:13,960 [28] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_get_authorizer_info?component_access_token=pZGOph9kiXBYsKJ9C-7NTZfu-KrYckDoi2GmuyxLM9xmYjnQ79ooFfk3Q1jXj_k8dQl4bZW41xxkjhTE63-npmHQn_GJttbaq6T6oJtqaq1xw2L7F7jxHRuoOnzWjj-BMJIaAGAURQ
+2016-04-10 18:46:13,960 [28] INFO  Result：
+{"authorizer_info":{"nick_name":"运城鑫跃网络科技有限公司","head_img":"http:\/\/wx.qlogo.cn\/mmopen\/2pm5Nb2cMaO2B0XMvdV8W4Dq05ibdXlBBFv5uPDqEqF1ogQqMMjJ2DF2c7U6GLbYmcv4t9qqEkPjeJk6M0C6n9QCfbGtpH3L9\/0","service_type_info":{"id":2},"verify_type_info":{"id":0},"user_name":"gh_98eed3e556e2","alias":"xinyueguojiIT","qrcode_url":"http:\/\/mmbiz.qpic.cn\/mmbiz\/lZiaqay7c6jF4EpcP8gADBgvrNdeSIBWOKcSMYQ5GPGicnAOiaIZdrAV1QAbEicrmRoNDpmF7Uh7Dh3zzuX9PJxVjg\/0","business_info":{"open_pay":1,"open_shake":0,"open_scan":0,"open_card":1,"open_store":1}},"authorization_info":{"authorizer_appid":"wxe7ab6cba7e5b268a","func_info":[{"funcscope_category":{"id":1}},{"funcscope_category":{"id":15}},{"funcscope_category":{"id":4}},{"funcscope_category":{"id":7}},{"funcscope_category":{"id":2}},{"funcscope_category":{"id":3}},{"funcscope_category":{"id":11}},{"funcscope_category":{"id":6}},{"funcscope_category":{"id":5}},{"funcscope_category":{"id":8}},{"funcscope_category":{"id":13}},{"funcscope_category":{"id":10}},{"funcscope_category":{"id":12}}]}}
+2016-04-10 18:46:54,166 [17] INFO  同步oGSPpskzw68HQIh4oc2D89EtA9U0位置成功
+2016-04-10 18:47:31,512 [32] INFO  同步oGSPpskzw68HQIh4oc2D89EtA9U0位置成功
+2016-04-10 18:47:35,468 [15] INFO  同步oGSPpskzw68HQIh4oc2D89EtA9U0位置成功
+2016-04-10 18:47:36,341 [22] INFO  同步oGSPpskzw68HQIh4oc2D89EtA9U0位置成功
+2016-04-10 18:48:02,106 [12] INFO  同步oGSPpskzw68HQIh4oc2D89EtA9U0位置成功
+2016-04-10 18:48:29,945 [18] INFO  同步oGSPpskzw68HQIh4oc2D89EtA9U0位置成功
+2016-04-10 18:48:48,127 [39] INFO  同步oGSPpskzw68HQIh4oc2D89EtA9U0位置成功
+2016-04-10 19:52:53,412 [6] INFO  同步oGSPpskzw68HQIh4oc2D89EtA9U0位置成功
+2016-04-10 19:52:56,692 [8] INFO  同步oGSPpskzw68HQIh4oc2D89EtA9U0位置成功
+2016-04-10 19:53:14,794 [7] INFO  同步oGSPpskzw68HQIh4oc2D89EtA9U0位置成功
+2016-04-10 19:58:31,809 [13] INFO  接口调用
+2016-04-10 19:58:31,809 [13] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_component_token
+2016-04-10 19:58:31,809 [13] INFO  Result：
+{"component_access_token":"WreGlFNROl42bkZzocS43zD2QB59aonHq6u7WUfI_ckIhXqbO8vu75XJB3TOGjD-L3mGCh7Pl5A-71jIkFkCIOBxqBeE_NnxR4xEca7PRHSll5DgnzUF8GocVOLFD5pLRGYjAFACRJ","expires_in":7200}
+2016-04-10 19:58:31,982 [13] INFO  接口调用
+2016-04-10 19:58:31,982 [13] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_create_preauthcode?component_access_token=WreGlFNROl42bkZzocS43zD2QB59aonHq6u7WUfI_ckIhXqbO8vu75XJB3TOGjD-L3mGCh7Pl5A-71jIkFkCIOBxqBeE_NnxR4xEca7PRHSll5DgnzUF8GocVOLFD5pLRGYjAFACRJ
+2016-04-10 19:58:31,982 [13] INFO  Result：
+{"pre_auth_code":"preauthcode@@@A8g7rzfR9RqtaJFn9byCQghJxj2hlBd-CP7q9sxaCZg2qPOXVvHv8sdl0BpDUstp","expires_in":1800}
+2016-04-10 20:01:45,098 [19] INFO  推送component_verify_ticket协议--start【
+2016-04-10 20:01:45,098 [19] INFO  更新ticket:ticket@@@N8ThsFTGRjUYRqH7_jsgXOtMNw4pryKpUqntooD3HYPSIr7t2okF-J0ZBMuL4tvZFUxW87XgmWNXdLOXcBIkOA
+2016-04-10 20:01:45,643 [19] INFO  接口调用
+2016-04-10 20:01:45,643 [19] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_component_token
+2016-04-10 20:01:45,644 [19] INFO  Result：
+{"component_access_token":"Pf6z-j5koPj2chqXesNtLCoGplnfPbn8bRZehIbNArUvcZrp_bkBGMasmFIiwwRwmjFCYlK8taEbP9T8LUdn6N772xLUxuZSsV8Sfdrz_gpg7Z7weZmYoisyqZZO7jcHMGLiAJAAUZ","expires_in":7200}
+2016-04-10 20:01:45,644 [19] INFO  更新open_access_token:Pf6z-j5koPj2chqXesNtLCoGplnfPbn8bRZehIbNArUvcZrp_bkBGMasmFIiwwRwmjFCYlK8taEbP9T8LUdn6N772xLUxuZSsV8Sfdrz_gpg7Z7weZmYoisyqZZO7jcHMGLiAJAAUZ
+2016-04-10 20:01:45,777 [19] INFO  接口调用
+2016-04-10 20:01:45,777 [19] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_create_preauthcode?component_access_token=Pf6z-j5koPj2chqXesNtLCoGplnfPbn8bRZehIbNArUvcZrp_bkBGMasmFIiwwRwmjFCYlK8taEbP9T8LUdn6N772xLUxuZSsV8Sfdrz_gpg7Z7weZmYoisyqZZO7jcHMGLiAJAAUZ
+2016-04-10 20:01:45,777 [19] INFO  Result：
+{"pre_auth_code":"preauthcode@@@tKF3GBO5uf0Lgfj61axQTsLTyMUzxdNOllQcv-It98cpMgm60mR1X0FwtPSsIFVF","expires_in":1800}
+2016-04-10 20:01:45,777 [19] INFO  更新open_pre_auth_code:preauthcode@@@tKF3GBO5uf0Lgfj61axQTsLTyMUzxdNOllQcv-It98cpMgm60mR1X0FwtPSsIFVF
+2016-04-10 20:01:45,803 [19] INFO  推送component_verify_ticket协议--成功--end】
+2016-04-10 20:02:44,584 [25] INFO  wxe7ab6cba7e5b268a取消授权--start
+2016-04-10 20:03:34,454 [21] INFO  wxe7ab6cba7e5b268a授权--start
+2016-04-10 20:03:34,479 [21] INFO  wxe7ab6cba7e5b268a数据库没有数据
+2016-04-10 20:03:35,718 [9] INFO  接口调用
+2016-04-10 20:03:35,718 [9] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_component_token
+2016-04-10 20:03:35,718 [9] INFO  Result：
+{"component_access_token":"CS4bZzo1uG-rrgoVyHGY5idbN9h2LsRUrCCitUfbxwUijnWp6dXLAe49k683eXoAMfG3PQRA1MtxPNjKrzXsbOviaBBmn1DxdZfxtLyitaO2C5QgVDgkM-DWpShud-G7QNYhAIAHEP","expires_in":7200}
+2016-04-10 20:03:36,176 [9] INFO  接口调用
+2016-04-10 20:03:36,176 [9] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_query_auth?component_access_token=CS4bZzo1uG-rrgoVyHGY5idbN9h2LsRUrCCitUfbxwUijnWp6dXLAe49k683eXoAMfG3PQRA1MtxPNjKrzXsbOviaBBmn1DxdZfxtLyitaO2C5QgVDgkM-DWpShud-G7QNYhAIAHEP
+2016-04-10 20:03:36,176 [9] INFO  Result：
+{"authorization_info":{"authorizer_appid":"wxe7ab6cba7e5b268a","authorizer_access_token":"HQQAs_5Hz2JCQWsyx-jkgD30NoDP8Wh2Ue6MVU9heTKJ45zLoH65vEFKDAMU1FBVIeIFBXMHT6QdoZp21OGSjTpvuKLBD3yr7SVgJK78juuxKEGYC8nn8slfRox6pKayWGTcAIDLVI","expires_in":7200,"authorizer_refresh_token":"refreshtoken@@@wIz0lUReiqG1wOQsTYtafpiQ3ec9RiXtASOux_dj914","func_info":[{"funcscope_category":{"id":1}},{"funcscope_category":{"id":15}},{"funcscope_category":{"id":4}},{"funcscope_category":{"id":7}},{"funcscope_category":{"id":2}},{"funcscope_category":{"id":3}},{"funcscope_category":{"id":11}},{"funcscope_category":{"id":6}},{"funcscope_category":{"id":5}},{"funcscope_category":{"id":8}},{"funcscope_category":{"id":13}},{"funcscope_category":{"id":10}},{"funcscope_category":{"id":12}}]}}
+2016-04-10 20:03:38,600 [12] INFO  接口调用
+2016-04-10 20:03:38,600 [12] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_component_token
+2016-04-10 20:03:38,600 [12] INFO  Result：
+{"component_access_token":"CS4bZzo1uG-rrgoVyHGY5idbN9h2LsRUrCCitUfbxwW3_BihfL9e9z2XkMoy56co2KmKuXc8fvavZoOUrallCUEZBgGhmaTmbvhClzK_55taLIT8u8NkL46VhgKewsk2JHThAIAQOA","expires_in":7197}
+2016-04-10 20:03:38,828 [12] INFO  接口调用
+2016-04-10 20:03:38,828 [12] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_get_authorizer_info?component_access_token=CS4bZzo1uG-rrgoVyHGY5idbN9h2LsRUrCCitUfbxwW3_BihfL9e9z2XkMoy56co2KmKuXc8fvavZoOUrallCUEZBgGhmaTmbvhClzK_55taLIT8u8NkL46VhgKewsk2JHThAIAQOA
+2016-04-10 20:03:38,828 [12] INFO  Result：
+{"authorizer_info":{"nick_name":"运城鑫跃网络科技有限公司","head_img":"http:\/\/wx.qlogo.cn\/mmopen\/2pm5Nb2cMaO2B0XMvdV8W4Dq05ibdXlBBFv5uPDqEqF1ogQqMMjJ2DF2c7U6GLbYmcv4t9qqEkPjeJk6M0C6n9QCfbGtpH3L9\/0","service_type_info":{"id":2},"verify_type_info":{"id":0},"user_name":"gh_98eed3e556e2","alias":"xinyueguojiIT","qrcode_url":"http:\/\/mmbiz.qpic.cn\/mmbiz\/lZiaqay7c6jF4EpcP8gADBgvrNdeSIBWOKcSMYQ5GPGicnAOiaIZdrAV1QAbEicrmRoNDpmF7Uh7Dh3zzuX9PJxVjg\/0","business_info":{"open_pay":1,"open_shake":0,"open_scan":0,"open_card":1,"open_store":1}},"authorization_info":{"authorizer_appid":"wxe7ab6cba7e5b268a","func_info":[{"funcscope_category":{"id":1}},{"funcscope_category":{"id":15}},{"funcscope_category":{"id":4}},{"funcscope_category":{"id":7}},{"funcscope_category":{"id":2}},{"funcscope_category":{"id":3}},{"funcscope_category":{"id":11}},{"funcscope_category":{"id":6}},{"funcscope_category":{"id":5}},{"funcscope_category":{"id":8}},{"funcscope_category":{"id":13}},{"funcscope_category":{"id":10}},{"funcscope_category":{"id":12}}]}}
+2016-04-10 20:09:11,126 [24] INFO  同步oGSPpskzw68HQIh4oc2D89EtA9U0位置成功
+2016-04-10 20:09:22,957 [18] INFO  同步oGSPpskzw68HQIh4oc2D89EtA9U0位置成功
+2016-04-10 20:09:45,491 [23] INFO  接口调用
+2016-04-10 20:09:45,491 [23] INFO  URL：https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=HQQAs_5Hz2JCQWsyx-jkgD30NoDP8Wh2Ue6MVU9heTKJ45zLoH65vEFKDAMU1FBVIeIFBXMHT6QdoZp21OGSjTpvuKLBD3yr7SVgJK78juuxKEGYC8nn8slfRox6pKayWGTcAIDLVI
+2016-04-10 20:09:45,491 [23] INFO  Result：
+{"errcode":0,"errmsg":"send job submission success","msg_id":2549810707}
+2016-04-10 20:10:11,656 [19] INFO  同步oGSPpskzw68HQIh4oc2D89EtA9U0位置成功
+2016-04-10 20:10:29,658 [20] INFO  同步oGSPpskzw68HQIh4oc2D89EtA9U0位置成功
+2016-04-10 20:11:41,487 [19] INFO  推送component_verify_ticket协议--start【
+2016-04-10 20:11:41,487 [19] INFO  ticket无需更新:ticket@@@N8ThsFTGRjUYRqH7_jsgXOtMNw4pryKpUqntooD3HYPSIr7t2okF-J0ZBMuL4tvZFUxW87XgmWNXdLOXcBIkOA
+2016-04-10 20:11:42,047 [19] INFO  接口调用
+2016-04-10 20:11:42,282 [19] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_component_token
+2016-04-10 20:11:42,282 [19] INFO  Result：
+{"component_access_token":"1AeKnQYNf-nf2GQGLL1MURbCfyG1Ku02piZwMLrJtfEll6L7D7P899MXWemPSMpGtkgBcEewEsRXThN1ohJ2fqrX4oC5zHjJklmYOmon7BXpX9Zy2WCnuNhl4fKXAXIMTWGdAFANQA","expires_in":7200}
+2016-04-10 20:11:42,284 [19] INFO  更新open_access_token:1AeKnQYNf-nf2GQGLL1MURbCfyG1Ku02piZwMLrJtfEll6L7D7P899MXWemPSMpGtkgBcEewEsRXThN1ohJ2fqrX4oC5zHjJklmYOmon7BXpX9Zy2WCnuNhl4fKXAXIMTWGdAFANQA
+2016-04-10 20:11:42,420 [19] INFO  接口调用
+2016-04-10 20:11:42,420 [19] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_create_preauthcode?component_access_token=1AeKnQYNf-nf2GQGLL1MURbCfyG1Ku02piZwMLrJtfEll6L7D7P899MXWemPSMpGtkgBcEewEsRXThN1ohJ2fqrX4oC5zHjJklmYOmon7BXpX9Zy2WCnuNhl4fKXAXIMTWGdAFANQA
+2016-04-10 20:11:42,420 [19] INFO  Result：
+{"pre_auth_code":"preauthcode@@@kIWMIir6kp_4kmZ_ZPT6Uf3EGae_UmiDEKN16rNwYy_tJGHC3sqomXgNJmLw6IN8","expires_in":1800}
+2016-04-10 20:11:42,422 [19] INFO  更新open_pre_auth_code:preauthcode@@@kIWMIir6kp_4kmZ_ZPT6Uf3EGae_UmiDEKN16rNwYy_tJGHC3sqomXgNJmLw6IN8
+2016-04-10 20:11:42,454 [19] INFO  推送component_verify_ticket协议--成功--end】
+2016-04-10 20:13:36,185 [24] INFO  接口调用
+2016-04-10 20:13:36,199 [24] INFO  URL：https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=HQQAs_5Hz2JCQWsyx-jkgD30NoDP8Wh2Ue6MVU9heTKJ45zLoH65vEFKDAMU1FBVIeIFBXMHT6QdoZp21OGSjTpvuKLBD3yr7SVgJK78juuxKEGYC8nn8slfRox6pKayWGTcAIDLVI
+2016-04-10 20:13:36,199 [24] INFO  Result：
+{"errcode":0,"errmsg":"send job submission success","msg_id":2549810747}
+2016-04-10 20:13:55,931 [19] INFO  接口调用
+2016-04-10 20:13:55,931 [19] INFO  URL：https://api.weixin.qq.com/cgi-bin/message/mass/send?access_token=HQQAs_5Hz2JCQWsyx-jkgD30NoDP8Wh2Ue6MVU9heTKJ45zLoH65vEFKDAMU1FBVIeIFBXMHT6QdoZp21OGSjTpvuKLBD3yr7SVgJK78juuxKEGYC8nn8slfRox6pKayWGTcAIDLVI
+2016-04-10 20:13:55,932 [19] INFO  Result：
+{"errcode":0,"errmsg":"send job submission success","msg_id":2549810754}
+2016-04-10 20:21:43,536 [32] INFO  推送component_verify_ticket协议--start【
+2016-04-10 20:21:43,536 [32] INFO  ticket无需更新:ticket@@@N8ThsFTGRjUYRqH7_jsgXOtMNw4pryKpUqntooD3HYPSIr7t2okF-J0ZBMuL4tvZFUxW87XgmWNXdLOXcBIkOA
+2016-04-10 20:21:44,116 [32] INFO  接口调用
+2016-04-10 20:21:44,282 [32] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_component_token
+2016-04-10 20:21:44,282 [32] INFO  Result：
+{"component_access_token":"a4YII6-AMhDIm8KO8cNDFNvUmARQqGkaHvVhm8JgG6HivgVxJ3A3jdr8jBedsIHmNqMa-2P1S0PI90SmK3DcaepFxGPPDUd92xzVtS2e7mbESqnIOAV2e8pC9HcMYLtAQMPeAHAEAD","expires_in":7200}
+2016-04-10 20:21:44,283 [32] INFO  更新open_access_token:a4YII6-AMhDIm8KO8cNDFNvUmARQqGkaHvVhm8JgG6HivgVxJ3A3jdr8jBedsIHmNqMa-2P1S0PI90SmK3DcaepFxGPPDUd92xzVtS2e7mbESqnIOAV2e8pC9HcMYLtAQMPeAHAEAD
+2016-04-10 20:21:44,435 [32] INFO  接口调用
+2016-04-10 20:21:44,435 [32] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_create_preauthcode?component_access_token=a4YII6-AMhDIm8KO8cNDFNvUmARQqGkaHvVhm8JgG6HivgVxJ3A3jdr8jBedsIHmNqMa-2P1S0PI90SmK3DcaepFxGPPDUd92xzVtS2e7mbESqnIOAV2e8pC9HcMYLtAQMPeAHAEAD
+2016-04-10 20:21:44,435 [32] INFO  Result：
+{"pre_auth_code":"preauthcode@@@vos5ETzWZAhWoSvU6usC_mjGEbj2DhcTdw_nCGzogt88UNkEygQHLWjZctu0w8JG","expires_in":1800}
+2016-04-10 20:21:44,436 [32] INFO  更新open_pre_auth_code:preauthcode@@@vos5ETzWZAhWoSvU6usC_mjGEbj2DhcTdw_nCGzogt88UNkEygQHLWjZctu0w8JG
+2016-04-10 20:21:44,469 [32] INFO  推送component_verify_ticket协议--成功--end】
+2016-04-10 20:31:42,710 [78] INFO  推送component_verify_ticket协议--start【
+2016-04-10 20:31:42,724 [78] INFO  ticket无需更新:ticket@@@N8ThsFTGRjUYRqH7_jsgXOtMNw4pryKpUqntooD3HYPSIr7t2okF-J0ZBMuL4tvZFUxW87XgmWNXdLOXcBIkOA
+2016-04-10 20:31:43,356 [78] INFO  接口调用
+2016-04-10 20:31:43,356 [78] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_component_token
+2016-04-10 20:31:43,356 [78] INFO  Result：
+{"component_access_token":"AXDFvaI2RcfJE-GYQCpmV8X2eSWnQW6XamyMLUGIg6sH22-4gaIvqRBmTQxm0B36vObMyw4l7eJ_LsJPnrsfdsr6lJkdjC6tH0zkN-usAhoRM9RIz6OXe9-bAldrjsJcSJAcAEAJAR","expires_in":7200}
+2016-04-10 20:31:43,405 [78] INFO  更新open_access_token:AXDFvaI2RcfJE-GYQCpmV8X2eSWnQW6XamyMLUGIg6sH22-4gaIvqRBmTQxm0B36vObMyw4l7eJ_LsJPnrsfdsr6lJkdjC6tH0zkN-usAhoRM9RIz6OXe9-bAldrjsJcSJAcAEAJAR
+2016-04-10 20:31:43,553 [78] INFO  接口调用
+2016-04-10 20:31:43,553 [78] INFO  URL：https://api.weixin.qq.com/cgi-bin/component/api_create_preauthcode?component_access_token=AXDFvaI2RcfJE-GYQCpmV8X2eSWnQW6XamyMLUGIg6sH22-4gaIvqRBmTQxm0B36vObMyw4l7eJ_LsJPnrsfdsr6lJkdjC6tH0zkN-usAhoRM9RIz6OXe9-bAldrjsJcSJAcAEAJAR
+2016-04-10 20:31:43,553 [78] INFO  Result：
+{"pre_auth_code":"preauthcode@@@kcNKyi5Vs3uvDwpv_McQLOOHoNCylNifML-jbDr-g8yTO6jVrNeY5wsPbJ7GpZO2","expires_in":1800}
+2016-04-10 20:31:43,554 [78] INFO  更新open_pre_auth_code:preauthcode@@@kcNKyi5Vs3uvDwpv_McQLOOHoNCylNifML-jbDr-g8yTO6jVrNeY5wsPbJ7GpZO2
+2016-04-10 20:31:43,599 [78] INFO  推送component_verify_ticket协议--成功--end】
+2016-04-10 20:33:48,067 [78] INFO  同步oGSPpsqR7kbbIy9soDLp1n5PHcTE位置成功
