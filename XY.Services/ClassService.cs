@@ -110,7 +110,6 @@ namespace XY.Services
             });
             result.Each(m =>
             {
-
                 m.CompanyName = CompanyService.instance().GetNameByID(m.CompanyID);
                 m.Childs = ClassService.instance().GetChildByID(m.ID, m.CompanyID);
             });
