@@ -40,6 +40,18 @@
 					    </a>
 					</li>
 					#end
+					#if($child.Type == 2)
+					<li>
+						<a href="/Product/Index/$child.ID"> 
+						     <i class="fa fa-caret-right"></i>$child.Name 列表
+					    </a>
+					</li>
+					<li>
+						<a href="/Product/Create/$child.ID"> 
+						     <i class="fa fa-caret-right"></i>添加$child.Name
+					    </a>
+					</li>
+					#end
 			  #end
 			#else
 				<li>
@@ -49,7 +61,7 @@
 				</li>
 				<li>
 					<a href="/General/NewEdit/$menu.ID"> 
-						    <i class="fa fa-caret-right"></i>添加$menu.Name
+						    <i class="fa fa-caret-right"></i>添加 $menu.Name
 					</a>
 				</li>
 			#end
