@@ -1564,12 +1564,9 @@
     <Content Include="Configs\Database.config" />
     <Content Include="Configs\Log4Net.config" />
     <Content Include="Content\css\vendor\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\css\vendor\fonts\glyphicons-halflings-regular.eot~" />
     <Content Include="Content\css\vendor\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\css\vendor\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\Edit\xheditor_emot\default\Thumbs.db" />
     <Content Include="Content\js\vendor\summernote\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\js\vendor\summernote\fonts\glyphicons-halflings-regular.eot~" />
     <Content Include="Content\js\vendor\summernote\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\js\vendor\summernote\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\UEdit\net\config.json" />
