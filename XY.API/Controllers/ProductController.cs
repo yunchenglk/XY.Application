@@ -9,6 +9,9 @@ using XY.Services;
 
 namespace XY.API.Controllers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Filters.AuthorizeFilter]
     public class ProductController : ApiController
     {
@@ -79,7 +82,17 @@ namespace XY.API.Controllers
             if (count.HasValue)
                 return Util.Utils.ConvertToJson(result.Take(count.Value));
             return Util.Utils.ConvertToJson(result);
-
+        }
+       /// <summary>
+       /// 查询最新产品大类信息
+       /// </summary>
+       /// <param name="classid"></param>
+       /// <param name="count"></param>
+       /// <returns></returns>
+        public HttpResponseMessage GetAllTop(string classid, int count = 0)
+        {
+            string where = "CLASSID IN (  SELECT ID FROM DBO.CLASS WHERE PARENTID='" + classid + "')";
+            return Util.Utils.ConvertToJson(ProductService.instance().GetEnumerable(where, count));
         }
     }
 }

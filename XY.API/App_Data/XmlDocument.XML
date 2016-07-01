@@ -575,6 +575,11 @@
             <param name="count">获取的总信息数</param>
             <returns></returns>
         </member>
+        <member name="T:XY.API.Controllers.ProductController">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:XY.API.Controllers.ProductController.Get(System.Int32,System.Int32,System.String,System.String,System.String)">
             <summary>
             获取分页
@@ -600,6 +605,14 @@
             <param name="type">0:全部信息1:推荐信息/2:置顶信息</param>
             <param name="id">栏目ID</param>
             <param name="count">获取的总信息数</param>
+            <returns></returns>
+        </member>
+        <member name="M:XY.API.Controllers.ProductController.GetAllTop(System.String,System.Int32)">
+            <summary>
+            查询最新产品大类信息
+            </summary>
+            <param name="classid"></param>
+            <param name="count"></param>
             <returns></returns>
         </member>
     </members>

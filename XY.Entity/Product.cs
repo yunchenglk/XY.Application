@@ -50,6 +50,13 @@ namespace XY.Entity
                 return System.Configuration.ConfigurationManager.AppSettings["sourceWeb"];
             }
         }
+        public string Short_Dec
+        {
+            get
+            {
+                return Util.Utils.DropHTML(Description);
+            }
+        }
         public string sourceWeb_
         {
             get
