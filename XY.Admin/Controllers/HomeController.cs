@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using XY.Entity;
 using XY.Services;
 using XY.Util;
@@ -26,6 +27,12 @@ namespace XY.Admin.Controllers
         }
         public ActionResult Index()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                FormsAuthentication.SignOut();
+                Request.Cookies.Clear();
+                Response.Redirect("/Account/Login");
+            }
             return View();
         }
         public ActionResult About()

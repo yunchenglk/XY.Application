@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.Admin", "XY.Admin\XY.Admin.csproj", "{51F0E633-F7BE-48FC-AD7C-A9369196E98B}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -60,6 +60,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.Services.Weixin", "XY.Services.Weixin\XY.Services.Weixin.csproj", "{16F42A23-537B-48E5-8D25-A1211BAE347F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{A413D9FD-7ECB-47DC-8575-035AFB860517}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "phone", "phone\phone.csproj", "{D67C16AB-1555-4A5D-8266-605BDB4475E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -127,6 +129,10 @@ Global
 		{A413D9FD-7ECB-47DC-8575-035AFB860517}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A413D9FD-7ECB-47DC-8575-035AFB860517}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A413D9FD-7ECB-47DC-8575-035AFB860517}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D67C16AB-1555-4A5D-8266-605BDB4475E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D67C16AB-1555-4A5D-8266-605BDB4475E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D67C16AB-1555-4A5D-8266-605BDB4475E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D67C16AB-1555-4A5D-8266-605BDB4475E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
