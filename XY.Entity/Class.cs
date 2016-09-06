@@ -58,5 +58,20 @@ namespace XY.Entity
             get { return myVar; }
             set { myVar = value; }
         }
+        public Time CreateTime_
+        {
+            get
+            {
+                return new Time()
+                {
+                    Year = CreateTime.Year.ToString(),
+                    Month = CreateTime.Month.ToString(),
+                    Day = CreateTime.Day.ToString(),
+                    Hour = CreateTime.Hour.ToString(),
+                    Minute = CreateTime.Minute.ToString(),
+                    Second = CreateTime.Second.ToString()
+                };
+            }
+        }
     }
 }

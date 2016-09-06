@@ -65,5 +65,20 @@ namespace XY.Entity
             }
         }
         public IEnumerable<ProductAttr> Attr { get; set; }
+        public Time CreateTime_
+        {
+            get
+            {
+                return new Time()
+                {
+                    Year = CreateTime.Year.ToString(),
+                    Month = CreateTime.Month.ToString(),
+                    Day = CreateTime.Day.ToString(),
+                    Hour = CreateTime.Hour.ToString(),
+                    Minute = CreateTime.Minute.ToString(),
+                    Second = CreateTime.Second.ToString()
+                };
+            }
+        }
     }
 }
