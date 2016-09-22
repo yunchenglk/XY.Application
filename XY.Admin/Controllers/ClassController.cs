@@ -22,7 +22,7 @@ namespace XY.Admin.Controllers
         {
             Class m;
             if (string.IsNullOrEmpty(id))
-                m = new Class();
+                m = new Class() { Publisher = UserDateTicket.Company.Name };
             else
                 m = ClassService.instance().GetEnumByID(new Guid(id)).FirstOrDefault();
             return View(m);
@@ -57,7 +57,7 @@ namespace XY.Admin.Controllers
             {
 
                 m.CompanyName = CompanyService.instance().GetNameByID(m.CompanyID);
-                m.Childs = ClassService.instance().GetChildByID(m.ID,m.CompanyID);
+                m.Childs = ClassService.instance().GetChildByID(m.ID, m.CompanyID);
             });
             page.content = datalist.ToList();
             return Json(page, JsonRequestBehavior.AllowGet);
@@ -86,6 +86,6 @@ namespace XY.Admin.Controllers
         {
             return Json(ClassService.instance().GetChildByID(new Guid(id), new Guid(cid)), JsonRequestBehavior.AllowGet);
         }
-       
+
     }
 }
