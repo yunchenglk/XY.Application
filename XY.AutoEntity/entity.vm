@@ -14,7 +14,7 @@ namespace $EntityInfo.Namespace
 
     [Table("$Table.TableName")]
 	[Serializable] 
-    public partial class $Table.TableName :IEntity
+    public partial class $Table.TableName :IEntity 
     {
         #foreach($Column in $Table.Columns)
 
