@@ -11,7 +11,7 @@ namespace XY.Services.Weixin
     /// <summary>
     /// 签名验证类
     /// </summary>
-    public class CheckSignature
+    public class CheckSignature 
     {
         /// <summary>
         /// 在网站没有提供Token（或传入为null）的情况下的默认Token，建议在网站中进行配置。
