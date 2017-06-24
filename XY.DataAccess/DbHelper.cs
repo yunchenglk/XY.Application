@@ -16,7 +16,7 @@ namespace XY.DataAccess
         #region Member variables
         private DbTransaction trans;
         DataSet dataSet = new DataSet();
-        private DbProviderFactory dbProviderFactory;
+        private DbProviderFactory dbProviderFactory; 
 
         private string connectionString;
         /// <summary>
