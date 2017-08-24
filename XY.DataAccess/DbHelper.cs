@@ -115,7 +115,7 @@ namespace XY.DataAccess
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="dbCommand"></param>
-        /// <returns></returns>
+        /// <returns></returns> 
         public delegate IList<T> GetResultList<T>(DbCommand dbCommand);
 
 
