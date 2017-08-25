@@ -36,7 +36,7 @@ namespace XY.Admin.Controllers
             ResultBase_form result = new ResultBase_form();
             Class m = new Class();
             TryUpdateModel<Class>(m, form);
-            m.Pic = form["filePath"];
+            //m.Pic = form["filePath"];
             m.Description = Server.UrlDecode(m.Description);
             if (m.ID == Guid.Empty)
                 result.status = ClassService.instance().Insert(m);
