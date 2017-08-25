@@ -88,7 +88,7 @@ namespace XY.Services
             IEnumerable<News> result = new List<News>();
             _db.Execute(() =>
             {
-                result = _db.GetList<News>(m => m.ClassID == cid && m.DR == false).Where(m => m.IsAudit);
+                result = _db.GetList<News>(m => m.ClassID == cid && m.DR == false).Where(m => m.IsAudit).OrderByDescending(m=>m.CreateTime);
             });
             return result;
         }
