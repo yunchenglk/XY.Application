@@ -139,7 +139,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="fullname" class="col-sm-3 control-label">图片</label>
+                    @*<label for="fullname" class="col-sm-3 control-label">图片</label>
                     <div class="col-sm-9">
                         <div class="input-group" id="file_group">
                             <span class="input-group-btn">
@@ -149,6 +149,18 @@
                                 </span>
                             </span>
                             <input type="text" class="form-control" id="filetext" value="@Model.Pic" name="filePath">
+                        </div>
+                    </div>*@
+                    <label for="fullname" class="col-sm-3 control-label"><a href="@Model.PicStr" target="_blank" style="color:#fff;">预览图片</a></label>
+                    <div class="col-sm-9">
+                        <div class="input-group" id="Pic">
+                            <span class="input-group-btn">
+                                <span class="btn btn-primary btn-file">
+                                    <i class="fa fa-upload"></i>
+                                    <input type="file" name="file" filepath="/UPLOAD/NEWS/" filetype="image" for="Pic">
+                                </span>
+                            </span>
+                            <input type="text" class="form-control" value="@Model.Pic" name="Pic">
                         </div>
                     </div>
                 </div>

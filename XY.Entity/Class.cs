@@ -73,5 +73,13 @@ namespace XY.Entity
                 };
             }
         }
+        public string PicStr
+        {
+            get
+            {
+
+                return XY.Util.Utils.AddURL(Pic);
+            }
+        }
     }
 }
