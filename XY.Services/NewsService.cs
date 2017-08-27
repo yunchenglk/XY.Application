@@ -78,7 +78,7 @@ namespace XY.Services
             if (entity != null)
             {
                 entity.Count++;
-                this.Update(entity);
+                this.Update(entity); 
             }
             entity.ClassName = ClassService.instance().Single(entity.ClassID).Title;
             return entity;
