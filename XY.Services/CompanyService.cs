@@ -96,14 +96,14 @@ namespace XY.Services
         }
         public Company GetCompanyByUrl(string url)
         {
-            if (!string.IsNullOrEmpty(url))
-            {
-                url = url.ToLower().Replace("http://", "");
-            }
+            //if (!string.IsNullOrEmpty(url))
+            //{
+            //    url = url.ToLower().Replace("http://", "");
+            //}
             Company result = new Company();
             _db.Execute(() =>
             {
-                result = _db.GetList<Company>(m => m.URL.Contains(url)).FirstOrDefault();
+                result = _db.GetList<Company>(m => m.URL.Trim().ToLower().Contains(url.Trim().ToLower())).FirstOrDefault();
             });
             return result;
         }

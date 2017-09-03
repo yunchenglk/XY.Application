@@ -13,7 +13,7 @@ namespace XY.Entity
 
     [Table("Authority")]
 	[Serializable] 
-    public partial class Authority :IEntity
+    public partial class Authority :IEntity 
     {
         
 		private  Guid _ID;
@@ -83,7 +83,7 @@ namespace XY.Entity
 
     [Table("Class")]
 	[Serializable] 
-    public partial class Class :IEntity
+    public partial class Class :IEntity 
     {
         
 		private  Guid _ID;
@@ -243,7 +243,7 @@ namespace XY.Entity
 
     [Table("Company")]
 	[Serializable] 
-    public partial class Company :IEntity
+    public partial class Company :IEntity 
     {
         
 		private  Guid _ID;
@@ -412,7 +412,7 @@ namespace XY.Entity
 
     [Table("Files")]
 	[Serializable] 
-    public partial class Files :IEntity
+    public partial class Files :IEntity 
     {
         
 		private  Guid _ID;
@@ -563,7 +563,7 @@ namespace XY.Entity
 
     [Table("Messages")]
 	[Serializable] 
-    public partial class Messages :IEntity
+    public partial class Messages :IEntity 
     {
         
 		private  Guid _ID;
@@ -678,7 +678,7 @@ namespace XY.Entity
 
     [Table("Messages_Reply")]
 	[Serializable] 
-    public partial class Messages_Reply :IEntity
+    public partial class Messages_Reply :IEntity 
     {
         
 		private  Guid _ID;
@@ -748,7 +748,7 @@ namespace XY.Entity
 
     [Table("Messages_ReplyDetails")]
 	[Serializable] 
-    public partial class Messages_ReplyDetails :IEntity
+    public partial class Messages_ReplyDetails :IEntity 
     {
         
 		private  Guid _ID;
@@ -845,7 +845,7 @@ namespace XY.Entity
 
     [Table("MessagesDetails")]
 	[Serializable] 
-    public partial class MessagesDetails :IEntity
+    public partial class MessagesDetails :IEntity 
     {
         
 		private  Guid _ID;
@@ -969,7 +969,7 @@ namespace XY.Entity
 
     [Table("News")]
 	[Serializable] 
-    public partial class News :IEntity
+    public partial class News :IEntity 
     {
         
 		private  Guid _ID;
@@ -1228,7 +1228,7 @@ namespace XY.Entity
 
     [Table("NewsDetails")]
 	[Serializable] 
-    public partial class NewsDetails :IEntity
+    public partial class NewsDetails :IEntity 
     {
         
 		private  Guid _ID;
@@ -1496,7 +1496,7 @@ namespace XY.Entity
 
     [Table("Product")]
 	[Serializable] 
-    public partial class Product :IEntity
+    public partial class Product :IEntity 
     {
         
 		private  Guid _ID;
@@ -1719,7 +1719,7 @@ namespace XY.Entity
 
     [Table("Product_Att_Key")]
 	[Serializable] 
-    public partial class Product_Att_Key :IEntity
+    public partial class Product_Att_Key :IEntity 
     {
         
 		private  Guid _ID;
@@ -1771,7 +1771,7 @@ namespace XY.Entity
 
     [Table("Product_Att_Val")]
 	[Serializable] 
-    public partial class Product_Att_Val :IEntity
+    public partial class Product_Att_Val :IEntity 
     {
         
 		private  Guid _ID;
@@ -1841,7 +1841,7 @@ namespace XY.Entity
 
     [Table("Product_Price")]
 	[Serializable] 
-    public partial class Product_Price :IEntity
+    public partial class Product_Price :IEntity 
     {
         
 		private  Guid _ID;
@@ -1920,7 +1920,7 @@ namespace XY.Entity
 
     [Table("Role")]
 	[Serializable] 
-    public partial class Role :IEntity
+    public partial class Role :IEntity 
     {
         
 		private  Guid _ID;
@@ -1981,7 +1981,7 @@ namespace XY.Entity
 
     [Table("Role_PK_Authority_s")]
 	[Serializable] 
-    public partial class Role_PK_Authority_s :IEntity
+    public partial class Role_PK_Authority_s :IEntity 
     {
         
 		private  Guid _ID;
@@ -2015,7 +2015,7 @@ namespace XY.Entity
 
     [Table("USER")]
 	[Serializable] 
-    public partial class USER :IEntity
+    public partial class USER :IEntity 
     {
         
 		private  Guid _ID;
@@ -2143,12 +2143,21 @@ namespace XY.Entity
 		   get{ return _DR;  } 
 		   set{_DR = value;}
 		 }
+        
+		private  Guid _PID;
+
+        [Column("PID", DbType.Guid,false,false)]
+        public Guid  PID 
+		{ 
+		   get{ return _PID;  } 
+		   set{_PID = value;}
+		 }
             }
 
 
     [Table("User_PK_Role_s")]
 	[Serializable] 
-    public partial class User_PK_Role_s :IEntity
+    public partial class User_PK_Role_s :IEntity 
     {
         
 		private  Guid _ID;
@@ -2182,7 +2191,7 @@ namespace XY.Entity
 
     [Table("WeShop")]
 	[Serializable] 
-    public partial class WeShop :IEntity
+    public partial class WeShop :IEntity 
     {
         
 		private  Guid _ID;
@@ -2261,7 +2270,7 @@ namespace XY.Entity
 
     [Table("WX_Config")]
 	[Serializable] 
-    public partial class WX_Config :IEntity
+    public partial class WX_Config :IEntity 
     {
         
 		private  Guid _ID;
@@ -2358,7 +2367,7 @@ namespace XY.Entity
 
     [Table("wx_contentTemp")]
 	[Serializable] 
-    public partial class wx_contentTemp :IEntity
+    public partial class wx_contentTemp :IEntity 
     {
         
 		private  Guid _ID;
@@ -2419,7 +2428,7 @@ namespace XY.Entity
 
     [Table("wx_customer")]
 	[Serializable] 
-    public partial class wx_customer :IEntity
+    public partial class wx_customer :IEntity 
     {
         
 		private  Guid _ID;
@@ -2534,7 +2543,7 @@ namespace XY.Entity
 
     [Table("WX_Fans")]
 	[Serializable] 
-    public partial class WX_Fans :IEntity
+    public partial class WX_Fans :IEntity 
     {
         
 		private  Guid _ID;
@@ -2586,7 +2595,7 @@ namespace XY.Entity
 
     [Table("WX_KeyWord")]
 	[Serializable] 
-    public partial class WX_KeyWord :IEntity
+    public partial class WX_KeyWord :IEntity 
     {
         
 		private  Guid _ID;
@@ -2692,7 +2701,7 @@ namespace XY.Entity
 
     [Table("WX_Menu")]
 	[Serializable] 
-    public partial class WX_Menu :IEntity
+    public partial class WX_Menu :IEntity 
     {
         
 		private  Guid _ID;
@@ -2789,7 +2798,7 @@ namespace XY.Entity
 
     [Table("WX_Message")]
 	[Serializable] 
-    public partial class WX_Message :IEntity
+    public partial class WX_Message :IEntity 
     {
         
 		private  Guid _ID;
@@ -2868,7 +2877,7 @@ namespace XY.Entity
 
     [Table("WX_MessageGroup")]
 	[Serializable] 
-    public partial class WX_MessageGroup :IEntity
+    public partial class WX_MessageGroup :IEntity 
     {
         
 		private  Guid _ID;
@@ -3001,7 +3010,7 @@ namespace XY.Entity
 
     [Table("wx_openInfo")]
 	[Serializable] 
-    public partial class wx_openInfo :IEntity
+    public partial class wx_openInfo :IEntity 
     {
         
 		private  Guid _ID;
@@ -3125,7 +3134,7 @@ namespace XY.Entity
 
     [Table("wx_requestRule")]
 	[Serializable] 
-    public partial class wx_requestRule :IEntity
+    public partial class wx_requestRule :IEntity 
     {
         
 		private  Guid _ID;
@@ -3330,7 +3339,7 @@ namespace XY.Entity
 
     [Table("wx_requestRuleContent")]
 	[Serializable] 
-    public partial class wx_requestRuleContent :IEntity
+    public partial class wx_requestRuleContent :IEntity 
     {
         
 		private  Guid _ID;
@@ -3481,7 +3490,7 @@ namespace XY.Entity
 
     [Table("wx_usergroup")]
 	[Serializable] 
-    public partial class wx_usergroup :IEntity
+    public partial class wx_usergroup :IEntity 
     {
         
 		private  Guid _ID;
@@ -3560,7 +3569,7 @@ namespace XY.Entity
 
     [Table("wx_userinfo")]
 	[Serializable] 
-    public partial class wx_userinfo :IEntity
+    public partial class wx_userinfo :IEntity 
     {
         
 		private  Guid _ID;
@@ -3810,7 +3819,7 @@ namespace XY.Entity
 
     [Table("wx_userweixin")]
 	[Serializable] 
-    public partial class wx_userweixin :IEntity
+    public partial class wx_userweixin :IEntity 
     {
         
 		private  Guid _ID;

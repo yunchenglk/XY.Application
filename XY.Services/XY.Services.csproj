@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="AuthorityService.cs" />
     <Compile Include="BaseService.cs" />
+    <Compile Include="CheckAuthorize.cs" />
     <Compile Include="CheckRoleService.cs" />
     <Compile Include="ClassService.cs" />
     <Compile Include="CompanyService.cs" />

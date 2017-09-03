@@ -48,11 +48,13 @@
     <Compile Include="Class.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="ENTITY.cs" />
+    <Compile Include="Entity_Api\baseApiView.cs" />
     <Compile Include="Entity_Api\ClassView.cs" />
     <Compile Include="Entity_Api\FilesView.cs" />
     <Compile Include="Entity_Api\Messages_ReplyView.cs" />
     <Compile Include="Entity_Api\MessageView.cs" />
     <Compile Include="Entity_Api\NewsView.cs" />
+    <Compile Include="Entity_Api\UserView.cs" />
     <Compile Include="Files.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Messages.cs" />

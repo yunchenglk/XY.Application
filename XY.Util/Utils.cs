@@ -1189,6 +1189,24 @@ namespace XY.Util
         }
 
         /// <summary>
+        /// 获取url中的参数值
+        /// </summary>
+        /// <param name="_url"></param>
+        /// <param name="_key"></param>
+        /// <returns></returns>
+        public static string URLgetparsmByKey(string _url, string _key)
+        {
+            if (string.IsNullOrEmpty(_url) || string.IsNullOrEmpty(_key)) { return ""; }
+            _url = _url.Replace("?", "");
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            _url.Split('&').ToList().ForEach(m=> {
+                dic.Add(m.Split('=')[0], m.Split('=')[1]);
+            });
+            return dic[_key];
+        }
+
+
+        /// <summary>
         /// 组合URL参数
         /// </summary>
         /// <param name="_url">页面地址</param>
@@ -2083,7 +2101,6 @@ namespace XY.Util
             return top + end;
         }
         #endregion
-
 
         #region 时间戳处理
         /// <summary>

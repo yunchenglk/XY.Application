@@ -73,6 +73,28 @@ namespace XY.Services
                 result = id.Equals(entity.ID);
             return result;
         }
+        /// <summary>
+        /// 判断用户名
+        /// </summary>
+        /// <param name="id">用户ID</param>
+        /// <param name="LoginName">登录名</param>
+        /// <param name="comid">公司ID</param>
+        /// <returns></returns>
+        public Boolean CheckUser(Guid id, string LoginName, Guid comid)
+        {
+            Boolean result = false;
+            USER entity = null;
+            _db.Execute(() =>
+            {
+                entity = _db.GetList<USER>(m => m.LoginName == LoginName && m.CompanyID == comid).FirstOrDefault();
+            });
+            if (id.Equals(Guid.Empty))
+                result = entity == null;
+            else
+                result = id.Equals(entity.ID);
+            return result;
+        }
+
         public IEnumerable<USER> GetEnumByLoginName(string loginName)
         {
             IEnumerable<USER> result = new List<USER>();
