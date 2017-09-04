@@ -50,6 +50,16 @@ namespace XY.Services
             });
             return result;
         }
+        public int Delete(Guid id, Guid comid)
+        {
+            int result = 0;
+
+            _db.Execute(() =>
+            {
+                result = _db.Delete<USER>(m => m.ID == id && m.CompanyID == comid);
+            });
+            return result;
+        }
         public USER Single(Guid id)
         {
             USER result = new USER();

@@ -124,7 +124,10 @@ namespace XY.API.Controllers
         // DELETE: api/User/5
         public HttpResponseMessage Delete(Guid id)
         {
-            return null;
+            Hashtable json = new Hashtable();
+            json["status"] = UserService.instance().Delete(id, company.ID) == 1;
+
+            return Util.Utils.ConvertToJson(json);
         }
     }
 }
