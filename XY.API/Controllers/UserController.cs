@@ -14,6 +14,7 @@ using XY.Util;
 
 namespace XY.API.Controllers
 {
+    [Filters.AuthorizeFilter]
     /// <summary>
     /// 会员管理
     /// </summary> 
@@ -21,17 +22,17 @@ namespace XY.API.Controllers
     public class UserController : ApiController
     {
         Company company = CompanyService.instance().GetCompanyByUrl("http://" + HttpContext.Current.Request.UrlReferrer.Host);
-        // GET: api/User
-        public HttpResponseMessage Get()
-        {
-            return null;
-        }
+        //// GET: api/User
+        //public HttpResponseMessage Get()
+        //{
+        //    return null;
+        //}
 
-        // GET: api/User/5
-        public HttpResponseMessage Get(Guid id)
-        {
-            return null;
-        }
+        //// GET: api/User/5
+        //public HttpResponseMessage Get(Guid id)
+        //{
+        //    return null;
+        //}
         /// <summary>
         /// 登陆名查重
         /// </summary>

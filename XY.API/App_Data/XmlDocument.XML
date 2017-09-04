@@ -615,11 +615,6 @@
             <param name="count"></param>
             <returns></returns>
         </member>
-        <member name="T:XY.API.Controllers.UserController">
-            <summary>
-            会员管理
-            </summary> 
-        </member>
         <member name="M:XY.API.Controllers.UserController.Get(System.Guid,System.String)">
             <summary>
             登陆名查重
