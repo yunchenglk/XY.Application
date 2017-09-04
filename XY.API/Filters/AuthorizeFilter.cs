@@ -25,7 +25,6 @@ namespace XY.API.Filters
             bool isok = CheckAuthorize.instance().CheckedCompanyByUrl(url, new Guid(comid));
             if (!isok)
                 HttpContext.Current.Response.Redirect(url);
-
         }
 
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)

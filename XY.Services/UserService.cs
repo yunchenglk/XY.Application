@@ -104,6 +104,16 @@ namespace XY.Services
             });
             return result;
         }
+        public IEnumerable<USER> GetEnumByLoginName(string loginName, Guid comid)
+        {
+            IEnumerable<USER> result = new List<USER>();
+            _db.Execute(() =>
+            {
+                result = _db.GetList<USER>(m => m.LoginName == loginName && m.CompanyID == comid);
+            });
+            return result;
+        }
+
         public IEnumerable<USER> GetEnumByID(Guid id)
         {
             IEnumerable<USER> result = new List<USER>();
@@ -135,6 +145,32 @@ namespace XY.Services
         {
             Hashtable hash = new Hashtable();
             USER entity = this.GetEnumByLoginName(uname).FirstOrDefault();
+            if (entity == null)
+            {
+                hash["status"] = false;
+                hash["error"] = "账号密码错误";
+                return hash;
+            }
+            if (!pwd.Equals(entity.LoginPwd))
+            {
+                hash["status"] = false;
+                hash["error"] = "账号密码错误";
+                return hash;
+            }
+            if (entity.DR)
+            {
+                hash["status"] = false;
+                hash["error"] = "账号被禁用";
+                return hash;
+            }
+            hash["status"] = true;
+            hash["uid"] = entity.ID;
+            return hash;
+        }
+        public Hashtable Login(string uname, string pwd, Guid comid)
+        {
+            Hashtable hash = new Hashtable();
+            USER entity = this.GetEnumByLoginName(uname, comid).FirstOrDefault();
             if (entity == null)
             {
                 hash["status"] = false;

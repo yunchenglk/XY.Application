@@ -8,6 +8,6 @@ namespace XY.Entity
 {
     public class baseApiView
     {
-        public string comid { get; set; } 
+
     }
 }
