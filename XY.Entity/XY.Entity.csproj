@@ -47,6 +47,7 @@
     <Compile Include="Authority.cs" />
     <Compile Include="Class.cs" />
     <Compile Include="Company.cs" />
+    <Compile Include="Demo.cs" />
     <Compile Include="ENTITY.cs" />
     <Compile Include="Entity_Api\baseApiView.cs" />
     <Compile Include="Entity_Api\ClassView.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="ProductAttr.cs" />
     <Compile Include="Product_Price.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="P_BrandCategories.cs" />
     <Compile Include="ResultBase_form.cs" />
     <Compile Include="ResultBase_Page.cs" />
     <Compile Include="Role.cs" />

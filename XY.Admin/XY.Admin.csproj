@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -172,6 +173,9 @@
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\Product_ParameterController.cs" />
+    <Compile Include="Controllers\P_BrandCategoryController.cs" />
+    <Compile Include="Controllers\P_CategoriesController.cs" />
+    <Compile Include="Controllers\P_TagsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
@@ -1679,6 +1683,15 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\WeShop\Product.cshtml" />
     <Content Include="Views\Company\WeChart.cshtml" />
+    <Content Include="Views\P_BrandCategory\Index.cshtml" />
+    <Content Include="Views\P_BrandCategory\Create.cshtml" />
+    <Content Include="Views\P_BrandCategory\Recycle.cshtml" />
+    <Content Include="Views\P_Categories\Index.cshtml" />
+    <Content Include="Views\P_Categories\Create.cshtml" />
+    <Content Include="Views\P_Categories\Recycle.cshtml" />
+    <Content Include="Views\P_Tags\Create.cshtml" />
+    <Content Include="Views\P_Tags\Index.cshtml" />
+    <Content Include="Views\P_Tags\Recycle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

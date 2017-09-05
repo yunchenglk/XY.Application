@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@Scripts.Render("~/js/jqueryValidate"); 
+<script src="/Content/js/vendor/chosen/chosen.jquery.min.js"></script>
+<script type="text/javascript">
+    $().ready(function () {
+        $.getJSON("/P_Categories/GetAllTop", { v: Math.random() }, function (data) {
+            $("#ParentCategoryId").append("<option value='00000000-0000-0000-0000-000000000000']>一级分类</option>");
+            $.each(data, function (i, o) {
+                $("#ParentCategoryId").append(" <option value=" + o["id"] + ">" + o["name"] + "</option>")
+            })
+            $("#ParentCategoryId").val('@Model.ParentCategoryId');
+            $(".chosen-select").chosen();
+        });
+    })
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i>  商品分类管理
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li class="active">编辑商品分类</li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile color transparent-black">
+        <div class="tile-body">
+            <form class="form-horizontal" method="post" action="/P_Categories/Create" id="validate">
+                <input type="hidden" value="/P_Categories/Index/@ViewBag.ID" name="ResultURL" />
+                <input type="hidden" value="@Model.ID" name="ID" id="ID" />
+                <input type="hidden" value="@Model.CreateTime" name="CreateTime" /> 
+                <input type="hidden" value="@XY.UserDateTicket.Company.ID" name="CompanyID" />
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">分类名称 *</label>
+                    <div class="col-sm-9">
+                        <input name="Name" id="Title" value="@Model.Name" type="text" placeholder="分类名称" class="form-control {required:true,messages:{required:'分类名称不能为空'}}" />
+                    </div>
+                </div> 
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">选择上级分类 </label>
+                    <div class="col-sm-9">
+                        <select name="ParentCategoryId" class="chosen-select chosen-transparent form-control" id="ParentCategoryId"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">商家编码前缀 </label>
+                    <div class="col-sm-9">
+                        <input name="SKUPrefix" type="text" value="@Model.SKUPrefix" class="form-control" placeholder="填写以后，发布商品为您自动生成商家编码的时候可以加上此前缀，只能是字母、数字开头、可包含-(减号)、_(下划线)，长度5个字符以内" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">分销佣金设置 </label>
+                     
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">上二级佣金比例： </label>
+                    <div class="col-sm-9">
+                        <input name="ThirdCommission" type="text" value="@Model.ThirdCommission" class="form-control" placeholder="%" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">上一级佣金比例： </label>
+                    <div class="col-sm-9">
+                        <input name="SecondCommission" type="text" value="@Model.SecondCommission" class="form-control" placeholder="%" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">成交店铺佣金比例： </label>
+                    <div class="col-sm-9">
+                        <input name="FirstCommission" type="text" value="@Model.FirstCommission" class="form-control" placeholder="%" />
+                    </div>
+                </div> 
+                <div class="form-group form-footer">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="reset" class="btn btn-default">清空</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+

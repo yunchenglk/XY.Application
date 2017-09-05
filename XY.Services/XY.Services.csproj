@@ -58,6 +58,7 @@
     <Compile Include="CheckRoleService.cs" />
     <Compile Include="ClassService.cs" />
     <Compile Include="CompanyService.cs" />
+    <Compile Include="demoService.cs" />
     <Compile Include="FilesService.cs" />
     <Compile Include="MenuService.cs" />
     <Compile Include="MessagesDetailsService.cs" />
@@ -71,6 +72,9 @@
     <Compile Include="Product_Att_ValService.cs" />
     <Compile Include="Product_PriceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="P_BrandCategoriesService.cs" />
+    <Compile Include="P_CategoriesService.cs" />
+    <Compile Include="P_TagsService.cs" />
     <Compile Include="RoleService.cs" />
     <Compile Include="Role_PK_Authority_s_Service.cs" />
     <Compile Include="SendMail.cs" />

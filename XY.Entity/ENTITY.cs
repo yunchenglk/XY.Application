@@ -561,130 +561,6 @@ namespace XY.Entity
             }
 
 
-    [Table("Hishop_BrandCategories")]
-	[Serializable] 
-    public partial class Hishop_BrandCategories :IEntity 
-    {
-        
-		private  Int32 _BrandId;
-
-        [Column("BrandId", DbType.Int32,true,true)]
-        public Int32  BrandId 
-		{ 
-		   get{ return _BrandId;  } 
-		   set{_BrandId = value;}
-		 }
-        
-		private  String _BrandName;
-
-        [Column("BrandName", DbType.String,false,false)]
-        public String  BrandName 
-		{ 
-		   get{  return _BrandName == null ?string.Empty:_BrandName;  } 
-		   set{_BrandName = value;}
-		 }
-        
-		private  String _Logo;
-
-        [Column("Logo", DbType.String,false,false)]
-        public String  Logo 
-		{ 
-		   get{  return _Logo == null ?string.Empty:_Logo;  } 
-		   set{_Logo = value;}
-		 }
-        
-		private  String _CompanyUrl;
-
-        [Column("CompanyUrl", DbType.String,false,false)]
-        public String  CompanyUrl 
-		{ 
-		   get{  return _CompanyUrl == null ?string.Empty:_CompanyUrl;  } 
-		   set{_CompanyUrl = value;}
-		 }
-        
-		private  String _RewriteName;
-
-        [Column("RewriteName", DbType.String,false,false)]
-        public String  RewriteName 
-		{ 
-		   get{  return _RewriteName == null ?string.Empty:_RewriteName;  } 
-		   set{_RewriteName = value;}
-		 }
-        
-		private  String _MetaKeywords;
-
-        [Column("MetaKeywords", DbType.String,false,false)]
-        public String  MetaKeywords 
-		{ 
-		   get{  return _MetaKeywords == null ?string.Empty:_MetaKeywords;  } 
-		   set{_MetaKeywords = value;}
-		 }
-        
-		private  String _MetaDescription;
-
-        [Column("MetaDescription", DbType.String,false,false)]
-        public String  MetaDescription 
-		{ 
-		   get{  return _MetaDescription == null ?string.Empty:_MetaDescription;  } 
-		   set{_MetaDescription = value;}
-		 }
-        
-		private  String _Description;
-
-        [Column("Description", DbType.String,false,false)]
-        public String  Description 
-		{ 
-		   get{  return _Description == null ?string.Empty:_Description;  } 
-		   set{_Description = value;}
-		 }
-        
-		private  Int32 _DisplaySequence;
-
-        [Column("DisplaySequence", DbType.Int32,false,false)]
-        public Int32  DisplaySequence 
-		{ 
-		   get{ return _DisplaySequence;  } 
-		   set{_DisplaySequence = value;}
-		 }
-        
-		private  String _Theme;
-
-        [Column("Theme", DbType.String,false,false)]
-        public String  Theme 
-		{ 
-		   get{  return _Theme == null ?string.Empty:_Theme;  } 
-		   set{_Theme = value;}
-		 }
-        
-		private  Guid _CompanyID;
-
-        [Column("CompanyID", DbType.Guid,false,false)]
-        public Guid  CompanyID 
-		{ 
-		   get{ return _CompanyID;  } 
-		   set{_CompanyID = value;}
-		 }
-        
-		private  DateTime _CreateTime;
-
-        [Column("CreateTime", DbType.DateTime,false,false)]
-        public DateTime  CreateTime 
-		{ 
-		   get{ return _CreateTime;  } 
-		   set{_CreateTime = value;}
-		 }
-        
-		private  Boolean _DR;
-
-        [Column("DR", DbType.Boolean,false,false)]
-        public Boolean  DR 
-		{ 
-		   get{ return _DR;  } 
-		   set{_DR = value;}
-		 }
-            }
-
-
     [Table("Messages")]
 	[Serializable] 
     public partial class Messages :IEntity 
@@ -1605,6 +1481,405 @@ namespace XY.Entity
 		{ 
 		   get{ return _CreateTime;  } 
 		   set{_CreateTime = value;}
+		 }
+        
+		private  Guid _CompanyID;
+
+        [Column("CompanyID", DbType.Guid,false,false)]
+        public Guid  CompanyID 
+		{ 
+		   get{ return _CompanyID;  } 
+		   set{_CompanyID = value;}
+		 }
+            }
+
+
+    [Table("P_BrandCategories")]
+	[Serializable] 
+    public partial class P_BrandCategories :IEntity 
+    {
+        
+		private  Guid _ID;
+
+        [Column("ID", DbType.Guid,true,false)]
+        public Guid  ID 
+		{ 
+		   get{ return _ID;  } 
+		   set{_ID = value;}
+		 }
+        
+		private  String _BrandName;
+
+        [Column("BrandName", DbType.String,false,false)]
+        public String  BrandName 
+		{ 
+		   get{  return _BrandName == null ?string.Empty:_BrandName;  } 
+		   set{_BrandName = value;}
+		 }
+        
+		private  String _Logo;
+
+        [Column("Logo", DbType.String,false,false)]
+        public String  Logo 
+		{ 
+		   get{  return _Logo == null ?string.Empty:_Logo;  } 
+		   set{_Logo = value;}
+		 }
+        
+		private  String _CompanyUrl;
+
+        [Column("CompanyUrl", DbType.String,false,false)]
+        public String  CompanyUrl 
+		{ 
+		   get{  return _CompanyUrl == null ?string.Empty:_CompanyUrl;  } 
+		   set{_CompanyUrl = value;}
+		 }
+        
+		private  String _RewriteName;
+
+        [Column("RewriteName", DbType.String,false,false)]
+        public String  RewriteName 
+		{ 
+		   get{  return _RewriteName == null ?string.Empty:_RewriteName;  } 
+		   set{_RewriteName = value;}
+		 }
+        
+		private  String _MetaKeywords;
+
+        [Column("MetaKeywords", DbType.String,false,false)]
+        public String  MetaKeywords 
+		{ 
+		   get{  return _MetaKeywords == null ?string.Empty:_MetaKeywords;  } 
+		   set{_MetaKeywords = value;}
+		 }
+        
+		private  String _MetaDescription;
+
+        [Column("MetaDescription", DbType.String,false,false)]
+        public String  MetaDescription 
+		{ 
+		   get{  return _MetaDescription == null ?string.Empty:_MetaDescription;  } 
+		   set{_MetaDescription = value;}
+		 }
+        
+		private  String _Description;
+
+        [Column("Description", DbType.String,false,false)]
+        public String  Description 
+		{ 
+		   get{  return _Description == null ?string.Empty:_Description;  } 
+		   set{_Description = value;}
+		 }
+        
+		private  Int32 _DisplaySequence;
+
+        [Column("DisplaySequence", DbType.Int32,false,false)]
+        public Int32  DisplaySequence 
+		{ 
+		   get{ return _DisplaySequence;  } 
+		   set{_DisplaySequence = value;}
+		 }
+        
+		private  String _Theme;
+
+        [Column("Theme", DbType.String,false,false)]
+        public String  Theme 
+		{ 
+		   get{  return _Theme == null ?string.Empty:_Theme;  } 
+		   set{_Theme = value;}
+		 }
+        
+		private  DateTime _CreateTime;
+
+        [Column("CreateTime", DbType.DateTime,false,false)]
+        public DateTime  CreateTime 
+		{ 
+		   get{ return _CreateTime;  } 
+		   set{_CreateTime = value;}
+		 }
+        
+		private  Boolean _DR;
+
+        [Column("DR", DbType.Boolean,false,false)]
+        public Boolean  DR 
+		{ 
+		   get{ return _DR;  } 
+		   set{_DR = value;}
+		 }
+        
+		private  Guid _CompanyID;
+
+        [Column("CompanyID", DbType.Guid,false,false)]
+        public Guid  CompanyID 
+		{ 
+		   get{ return _CompanyID;  } 
+		   set{_CompanyID = value;}
+		 }
+            }
+
+
+    [Table("P_Categories")]
+	[Serializable] 
+    public partial class P_Categories :IEntity 
+    {
+        
+		private  Guid _ID;
+
+        [Column("ID", DbType.Guid,true,false)]
+        public Guid  ID 
+		{ 
+		   get{ return _ID;  } 
+		   set{_ID = value;}
+		 }
+        
+		private  String _Name;
+
+        [Column("Name", DbType.String,false,false)]
+        public String  Name 
+		{ 
+		   get{  return _Name == null ?string.Empty:_Name;  } 
+		   set{_Name = value;}
+		 }
+        
+		private  Int32 _DisplaySequence;
+
+        [Column("DisplaySequence", DbType.Int32,false,false)]
+        public Int32  DisplaySequence 
+		{ 
+		   get{ return _DisplaySequence;  } 
+		   set{_DisplaySequence = value;}
+		 }
+        
+		private  String _IconUrl;
+
+        [Column("IconUrl", DbType.String,false,false)]
+        public String  IconUrl 
+		{ 
+		   get{  return _IconUrl == null ?string.Empty:_IconUrl;  } 
+		   set{_IconUrl = value;}
+		 }
+        
+		private  String _Meta_Title;
+
+        [Column("Meta_Title", DbType.String,false,false)]
+        public String  Meta_Title 
+		{ 
+		   get{  return _Meta_Title == null ?string.Empty:_Meta_Title;  } 
+		   set{_Meta_Title = value;}
+		 }
+        
+		private  String _Meta_Description;
+
+        [Column("Meta_Description", DbType.String,false,false)]
+        public String  Meta_Description 
+		{ 
+		   get{  return _Meta_Description == null ?string.Empty:_Meta_Description;  } 
+		   set{_Meta_Description = value;}
+		 }
+        
+		private  String _Meta_Keywords;
+
+        [Column("Meta_Keywords", DbType.String,false,false)]
+        public String  Meta_Keywords 
+		{ 
+		   get{  return _Meta_Keywords == null ?string.Empty:_Meta_Keywords;  } 
+		   set{_Meta_Keywords = value;}
+		 }
+        
+		private  Guid _ParentCategoryId;
+
+        [Column("ParentCategoryId", DbType.Guid,false,false)]
+        public Guid  ParentCategoryId 
+		{ 
+		   get{ return _ParentCategoryId;  } 
+		   set{_ParentCategoryId = value;}
+		 }
+        
+		private  String _RewriteName;
+
+        [Column("RewriteName", DbType.String,false,false)]
+        public String  RewriteName 
+		{ 
+		   get{  return _RewriteName == null ?string.Empty:_RewriteName;  } 
+		   set{_RewriteName = value;}
+		 }
+        
+		private  String _SKUPrefix;
+
+        [Column("SKUPrefix", DbType.String,false,false)]
+        public String  SKUPrefix 
+		{ 
+		   get{  return _SKUPrefix == null ?string.Empty:_SKUPrefix;  } 
+		   set{_SKUPrefix = value;}
+		 }
+        
+		private  Int32 _AssociatedProductType;
+
+        [Column("AssociatedProductType", DbType.Int32,false,false)]
+        public Int32  AssociatedProductType 
+		{ 
+		   get{ return _AssociatedProductType;  } 
+		   set{_AssociatedProductType = value;}
+		 }
+        
+		private  String _Notes1;
+
+        [Column("Notes1", DbType.String,false,false)]
+        public String  Notes1 
+		{ 
+		   get{  return _Notes1 == null ?string.Empty:_Notes1;  } 
+		   set{_Notes1 = value;}
+		 }
+        
+		private  String _Notes2;
+
+        [Column("Notes2", DbType.String,false,false)]
+        public String  Notes2 
+		{ 
+		   get{  return _Notes2 == null ?string.Empty:_Notes2;  } 
+		   set{_Notes2 = value;}
+		 }
+        
+		private  String _Notes3;
+
+        [Column("Notes3", DbType.String,false,false)]
+        public String  Notes3 
+		{ 
+		   get{  return _Notes3 == null ?string.Empty:_Notes3;  } 
+		   set{_Notes3 = value;}
+		 }
+        
+		private  String _Notes4;
+
+        [Column("Notes4", DbType.String,false,false)]
+        public String  Notes4 
+		{ 
+		   get{  return _Notes4 == null ?string.Empty:_Notes4;  } 
+		   set{_Notes4 = value;}
+		 }
+        
+		private  String _Notes5;
+
+        [Column("Notes5", DbType.String,false,false)]
+        public String  Notes5 
+		{ 
+		   get{  return _Notes5 == null ?string.Empty:_Notes5;  } 
+		   set{_Notes5 = value;}
+		 }
+        
+		private  String _Theme;
+
+        [Column("Theme", DbType.String,false,false)]
+        public String  Theme 
+		{ 
+		   get{  return _Theme == null ?string.Empty:_Theme;  } 
+		   set{_Theme = value;}
+		 }
+        
+		private  Boolean _HasChildren;
+
+        [Column("HasChildren", DbType.Boolean,false,false)]
+        public Boolean  HasChildren 
+		{ 
+		   get{ return _HasChildren;  } 
+		   set{_HasChildren = value;}
+		 }
+        
+		private  String _FirstCommission;
+
+        [Column("FirstCommission", DbType.String,false,false)]
+        public String  FirstCommission 
+		{ 
+		   get{  return _FirstCommission == null ?string.Empty:_FirstCommission;  } 
+		   set{_FirstCommission = value;}
+		 }
+        
+		private  String _SecondCommission;
+
+        [Column("SecondCommission", DbType.String,false,false)]
+        public String  SecondCommission 
+		{ 
+		   get{  return _SecondCommission == null ?string.Empty:_SecondCommission;  } 
+		   set{_SecondCommission = value;}
+		 }
+        
+		private  String _ThirdCommission;
+
+        [Column("ThirdCommission", DbType.String,false,false)]
+        public String  ThirdCommission 
+		{ 
+		   get{  return _ThirdCommission == null ?string.Empty:_ThirdCommission;  } 
+		   set{_ThirdCommission = value;}
+		 }
+        
+		private  DateTime _CreateTime;
+
+        [Column("CreateTime", DbType.DateTime,false,false)]
+        public DateTime  CreateTime 
+		{ 
+		   get{ return _CreateTime;  } 
+		   set{_CreateTime = value;}
+		 }
+        
+		private  Boolean _DR;
+
+        [Column("DR", DbType.Boolean,false,false)]
+        public Boolean  DR 
+		{ 
+		   get{ return _DR;  } 
+		   set{_DR = value;}
+		 }
+        
+		private  Guid _CompanyID;
+
+        [Column("CompanyID", DbType.Guid,false,false)]
+        public Guid  CompanyID 
+		{ 
+		   get{ return _CompanyID;  } 
+		   set{_CompanyID = value;}
+		 }
+            }
+
+
+    [Table("P_Tags")]
+	[Serializable] 
+    public partial class P_Tags :IEntity 
+    {
+        
+		private  Guid _ID;
+
+        [Column("ID", DbType.Guid,true,false)]
+        public Guid  ID 
+		{ 
+		   get{ return _ID;  } 
+		   set{_ID = value;}
+		 }
+        
+		private  String _TagName;
+
+        [Column("TagName", DbType.String,false,false)]
+        public String  TagName 
+		{ 
+		   get{  return _TagName == null ?string.Empty:_TagName;  } 
+		   set{_TagName = value;}
+		 }
+        
+		private  DateTime _CreateTime;
+
+        [Column("CreateTime", DbType.DateTime,false,false)]
+        public DateTime  CreateTime 
+		{ 
+		   get{ return _CreateTime;  } 
+		   set{_CreateTime = value;}
+		 }
+        
+		private  Boolean _DR;
+
+        [Column("DR", DbType.Boolean,false,false)]
+        public Boolean  DR 
+		{ 
+		   get{ return _DR;  } 
+		   set{_DR = value;}
 		 }
         
 		private  Guid _CompanyID;

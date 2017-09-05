@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+@Scripts.Render("~/js/jqueryValidate");
+<script type="text/javascript" charset="gbk" src="/content/UEdit/ueditor.config.js"></script>
+<script type="text/javascript" charset="gbk" src="/content/UEdit/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="gbk" src="/content/UEdit/lang/zh-cn/zh-cn.js"></script>
+<script src="~/Scripts/jquery.img.js"></script>
+<script type="text/javascript">
+    $().ready(function () {
+        var ue = UE.getEditor('editor'); 
+    })
+    function beforeSubmit() {
+        if (UE.getEditor('editor').hasContents()) {
+            $("#Description").val(encodeURIComponent(UE.getEditor('editor').getContent()));
+            UE.getEditor('editor').destroy();
+        }
+        return true;
+    }
+</script>
+<div class="pageheader">
+    <h2>
+        <i class="fa fa-cogs"></i>  品牌管理
+    </h2>
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li class="active">编辑品牌</li>
+        </ol>
+    </div>
+</div>
+<div class="main">
+    <section class="tile color transparent-black">
+        <div class="tile-body">
+            <form class="form-horizontal" method="post" action="/P_BrandCategory/Create" id="validate">
+                <input type="hidden" value="/P_BrandCategory/Index/@ViewBag.ID" name="ResultURL" />
+                <input type="hidden" value="@Model.ID" name="ID" id="ID" />
+                <input type="hidden" value="@Model.CreateTime" name="CreateTime" />
+                <input type="hidden" value="" id="Description" name="Description" />
+                <input type="hidden" value="@XY.UserDateTicket.Company.ID" name="CompanyID" />
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">品牌名称 *</label>
+                    <div class="col-sm-9">
+                        <input name="BrandName" id="Title" value="@Model.BrandName" type="text" placeholder="品牌名称" class="form-control {required:true,messages:{required:'品牌名称不能为空'}}" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label"><a href="@Model.LogoStr" target="_blank" style="color:#fff;">LOGO</a></label>
+                    <div class="col-sm-9">
+                        <div class="input-group" id="Logo">
+                            <span class="input-group-btn">
+                                <span class="btn btn-primary btn-file">
+                                    <i class="fa fa-upload"></i>
+                                    <input type="file" name="file" filepath="/UPLOAD/NEWS/" filetype="image" for="Logo">
+                                </span>
+                            </span>
+                            <input type="text" class="form-control" value="@Model.Logo" name="Logo">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">搜索关键字 </label>
+                    <div class="col-sm-9">
+                        <input name="MetaKeywords" type="text" value="@Model.MetaKeywords" class="form-control" placeholder="搜索关键字" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">关键字描述 </label>
+                    <div class="col-sm-9">
+                        <input name="MetaDescription" value="@Model.MetaDescription" type="text" class="form-control" placeholder="关键字描述" />
+                    </div>
+                </div> 
+                <div class="form-group">
+                    <label for="fullname" class="col-sm-3 control-label">排序 </label>
+                    <div class="col-sm-9">
+                        <input name="Theme" type="text" value="@Model.Theme" class="form-control" placeholder="排序" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="input05" class="col-sm-3 control-label">品牌介绍</label>
+                    <div class="col-sm-9">
+                        <textarea id="editor" type="text/plain" style="width:100%;">@Model.Description</textarea>
+                    </div>
+                </div> 
+                <div class="form-group form-footer">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="reset" class="btn btn-default">清空</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+
