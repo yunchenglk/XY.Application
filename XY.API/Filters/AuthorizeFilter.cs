@@ -18,13 +18,13 @@ namespace XY.API.Filters
         private IEnumerable<string> originHeaderdefaults = new List<string>();
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            string comid = Utils.URLgetparsmByKey(actionContext.Request.RequestUri.Query.ToString(), "comid");
-            //originHeaderdefaults = XY.Services.CompanyService.instance().URLAll;
-            string url = actionContext.Request.Headers.Referrer.GetLeftPart(UriPartial.Authority);
-            //http://chuanmei.com
-            bool isok = CheckAuthorize.instance().CheckedCompanyByUrl(url, new Guid(comid));
-            if (!isok)
-                HttpContext.Current.Response.Redirect(url);
+            //string comid = Utils.URLgetparsmByKey(actionContext.Request.RequestUri.Query.ToString(), "comid");
+            ////originHeaderdefaults = XY.Services.CompanyService.instance().URLAll;
+            //string url = actionContext.Request.Headers.Referrer.GetLeftPart(UriPartial.Authority);
+            ////http://chuanmei.com
+            //bool isok = CheckAuthorize.instance().CheckedCompanyByUrl(url, new Guid(comid));
+            //if (!isok)
+            //    HttpContext.Current.Response.Redirect(url);
         }
 
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
