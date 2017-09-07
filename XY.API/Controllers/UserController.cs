@@ -59,9 +59,9 @@ namespace XY.API.Controllers
         /// 会员注册
         /// </summary>
         /// <param name="value"></param> 
-        public void Post([FromBody]UserView value)
-        {
-            int retult = 0;
+        public HttpResponseMessage Post([FromBody]UserView value)
+        { 
+            Hashtable json = new Hashtable();
             try
             {
                 if (UserService.instance().CheckUser(Guid.Empty, value.LoginName, company.ID))
@@ -70,13 +70,14 @@ namespace XY.API.Controllers
                     u.PID = u.CompanyID = company.ID;
                     u.LoginName = value.LoginName;
                     u.LoginPwd = value.LoginPwd;
-                    retult = UserService.instance().Insert(u);
+                    json["status"] = UserService.instance().Insert(u);
+                    json["entity"] = u;
                 }
             }
             catch (Exception ex)
             {
             }
-            HttpContext.Current.Response.Redirect(HttpContext.Current.Request.UrlReferrer.ToString() + "?v=" + retult);
+            return Util.Utils.ConvertToJson(json);
         }
 
         /// <summary>

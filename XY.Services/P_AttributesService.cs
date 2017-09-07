@@ -7,35 +7,35 @@ using XY.Entity;
 
 namespace XY.Services
 {
-    public class demoService : BaseService<Demo>
+    public class P_AttributesService : BaseService<P_Attributes>
     {
         #region 基本操作
-        private static demoService _instance;
-        public static demoService instance()
+        private static P_AttributesService _instance;
+        public static P_AttributesService instance()
         {
             if (_instance == null)
             {
-                _instance = new demoService();
+                _instance = new P_AttributesService();
             }
             return _instance;
         }
-        public int Insert(Demo entity)
+        public int Insert(P_Attributes entity)
         {
             int result = 0;
             entity.ID = Guid.NewGuid();
             entity.CreateTime = DateTime.Now;
             _db.Execute(() =>
             {
-                result = _db.Insert<Demo>(entity);
+                result = _db.Insert<P_Attributes>(entity);
             });
             return result;
         }
-        public int Update(Demo entity)
+        public int Update(P_Attributes entity)
         {
             int result = 0;
             _db.Execute(() =>
             {
-                result = _db.Update<Demo>(entity, m => m.ID == entity.ID);
+                result = _db.Update<P_Attributes>(entity, m => m.ID == entity.ID);
             });
             return result;
         }
@@ -44,25 +44,25 @@ namespace XY.Services
             int result = 0;
             _db.Execute(() =>
             {
-                result = _db.Delete<Demo>(m => m.ID == id);
+                result = _db.Delete<P_Attributes>(m => m.ID == id);
             });
             return result;
         }
-        public Demo Single(Guid id)
+        public P_Attributes Single(Guid id)
         {
-            Demo result = new Demo();
+            P_Attributes result = new P_Attributes();
             _db.Execute(() =>
             {
-                result = _db.Single<Demo>(m => m.ID == id);
+                result = _db.Single<P_Attributes>(m => m.ID == id);
             });
             return result;
         }
-        public IEnumerable<Demo> GetEnum()
+        public IEnumerable<P_Attributes> GetEnum()
         {
-            IEnumerable<Demo> result = new List<Demo>();
+            IEnumerable<P_Attributes> result = new List<P_Attributes>();
             _db.Execute(() =>
             {
-                result = _db.GetList<Demo>();
+                result = _db.GetList<P_Attributes>();
             });
             return result;
         }

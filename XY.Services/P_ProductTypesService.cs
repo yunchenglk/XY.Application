@@ -7,35 +7,34 @@ using XY.Entity;
 
 namespace XY.Services
 {
-    public class demoService : BaseService<Demo>
+    public class P_ProductTypesService : BaseService<P_ProductTypes>
     {
-        #region 基本操作
-        private static demoService _instance;
-        public static demoService instance()
+        private static P_ProductTypesService _instance;
+        public static P_ProductTypesService instance()
         {
             if (_instance == null)
             {
-                _instance = new demoService();
+                _instance = new P_ProductTypesService();
             }
             return _instance;
         }
-        public int Insert(Demo entity)
+        public int Insert(P_ProductTypes entity)
         {
             int result = 0;
             entity.ID = Guid.NewGuid();
             entity.CreateTime = DateTime.Now;
             _db.Execute(() =>
             {
-                result = _db.Insert<Demo>(entity);
+                result = _db.Insert<P_ProductTypes>(entity);
             });
             return result;
         }
-        public int Update(Demo entity)
+        public int Update(P_ProductTypes entity)
         {
             int result = 0;
             _db.Execute(() =>
             {
-                result = _db.Update<Demo>(entity, m => m.ID == entity.ID);
+                result = _db.Update<P_ProductTypes>(entity, m => m.ID == entity.ID);
             });
             return result;
         }
@@ -44,28 +43,28 @@ namespace XY.Services
             int result = 0;
             _db.Execute(() =>
             {
-                result = _db.Delete<Demo>(m => m.ID == id);
+                result = _db.Delete<P_ProductTypes>(m => m.ID == id);
             });
             return result;
         }
-        public Demo Single(Guid id)
+        public P_ProductTypes Single(Guid id)
         {
-            Demo result = new Demo();
+            P_ProductTypes result = new P_ProductTypes();
             _db.Execute(() =>
             {
-                result = _db.Single<Demo>(m => m.ID == id);
+                result = _db.Single<P_ProductTypes>(m => m.ID == id);
             });
             return result;
         }
-        public IEnumerable<Demo> GetEnum()
+        public IEnumerable<P_ProductTypes> GetEnum()
         {
-            IEnumerable<Demo> result = new List<Demo>();
+            IEnumerable<P_ProductTypes> result = new List<P_ProductTypes>();
             _db.Execute(() =>
             {
-                result = _db.GetList<Demo>();
+                result = _db.GetList<P_ProductTypes>();
             });
             return result;
         }
-        #endregion
+
     }
 }

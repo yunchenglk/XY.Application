@@ -1494,6 +1494,173 @@ namespace XY.Entity
             }
 
 
+    [Table("P_Attributes")]
+	[Serializable] 
+    public partial class P_Attributes :IEntity 
+    {
+        
+		private  Guid _ID;
+
+        [Column("ID", DbType.Guid,true,false)]
+        public Guid  ID 
+		{ 
+		   get{ return _ID;  } 
+		   set{_ID = value;}
+		 }
+        
+		private  String _AttributeName;
+
+        [Column("AttributeName", DbType.String,false,false)]
+        public String  AttributeName 
+		{ 
+		   get{  return _AttributeName == null ?string.Empty:_AttributeName;  } 
+		   set{_AttributeName = value;}
+		 }
+        
+		private  Int32 _DisplaySequence;
+
+        [Column("DisplaySequence", DbType.Int32,false,false)]
+        public Int32  DisplaySequence 
+		{ 
+		   get{ return _DisplaySequence;  } 
+		   set{_DisplaySequence = value;}
+		 }
+        
+		private  Int32 _TypeId;
+
+        [Column("TypeId", DbType.Int32,false,false)]
+        public Int32  TypeId 
+		{ 
+		   get{ return _TypeId;  } 
+		   set{_TypeId = value;}
+		 }
+        
+		private  Int32 _UsageMode;
+
+        [Column("UsageMode", DbType.Int32,false,false)]
+        public Int32  UsageMode 
+		{ 
+		   get{ return _UsageMode;  } 
+		   set{_UsageMode = value;}
+		 }
+        
+		private  Boolean _UseAttributeImage;
+
+        [Column("UseAttributeImage", DbType.Boolean,false,false)]
+        public Boolean  UseAttributeImage 
+		{ 
+		   get{ return _UseAttributeImage;  } 
+		   set{_UseAttributeImage = value;}
+		 }
+        
+		private  DateTime _CreateTime;
+
+        [Column("CreateTime", DbType.DateTime,false,false)]
+        public DateTime  CreateTime 
+		{ 
+		   get{ return _CreateTime;  } 
+		   set{_CreateTime = value;}
+		 }
+        
+		private  Boolean _DR;
+
+        [Column("DR", DbType.Boolean,false,false)]
+        public Boolean  DR 
+		{ 
+		   get{ return _DR;  } 
+		   set{_DR = value;}
+		 }
+        
+		private  Guid _CompanyID;
+
+        [Column("CompanyID", DbType.Guid,false,false)]
+        public Guid  CompanyID 
+		{ 
+		   get{ return _CompanyID;  } 
+		   set{_CompanyID = value;}
+		 }
+            }
+
+
+    [Table("P_AttributeValues")]
+	[Serializable] 
+    public partial class P_AttributeValues :IEntity 
+    {
+        
+		private  Guid _ID;
+
+        [Column("ID", DbType.Guid,true,false)]
+        public Guid  ID 
+		{ 
+		   get{ return _ID;  } 
+		   set{_ID = value;}
+		 }
+        
+		private  Guid _AttributeId;
+
+        [Column("AttributeId", DbType.Guid,false,false)]
+        public Guid  AttributeId 
+		{ 
+		   get{ return _AttributeId;  } 
+		   set{_AttributeId = value;}
+		 }
+        
+		private  Int32 _DisplaySequence;
+
+        [Column("DisplaySequence", DbType.Int32,false,false)]
+        public Int32  DisplaySequence 
+		{ 
+		   get{ return _DisplaySequence;  } 
+		   set{_DisplaySequence = value;}
+		 }
+        
+		private  String _ValueStr;
+
+        [Column("ValueStr", DbType.String,false,false)]
+        public String  ValueStr 
+		{ 
+		   get{  return _ValueStr == null ?string.Empty:_ValueStr;  } 
+		   set{_ValueStr = value;}
+		 }
+        
+		private  String _ImageUrl;
+
+        [Column("ImageUrl", DbType.String,false,false)]
+        public String  ImageUrl 
+		{ 
+		   get{  return _ImageUrl == null ?string.Empty:_ImageUrl;  } 
+		   set{_ImageUrl = value;}
+		 }
+        
+		private  DateTime _CreateTime;
+
+        [Column("CreateTime", DbType.DateTime,false,false)]
+        public DateTime  CreateTime 
+		{ 
+		   get{ return _CreateTime;  } 
+		   set{_CreateTime = value;}
+		 }
+        
+		private  Boolean _DR;
+
+        [Column("DR", DbType.Boolean,false,false)]
+        public Boolean  DR 
+		{ 
+		   get{ return _DR;  } 
+		   set{_DR = value;}
+		 }
+        
+		private  Guid _CompanyID;
+
+        [Column("CompanyID", DbType.Guid,false,false)]
+        public Guid  CompanyID 
+		{ 
+		   get{ return _CompanyID;  } 
+		   set{_CompanyID = value;}
+		 }
+            }
+
+
     [Table("P_BrandCategories")]
 	[Serializable] 
     public partial class P_BrandCategories :IEntity 
@@ -1810,6 +1977,67 @@ namespace XY.Entity
 		{ 
 		   get{  return _ThirdCommission == null ?string.Empty:_ThirdCommission;  } 
 		   set{_ThirdCommission = value;}
+		 }
+        
+		private  DateTime _CreateTime;
+
+        [Column("CreateTime", DbType.DateTime,false,false)]
+        public DateTime  CreateTime 
+		{ 
+		   get{ return _CreateTime;  } 
+		   set{_CreateTime = value;}
+		 }
+        
+		private  Boolean _DR;
+
+        [Column("DR", DbType.Boolean,false,false)]
+        public Boolean  DR 
+		{ 
+		   get{ return _DR;  } 
+		   set{_DR = value;}
+		 }
+        
+		private  Guid _CompanyID;
+
+        [Column("CompanyID", DbType.Guid,false,false)]
+        public Guid  CompanyID 
+		{ 
+		   get{ return _CompanyID;  } 
+		   set{_CompanyID = value;}
+		 }
+            }
+
+
+    [Table("P_ProductTypes")]
+	[Serializable] 
+    public partial class P_ProductTypes :IEntity 
+    {
+        
+		private  Guid _ID;
+
+        [Column("ID", DbType.Guid,true,false)]
+        public Guid  ID 
+		{ 
+		   get{ return _ID;  } 
+		   set{_ID = value;}
+		 }
+        
+		private  String _TypeName;
+
+        [Column("TypeName", DbType.String,false,false)]
+        public String  TypeName 
+		{ 
+		   get{  return _TypeName == null ?string.Empty:_TypeName;  } 
+		   set{_TypeName = value;}
+		 }
+        
+		private  String _Remark;
+
+        [Column("Remark", DbType.String,false,false)]
+        public String  Remark 
+		{ 
+		   get{  return _Remark == null ?string.Empty:_Remark;  } 
+		   set{_Remark = value;}
 		 }
         
 		private  DateTime _CreateTime;
