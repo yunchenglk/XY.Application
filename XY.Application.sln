@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.Admin", "XY.Admin\XY.Admin.csproj", "{51F0E633-F7BE-48FC-AD7C-A9369196E98B}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -64,6 +64,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "phone", "phone\phone.csproj", "{D67C16AB-1555-4A5D-8266-605BDB4475E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.Source-4.0", "XY.Source-4.0\XY.Source-4.0.csproj", "{C20E135D-51E0-4B31-BF3A-6FFE51A3EFC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yellowAdmin", "yellowAdmin\yellowAdmin.csproj", "{32D3A2CD-C882-4EEF-8C71-8D952D919D19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -139,8 +141,15 @@ Global
 		{C20E135D-51E0-4B31-BF3A-6FFE51A3EFC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C20E135D-51E0-4B31-BF3A-6FFE51A3EFC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C20E135D-51E0-4B31-BF3A-6FFE51A3EFC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32D3A2CD-C882-4EEF-8C71-8D952D919D19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32D3A2CD-C882-4EEF-8C71-8D952D919D19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32D3A2CD-C882-4EEF-8C71-8D952D919D19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32D3A2CD-C882-4EEF-8C71-8D952D919D19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8E7137D5-47DE-4A3B-A51B-60EE2F659223}
 	EndGlobalSection
 EndGlobal

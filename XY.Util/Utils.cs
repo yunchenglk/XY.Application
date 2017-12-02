@@ -737,7 +737,7 @@ namespace XY.Util
             xmldoc.Save(filename);
             return true;
         }
-        #endregion
+        #endregion 
 
         #region 获取配置文件节点值
         public static string GetXmlNodeText(string keys, string xmlName)
