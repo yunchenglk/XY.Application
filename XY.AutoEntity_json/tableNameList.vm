@@ -1,0 +1,5 @@
+﻿#foreach( $Table in $Tables)
+数据表：$Table.TableName
+#end
+-------------------------------------------
+共计：$Count

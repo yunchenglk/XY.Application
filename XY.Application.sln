@@ -65,6 +65,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yellowAdmin", "yellowAdmin\yellowAdmin.csproj", "{32D3A2CD-C882-4EEF-8C71-8D952D919D19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.AutoEntity_json", "XY.AutoEntity_json\XY.AutoEntity_json.csproj", "{655DB213-5C92-4983-9605-97165567DC88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{32D3A2CD-C882-4EEF-8C71-8D952D919D19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32D3A2CD-C882-4EEF-8C71-8D952D919D19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32D3A2CD-C882-4EEF-8C71-8D952D919D19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{655DB213-5C92-4983-9605-97165567DC88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{655DB213-5C92-4983-9605-97165567DC88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{655DB213-5C92-4983-9605-97165567DC88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{655DB213-5C92-4983-9605-97165567DC88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

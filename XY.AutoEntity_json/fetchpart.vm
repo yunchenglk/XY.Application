@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<statements>
+#foreach( $Table in $Tables )
+  <statement id="$Table.TemplateName">
+       SELECT    FROM $Table.TableName  (nolock) WHERE $Table.PK=@$Table.PK
+  </statement>
+#end
+</statements>

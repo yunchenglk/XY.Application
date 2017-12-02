@@ -1,0 +1,9 @@
+﻿{
+
+  #foreach($Table in $EntityInfo.Tables)
+   
+    "$Table.TableName"
+
+     
+  #end
+}
