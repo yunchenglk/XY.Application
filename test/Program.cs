@@ -29,7 +29,7 @@ namespace test
             _db.GetEnum().ToList().ForEach(m =>
             {
                 BsonDocument o = (BsonDocument)JsonHelper.Add(m, "_id", m.ID.ToString());
-                mongoCollection.Insert<object>(o);
+                 mongoCollection.Insert<object>(o);
                 Console.WriteLine(JsonHelper.SerializeObject(o));
             });
 
