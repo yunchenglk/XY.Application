@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -59,6 +60,19 @@ namespace XY.Util
         {
             T t = JsonConvert.DeserializeAnonymousType(json, anonymousTypeObject);
             return t;
+        }
+        /// <summary>
+        /// 添加一个属性  
+        /// </summary>
+        /// <param name="obj">待添加属性的对象</param>  
+        /// <param name="key">键名</param>  
+        /// <param name="value">值</param>  
+        /// <returns>添加属性后的对象</returns>  
+        public static object Add(object obj, string key, object value)
+        {
+            JObject jObj = JObject.Parse(JsonConvert.SerializeObject(obj));
+            jObj.Add(new JProperty(key, value));
+            return JsonConvert.DeserializeObject(jObj.ToString());
         }
         public static string GetJsonValue(string JsonStr, string key)
         {

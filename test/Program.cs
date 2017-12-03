@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using XY.Services;
 using XY.Util;
 using System.Linq;
+using MongoDB.Bson;
 
 namespace test
 {
@@ -13,27 +14,26 @@ namespace test
         {
 
             ClassService _db = new ClassService();
-            var entity = _db.GetEnum().FirstOrDefault();
-            var json = JsonHelper.SerializeObject(entity);
+            // var entity = _db.GetEnum().FirstOrDefault();
+            //var o = JsonHelper.Add(entity,"_id",Guid.NewGuid());
 
 
-            Console.WriteLine(json);
-            //_db.GetEnum().ToList().ForEach(m =>
-            //{
-            //    var json = JsonHelper.SerializeObject(m);
-            //    Console.WriteLine(json);
-            //});
 
 
-            //MongoServer mongodb = MongoServer.Create("mongodb://39.106.117.151:27017"); // 连接数据库
-            //MongoDatabase mongoDataBase = mongodb.GetDatabase("0359idatabase"); // 选择数据库名
-            //MongoCollection mongoCollection = mongoDataBase.GetCollection("user"); // 选择集合，相当于表
+            MongoServer mongodb = MongoServer.Create("mongodb://39.106.117.151:27017"); // 连接数据库
+            MongoDatabase mongoDataBase = mongodb.GetDatabase("0359idatabase"); // 选择数据库名
+            MongoCollection mongoCollection = mongoDataBase.GetCollection("Class"); // 选择集合，相当于表
 
-            //Console.WriteLine(JsonHelper.SerializeObject(role));
-            //var json = JsonHelper.SerializeObject(role);
-            //mongodb.Connect();
-            //mongoCollection.Insert(role);
-            //Console.WriteLine("添加成功");
+
+            mongodb.Connect();
+            _db.GetEnum().ToList().ForEach(m =>
+            {
+                BsonDocument o = (BsonDocument)JsonHelper.Add(m, "_id", m.ID.ToString());
+                mongoCollection.Insert<object>(o);
+                Console.WriteLine(JsonHelper.SerializeObject(o));
+            });
+
+
 
         }
     }
