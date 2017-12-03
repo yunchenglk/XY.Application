@@ -1,9 +1,18 @@
 ﻿{
-
-  #foreach($Table in $EntityInfo.Tables)
-   
-    "$Table.TableName"
-
-     
-  #end
+	#set($a=0)
+	#foreach($Table in $EntityInfo.Tables)
+		#set($a = $a + 1)
+		"$Table.TableName":{
+			#set($b = 0)
+			#foreach($Column in $Table.Columns)
+				#set($b = $b + 1)
+				#if($Column.ColumnName == "ID")
+					"_id": "$Column.ColumnType",
+				#else
+					"$Column.ColumnName": "$Column.ColumnType"
+					#if($b < $Table.Columns.Count),#end
+				#end
+			#end
+		}#if($a < $EntityInfo.Tables.Count),#end
+	#end
 }

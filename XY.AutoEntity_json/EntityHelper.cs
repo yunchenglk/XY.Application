@@ -173,7 +173,7 @@ namespace XY.AutoEntity
             switch (p.ToLower())
             {
                 case "bigint":
-                    result = "Int64";
+                    result = "Number";
                     break;
                 case "binary":
                     result = "Byte[]";
@@ -206,10 +206,10 @@ namespace XY.AutoEntity
                     result = "Guid";
                     break;
                 case "identity":
-                    result = "Int32";
+                    result = "Number";
                     break;
                 case "int":
-                    result = "Int32";
+                    result = "Number";
                     break;
                 case "image":
                     result = "Byte[]";
