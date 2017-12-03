@@ -13,10 +13,16 @@ namespace test
         {
 
             ClassService _db = new ClassService();
-            _db.GetEnum().ToList().ForEach(m =>
-            {
-                Console.WriteLine(m.ID);
-            });
+            var entity = _db.GetEnum().FirstOrDefault();
+            var json = JsonHelper.SerializeObject(entity);
+
+
+            Console.WriteLine(json);
+            //_db.GetEnum().ToList().ForEach(m =>
+            //{
+            //    var json = JsonHelper.SerializeObject(m);
+            //    Console.WriteLine(json);
+            //});
 
 
             //MongoServer mongodb = MongoServer.Create("mongodb://39.106.117.151:27017"); // 连接数据库
