@@ -26,10 +26,11 @@ namespace test
 
 
             mongodb.Connect();
+            var document = new BsonDocument();
             _db.GetEnum().ToList().ForEach(m =>
             {
-                BsonDocument o = (BsonDocument)JsonHelper.Add(m, "_id", m.ID.ToString());
-                 mongoCollection.Insert<object>(o);
+                Object o = JsonHelper.Add(m, "_id", m.ID.ToString());
+                mongoCollection.Save(o.ToBsonDocument());
                 Console.WriteLine(JsonHelper.SerializeObject(o));
             });
 
