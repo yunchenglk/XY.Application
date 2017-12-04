@@ -124,6 +124,16 @@ namespace XY.Services
             return result;
         }
 
+        public IEnumerable<USER> GetEnum()
+        {
+            IEnumerable<USER> result = new List<USER>();
+            _db.Execute(() =>
+            {
+                result = _db.GetList<USER>();
+            });
+            return result;
+        }
+
         public IEnumerable<USER> GetEnumByID(Guid id)
         {
             IEnumerable<USER> result = new List<USER>();
