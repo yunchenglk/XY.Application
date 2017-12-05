@@ -13,35 +13,24 @@ namespace test
     {
         static void Main(string[] args)
         {
-            //var _db = new AuthorityService();
-
-            //MongoServer mongodb = MongoServer.Create("mongodb://39.106.117.151:27017"); // 连接数据库
-            //MongoDatabase mongoDataBase = mongodb.GetDatabase("0359idatabase"); // 选择数据库名
-            //MongoCollection mongoCollection = mongoDataBase.GetCollection("Authority"); // 选择集合，相当于表
-
-            //_db.GetEnum().ToList().ForEach(m =>
-            //{
-            //    var document = m.ToBsonDocument();
-            //    document.Add("_id", m.ID);
-            //    mongoCollection.Save(document);
-            //    Console.WriteLine(m.ID);
-            //});
 
             var _db = new UserService();
             MongoServer mongodb = MongoServer.Create("mongodb://39.106.117.151:27017"); // 连接数据库
             MongoDatabase mongoDataBase = mongodb.GetDatabase("0359idatabase"); // 选择数据库名
             MongoCollection mongoCollection = mongoDataBase.GetCollection("User"); // 选择集合，相当于表
 
-            var entity = _db.GetEnum().FirstOrDefault();
-            string json = JsonHelper.SerializeObject(entity);
-            Console.WriteLine(json);
-            var document = BsonDocument.Parse(json);
-
-            document.Add("_id", entity.ID);
-            mongoCollection.Save(document);
-            Console.WriteLine(document);
-
-
+            var i = 0;
+            _db.GetEnum().ToList().ForEach(m =>
+            {
+                string json = JsonHelper.SerializeObject(m);
+                var document = BsonDocument.Parse(json);
+                document.Add("_id", new ObjectId(m.ID.ToString().Replace("-", "").Substring(0, 24)));
+                mongoCollection.Save(document);
+                i++;
+                Console.WriteLine(i + "：" + m.ID.ToString().Replace("-", "").Substring(0, 24));
+            });
+            Console.WriteLine("处理完毕");
+            Console.Read();
         }
     }
 

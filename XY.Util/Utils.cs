@@ -544,8 +544,9 @@ namespace XY.Util
             Htmlstring.Replace("<", "");
             Htmlstring.Replace(">", "");
             Htmlstring.Replace("\r\n", "");
-            Htmlstring = HttpContext.Current.Server.HtmlEncode(Htmlstring).Trim();
-            return Htmlstring;
+            //Htmlstring = HttpContext.Current.Server.HtmlEncode(Htmlstring).Trim();
+
+            return Htmlstring.Trim();
         }
         #endregion
 
@@ -1199,7 +1200,8 @@ namespace XY.Util
             if (string.IsNullOrEmpty(_url) || string.IsNullOrEmpty(_key)) { return ""; }
             _url = _url.Replace("?", "");
             Dictionary<string, string> dic = new Dictionary<string, string>();
-            _url.Split('&').ToList().ForEach(m=> {
+            _url.Split('&').ToList().ForEach(m =>
+            {
                 dic.Add(m.Split('=')[0], m.Split('=')[1]);
             });
             return dic[_key];
