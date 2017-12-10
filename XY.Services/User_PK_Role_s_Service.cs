@@ -35,6 +35,15 @@ namespace XY.Services
             });
             return result;
         }
+        public IEnumerable<User_PK_Role_s> GetEnum()
+        {
+            IEnumerable<User_PK_Role_s> result = new List<User_PK_Role_s>();
+            _db.Execute(() =>
+            {
+                result = _db.GetList<User_PK_Role_s>();
+            });
+            return result;
+        }
         public IEnumerable<User_PK_Role_s> GetEnumByUID(Guid uid)
         {
             IEnumerable<User_PK_Role_s> result = new List<User_PK_Role_s>();

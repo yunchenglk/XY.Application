@@ -47,6 +47,15 @@ namespace XY.Services
             });
             return result;
         }
+        public IEnumerable<Messages> GetEnum()
+        {
+            IEnumerable<Messages> result = new List<Messages>();
+            _db.Execute(() =>
+            {
+                result = _db.GetList<Messages>();
+            });
+            return result;
+        }
         public Messages Single(Guid id)
         {
             Messages result = new Messages();

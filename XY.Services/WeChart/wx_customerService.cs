@@ -47,6 +47,15 @@ namespace XY.Services
             });
             return result;
         }
+        public IEnumerable<wx_customer> GetEnum()
+        {
+            IEnumerable<wx_customer> result = new List<wx_customer>();
+            _db.Execute(() =>
+            {
+                result = _db.GetList<wx_customer>();
+            });
+            return result;
+        }
         public wx_customer Single(Guid id)
         {
             wx_customer result = new wx_customer();

@@ -47,6 +47,15 @@ namespace XY.Services
             });
             return result;
         }
+        public IEnumerable<wx_requestRule> GetEnum()
+        {
+            IEnumerable<wx_requestRule> result = new List<wx_requestRule>();
+            _db.Execute(() =>
+            {
+                result = _db.GetList<wx_requestRule>();
+            });
+            return result;
+        }
         public wx_requestRule Single(Guid id)
         {
             wx_requestRule result = new wx_requestRule();

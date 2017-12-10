@@ -47,6 +47,15 @@ namespace XY.Services
             });
             return result;
         }
+        public IEnumerable<wx_usergroup> GetEnum()
+        {
+            IEnumerable<wx_usergroup> result = new List<wx_usergroup>();
+            _db.Execute(() =>
+            {
+                result = _db.GetList<wx_usergroup>();
+            });
+            return result;
+        }
         public wx_usergroup Single(Guid id)
         {
             wx_usergroup result = new wx_usergroup();

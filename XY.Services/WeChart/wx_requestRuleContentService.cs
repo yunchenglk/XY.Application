@@ -47,6 +47,15 @@ namespace XY.Services
             });
             return result;
         }
+        public IEnumerable<wx_requestRuleContent> GetEnum()
+        {
+            IEnumerable<wx_requestRuleContent> result = new List<wx_requestRuleContent>();
+            _db.Execute(() =>
+            {
+                result = _db.GetList<wx_requestRuleContent>();
+            });
+            return result;
+        }
         public int DeleteByRuleID(Guid ruleid)
         {
             int result = 0;

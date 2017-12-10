@@ -14,10 +14,10 @@ namespace test
         static void Main(string[] args)
         {
 
-            var _db = new UserService();
+            var _db = new wx_userweixinService();
             MongoServer mongodb = MongoServer.Create("mongodb://39.106.117.151:27017"); // 连接数据库
             MongoDatabase mongoDataBase = mongodb.GetDatabase("0359idatabase"); // 选择数据库名
-            MongoCollection mongoCollection = mongoDataBase.GetCollection("User"); // 选择集合，相当于表
+            MongoCollection mongoCollection = mongoDataBase.GetCollection("wx_userweixin"); // 选择集合，相当于表
 
             var i = 0;
             _db.GetEnum().ToList().ForEach(m =>

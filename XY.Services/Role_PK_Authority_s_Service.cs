@@ -37,6 +37,15 @@ namespace XY.Services
             });
             return result;
         }
+        public IEnumerable<Role_PK_Authority_s> GetEnum()
+        {
+            IEnumerable<Role_PK_Authority_s> result = new List<Role_PK_Authority_s>();
+            _db.Execute(() =>
+            {
+                result = _db.GetList<Role_PK_Authority_s>();
+            });
+            return result;
+        }
         /// <summary>
         /// 
         /// </summary>

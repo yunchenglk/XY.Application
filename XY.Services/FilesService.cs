@@ -45,6 +45,15 @@ namespace XY.Services
             });
             return result;
         }
+        public IEnumerable<Files> GetEnum()
+        {
+            IEnumerable<Files> result = new List<Files>();
+            _db.Execute(() =>
+            {
+                result = _db.GetList<Files>();
+            });
+            return result;
+        }
         public int DeleteByRelationID(Guid id)
         {
             int result = 0;

@@ -49,6 +49,15 @@ namespace XY.Services
             });
             return result;
         }
+        public IEnumerable<wx_userweixin> GetEnum()
+        {
+            IEnumerable<wx_userweixin> result = new List<wx_userweixin>();
+            _db.Execute(() =>
+            {
+                result = _db.GetList<wx_userweixin>();
+            });
+            return result;
+        }
         public wx_userweixin Single(Guid id)
         {
             wx_userweixin result = new wx_userweixin();

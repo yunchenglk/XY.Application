@@ -69,6 +69,15 @@ namespace XY.Services
             });
             return result;
         }
+        public IEnumerable<wx_userinfo> GetEnum()
+        {
+            IEnumerable<wx_userinfo> result = new List<wx_userinfo>();
+            _db.Execute(() =>
+            {
+                result = _db.GetList<wx_userinfo>();
+            });
+            return result;
+        }
         public IEnumerable<wx_userinfo> GetByCompanyID(Guid companyid)
         {
             IEnumerable<wx_userinfo> result = new List<wx_userinfo>();
