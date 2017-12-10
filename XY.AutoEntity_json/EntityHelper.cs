@@ -97,10 +97,10 @@ namespace XY.AutoEntity
                     result = "String";
                     break;
                 case "money":
-                    result = "Double";
+                    result = "Number";
                     break;
                 case "smallmoney":
-                    result = "Double";
+                    result = "Number";
                     break;
                 case "datetime":
                     result = "Date";
@@ -109,16 +109,16 @@ namespace XY.AutoEntity
                     result = "Date";
                     break;
                 case "float":
-                    result = "Double";
+                    result = "Number";
                     break;
                 case "uniqueidentifier":
                     result = "String";
                     break;
                 case "identity":
-                    result = "Integer";
+                    result = "Number";
                     break;
                 case "int":
-                    result = "Integer";
+                    result = "Number";
                     break;
                 case "image":
                     result = "Binary data";
@@ -130,16 +130,16 @@ namespace XY.AutoEntity
                     result = "String";
                     break;
                 case "decimal":
-                    result = "Double";
+                    result = "Number";
                     break;
                 case "numeric":
-                    result = "Double";
+                    result = "Number";
                     break;
                 case "real":
-                    result = "Single";
+                    result = "Number";
                     break;
                 case "smallint":
-                    result = "Int16";
+                    result = "Number";
                     break;
                 case "tinyint":
                     result = "String";
