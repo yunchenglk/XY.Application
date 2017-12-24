@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,11 @@ namespace XY.DataAccess
         {
             get
             {
-                return new SqlServer(ConnectionConfig.Connections["ApplicationDB_ConnectionString"]);
+                var mongourl = ConfigurationManager.AppSettings["mongodb"];
+                if (string.IsNullOrEmpty(mongourl))
+                    return new SqlServer(ConnectionConfig.Connections["ApplicationDB_ConnectionString"]);
+                else
+                    return new SqlServer(ConnectionConfig.Connections["ApplicationDB_ConnectionString"], mongourl);
             }
         }
         public static SqlServer Test

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.Admin", "XY.Admin\XY.Admin.csproj", "{51F0E633-F7BE-48FC-AD7C-A9369196E98B}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -27,8 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reference", "Reference", "{
 		Reference\NVelocity.dll = Reference\NVelocity.dll
 		Reference\RazorEngine.dll = Reference\RazorEngine.dll
 		Reference\System.Web.Razor.dll = Reference\System.Web.Razor.dll
+		Reference\XY.DataAccess.dll = Reference\XY.DataAccess.dll
 		Reference\YunChengLK.Framework.dll = Reference\YunChengLK.Framework.dll
-		Reference\YunChengLK.Framework.pdb = Reference\YunChengLK.Framework.pdb
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XY.DataAccess", "XY.DataAccess\XY.DataAccess.csproj", "{C504AA63-51F2-4FC2-A7D4-E8808256DD43}"
