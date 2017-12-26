@@ -15,7 +15,7 @@ namespace XY.Services
         public DbHelper _DbHelper;
         private Type typeT = typeof(T);
         public BaseService()
-        {
+         {
             if (System.Configuration.ConfigurationManager.AppSettings["DB_location"].ToUpper() == "TRUE")
             {
                 _DbHelper = new DbHelper("Test");

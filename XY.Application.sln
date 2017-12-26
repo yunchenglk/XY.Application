@@ -20,6 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reference", "Reference", "{
 		Reference\log4net.dll = Reference\log4net.dll
 		Reference\log4net.xml = Reference\log4net.xml
 		Reference\MongoDB.Bson.dll = Reference\MongoDB.Bson.dll
+		Reference\MongoDB.Driver.Core.dll = Reference\MongoDB.Driver.Core.dll
 		Reference\MongoDB.Driver.dll = Reference\MongoDB.Driver.dll
 		Reference\Newtonsoft.Json.dll = Reference\Newtonsoft.Json.dll
 		Reference\Newtonsoft.Json.pdb = Reference\Newtonsoft.Json.pdb
