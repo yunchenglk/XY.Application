@@ -14,8 +14,8 @@ namespace test
         static void Main(string[] args)
         {
             Company com = new Company();
-            com.Name = "tes1t";
-            com.Email = "test1@163.com";
+            com.Name = "tes1t1";
+            com.Email = "test11@163.com";
             var _db = new CompanyService();
             _db.Insert(com);
 
