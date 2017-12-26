@@ -27,6 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reference", "Reference", "{
 		Reference\Newtonsoft.Json.xml = Reference\Newtonsoft.Json.xml
 		Reference\NVelocity.dll = Reference\NVelocity.dll
 		Reference\RazorEngine.dll = Reference\RazorEngine.dll
+		Reference\System.Runtime.InteropServices.RuntimeInformation.dll = Reference\System.Runtime.InteropServices.RuntimeInformation.dll
 		Reference\System.Web.Razor.dll = Reference\System.Web.Razor.dll
 		Reference\XY.DataAccess.dll = Reference\XY.DataAccess.dll
 		Reference\YunChengLK.Framework.dll = Reference\YunChengLK.Framework.dll
