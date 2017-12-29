@@ -8,6 +8,7 @@
 				#set($b = $b + 1)
 				#if($Column.ColumnName == "ID")
 					"_id": "$Column.ColumnType",
+					"ID":"String", 
 				#else
 					"$Column.ColumnName": "$Column.ColumnType"
 					#if($b < $Table.Columns.Count),#end
